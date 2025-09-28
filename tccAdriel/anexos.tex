@@ -1,0 +1,74 @@
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+\partanexos
+% ---
+\begin{comment}
+    \chapter{Detalhes do desenvolvimento da aquisição da imagem da tábua de corte}
+\label{chap:anexos}
+
+Para a aplicação da câmera, duas classes principais foram criadas: \textit{CameraShow} e \textit{CanvasShow}.
+
+A \textit{CameraShow} é uma extensão da classe \textit{AppCompatActivity} fornecida pela Google para a criação de \textit{views}. Sua estrutura consiste dos componentes \textit{RelativeLayout}, \textit{TextureView} e \textit{Button}, descritos mais a frente. Enquanto que a classe \textit{CanvasShow} é uma extensão da classe \textit{View}, onde seu principal objetivo é a criação de um \textit{Frame} (moldura) dinâmico, a partir da área de exibição da câmema, utilizando a sobreposição do método \textit{onDraw} da classe \textit{View}, para posterior aquisição da imagem.
+
+A geração dinâmica do \textit{Frame} possui como entrada a área de resolução da câmera com ofuscamento de 38\% da altura. Essa característica foi obtida de forma empírica, devido aos testes realizados após a aquisição da imagem em dispositivos de diferentes resoluções.
+
+Foi necessário a utilização de recursos fornecidos pelo SO Android, por exemplo, a utilização da câmera e do armazenamento interno, e por exigência, o recurso só é fornecido mediante permissão do usuário. Portanto, algumas permissões de uso foram definidas no arquivo \textit{manifest}, que contém informações essenciais sobre a aplicação, e novamente de forma explicita no código, quando necessário a sua utilização.
+
+\begin{figure}[htbp!]
+  \centering
+  \caption{Fluxo básico das funcionalidades da classe \textit{CameraShow}.}
+  \includegraphics[width=1\textwidth]{figs/fluxograma_camera.png}
+    \legend{Fonte: Elaborada pelo autor}
+    \label{fig:fluxograma_camerashow}
+\end{figure}
+
+A Figura \ref{fig:fluxograma_camerashow} apresenta, resumidamente, as operações realizadas na classe \textit{CameraShow}. A seguir, cada etapa será explicada detalhadamente.
+
+\begin{enumerate}
+    \item Inicialização: Nele está contido toda operação realizada pelo construtor da classe, preparando o ambiente para configuração e abertura da câmera, para posterior aquisição da imagem. Em suma, ele integra os recursos fornenecidos pelos componentes, controles e \textit{Frame}.
+    \begin{itemize}
+        \item Componentes: Objetos exibidos durante a execução da câmera. Entre eles:
+        \begin{itemize}
+            \item \textit{RelativeLayout}: Componente que determina como será organizado e posicionado os demais objetos contidos nele.
+            \item \textit{TextureView}: Área para apresentação de uma previsualização instantânea do cenário registrado pela câmera.
+            \label{ite:texture_view}
+            \item \textit{Button}: Botão exibido na interface para captura de uma imagem.
+        \end{itemize}
+        
+        \item Controles: Contém métodos de pré-configuração da câmera, monitorando a forma que é executada, exibida ou tratamento de possíveis exceções ocorridas durante o acesso. Entre eles:
+        \begin{itemize}
+            \item \textit{initStateCallBack}: Método utilizado para indicar o estado da câmera, ou seja, quando é aberta ou quando ocorreu um erro durante o acesso.
+            \item \textit{initSurfaceTextureListener}: Método que prepara a previsualização que será exibida em \textit{TextureView}.
+        \end{itemize}
+        
+        \item \textit{Frame}: Criação da moldura que será apresentada na tela do dispositivo para auxiliar na aquisição da imagem.
+    \end{itemize}
+    
+    \item Permissão: Após a inicialização da classe, é verificado se a aplicação possui as permissões do usuário para prosseguir com a execução.
+    
+    \item Execução paralela: Caso tudo esteja certo, um novo \textit{thread} é criado (divisão do processo) para utilização da câmera de forma paralela, aliviando a \textit{thread} principal do sistema. Alguns controles que liberam ou retomam o uso da câmera ou interrompem o \textit{thread} por um breve momento também estão presentes nessa etapa. Aqui, duas situações podem ocorrer com frequência: a câmera pode sofrer alterações, por exemplo, de orientação; ou o botão para aquisição da imagem pode ser acionado.
+    \begin{itemize}
+        \item Atualização da exibição: Devido a etapa de inicialização, alguns componentes que monitoram o uso da câmera pode alerta para alterações realizadas na mesma, como por exemplo, a mudança de horizontal para vertical. Sendo assim, um reajuste é necessário, sendo realizado por um método específico nomeado como \textit{update}.
+        \item Aquisição da imagem: Caso o botão da câmera seja acionado, um método de captura da imagem registra o cenário da câmera, congelando a exibição por um breve momento, e depois a libera, devolvendo o controle. Com a captura, uma mudança no estado da câmera foi notado (congelando a exibição), sendo assim, uma atualização da exibição também é realizada nesse momento.
+    \end{itemize}
+    
+    \item Encerramento: Etapa trivial mas de grande importância. Por boas práticas, todo recurso solicitado ou utilizado devem ser liberados, ocorrendo aqui.
+\end{enumerate}
+
+Em Figura \ref{fig:tela_captura} é observado o resultado final obtido com o desenvolvimento da câmera.
+
+% ---
+
+
+\end{comment}
+
+
+\end{anexosenv}

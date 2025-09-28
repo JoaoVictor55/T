@@ -1,0 +1,99 @@
+\changetocdepth {4}
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introdução}}{21}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contextualização}{21}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problema de Pesquisa}{22}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Objetivos}{22}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Objetivo Geral}{22}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Objetivos Específicos}{22}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Justificativa}{23}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Organização do Trabalho}{24}{section.1.5}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Referencial Teórico}}{25}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Agricultura de Precisão}{25}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Tecnologias Móveis e Coleta de Dados no Campo}{26}{section.2.2}%
+\contentsline {section}{\numberline {2.3}RFID na Agricultura}{27}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Leitores RFID}{28}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Tags RFID}{29}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Comparação com Outras Tecnologias de Identificação}{30}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Integração de RFID e IoT em Aplicações Móveis}{31}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Desafios da Coleta de Dados em Áreas Rurais}{32}{section.2.5}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{O Aplicativo}}{35}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Arquitetura do Aplicativo}{35}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Integração com RFID}{37}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Processo de Implementação do RFID}{37}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Funcionalidades Desenvolvidas}{38}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Aprimoramento do Armazenamento \textit {Offline}}{38}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Gestão de Dados com \textit {Redux Toolkit}}{38}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Monitoramento de Erros}{39}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Atualização de Bibliotecas e \textit {Frameworks}}{39}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Interface com o Usuário}{40}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Fluxo de Navegação Linear do Aplicativo}{40}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}\textit {Design} e Usabilidade}{43}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Fluxo de Coleta e Operação}{44}{subsection.3.4.3}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Implementação}}{47}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Tecnologias Utilizadas}{47}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Leitor RFID Utilizado}{47}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Tags RFID e Vinculação às Árvores}{49}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Módulo RFID Implementado}{51}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Especificações}{52}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Requisitos Funcionais}{53}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Requisitos Não Funcionais}{54}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Arquitetura do Sistema}{54}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Fluxo de Coleta e Operação}{56}{section.4.7}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Testes e resultados}}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Testes Realizados}{57}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Testes no Aplicativo Móvel}{57}{subsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.1}Identificação Automática de Árvores com RFID}{57}{subsubsection.5.1.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.2}Coleta \textit {Offline} e Sincronização de Dados}{58}{subsubsection.5.1.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.1.3}Validação de Dados da Coleta}{59}{subsubsection.5.1.1.3}%
+\contentsline {subsection}{\numberline {5.1.2}Testes na Plataforma Web}{59}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}Cadastro e Atualização de RFIDs}{59}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}Vinculação de RFIDs com Árvores}{59}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}Listagem e Edição de Árvores}{59}{subsubsection.5.1.2.3}%
+\contentsline {subsection}{\numberline {5.1.3}Testes na API e Banco de Dados}{59}{subsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.1}Criação e Atualização de RFIDs}{59}{subsubsection.5.1.3.1}%
+\contentsline {subsubsection}{\numberline {5.1.3.2}Exportação dos Dados da Coleta}{59}{subsubsection.5.1.3.2}%
+\contentsline {section}{\numberline {5.2}Resultados Obtidos}{60}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Seções de Imagens}{61}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Imagens da Plataforma Web}{61}{subsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.1.1}Tela de Listagem de RFIDs}{61}{subsubsection.5.3.1.1}%
+\contentsline {subsubsection}{\numberline {5.3.1.2}Janela de Criação de Código RFID}{61}{subsubsection.5.3.1.2}%
+\contentsline {subsubsection}{\numberline {5.3.1.3}Janela de Atualização de Código RFID}{62}{subsubsection.5.3.1.3}%
+\contentsline {subsubsection}{\numberline {5.3.1.4}Tela de Listagem de Árvores}{62}{subsubsection.5.3.1.4}%
+\contentsline {subsubsection}{\numberline {5.3.1.5}Janela de atualização do código RFID da árvore}{63}{subsubsection.5.3.1.5}%
+\contentsline {subsection}{\numberline {5.3.2}Imagens do Aplicativo Móvel}{64}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}Telas de Listagem}{64}{subsubsection.5.3.2.1}%
+\contentsline {subsubsection}{\numberline {5.3.2.2}Tela de Coleta dos Dados da Prática}{65}{subsubsection.5.3.2.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.3}Tela de Coleta dos Dados da Árvore}{65}{subsubsection.5.3.2.3}%
+\contentsline {subsection}{\numberline {5.3.3}Modal de Busca do RFID}{66}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Estrutura de Dados e Funcionalidades da API}{68}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Tabela de RFIDs Relacionada à Entidade de Árvores}{68}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}\textit {Endpoints} de Manipulação de RFIDs}{69}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Exportação de Dados com RFID}{69}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Discussão dos Testes e Resultados}{70}{section.5.5}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Discussões e Trabalhos Futuros}}{71}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Automação de Geração e Gravação de Tags RFID}{71}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Padrão de Identificação para Tags RFID}{71}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Implementação}{72}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Benefícios}{72}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}Integração com Sensores IoT para Monitoramento Ambiental}{72}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Análise Preditiva com Machine Learning}{73}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Integração de Gravador RFID}{73}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Conclusão}{74}{section.6.5}%
+\vspace {\cftbeforechapterskip }
+\vspace {\cftbeforechapterskip }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{75}{section*.52}%
+\vspace {\cftbeforechapterskip }

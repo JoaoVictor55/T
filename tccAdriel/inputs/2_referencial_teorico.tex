@@ -1,0 +1,237 @@
+\chapter{Referencial Teórico}
+
+Este capítulo apresenta uma revisão da literatura sobre a Internet das Coisas (IoT), com foco no uso de sensores RFID na agricultura de precisão, bem como na aplicação dessas tecnologias em soluções móveis. Além disso, são discutidas comparações com outras tecnologias, a fim de proporcionar uma base para a metodologia adotada neste trabalho.
+
+Todos estes tópicos nortearam a metodologia proposta e estão relacionados na intenção de contextualizar este trabalho.
+
+\section{Agricultura de Precisão}
+A agricultura de precisão (AP) representa um avanço significativo nas práticas agrícolas, integrando tecnologias modernas para aumentar a produtividade enquanto reduz os impactos ambientais. Segundo \cite{Marinello2023ThePT}, a AP utiliza ferramentas como sensores, drones e algoritmos de aprendizado de máquina para maximizar a produção de culturas, minimizar o desperdício e melhorar a eficiência dos recursos disponíveis.
+
+A implementação de sistemas de AP está diretamente relacionada à coleta e análise de dados, que permitem decisões baseadas em variabilidades espaciais e temporais do solo e das culturas. \cite{Chapungo2021SensorsAC} destacam o papel de sensores e protocolos de comunicação no ecossistema da Internet das Coisas (IoT) em AP, demonstrando como redes de dispositivos conectados podem otimizar tarefas como irrigação, fertilização e pulverização de pesticidas, reduzindo custos e melhorando a sustentabilidade.
+
+Além disso, a integração de sensores IoT, como descrito por \cite{MohamedArafathRajack2021ImplementationOI}, possibilita o monitoramento em tempo real das condições de cultivo e a resposta imediata a eventos críticos, como ataques de pragas. Essa tecnologia combina sensores de solo, câmeras e algoritmos de processamento de imagem para identificar problemas nas culturas e automatizar ações corretivas, como a aplicação de pesticidas.
+
+No Quadro \ref{Tab:PrecisionAgriculture} está um resumo dos principais avanços tecnológicos e suas aplicações na agricultura de precisão, demonstrando como cada tecnologia contribui para a melhoria das práticas agrícolas e sua relevância para o projeto ColetaCacau.
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Avanços Tecnológicos na Agricultura de Precisão.}
+	\begin{tabular}{|p{3cm}|p{2cm}|p{3cm}|p{5cm}|}
+	   \hline
+	   \textbf{Trabalho} & \centering\textbf{Tecnologia Utilizada} & \textbf{Funcionalidades} & \textbf{Relevância para o ColetaCacau}\\
+	   \hline
+            Marinello et al. (2023) & Sensores, drones, aprendizado de máquina & Otimização de recursos e maximização da produção & Proporciona insights sobre o uso de tecnologias avançadas na coleta e análise de dados. \\ 
+        \hline
+            Chapungo \& Postolache (2021) & IoT, redes de sensores & Irrigação, fertilização e pulverização de pesticidas & Similar ao ColetaCacau, que utiliza sensores para coleta precisa e em tempo real. \\ 
+        \hline
+            Mohamed Arafath Rajack et al. (2021) & Sensores IoT, algoritmos de imagem & Monitoramento de pragas e condições do solo & Oferece base para a integração de sensores IoT ao ColetaCacau, permitindo respostas rápidas a eventos críticos. \\ 
+        \hline
+	\end{tabular}
+	\fonte{o autor, 2024.}
+    \label{Tab:PrecisionAgriculture}
+\end{quadro}
+
+\newpage
+\section{Tecnologias Móveis e Coleta de Dados no Campo}
+O uso de aplicativos móveis na agricultura tem revolucionado as práticas de coleta de dados e gestão agrícola, especialmente em áreas rurais. Aplicações desenvolvidas para operar em ambientes de conectividade limitada, com interfaces acessíveis e suporte a tecnologias avançadas, têm sido fundamentais para ampliar o alcance da transformação digital no campo. Trabalhos como os de \cite{Appiah2024PlanteSaineAA} e \cite{Osman2022MOBILEUI} demonstram o potencial de tecnologias móveis em fornecer soluções práticas para agricultores, mesmo em contextos desafiadores.
+
+O \textit{PlanteSaine}, apresentado por \cite{Appiah2024PlanteSaineAA}, é um exemplo de como a integração de Inteligência Artificial (IA) em aplicativos móveis pode transformar a agricultura em regiões rurais. Este aplicativo foi projetado para agricultores de Burkina Faso e utiliza IA para diagnóstico de pragas e doenças em culturas de milho, tomate e cebola. Além de operar \textit{offline}, o \textit{PlanteSaine} fornece alertas de emergência sobre surtos de pragas, garantindo que os agricultores estejam preparados para lidar com esses problemas. A funcionalidade de mensagens também permite a comunicação direta com especialistas agrícolas, promovendo uma tomada de decisão mais informada e eficiente.
+
+Já \cite{Osman2022MOBILEUI} destacam a importância de interfaces de usuário (UI) intuitivas e acessíveis para pequenos agricultores. Elementos como ícones visuais, resposta por voz interativa (IVR) e mapas geoespaciais foram identificados como fundamentais para superar barreiras tecnológicas. Essas soluções facilitam o uso de aplicativos móveis por agricultores com pouca experiência tecnológica, aumentando sua eficácia no manejo agrícola e na adoção de práticas digitais.
+
+O aplicativo ColetaCacau, voltado para automatização do processo da coleta de dados de árvores de cacau, integra funcionalidades de coleta de dados \textit{offline} e identificação automática com RFID, promovendo precisão e eficiência. Embora o foco principal esteja na coleta automatizada, o ColetaCacau compartilha características importantes com o \textit{PlanteSaine}, como a funcionalidade \textit{offline} para operação em áreas remotas e o \textit{design} intuitivo para facilitar a adoção por coletores no campo.
+
+No Quadro \ref{Tab:MobileAppsInAgriculture} está uma sintese dos avanços tecnológicos aplicados em soluções móveis voltadas para a agricultura, destacando suas funcionalidades e impactos. Essa análise evidencia como cada abordagem contribui para superar os desafios enfrentados em ambientes rurais e sua relevância para aprimorar e contextualizar as inovações implementadas no ColetaCacau.
+
+\begin{quadro}[H]
+    \centering
+    \footnotesize
+    \caption{Soluções Móveis na Agricultura e Sua Relevância para a Transformação Digital no Campo.}
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4cm}|}
+       \hline
+       \textbf{Trabalho} & \textbf{Tecnologias e Funcionalidades} & \textbf{Impacto no Campo} & \textbf{Relevância para Aplicativos Como o ColetaCacau}\\
+       \hline
+       Appiah et al. (2024) & Diagnóstico de pragas e doenças com IA (EfficientNetB3); funcionalidades \textit{offline}; alertas de emergência & Aumento da segurança alimentar; suporte em áreas remotas & Serve como referência para incorporar diagnóstico com IA e comunicação especializada. \\
+       \hline
+       Osman et al. (2022) & \textit{Design} de UI adaptado para agricultores rurais; uso de mapas geoespaciais e IVR & Melhor usabilidade para agricultores com baixa alfabetização digital & Reforça a importância de interfaces intuitivas no \textit{design} do ColetaCacau. \\
+       \hline
+       ColetaCacau (atual) & Coleta \textit{offline}; integração com RFID para monitoramento automatizado & Precisão no monitoramento de árvores e redução de erros humanos & Exemplifica a adaptação de tecnologias modernas ao contexto agrícola local. \\
+       \hline
+    \end{tabular}
+    \fonte{o autor, 2024.}
+    \label{Tab:MobileAppsInAgriculture}
+\end{quadro}
+
+\section{RFID na Agricultura}
+A Identificação por Radiofrequência (RFID) é uma tecnologia amplamente utilizada em diversas indústrias, incluindo a agricultura, devido à sua capacidade de rastrear objetos e monitorar o ambiente em tempo real. O uso de RFID na agricultura abrange aplicações como o monitoramento de gado, o rastreamento de produtos agrícolas e a identificação de plantas específicas, como ocorre no sistema ColetaCacau.
+
+Conforme discutido por \cite{Placidi2023LowCostAL}, sensores de baixo custo e frequência são promissores para aplicações agrícolas devido à acessibilidade econômica e à capacidade de medir parâmetros críticos, como a umidade e a salinidade do solo. Essa abordagem de baixo custo atende às necessidades de países com recursos limitados, permitindo a adoção mais ampla de práticas de agricultura de precisão. O estudo destaca que, embora sensores tradicionais de alta frequência ofereçam maior precisão, sua aplicação em larga escala é limitada pelo custo elevado.
+
+No contexto de produtos alimentares, \cite{Khosravi2018ComparisonBN} realizaram uma análise comparativa entre RFID/\textit{NFC} e códigos de barras para identificação de produtos Halal. Os resultados indicaram que o RFID oferece maior eficiência, segurança e satisfação do cliente devido à sua capacidade de leitura sem contato e maior durabilidade em ambientes desafiadores. Esses fatores tornam o RFID uma escolha robusta para rastreamento e identificação em ambientes agrícolas, onde as condições ambientais podem ser adversas.
+
+No caso do ColetaCacau, o RFID é utilizado para marcar árvores específicas, assegurando que os dados sejam coletados de forma consistente das mesmas plantas ao longo do tempo. Isso não apenas aumenta a precisão dos dados, mas também permite uma melhor rastreabilidade e gestão das plantações.
+
+No Quadro \ref{Tab:RfidInAgriculture} está um resumo das principais aplicações de RFID em diferentes estudos, destacando como essa tecnologia se alinha com os objetivos do ColetaCacau.
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Aplicações de RFID na Agricultura.}
+	\begin{tabular}{|c|p{3cm}|p{3cm}|p{5cm}|}
+	   \hline
+	   \textbf{Trabalho} & \textbf{Uso de RFID} & \textbf{Objetivo} & \textbf{Resultados/Relevância para o ColetaCacau}\\
+	   \hline
+        Placidi et al. (2023) & Monitoramento de parâmetros do solo & Reduzir custo e aumentar a acessibilidade de sensores de precisão & Sensores de baixo custo para monitoramento contínuo e gestão eficiente de recursos podem ser integrados ao ColetaCacau para medir condições do solo. \\ 
+	   \hline
+        Khosravi et al. (2018) & Identificação de produtos via RFID/\textit{NFC} & Aumentar segurança e eficiência no rastreamento de produtos & Demonstra a superioridade do RFID em relação a sistemas tradicionais, como códigos de barras, reforçando sua aplicabilidade em cenários agrícolas. \\ 
+	   \hline
+        ColetaCacau (atual) & Marcação de árvores de cacau com RFID & Garantir coleta consistente e monitoramento de longo prazo & Utiliza RFID para monitoramento preciso de árvores específicas, alinhado às boas práticas agrícolas modernas. \\ 
+	   \hline
+	\end{tabular}
+	\fonte{o autor, 2024.}
+    \label{Tab:RfidInAgriculture}
+\end{quadro}
+
+\subsection{Leitores RFID}
+O uso de leitores RFID na agricultura e em áreas de coleta de dados tem se tornado cada vez mais comum, principalmente devido ao aumento da acessibilidade e à diminuição dos custos. Leitores RFID permitem a identificação automática e sem contato de objetos ou seres vivos, por meio da leitura de tags que possuem um identificador único.
+
+Os leitores RFID operam em diferentes frequências, como \textit{Low Frequency (LF)}, \textit{High Frequency (HF)} e \textit{Ultra-High Frequency (UHF)}, cada uma com características específicas. Para o projeto ColetaCacau, foi escolhido um leitor de baixa frequência (12KHz), com o diferencial de ser um equipamento de baixo custo e fácil acessibilidade. As principais características das frequências são:
+
+\begin{itemize}
+    \item \textbf{LF (30 a 300 KHz):} Tem alcance limitado a poucos centímetros, sendo ideal para identificação individual em situações de proximidade. O baixo custo e a resistência a interferências tornam essa frequência apropriada para o ambiente de campo no ColetaCacau.
+    
+    \item \textbf{HF (3 a 30 MHz):} Alcança até 1 metro de distância e é utilizado em aplicações que exigem maior faixa de leitura, mas também é suscetível a interferências.
+    
+    \item \textbf{UHF (300 MHz a 3 GHz):} Oferece maior alcance, com distâncias de até 10 metros. No entanto, os leitores e tags UHF são mais caros e exigem condições ambientais controladas, sendo menos adequados para o uso em campo.
+\end{itemize}
+
+Conforme discutido em trabalhos como o de \cite{Placidi2023LowCostAL}, a escolha da frequência de operação dos leitores RFID deve considerar fatores como o custo, a necessidade de proximidade e as condições do ambiente. No ColetaCacau, o leitor LF de 12KHz foi selecionado para equilibrar custo e funcionalidade, sendo uma solução eficiente para monitoramento de árvores em campo.
+
+No Quadro \ref{Tab:RfidFrequency} está uma comparação entre diferentes frequências de operação de leitores RFID, destacando seus alcances, vantagens para o setor agrícola e relevância para o projeto ColetaCacau.
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Frequências e Aplicações de Leitores RFID}
+	\begin{tabular}{|c|p{3cm}|p{3cm}|p{5cm}|}
+	   \hline
+	   \textbf{Frequência} & \centering\textbf{Alcance} & \textbf{Vantagens para Agricultura} & \textbf{Relevância para o ColetaCacau}\\
+	   \hline
+            LF (30 a 300 KHz)  & Poucos centímetros & Resistente a interferências, baixo custo & Ideal para proximidade, como em árvores individuais \\ 
+        \hline
+            HF (3 a 30 MHz)        & Até 1 metro     & Equilíbrio entre alcance e custo. & Menor vantagem em custo e alcance para o ColetaCacau \\ 
+        \hline
+            UHF (300 MHz a 3 GHz)          & Até 10 metros               & Maior alcance e velocidade de leitura          & Não aplicável devido ao custo e suscetibilidade a interferências \\ 
+        \hline
+	\end{tabular}
+	\fonte{o autor, 2024.}
+    \label{Tab:RfidFrequency}
+\end{quadro}
+
+\subsection{Tags RFID}
+As tags RFID complementam os leitores e são essenciais para o processo de identificação automática. Assim como os leitores, as tags RFID variam de acordo com a frequência, modelo e custo. Os tipos de tags mais comuns são:
+
+\begin{itemize}
+    \item \textbf{Tags Passivas:} Não possuem fonte de energia própria e dependem do sinal do leitor para ativação. São mais econômicas e duráveis, o que as torna ideais para o uso em campo.
+    
+    \item \textbf{Tags Semi-Ativas e Ativas:} Possuem fonte de energia própria, o que amplia o alcance de leitura, mas aumenta o custo e reduz a durabilidade.
+\end{itemize}
+
+Para o ColetaCacau, foram utilizadas tags passivas de 12KHz, que se alinham com o leitor de baixa frequência selecionado. Essas tags são econômicas e têm uma vida útil longa, suportando condições ambientais adversas comuns em plantações de cacau. O Quadro \ref{Tab:RfidTagModels} compara os diferentes modelos de tags RFID, detalhando suas fontes de energia, vantagens e relevância para o ColetaCacau.
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Modelos e Aplicações de Tags RFID.}
+	\begin{tabular}{|c|p{3cm}|p{3cm}|p{5cm}|}
+	   \hline
+	   \textbf{Modelo} & \centering\textbf{Fonte de Energia} & \textbf{Vantagens} & \textbf{Relevância para o ColetaCacau}\\
+	   \hline
+            Passiva (LF)  & Não & Baixo custo, alta durabilidade & Ideal para identificação de árvores, custo acessível \\ 
+        \hline
+            Semi-Ativa (HF/UHF)        & Parcial     & Maior alcance, mas custo elevado. & Não aplicável devido ao custo e ambiente de campo \\ 
+        \hline
+            Ativa (UHF)          & Sim               & Amplo alcance, leitura rápida          & Custo elevado e pouca durabilidade em campo \\ 
+        \hline
+	\end{tabular}
+	\fonte{o autor, 2024.}
+    \label{Tab:RfidTagModels}
+\end{quadro}
+
+\subsection{Comparação com Outras Tecnologias de Identificação}
+Embora o RFID tenha se destacado pela sua eficiência e capacidade de leitura sem contato, outras tecnologias de identificação, como \textit{QR Codes}, códigos de barras e \textit{NFC (Near Field Communication)}, também são alternativas comuns. No entanto, a escolha pelo RFID no ColetaCacau foi baseada em características específicas que favorecem sua aplicabilidade no ambiente agrícola.
+
+\begin{itemize}
+    \item \textbf{\textit{QR Code} e Código de Barras:} Embora esses métodos sejam economicamente viáveis e amplamente utilizados, eles exigem a proximidade e a visibilidade da etiqueta para a leitura, o que poderia comprometer a precisão e aumentar o tempo de coleta em ambientes de campo. Além disso, \textit{QR Codes} e códigos de barras são mais suscetíveis a danos físicos (como desgaste por clima adverso), o que reduz sua durabilidade em ambientes externos. \cite{Khosravi2018ComparisonBN}
+
+    \item \textbf{\textit{NFC}:} Embora ofereça leitura sem contato e em curtas distâncias, similar ao RFID, a \textit{NFC} exige uma proximidade maior entre o leitor e a etiqueta. Além disso, o custo das etiquetas \textit{NFC} é, geralmente, superior ao das etiquetas de RFID de baixa frequência, tornando-a menos viável para monitoramento em larga escala de árvores. \cite{Khosravi2018ComparisonBN}
+\end{itemize}
+
+Em resumo, a RFID foi escolhida por sua capacidade de ler etiquetas a uma curta distância sem a necessidade de visibilidade direta, além de ser uma tecnologia robusta e com maior resistência a condições ambientais adversas. O RFID também permite uma maior frequência de leitura sem contato visual, aumentando a eficiência na coleta de dados em campo.
+
+A variação de custos para etiquetas \textit{NFC} e \textit{RFID} pode ser constatada em diferentes relatórios de mercado, documentos técnicos de fornecedores e cotações on-line. Além disso, os custos tendem a diminuir em compras de grande volume. Abaixo, seguem algumas referências que exemplificam as faixas de preço mencionadas:
+
+\begin{itemize}
+    \item \textbf{Etiquetas NFC:} Geralmente encontradas na faixa de US\$0,15 a US\$0,60 por unidade (em lotes médios), podendo chegar a valores mais altos em etiquetas com recursos adicionais, maior memória ou encapsulamentos especiais para ambientes agressivos \cite{IDTechEx2023, Alibaba, AliExpress}.
+
+    \item \textbf{Etiquetas RFID LF (125 kHz ou 134,2 kHz):} Podem ser encontradas em valores próximos a US\$0,20 ou acima em casos de encapsulamentos robustos ou tags com suporte a ambientes extremos \cite{IDTechEx2023, Alibaba}. Em aplicações agrícolas ou de pecuária (por exemplo, identificação de animais), são comuns versões encapsuladas para resistir a umidade, atrito e variações de temperatura, o que pode elevar o custo por unidade.
+
+\end{itemize}
+
+\section{Integração de RFID e IoT em Aplicações Móveis}
+O estudo "\textit{Caribi Mobile Application Based on Radio Frequency Identification (RFID) for Internet of Things (IoT)}" de \cite{Faridah2022CaribiMA} explora uma aplicação móvel que utiliza RFID e IoT para transformar o comércio eletrônico de gado na Indonésia, oferecendo maior precisão e eficiência no gerenciamento de informações sobre os animais. A aplicação busca facilitar transações comerciais, permitindo que criadores registrem dados como peso, idade e imagens recentes de forma automatizada e acessível por consumidores e investidores.
+
+O sistema \textit{Caribi} emprega tags RFID para identificar de maneira única cada animal, conectando essas informações a um banco de dados central por meio de IoT. Protocolos como MQTT garantem uma comunicação eficiente, minimizando o consumo de recursos durante a transmissão de dados. O sistema também incorpora um microcontrolador Arduino e uma célula de carga para medir o peso dos animais, cujos dados são automaticamente atualizados no aplicativo.
+
+Segundo \cite{Faridah2022CaribiMA}, o sistema demonstrou ser eficaz na criação de uma cadeia de valor mais transparente e precisa para o comércio de gado. No entanto, foi identificada uma margem de erro de 4,59\% nas medições de peso, destacando a necessidade de melhorias no processo de calibração.
+
+Embora o \textit{Caribi} seja voltado para a pecuária e o ColetaCacau para a agricultura, ambos compartilham o objetivo de reduzir erros humanos e automatizar processos por meio da tecnologia RFID. O Quadro \ref{Tab:CaribiColetaCacauCompare} compara as principais características e desafios de cada sistema:
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Sistemas Caribi e ColetaCacau.}
+	\begin{tabular}{|c|p{3cm}|p{3cm}|p{5cm}|}
+	   \hline
+	   \textbf{Sistema} & \centering\textbf{Objetivo Principal} & \textbf{Tecnologias Utilizadas} & \textbf{Benefícios e Relevância para ColetaCacau}\\
+	   \hline
+            Caribi & Monitoramento de gado e integração com IoT para transações online & RFID para rastreamento individual de animais e integração com banco de dados online & Demonstra a aplicação do RFID em ambientes agrícolas e integração IoT, podendo inspirar expansões no ColetaCacau para conectividade futura. \\ 
+        \hline
+            ColetaCacau (atual) & Monitoramento e coleta de dados sobre árvores de cacau para melhorar a precisão e eficiência no campo & RFID para identificação de árvores, armazenamento \textit{offline} no \textit{RealmDB} & Prova que o uso do RFID em baixa frequência pode ser aplicado de forma acessível e eficiente, sendo adaptável a outras culturas agrícolas. \\ 
+        \hline
+	\end{tabular}
+	\fonte{o autor, 2024.}
+    \label{Tab:CaribiColetaCacauCompare}
+\end{quadro}
+
+O estudo \textit{Caribi} reforça o potencial da integração entre RFID e IoT em sistemas de coleta e gerenciamento de dados, evidenciando sua aplicabilidade em diferentes contextos. Assim como no \textit{Caribi}, o ColetaCacau poderia explorar a conectividade IoT para aprimorar o monitoramento em tempo real, expandindo sua funcionalidade atual para além da coleta \textit{offline} e sincronização periódica.
+
+A aplicação \textit{Caribi} também destaca a importância de um \textit{design} de sistema escalável, permitindo que o ColetaCacau considere futuras expansões para outras culturas agrícolas e o uso de dados em análises preditivas, fortalecendo ainda mais seu papel como uma solução de referência para a agricultura de precisão.
+
+\section{Desafios da Coleta de Dados em Áreas Rurais}
+Coletar dados em áreas rurais apresenta uma série de desafios técnicos e logísticos, como conectividade limitada, condições climáticas adversas e isolamento geográfico. Segundo \cite{Appiah2024PlanteSaineAA}, ferramentas digitais, como o aplicativo PlanteSaine, que combinam Inteligência Artificial (IA) e funcionalidade \textit{offline}, são soluções promissoras para superar esses obstáculos em regiões remotas. No caso do ColetaCacau, essas abordagens são fundamentais para assegurar que os dados coletados no campo sejam consistentes e confiáveis, mesmo em áreas sem acesso à Internet.
+
+Além disso, conforme \cite{Akter2023AgroBasedMA}, fatores como a disponibilidade de dispositivos, conhecimento tecnológico e suporte local desempenham um papel crucial na adoção de tecnologias móveis por agricultores. Essas descobertas reforçam a importância de sistemas como o ColetaCacau, que combinam simplicidade de uso com funcionalidades críticas, como a coleta de dados \textit{offline} e a integração com tecnologias de identificação automática, como o RFID.
+
+O Quadro \ref{Tab:ChallengesRuralData} compara os desafios identificados por diferentes estudos na coleta de dados em áreas rurais e as soluções implementadas, como RFID e tecnologias \textit{offline}, que foram incorporadas ao sistema ColetaCacau para garantir a eficiência da coleta de dados.
+
+\begin{quadro}[!htb]
+    \centering
+    \footnotesize
+    \caption{Quadro Comparativo: Contribuições Tecnológicas para Coleta de Dados em Áreas Rurais.}
+    \begin{tabular}{|c|p{3cm}|p{3cm}|p{5cm}|}
+       \hline
+       \textbf{Trabalho} & \centering\textbf{Desafios Identificados} & \textbf{Soluções Implementadas} & \textbf{Contribuições para o ColetaCacau}\\
+       \hline
+       Appiah et al. (2024) & Falta de conectividade em áreas remotas & Aplicativo \textit{offline} com IA para diagnóstico de pragas e alertas emergenciais & Destaca a importância da funcionalidade \textit{offline} para operação eficiente em regiões sem infraestrutura de Internet. \\ 
+       \hline
+       Akter \& Tan (2023) & Adoção limitada de tecnologias digitais por agricultores & Simplicidade de uso, suporte técnico e inclusão de funcionalidades relevantes & Reforça a necessidade de interfaces intuitivas e suporte local no \textit{design} do ColetaCacau. \\ 
+       \hline
+       ColetaCacau (atual) & Conectividade limitada e precisão na coleta de dados & Coleta \textit{offline}, RFID para monitoramento automatizado & Integra tecnologias adaptadas ao campo, assegurando a precisão e confiabilidade dos dados ao longo do tempo. \\ 
+       \hline
+    \end{tabular}
+    \fonte{o autor, 2024.}
+    \label{Tab:ChallengesRuralData}
+\end{quadro}
+

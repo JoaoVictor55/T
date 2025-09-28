@@ -1,0 +1,50 @@
+\chapter{Introdução}
+
+\section{Contextualização}
+\vspace{-0.65em}
+Com a crescente demanda por produtividade e uso otimizado de recursos no setor agrícola, a adoção de tecnologias digitais para coleta e análise de dados tornou-se fundamental para este setor, especialmente em culturas como o cacau, um dos produtos da agroindústria brasileira.
+
+No Brasil, a Região Cacaueira da Bahia (RCB) é uma área de destaque na produção de cacau. Segundo o Instituto Brasileiro de Geografia e Estatística (IBGE) \cite{IBGE} , a Bahia foi o maior produtor de amêndoas de cacau do Brasil em 2023, porém o estado ainda carece de tecnologias específicas que apoiem os agricultores na coleta e análise de dados sobre a cultura do cacau. Para enfrentar esse desafio, a Comissão Executiva do Plano da Lavoura Cacaueira (CEPLAC), em parceria com a Universidade Estadual de Santa Cruz (UESC), está desenvolvendo tecnologias digitais para auxiliar os cacauicultores na coleta de dados com precisão e regularidade, oferecendo informações essenciais para uma gestão da lavoura mais eficiente e eficaz. Como parte deste esforço, foi elaborada uma metodologia própria para a coleta de dados do cultivo do cacau e, baseando-se nessa metodologia, está em desenvolvimento a PlataformaCacau, um sistema que organiza e estrutura as informações coletadas, auxiliando o cacauicultor na gestão de suas roças de cacau com informações sobre previsão de produção, indicadores de coleta,  manejo, pragas, dentre outros. 
+
+O aplicativo ColetaCacau \cite{OliveiraSerra2022} faz parte da PlataformaCacau \cite{AdrielPlataC} e tem como objetivo receber os dados observados em cacaueiros pertencentes a pontos amostrais localizados em uma dada roça de cacau. Ele substitui formulários impressos utilizados anteriormente pelos coletores que anotavam suas observações. Posteriormente, os dados desses formulários eram digitados em planilhas eletrônicas. 
+
+O processo de coleta manual com formulário impresso está sujeito a erros humanos no momento da escrita dos dados e no momento da transferência dos dados para a planilha eletrônica, podendo ainda ocorrer alguma adversidade com o formulário, como molhar, rasgar ou perder. Assim, o ColetaCacau vem modernizar o processo de coleta, trazendo mais confiança aos dados digitados, pois: mantém o histórico das coletas, sinalizando possíveis erros de digitação em coletas futuras; elimina os erros de anotação no formulário, uma vez qua agora só existe um momento de entrada dos dados, o da digitação no aplicativo, trazendo também mais agilidade ao processo.
+
+\section{Problema de Pesquisa}
+Apesar da digitalização proporcionada pelo ColetaCacau, foram identificados, nos testes iniciais, alguns problemas de precisão e eficiência. O erro humano persiste no registro manual dos dados, com ocorrências de coletores inserindo informações de uma árvore em outra, o que compromete a integridade do banco de dados e a análise subsequente. Além disso, o processo de coleta ainda consome um tempo considerável, pois o aplicativo tradicional exige que o coletor siga uma hierarquia de navegação que limita a agilidade no campo. Diante desta questão, surge a necessidade de integrar um mecanismo ao ColetaCacau para identificação automática e única da árvore que se deseja coletar as informações, trazendo maior confiança aos dados e agilidade no processo de coleta.
+
+A tecnologia RFID (\textit{Radio Frequency Identification} ou identificação por radiofrequência) mostra-se uma alternativa interessante para esta questão, uma vez que é possível prender na planta de cacau uma tag RFID e com um leitor RFID acoplado ao celular, basta aproximar esse da tag e a respectiva tela da árvore no ColetaCacau é exibida para o coletor. Elimina-se assim a questão de erros com enganos de árvores.
+
+\section{Objetivos}
+
+\subsection{Objetivo Geral}
+Aprimorar o processo de coleta de dados no cultivo de cacau, integrando a tecnologia RFID ao aplicativo ColetaCacau para aumentar a precisão e a eficiência do processo.
+
+\subsection{Objetivos Específicos}
+\begin{itemize}
+    \item Implementar o sistema de identificação por RFID para marcar as árvores monitoradas na coleta de dados.
+
+    \item Desenvolver e atualizar a PlataformaCacau para integrar o sistema de identificação RFID, permitindo a gestão unificada dos dados de coleta e seu armazenamento seguro
+
+    \item Analisar a eficácia do uso da tecnologia RFID no ColetaCacau em comparação ao método manual tradicional, identificando ganhos em termos de precisão e eficiência.
+    
+    \item Avaliar o impacto da tecnologia RFID na redução do tempo de coleta e na minimização dos erros de operação durante o registro de dados.
+    
+    \item Propor melhorias na interface e funcionalidades do aplicativo para suportar a nova tecnologia e otimizar a experiência do usuário.
+\end{itemize}
+
+\section{Justificativa}
+A produção de cacau é uma atividade essencial para o Brasil e para outros países tropicais, e a modernização de suas práticas de cultivo é fundamental para garantir competitividade e qualidade do produto no mercado internacional. A implementação de tecnologias como o RFID oferece não apenas uma redução no erro humano e ganhos de eficiência no campo, mas também representa uma oportunidade de diminuir os custos operacionais ao automatizar etapas cruciais da coleta de dados.
+
+Neste contexto, o RFID de baixa frequência (\textit{LF}) foi escolhido como alternativa viável e acessível, embora exija proximidade para leitura, similar a tecnologias como \textit{QR Codes} e códigos de barras. A vantagem do RFID sobre essas tecnologias está na sua maior resistência a condições ambientais adversas, uma vez que não requer visibilidade direta para leitura, diferentemente de \textit{QR Codes} e códigos de barras, que são mais propensos a falhas em ambientes externos, uma vez que o código pode ter parte 
+
+O \textit{NFC} (Comunicação por Campo Próximo) é uma especialização do RFID que também permite a leitura sem contato, mas com uma distância de leitura ainda mais curta. Embora o \textit{NFC} seja eficiente, ele apresenta um custo consideravelmente mais alto e requer proximidade muito similar à do RFID usado neste projeto. Assim, o uso de etiquetas RFID de \textit{LF} no ColetaCacau oferece um equilíbrio entre custo e funcionalidade, atendendo aos desafios do ambiente rural de maneira prática e econômica. Essa integração não apenas beneficia a coleta de dados na produção de cacau, mas também cria um modelo adaptável a outras culturas agrícolas com requisitos de monitoramento similares.
+
+Além de transformar a produção de cacau, a adoção da tecnologia RFID no ColetaCacau altera significativamente a dinâmica de trabalho dos coletores em campo. Anteriormente, os coletores enfrentavam o desafio de localizar e identificar manualmente cada árvore, um processo que demandava atenção contínua para evitar erros de registro. Com o RFID, essa etapa é automatizada: ao se aproximarem da árvore, os coletores têm acesso imediato às informações corretas da planta por meio da leitura das etiquetas, o que reduz o tempo necessário para a identificação e evita confusões entre árvores.
+
+Esse aprimoramento na dinâmica de trabalho não só torna o processo mais ágil e seguro, como também reduz o desgaste físico e mental dos coletores, especialmente em áreas extensas ou de difícil acesso. Em resumo, a tecnologia RFID proporciona uma coleta mais intuitiva, eficiente e menos suscetível a falhas humanas, melhorando diretamente a qualidade do trabalho e a precisão dos dados.
+
+Além de beneficiar a produção de cacau, o uso do ColetaCacau com RFID também serve como exemplo para outras culturas agrícolas com desafios semelhantes. Este estudo se destaca pelo caráter inovador, explorando a integração de um aplicativo móvel com a tecnologia RFID em um ambiente com pouca conectividade, propondo uma solução que pode ser replicada e adaptada em outras áreas da agricultura de precisão. A adoção dessa tecnologia fortalece o papel da RCB como uma região pioneira no uso de métodos avançados de coleta e análise de dados na cultura do cacau, promovendo uma produção mais eficiente e sustentável.
+
+\section{Organização do Trabalho}
+Este trabalho está estruturado em seis capítulos. O Capítulo 1 introduz o tema, define o problema de pesquisa, apresenta os objetivos e a justificativa do estudo. O Capítulo 2 aborda a revisão da literatura, explorando temas como agricultura de precisão, o uso da tecnologia RFID e os desafios da coleta de dados em áreas rurais. No Capítulo 3, são descritos os métodos utilizados para a implementação do sistema RFID no ColetaCacau, bem como a metodologia de testes de campo aplicada para avaliar sua eficácia. O Capítulo 4 detalha a implementação técnica do sistema, incluindo a arquitetura do aplicativo e as funcionalidades da plataforma. O Capítulo 5 apresenta os resultados obtidos com a integração do RFID, destacando os ganhos de precisão e eficiência em comparação ao método tradicional. Por fim, o Capítulo 6 traz as conclusões do estudo e sugestões para trabalhos futuros, como a expansão do sistema para outras culturas agrícolas e o uso de tecnologias complementares, como IoT e análise preditiva.

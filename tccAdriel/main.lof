@@ -1,0 +1,30 @@
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama de classes das principais entidades do banco de dados \textit {offline}.}}{36}{figure.caption.19}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagrama de classes do banco de dados \textit {offline} para os dados dos frutos.}}{37}{figure.caption.20}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Diagrama de componentes.}}{42}{figure.caption.21}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Tela da coleta de dados em um \textit {tablet}.}}{43}{figure.caption.22}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Tela da coleta de dados em um \textit {smartphone}.}}{44}{figure.caption.23}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Diagrama de sequência.}}{45}{figure.caption.24}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Leitor RFID em dois estados: (a) Normal e (b) Ativo durante a leitura de uma tag.}}{46}{figure.caption.25}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Modelos de leitores RFID utilizados nos testes.}}{48}{figure.caption.26}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Leitor RFID em dois estados: (a) Normal e (b) Ativo durante a leitura de uma tag.}}{49}{figure.caption.27}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Primeiras tags cadastradas e vinculadas (48 tags).}}{50}{figure.caption.28}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Tags vinculadas posteriormente (92 tags).}}{50}{figure.caption.29}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Tag RFID utilizada no ColetaCacau, com código impresso no material da tag.}}{51}{figure.caption.30}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Visulização completa do aplicativo com o leitor RFID}}{52}{figure.caption.31}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagrama de Casos de Uso.}}{53}{figure.caption.32}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Arquitetura do sistema ColetaCacau.}}{55}{figure.caption.35}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Tag RFID vinculada a uma árvore, com informações adicionais para identificação.}}{58}{figure.caption.36}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Tela de consulta à tag RFID e direcionamento para os dados correspondentes da árvore.}}{58}{figure.caption.37}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Tela de listagem de RFIDs na plataforma web.}}{61}{figure.caption.38}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Janela de criação de código RFID na plataforma web.}}{62}{figure.caption.39}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Janela de atualização de código RFID na plataforma web.}}{62}{figure.caption.40}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Tela de listagem de árvores na plataforma web.}}{63}{figure.caption.41}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Janela de atualização do código RFID da árvore na plataforma web.}}{63}{figure.caption.42}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Telas de listagem do aplicativo móvel.}}{64}{figure.caption.43}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Telas de coleta dos dados da prática no aplicativo móvel.}}{65}{figure.caption.44}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Tela de coleta dos dados da árvore no aplicativo móvel.}}{66}{figure.caption.45}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Modal de busca do RFID no aplicativo móvel.}}{67}{figure.caption.46}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Mensagem de busca do RFID indicando ponto amostral já visitado.}}{67}{figure.caption.47}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Estrutura da tabela de RFIDs e seus relacionamentos no banco de dados.}}{69}{figure.caption.48}%

@@ -1,0 +1,187 @@
+\documentclass[
+    12pt,                % tamanho da fonte
+    openright,           % capítulos começam sempre em página ímpar
+    oneside,             % impressão só frente (use "twoside" se frente e verso)
+    a4paper,             % papel A4
+    brazil               % idioma principal
+]{abntex2}
+
+% Pacotes básicos
+\usepackage[utf8]{inputenc}   % acentuação
+\usepackage[T1]{fontenc}      % codificação da fonte
+\usepackage{lmodern}          % usa fonte Latin Modern
+\usepackage{microtype}        % melhora a justificação
+\usepackage{graphicx}         % inserir figuras
+\usepackage{abntex2cite}      % citações padrão ABNT
+\usepackage{url}  
+\usepackage{indentfirst}       % recuo no primeiro parágrafo
+\usepackage{ragged2e}          % para justificação
+\usepackage{amsmath} % para \text{} e outras paradas de equação
+\usepackage{multirow} %para o multirow
+
+% Recuo e espaçamento entre parágrafos (ABNT)
+\setlength{\parindent}{1.25cm} % recuo de 1,25 cm
+\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
+
+% Informações do trabalho
+\titulo{Título do seu TCC}
+\autor{João Victor Sousa}
+\local{Ilhéus - Bahia}
+\data{2025}
+\orientador{Otacílio José Pereira}
+\instituicao{
+  Universidade Estadual de Santa Cruz \par
+  Curso de Graduação em Ciênca da Computação}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\preambulo{Trabalho apresentado ao Curso de Y da Universidade X como requisito parcial para obtenção do título de Bacharel.}
+
+\begin{document}
+
+% Capa e folha de rosto
+\imprimircapa
+\imprimirfolhaderosto*
+
+% Resumo
+\begin{resumo}
+Escreva aqui o resumo do seu trabalho.  
+Inclua objetivos, metodologia, resultados e conclusões.
+
+\vspace{\onelineskip}
+\noindent
+\textbf{Palavras-chave}: palavra1. palavra2. palavra3.
+\end{resumo}
+
+% Sumário
+\tableofcontents
+
+%chapt* é um captulo sem numeração
+\chapter*{Lista de Siglas} 
+\begin{tabular}{ll}
+AUC & Area Under Curve \\
+RNN & Redes Neurais Recorrentes \\
+CNN & Redes Neurais Convolucionais \\
+LSTM & Long Short-Term Memory \\
+AAMI & Association for the Advancement of Medical Instrumentation   \\
+GRU & Gated Unit Recurrent \\
+ECG & Eletrocardiograma \\
+TP & Verdadeiro Positivo \\
+FP & Falso Positivo \\
+TN & Verdadeiro Negativo \\
+FN & Falso Negativo \\
+\end{tabular}
+
+
+
+% Capítulos
+\chapter{Introdução}
+Texto da introdução.
+
+\chapter{Metodologia}
+
+Primeiro, foi necessário definir qual banco de dados seria usado para treino e validação. Foi escolhido o banco MIT-BIH Arrhythmia Database \cite{mitbih2005}. O banco contém 48 horas de registro de ECGs compostos da seguinte forma: 23 registros escolhidos aleatoriamente de um conjunto de 4000 gravações de 24 horas de um ambulatório e 25 registros escolhidos de modo a incluir arritmias raras, mas clinicamente significantes. Por ser um banco recomendado pela AAMI, optou-se por utilizá-lo.
+
+Em seguida, foi escolhido os tipos de arritimia, definido a estratégia de validação, as métricas o particionamento dos dados e os modelos
+
+
+\section{Particionamento dos dados e classes}
+
+Os dados foram particionados seguindo o particionamento inter-paciente, proposto por Chazel et al. (apud \citeonline{silva2025}) no qual cada batimento de um determinado paciente não pode aparecer ao mesmo tempo no conjunto de treino e validação. O objetivo é garantir a capacidade de geralização do modelo para qualquer paciente.
+Além disso, como recomendado pela AAMI, pacientes com marcapasso tiveram seus registros excluídos. Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223, e 230 são utilizados para treino. Esse conjunto é chaamdo de DS1 e os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233, and 234)
+formam o conjunto de teste, chamados de DS2.
+
+A AAMI define cinco classes de arritimia: N, SVEB, VEB, F, P e Q:
+
+\begin{table}[htb] % "h"=here, "t"=top, "b"=bottom
+\centering
+\caption{Particionamento inter-paciente proposto por Chazel et al.}
+\label{tab:particionamento}
+\begin{tabular}{|l|c|c|c|c|c|c|} % 3 colunas: esquerda, central, central
+\hline
+Conjunto & N & SVEB & VEB & F & Q & T \\ \hline
+DS1 & 45.866 & 944 & 3.788 & 415 &	8 &	51.021 \\ \hline
+DS2 & 44.259 & 	1.837 & 3.221 &	388 & 7 & 49.712 \\ \hline
+Total & 90.125 & 2.781 & 7.009 & 803 &	15 	& 100.733 \\ \hline
+\end{tabular}
+\legend{Fonte: Adaptado de Silva et al. (2025).}
+\end{table}
+
+O conjunto DS1 foi então dividido em treino e validação usando validação cruzada de 2 partições, primeiramente, e 5 nos modelos finais. 
+
+Neste trabalho, foi adotado a classificação binária onde a classe positiva indica arritimia e a negativa um batimento normal.
+
+\section{Métricas}
+
+As métricas escolhidas foram: sensibilidade, precisão, acurácia, \textit{F1 score} e AUC. 
+
+A sensibilidade pode ser interpretada como a capacidade do modelo em achar as classes positivas, no contexto desse trabalho, os batimentos arrítimicos. Ela é calculada pela seguinte equação:
+
+\begin{equation}
+\text{Sensibilidade} = \frac{TP}{TP + FN}
+\end{equation}
+
+Onde $TP$ são os verdadeiros positivos e $FN$ os falso negativos. A precisão calcula dos batimentos classificados como arritmicos, quais realmente são e é calculada como:
+
+\begin{equation}
+    \text{Precisão} = \frac{TP}{TP + FP}
+\end{equation}
+
+Onde $FP$ indica os falsos positivos. Já o \textit{F1 score} é a média harmônica entre a precisão e a sensibilidade:
+
+\begin{equation}
+  \text{\textit{F1 score} } = \frac{2 \cdot \text{Precisão}  \cdot  \text{Sensibilidade}}{\text{Sensibilidade} + \text{Precisão}}
+\end{equation}
+
+Já a acurácia mede o certo geral do modelo, tanto para as classes positivas quanto para as negativas:
+
+\begin{equation}
+\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+A AUC mede a capacidade do modelo em separar as classes positivas das negativas e vai de 0 a 1. Sendo 1 uma separação perfeita
+e 0,5 um modelo equivalente a uma classificação aleatória.
+
+A matriz de confusão é uma forma gráfica de visualizar os acertos do modelo (positivos verdadeiros e verdadeiros negativos) e seus erros (falsos positivos e falsos negativos)
+
+\begin{table}[htb]
+\centering
+\caption{Exemplo de matriz de confusão binária}
+\label{tab:matriz_confusao}
+\begin{tabular}{|c|c|c|}
+\hline
+\multirow{2}{*}{\textbf{Classe Verdadeira}} & \multicolumn{2}{c|}{\textbf{Classe Predita}} \\ \cline{2-3} 
+ & Positiva & Negativa \\ \hline
+Positiva & TP & FN \\ \hline
+Negativa & FP & TN \\ \hline
+\end{tabular}
+\legend{Fonte: Elaborado pelo autor.}
+\end{table}
+
+\section{Modelos utilizados}
+
+Como o diagnóstico de arritimias depende tanto do aspecto morfológico dos ECGs quanto do aspecto sequencial, isto é, o rítmo, foram escolhidos modelos RNNs que possuem
+bom desempenho em dados sequenciais como séries temporais e linguagem natural \cite{james2023}. Já as redes CNN possuem grande capacidade de extração de características
+e podem aprender os aspectos morfológicos dos ECGs. 
+
+
+
+\section{Organização da entrada}
+
+Foi escolhido de cada ECG a lead II, recomendada por facilitar a detecção das arritimias. 
+Cada batimento foi segmentado utilizando a bibliteca neuroki2 \cite{Makowski2021neurokit}.
+Com os batimentos segmentados foi montado uma matriz tridimensinal no formato: (\textit{batch size}, tamanho da sequência, características). As características inicialmente correspondem as amostras do ECGs e demais 
+características como intervalo RR, média do intervalo RR para o paciente e a média do 5 intervalos RR anteriores e posteriores. Em cada sequência de batimentos, só há batimentos exclusivos de um
+único paciente.
+
+
+
+\chapter{Resultados}
+Texto dos resultados.
+
+\chapter{Conclusão}
+Texto da conclusão.
+
+% Referências (BibTeX)
+\bibliographystyle{abntex2-alf}
+\bibliography{referencias}
+
+\end{document}
