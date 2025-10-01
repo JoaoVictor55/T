@@ -12,7 +12,7 @@
 \usepackage{lmodern}          % usa fonte Latin Modern
 \usepackage{microtype}        % melhora a justificação
 \usepackage{graphicx}         % inserir figuras
-\usepackage{abntex2cite}      % citações padrão ABNT
+\usepackage[alf]{abntex2cite}      % citações padrão ABNT
 \usepackage{url}  
 \usepackage{indentfirst}       % recuo no primeiro parágrafo
 \usepackage{ragged2e}          % para justificação
@@ -20,6 +20,8 @@
 \usepackage{multirow} %para o multirow
 \usepackage{float} % necessário para [H]
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18} 
+
 
 
 % Recuo e espaçamento entre parágrafos (ABNT)
@@ -86,6 +88,7 @@ Primeiramente, foi necessário definir qual banco de dados seria utilizado para 
 Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do complexo R, realizada por três cardiologistas independentes.
 
 \section{Particionamento dos dados e classes}
+\label{sec:particionamento}
 
 Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.  
 
@@ -112,6 +115,7 @@ O conjunto DS1 foi então subdividido em treinamento e validação por meio de v
 Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária, na qual a classe positiva corresponde a arritmia e a classe negativa a batimentos normais.
 
 \section{Métricas}
+\label{sec:metricas}
 
 As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score} e AUC (\textit{Area Under the Curve}).  
 
@@ -204,24 +208,48 @@ Negativa & FP & TN \\ \hline
 
 Essas métricas em conjunto permitem avaliar não apenas a proporção global de acertos, mas também a capacidade do modelo em detectar corretamente arritmias, aspecto essencial em aplicações médicas.
 
+\section{Tipos de redes usadas}
+\label{sec:tipo_redes}
 
-\section{Modelos utilizados}
+Inicialmente, foram escolhidas redes neurais recorrentes (RNNs) e seus subtipos, como LSTM e GRU. Segundo \citeonline{james2023}, esse tipo de rede apresenta grande potencial para lidar com dados sequenciais, como no processamento de linguagem natural, previsão de preços e outros tipos de séries temporais. Como o componente temporal é relevante para o diagnóstico das arritmias, optou-se por esse tipo de modelo.
 
-Como o diagnóstico de arritmias depende tanto do aspecto morfológico dos ECGs quanto do aspecto sequencial, isto é, o ritmo, foram escolhidos modelos RNNs que possuem
-bom desempenho em dados sequenciais como séries temporais e linguagem natural \cite{james2023}. Já as redes CNN possuem grande capacidade de extração de características
-e podem aprender os aspectos morfológicos dos ECGs. 
+Além das RNNs, foram utilizadas redes neurais convolucionais (CNNs), conhecidas por sua habilidade em reconhecer padrões em diferentes domínios \citeonline{james2023}. Em particular, CNNs unidimensionais (1D-CNNs) têm se mostrado eficazes na análise de sinais fisiológicos, sendo amplamente aplicadas à classificação de ECG \cite{narotamo2024}.
+
+A motivação para essa combinação está na complementaridade entre os modelos: enquanto as RNNs são eficazes na captura de dependências temporais, as CNNs se destacam na identificação de características morfológicas do sinal.
+
+\section{Pré-processamento e entrada para os modelos}
+\label{sec:pre_process}
+
+Os sinais de ECG foram segmentados em batimentos individuais utilizando a biblioteca NeuroKit2 \cite{makowski2021neurokit}.
+
+O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: arrítmicos e normais. Para isso, os modelos recebem uma sequência de batimentos e realizam a classificação do último batimento da sequência. Cada sequência é composta exclusivamente por batimentos de um único paciente.
+
+Tanto as CNNs quanto as RNNs recebem como entrada uma matriz tridimensional com a seguinte estrutura: $(\text{tamanho do batch}, \text{tamanho da sequência}, \text{número de features})$.
+
+Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
+
+\section{Desafios e estratégias}
+\label{sec:desafios_estrategias}
+
+O banco MIT-BIH apresenta desafios consideráveis para a classificação de arritmias, com 48 pacientes, cada um com 30 minutos de gravação em condições reais. Três problemas principais precisam ser superados: escassez de dados individuais, presença de ruído e desbalanceamento das classes, conforme mostrado na Tabela~\ref{tab:particionamento}.
+
+A estratégia de classificação binária ajuda parcialmente a lidar com o desbalanceamento, pois o modelo, em vez de identificar cinco classes diferentes, precisa classificar apenas duas.
+
+Outra dificuldade está na própria arritmia. Certos tipos apresentam sinais muito parecidos ou praticamente idênticos aos normais, diferenciando-se apenas pelo ritmo. Outros possuem morfologias bem distintas no ECG. Inicialmente, foram utilizadas RNNs, mas os modelos apresentaram dificuldades de generalização, evidenciadas pela diferença entre desempenho em treino e teste.
+
+Para contornar essa limitação, foram incorporadas CNNs, permitindo que as RNNs se concentrassem na captura de padrões temporais, enquanto as CNNs extraem as características morfológicas do ECG.
+
+Além disso, a estratégia de divisão inter-paciente dificulta a tarefa, pois o modelo recebe no conjunto de validação sinais de pacientes diferentes, simulando um cenário clínico mais realista. Para atingir bons resultados nesse conjunto, o modelo precisa aprender padrões gerais, independentes das variações individuais de cada paciente.
+
+É importante frisar que a adoção desta estratégia torna os resultados mais aplicáveis a cenários clínicos gerais, e que a não utilização dela em outros trabalhos não invalida seus resultados; apenas limita a sua aplicabilidade nesse cenário.
+
+O uso de engenharia de \textit{features} também pode auxiliar os modelos. Embora redes profundas sejam capazes de aprender automaticamente representações a partir dos dados brutos, a inclusão de \textit{features} pode ser especialmente útil em cenários com dados limitados. Os detalhes das \textit{features} utilizadas neste trabalho são apresentados na Seção~\ref{sec:modelos}.
 
 
+\section{Arquiteturas}
+\label{sec:modelos}
 
-\section{Organização da entrada}
 
-Foi escolhido de cada ECG o lead MLII que facilita a visualização do complexo QRS. Quando disponível. 
-O ECG foi limpo utilizando a biblioteca neurokit2.
-
-Cada batimento foi segmentado utilizando a bibliteca neurokit2 \cite{Makowski2021neurokit}.
-Com os batimentos segmentados foi montado uma matriz tridimensional no formato: (\textit{batch size}, tamanho da sequência, características). As características inicialmente correspondem as amostras do ECGs e demais 
-características como intervalo RR, média do intervalo RR para o paciente e a média do 5 intervalos RR anteriores e posteriores. Em cada sequência de batimentos, só há batimentos exclusivos de um
-único paciente.
 
 
 
