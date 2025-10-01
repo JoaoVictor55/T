@@ -19,8 +19,11 @@
 \usepackage{amsmath} % para \text{} e outras paradas de equação
 \usepackage{multirow} %para o multirow
 \usepackage{float} % necessário para [H]
+\usepackage{tikz} %desenho de diagramas
 \usepackage{pgfplots}
+
 \pgfplotsset{compat=1.18} 
+
 
 
 
@@ -249,6 +252,12 @@ O uso de engenharia de \textit{features} também pode auxiliar os modelos. Embor
 \section{Arquiteturas}
 \label{sec:modelos}
 
+Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
+
+A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, obtendo o melhor desempenho. 
+A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
+
+A segunda rede é uma híbrida de CNN com GRU:
 
 
 
