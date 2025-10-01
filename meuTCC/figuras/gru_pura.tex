@@ -1,0 +1,15 @@
+\begin{tikzpicture}[node distance=1.5cm, every node/.style={draw, rounded corners, minimum width=2.8cm, minimum height=1cm, align=center}]
+
+\node (input){Entrada ECG e features};
+\node [below=of input](gru_1){GRU};
+\node [below=of gru_1](gru_2){GRU};
+\node [below=of gru_2](gru_3){GRU};
+\node [below=of gru_3](saida){Classificação final};
+
+%conexões:
+
+\draw[->](input) -- (gru_1);
+\draw[->](gru_1) -- (gru_2);
+\draw[->](gru_2) -- (gru_3);
+\draw[->](gru_3) -- (saida);
+\end{tikzpicture}

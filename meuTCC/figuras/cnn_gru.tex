@@ -1,0 +1,27 @@
+\begin{tikzpicture}[node distance=1.5cm, every node/.style={draw, rounded corners, minimum width=2.8cm, minimum height=1cm, align=center}]
+
+% Entradas
+\node (morf) {Entrada Morfológica (ECG)};
+\node[right=of morf] (ritmo) {Entrada features};
+
+%blocos de redes neurais:
+\node[below=1.5cm of morf] (cnn) {Bloco CNN \\ (extração morfológica)};
+
+% Combinação
+\node[below=1.5cm of cnn, xshift=2.5cm] (fusion) {Combinação das Saídas};
+
+% Bloco RNN
+\node[below=of fusion] (rnn) {Bloco GRU \\ (padrões temporais)};
+
+%saída
+\node[below=of rnn] (saida) {Classificação Final};
+
+%conexões
+\draw[->](morf) -- (cnn);
+\draw[->](cnn) -- ++ (fusion);
+\draw[->](ritmo) -- ++ (fusion);
+\draw[->](fusion) -- (rnn);
+\draw[->](rnn) -- (saida);
+
+\end{tikzpicture}
+
