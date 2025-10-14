@@ -83,10 +83,53 @@ FN & Falso Negativo \\
 \end{tabular}
 
 
-
 % Capítulos
 \chapter{Introdução}
 Texto da introdução.
+
+\chapter{Fundamentação Teórica}
+
+\section{ECG}
+
+\subsection{O funcionamento do coração}
+
+O coração é um órgão muscular composto por quatro câmaras que se contraem em sequência regular, bombeando o sangue de forma eficiente \cite{msd_ecg}. As contrações são controladas por correntes elétricas que percorrem o coração com precisão e velocidade regulada. 
+
+O processo inicia no nódulo sinoatrial, localizado no átrio direito, que funciona como marcapasso natural do coração. A frequência cardíaca é determinada pela frequência de disparos desse nódulo, sendo modulada pelo sistema nervoso autônomo e por hormônios presentes na corrente sanguínea \cite{msd_ecg}. O sistema nervoso simpático aumenta a frequência cardíaca, enquanto o parassimpático, por meio do nervo vago, a reduz. Hormônios como a epinefrina (adrenalina) e norepinefrina (noradrenalina), produzidos pelo sistema simpático, também elevam a frequência cardíaca. Além disso, o hormônio tireoidiano liberado pela glândula da tireoide exerce influência na frequência cardíaca.
+
+Em repouso, a frequência cardíaca em adultos varia entre 60 e 100 batimentos por minuto, sendo geralmente mais baixa em indivíduos jovens e em bom condicionamento físico \cite{msd_ecg}.
+
+\subsection{Tipos de arritmia}
+
+As arritmias podem ser classificadas de forma simplificada em três tipos principais:
+\begin{itemize}
+    \item Taquicardia: frequência excessivamente rápida;
+    \item Bradicardia: frequência excessivamente lenta;
+    \item Irregular: quando os impulsos percorrem o coração por vias irregulares.
+\end{itemize}
+
+\subsection{O batimento cardíaco}
+
+O batimento cardíaco inicia-se no nódulo sinoatrial, cuja corrente elétrica atravessa o átrio direito e, em seguida, o átrio esquerdo, promovendo sua contração. O sangue é então impulsionado dos átrios para os ventrículos. A corrente elétrica passa pelo nódulo atrioventricular, único ponto de conexão entre átrios e ventrículos, que retarda o impulso, garantindo enchimento completo dos ventrículos. 
+
+Em seguida, o impulso segue pelo feixe de His, que se divide em ramos para conduzir a corrente a cada ventrículo, permitindo sua ativação uniforme e subsequente contração, bombeando o sangue para o corpo \cite{msd_ecg}.
+
+\subsection{O que é ECG?}
+
+Segundo Cascino e Shea \cite{msd_ecg}, o eletrocardiograma (ECG) é um exame não invasivo que registra a atividade elétrica do coração. 
+Ele é realizado pela colocação de eletrodos na pele do paciente, geralmente 12, chamados de derivações. 
+Esses eletrodos registram tanto a direção quanto a magnitude da corrente elétrica. 
+
+O registro resultante gera uma onda que reflete a atividade elétrica do coração. 
+Cada etapa do ciclo cardíaco é representada na morfologia do traçado: 
+a onda \textbf{P} corresponde à ativação dos átrios, 
+o complexo \textbf{QRS} à ativação dos ventrículos 
+e a onda \textbf{T} ao processo de repolarização ventricular.  
+
+O ECG é uma ferramenta fundamental no diagnóstico de problemas cardíacos, 
+permitindo identificar, por exemplo, episódios de infarto do miocárdio, 
+oferta insuficiente de sangue e oxigênio ao coração (isquemia), 
+hipertrofia das paredes cardíacas e diferentes tipos de arritmias.
 
 \chapter{Metodologia}
 
@@ -99,7 +142,7 @@ Uma característica importante desse banco é a anotação de cada batimento car
 
 Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.  
 
-Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 foram utilizados para treinamento (conjunto DS1). Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234) formaram o conjunto de teste (DS2).
+Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 são normalmente chamados de DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234) de DS2.
 
 De acordo com a AAMI (apud \citeonline{silva2025}), são definidas cinco classes de arritmia: N, SVEB, VEB, F e Q, correspondentes a batimento normal, batimento supraventricular ectópico, batimento ventricular ectópico, fusão de batimento ventricular e normal e batimento não classificado, respectivamente. A Tabela~\ref{tab:particionamento} apresenta a distribuição dessas classes no conjunto de dados.
 
@@ -120,6 +163,7 @@ Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
 O conjunto DS1 foi então subdividido em treinamento e validação por meio de validação cruzada, inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais.  
 
 Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária, na qual a classe positiva corresponde a arritmia e a classe negativa a batimentos normais.
+
 
 \section{Métricas}
 \label{sec:metricas}
@@ -284,10 +328,142 @@ uma seguida por uma camada de \textit{batch normalization} e \textit{global max 
 Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
 das CNNs.
 
-\chapter{Resultados}
-Texto dos resultados.
+\chapter{Resultados e discussões}
+
+\section{Resultados preliminares}
+
+Os primeiros experimentos foram realizados considerando o problema de classificação binária entre a classe \textit{N} (batimentos normais) e o restante das classes, utilizando a arquitetura descrita em \ref{fig:gru_pura}, proposta por \cite{narotamo2024}. Os resultados médios de validação, obtidos a partir de validação cruzada com cinco \textit{folds}, são apresentados na Tabela~\ref{tab:resultados_iniciais}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo inicial (\textit{N} vs. restante das classes).}
+\label{tab:resultados_iniciais}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.7119 & 0.1780 \\
+Revocação & 0.6697 & 0.2248 \\
+F1-Score & 0.6358 & 0.1222 \\
+Acurácia & 0.8312 & 0.0589 \\
+\hline
+\end{tabular}
+\end{table}
+
+Observa-se que o modelo apresentou desempenho moderado, com destaque para a acurácia relativamente alta (0,83), mas com *recall* e *F1-Score* inferiores, indicando dificuldades na detecção de batimentos não normais. Essa limitação pode estar associada ao forte desbalanceamento entre as classes, além da complexidade do problema ao agrupar múltiplos tipos de arritmia em um único grupo.
+
+\section{Resultados após simplificação do problema}
+
+Após a simplificação do problema para distinguir apenas entre as classes \textit{N} (normal) e \textit{V} (ventricular), observou-se melhora consistente em todas as métricas (Tabela~\ref{tab:resultados_finais}).
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo simplificado (\textit{N} vs. \textit{V}).}
+\label{tab:resultados_finais}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.7990 & 0.2146 \\
+Revocação & 0.8518 & 0.0934 \\
+F1-Score & 0.8098 & 0.1377 \\
+Acurácia & 0.9655 & 0.0275 \\
+\hline
+\end{tabular}
+\end{table}
+
+O modelo apresentou desempenho satisfatório, com aumento expressivo em todas as métricas, especialmente no \textit{recall} e no \textit{F1-Score}. Tanto o \textit{recall} quanto a acurácia mostraram-se mais estáveis, conforme indica o desvio padrão reduzido. Apesar da melhora da precisão média, observou-se aumento em seu desvio padrão, o que sugere maior variabilidade entre os \textit{folds}. Essa instabilidade também se refletiu no \textit{F1-Score}, possivelmente devido à dependência entre ambas as métricas. É importante destacar que a classe \textit{V} representa batimentos ventriculares, geralmente associados a arritmias potencialmente graves e de maior relevância clínica.
+
+A melhoria no desempenho pode ser explicada pela diminuição da heterogeneidade dentro da classe positiva (arrítmica). 
+Batimentos das classes \textit{Q} e \textit{F}, além de muito raros, apresentam características bastante distintas. 
+A classe \textit{Q} abrange batimentos não classificados, enquanto a classe \textit{F} corresponde à fusão entre batimentos normais (\textit{N}) e ventriculares (\textit{V}). 
+Por outro lado, batimentos da classe \textit{V} possuem morfologia bem definida, e os da classe \textit{S} apresentam um padrão rítmico característico, distinto dos batimentos normais. 
+Assim, desenvolver uma regra de decisão capaz de englobar simultaneamente essas diferentes classes mostrou-se desafiador para a arquitetura utilizada.
+
+A seguir, a curva ROC e de precisão vs \textit{recall} no melhor e pior \textit{fold}:
+
+
+
+\begin{table}[H]
+\centering
+\caption{Distribuição das classes N (0) e V (1) nos conjuntos de treino e validação por fold.}
+\label{tab:distribuicao_nv}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Fold} & \textbf{Treino N} & \textbf{Treino V} & \textbf{Validação N} & \textbf{Validação V} \\ \hline
+1 & 32 082 & 3 512 & 5 798 & 200 \\ \hline
+2 & 33 922 & 3 160 & 3 958 & 552 \\ \hline
+3 & 28 671 & 2 757 & 9 209 & 955 \\ \hline
+4 & 28 053 & 3 091 & 9 827 & 621 \\ \hline
+5 & 28 792 & 2 328 & 9 088 & 1 384 \\ \hline
+\end{tabular}
+\end{table}
+
+O melhor \textit{fold} foi o último e o pior foi o terceiro. A seguir, os gráficos nesses \textit{folds}:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_melhor_fold_gru.png} % insere o tikzpicture puro
+  \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \label{fig:matriz_confusao_melhor_fold_gru}
+\end{figure}
+
+No pior fold:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_pior_fold_gru.png} % insere o tikzpicture puro
+  \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
+  \label{fig:matriz_confusao_pior_fold_gru}
+\end{figure}
+
+No pior caso, o modelo ainda conseguiu acertar 70\% dos casos positivos. 
+
+A seguir a curva ROC no melhor \textit{fold}:
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_melhor_fold.png} % insere o tikzpicture puro
+  \caption{Curva \textit{ROC} modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \label{fig:roc_melhor_fold_gru}
+\end{figure}
+
+Considerando que o \textit{baseline}, um classificador aleatório, tem um \textit{ROC} de 0.5, o melhor foi significantemente melhor.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_pior_fold.png} % insere o tikzpicture puro
+  \caption{Curva \textit{ROC} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \label{fig:roc_pior_fold_gru}
+\end{figure}
+
+No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0.83. 
+Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva precisão vs \textit{recall}:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_pior_fold.png} % insere o tikzpicture puro
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \label{fig:ap_gru_pior_fold}
+\end{figure}
+
+Nesse gráfico, o \textit{baseline} não é fixo, mas igual a prevalência da classe positivos. No pior \textit{fold}, a proporção foi de aproximadamente
+5,94\%, contrastando com o 38\% alcançado pelo modelo. No melhor caso:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_melhor_fold.png} % insere o tikzpicture puro
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \label{fig:ap_gru_melhor_fold}
+\end{figure}
+
+Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 0.97, enquanto que a proporção de casos positivos foi de 13,21\%.
+
+Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
 
 \chapter{Conclusão}
+
 Texto da conclusão.
 
 % Referências (BibTeX)
