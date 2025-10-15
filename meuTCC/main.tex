@@ -135,7 +135,7 @@ hipertrofia das paredes cardíacas e diferentes tipos de arritmias.
 
 Primeiramente, foi necessário definir qual banco de dados seria utilizado para o treinamento e a validação. Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}, recomendado pela AAMI. O banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. Os 23 primeiros registros foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. Os 25 registros restantes foram escolhidos de modo a incluir arritmias raras, mas clinicamente significativas.
 
-Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do complexo R, realizada por três cardiologistas independentes.
+Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do pico R, realizada por três cardiologistas independentes.
 
 \section{Particionamento dos dados e classes}
 \label{sec:particionamento}
@@ -162,9 +162,31 @@ Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
 
 O conjunto DS1 foi então subdividido em treinamento e validação por meio de validação cruzada, inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais.  
 
+É importante ressaltar que o MIT-BIH detalha muito outros tipos de batimentos. Essas cinco classes são uma proposta da AAMI, feita a partir do agrupamento desses tipos.
+Uma lista das anotações pode ser encontrada em \cite{physionet_annotations}. O mapeamento entre os tipos descritos originalmente e as cinco classes foi feito da seguinte maneira:
+
+\begin{table}[H]
+\centering
+\caption{Mapeamento das anotações originais do MIT-BIH para as classes AAMI.}
+\label{tab:mapeamento_classes}
+\begin{tabular}{ll}
+\hline
+\textbf{Anotação Original} & \textbf{Classe AAMI} \\
+\hline
+N, e, j, L, R & N (Normal) \\
+A, a, J, S & S (Supraventricular) \\
+V, E & V (Ventricular) \\
+F, f & F (Fusão) \\
+Q, ?, / & Q (Desconhecida) \\
+\hline
+\end{tabular}
+\end{table}
+
+
 Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária; onde a classe positiva corresponde a arritmia ventricular e a negativa ao batimento normal.
 
-A arritmia ventricular é o tipo arrítmico mais prevalente no MIT-BIH e apresenta uma morfologia marcante. 
+A arritmia ventricular é o tipo arrítmico mais prevalente no MIT-BIH e apresenta uma morfologia marcante. Ela é composta dos tipos arrítmicos: contração prematura
+contração ventricular prematura (classe V) e batimento de escape ventricular (classe E).
 
 
 \section{Métricas}
@@ -344,7 +366,7 @@ Para otimização do processo de treinamento, foram utilizados os mecanismos de 
 
 Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
 
-A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, obtendo o melhor desempenho. 
+A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, onde obteve o melhor desempenho. 
 A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
 
 
