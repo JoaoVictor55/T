@@ -325,31 +325,19 @@ A motivação para essa combinação está na complementaridade entre os modelos
 \section{Pré-processamento e entrada para os modelos}
 \label{sec:pre_process}
 
-Os sinais de ECG foram segmentados em batimentos individuais utilizando a biblioteca NeuroKit2 \cite{makowski2021neurokit}. 
+Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de pré-processamento que consistiu em uma limpeza de ruídos e segmentação.
+Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
+Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
 
-O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: normais e arritmia ventricular. Para isso, os modelos recebem uma sequência de batimentos e realizam a classificação do último batimento da sequência. Cada sequência é composta exclusivamente por batimentos de um único paciente.
+Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}
+
+O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: normais e arritmia ventricular. 
+Para isso, os modelos recebem uma sequência de 16 batimentos e realizam a classificação do último batimento da sequência. 
+Cada sequência é composta exclusivamente por batimentos de um único paciente
 
 Tanto as CNNs quanto as RNNs recebem como entrada uma matriz tridimensional com a seguinte estrutura: $(\text{tamanho do batch}, \text{tamanho da sequência}, \text{número de features})$.
 
 Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
-
-\section{Desafios e estratégias}
-\label{sec:desafios_estrategias}
-
-O banco MIT-BIH apresenta desafios consideráveis para a classificação de arritmias, com 48 pacientes, cada um com 30 minutos de gravação em condições reais. Três problemas principais precisam ser superados: escassez de dados individuais, presença de ruído e desbalanceamento das classes, conforme mostrado na Tabela~\ref{tab:particionamento}.
-
-A estratégia de classificação binária ajuda parcialmente a lidar com o desbalanceamento, pois o modelo, em vez de identificar cinco classes diferentes, precisa classificar apenas duas.
-
-Outra dificuldade está na própria arritmia. Certos tipos apresentam sinais muito parecidos ou praticamente idênticos aos normais, diferenciando-se apenas pelo ritmo. Outros possuem morfologias bem distintas no ECG. Inicialmente, foram utilizadas RNNs, mas os modelos apresentaram dificuldades de generalização, evidenciadas pela diferença entre desempenho em treino e teste.
-
-Para contornar essa limitação, foram incorporadas CNNs, permitindo que as RNNs se concentrassem na captura de padrões temporais, enquanto as CNNs extraem as características morfológicas do ECG.
-
-Além disso, a estratégia de divisão inter-paciente dificulta a tarefa, pois o modelo recebe no conjunto de validação sinais de pacientes diferentes, simulando um cenário clínico mais realista. Para atingir bons resultados nesse conjunto, o modelo precisa aprender padrões gerais, independentes das variações individuais de cada paciente.
-
-É importante frisar que a adoção desta estratégia torna os resultados mais aplicáveis a cenários clínicos gerais, e que a não utilização dela em outros trabalhos não invalida seus resultados; apenas limita a sua aplicabilidade nesse cenário.
-
-O uso de engenharia de \textit{features} também pode auxiliar os modelos. Embora redes profundas sejam capazes de aprender automaticamente representações a partir dos dados brutos, a inclusão de \textit{features} pode ser especialmente útil em cenários com dados limitados. Os detalhes das \textit{features} utilizadas neste trabalho são apresentados na Seção~\ref{sec:modelos}.
-
 
 \section{Arquiteturas}
 \label{sec:modelos}
