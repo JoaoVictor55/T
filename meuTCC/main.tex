@@ -373,7 +373,7 @@ A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela ta
 \begin{figure}[H]
   \centering
   \input{figuras/gru_pura} % insere o tikzpicture puro
-  \caption{Arquitetura híbrida CNN+GRU.}
+  \caption{Arquitetura GRU pura.}
   \label{fig:gru_pura}
 \end{figure}
 
@@ -429,7 +429,7 @@ A seguir os resultados no treino:
 \textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
 \hline
 Precisão & 0.9872 & 0.0121 \\
-Revocação & 0.9782 & 0.0150 \\
+\textit{Recall} & 0.9782 & 0.0150 \\
 F1-Score & 0.9827 & 0.0134 \\
 Acurácia & 0.9969 & 0.0024 \\
 \hline
