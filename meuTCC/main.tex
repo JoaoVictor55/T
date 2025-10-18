@@ -396,7 +396,7 @@ das CNNs.
 
 \section{Resultados do modelo GRU}
 
-A seguir, os resultados alcançados pelo modelo descrita em \ref{fig:gru_pura}, proposta por \cite{narotamo2024}:
+A seguir, os resultados alcançados pelo modelo descrita em \ref{fig:gru_pura}:
 
 \begin{table}[H]
 \centering
@@ -490,7 +490,7 @@ Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melh
 \begin{figure}[H]
   \centering
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_pior_fold.png} % insere o tikzpicture puro
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
   \label{fig:ap_gru_pior_fold}
 \end{figure}
 
@@ -511,6 +511,91 @@ Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 80\%, enquanto que a p
 entretanto, o modelo para ter 80\% de \textit{recall}, teria que baixar sua precisão para menos de 20\%. 
 
 Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
+
+\section{Resultados do modelo híbrido GRU e CNN}
+
+O modelo híbrido apresentou resultado superior em relação ao modelo descrito em \ref{fig:gru_pura}. Na tabela \ref{tab:resultado_cv_gru_cnn_validacao}
+abaixo, é possível ver que o modelo obteve média maior em todas as métricas. Apesar disso, o modelo obteve um desvio padrão maior 
+no \textit{recall} e \textit{F1-score}. 
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo híbrido CNN e GRU (\textit{N} vs. \textit{V}) na validação}
+\label{tab:resultado_cv_gru_cnn_validacao}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.8800 &  0.1684 \\
+\textit{Recall} & 0.8726  & 0.0857 \\
+\textit{F1-Score} & 0.8593 & 0.0866 \\
+Acurácia & 0.9730 & 0.0258 \\
+\hline
+\end{tabular}
+\end{table}
+
+Na tabela  \ref{tab:resultado_cv_gru_cnn_treino}, é possível observar que ainda há \textit{overfit} porém a diferença entre os resultados
+do treino e validação do modelo \ref{fig:cnn_gru} é menor quando comparado com o modelo \ref{fig:gru_pura}. Por exemplo, a 
+diferença percentual entre o \textit{f1-score} do primeiro modelo foi de aproximadamente 9.56\% enquanto que para o segundo, foi de, aproximadamente, 17.98\%
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo híbrido CNN e GRU (\textit{N} vs. \textit{V}) no treino}
+\label{tab:resultado_cv_gru_cnn_treino}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.9698 &  0.0180 \\
+\textit{Recall} & 0.9313  & 0.0268 \\
+\textit{F1-Score} & 0.9502 & 0.0222\\
+Acurácia & 0.9915 & 0.0035 \\
+\hline
+\end{tabular}
+\end{table}
+
+Ambos os modelos tiveram os seu melhor e pior desempenho nos mesmos \textit{fold}. No melhor, o modelo híbrido obteve um AP de 0.96, como
+pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_melhor_fold_1.png} 
+  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:roc_cnn_gru_melhor_fold}
+\end{figure}
+
+Considerando a curva PR, o AP também foi maior:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_melhor_fold_1.png} 
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:ap_cnn_gru_melhor_fold}
+\end{figure}
+
+Pelo gráfico \ref{fig:ap_cnn_gru_melhor_fold}, nesse \textit{fold}, o modelo conseguiria manter um \textit{recall} de até 80\%
+enquanto sua precisão permanece em torno de quase 100\%, desempenho superior ao modelo GRU puro.
+
+A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_pior_fold_3.png} 
+  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu pior \textit{fold}}
+  \label{fig:roc_cnn_gru_pior_fold}
+\end{figure}
+
+O AP foi de 0.87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na figura
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_pior_fold_3.png} 
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:ap_cnn_gru_pior_fold}
+\end{figure}
+
+Nesse cenário, o modelo conseguiria manter um \textit{recall} de até 80\% com um pouco menos de 60\% de precisão.
 
 \chapter{Conclusão}
 
