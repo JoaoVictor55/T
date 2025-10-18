@@ -135,7 +135,7 @@ hipertrofia das paredes cardíacas e diferentes tipos de arritmias.
 
 Primeiramente, foi necessário definir qual banco de dados seria utilizado para o treinamento e a validação. Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}, recomendado pela AAMI. O banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. Os 23 primeiros registros foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. Os 25 registros restantes foram escolhidos de modo a incluir arritmias raras, mas clinicamente significativas.
 
-Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do complexo R, realizada por três cardiologistas independentes.
+Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do pico R, realizada por três cardiologistas independentes.
 
 \section{Particionamento dos dados e classes}
 \label{sec:particionamento}
@@ -162,7 +162,31 @@ Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
 
 O conjunto DS1 foi então subdividido em treinamento e validação por meio de validação cruzada, inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais.  
 
-Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária, na qual a classe positiva corresponde a arritmia e a classe negativa a batimentos normais.
+É importante ressaltar que o MIT-BIH detalha muito outros tipos de batimentos. Essas cinco classes são uma proposta da AAMI, feita a partir do agrupamento desses tipos.
+Uma lista das anotações pode ser encontrada em \cite{physionet_annotations}. O mapeamento entre os tipos descritos originalmente e as cinco classes foi feito da seguinte maneira:
+
+\begin{table}[H]
+\centering
+\caption{Mapeamento das anotações originais do MIT-BIH para as classes AAMI.}
+\label{tab:mapeamento_classes}
+\begin{tabular}{ll}
+\hline
+\textbf{Anotação Original} & \textbf{Classe AAMI} \\
+\hline
+N, e, j, L, R & N (Normal) \\
+A, a, J, S & S (Supraventricular) \\
+V, E & V (Ventricular) \\
+F, f & F (Fusão) \\
+Q, ?, / & Q (Desconhecida) \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária; onde a classe positiva corresponde a arritmia ventricular e a negativa ao batimento normal.
+
+A arritmia ventricular é o tipo arrítmico mais prevalente no MIT-BIH e apresenta uma morfologia marcante. Ela é composta dos tipos arrítmicos: contração prematura
+contração ventricular prematura (classe V) e batimento de escape ventricular (classe E).
 
 
 \section{Métricas}
@@ -241,6 +265,58 @@ Essa métrica é calculada a partir da área sob a curva ROC, ilustrada na Figur
     \label{fig:roc}
 \end{figure}
 
+Já a curva PR, Precisão vs \textit{Recall}, ilustrada abaixo:
+
+
+\pgfplotsset{compat=1.18}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.7\textwidth,
+            height=0.5\textwidth,
+            xlabel={Recall},
+            ylabel={Precision},
+            xmin=0, xmax=1,
+            ymin=0, ymax=1,
+            grid=major,
+            legend style={at={(0.95,0.2)},anchor=south east},
+            legend cell align={left},
+            thick
+        ]
+        % Curva principal (exemplo genérico)
+        \addplot[color=blue, ultra thick] coordinates {
+            (0.0,1.0)
+            (0.1,0.95)
+            (0.2,0.92)
+            (0.3,0.88)
+            (0.4,0.83)
+            (0.5,0.79)
+            (0.6,0.74)
+            (0.7,0.68)
+            (0.8,0.62)
+            (0.9,0.55)
+            (1.0,0.48)
+        };
+        \addlegendentry{Modelo}
+
+        % Linha base (baseline)
+        \addplot[dashed, color=gray] coordinates {
+            (0,0.2) (1,0.2)
+        };
+        \addlegendentry{Baseline (proporção positiva)}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva Precision–Recall genérica .}
+    \label{fig:pr_curve_nv}
+\end{figure}
+
+
+Na figura \ref{fig:pr_curve_nv} representa uma curva PR genérica, a curva mostra a precisão em função do \textit{recall}. Como ilustrado,
+conforme aumenta-se o \textit{recall}, há uma diminuição da precisão e vice-versa; representado o \textit{trade-off}. O AP é a área do gráfico; quanto
+maior, melhor. Um modelo aleatório teria um AP igual a frequência da classe positiva.
+
 A matriz de confusão, por fim, fornece uma representação tabular dos acertos e erros do modelo, como exemplificado na Tabela~\ref{tab:matriz_confusao}.
 
 \begin{table}[H]
@@ -271,45 +347,33 @@ A motivação para essa combinação está na complementaridade entre os modelos
 \section{Pré-processamento e entrada para os modelos}
 \label{sec:pre_process}
 
-Os sinais de ECG foram segmentados em batimentos individuais utilizando a biblioteca NeuroKit2 \cite{makowski2021neurokit}.
+Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de pré-processamento que consistiu em uma limpeza de ruídos e segmentação.
+Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
+Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
 
-O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: arrítmicos e normais. Para isso, os modelos recebem uma sequência de batimentos e realizam a classificação do último batimento da sequência. Cada sequência é composta exclusivamente por batimentos de um único paciente.
+Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}
+
+O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: normais e arritmia ventricular. 
+Para isso, os modelos recebem uma sequência de 16 batimentos e realizam a classificação do último batimento da sequência. 
+Cada sequência é composta exclusivamente por batimentos de um único paciente
 
 Tanto as CNNs quanto as RNNs recebem como entrada uma matriz tridimensional com a seguinte estrutura: $(\text{tamanho do batch}, \text{tamanho da sequência}, \text{número de features})$.
 
 Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
-
-\section{Desafios e estratégias}
-\label{sec:desafios_estrategias}
-
-O banco MIT-BIH apresenta desafios consideráveis para a classificação de arritmias, com 48 pacientes, cada um com 30 minutos de gravação em condições reais. Três problemas principais precisam ser superados: escassez de dados individuais, presença de ruído e desbalanceamento das classes, conforme mostrado na Tabela~\ref{tab:particionamento}.
-
-A estratégia de classificação binária ajuda parcialmente a lidar com o desbalanceamento, pois o modelo, em vez de identificar cinco classes diferentes, precisa classificar apenas duas.
-
-Outra dificuldade está na própria arritmia. Certos tipos apresentam sinais muito parecidos ou praticamente idênticos aos normais, diferenciando-se apenas pelo ritmo. Outros possuem morfologias bem distintas no ECG. Inicialmente, foram utilizadas RNNs, mas os modelos apresentaram dificuldades de generalização, evidenciadas pela diferença entre desempenho em treino e teste.
-
-Para contornar essa limitação, foram incorporadas CNNs, permitindo que as RNNs se concentrassem na captura de padrões temporais, enquanto as CNNs extraem as características morfológicas do ECG.
-
-Além disso, a estratégia de divisão inter-paciente dificulta a tarefa, pois o modelo recebe no conjunto de validação sinais de pacientes diferentes, simulando um cenário clínico mais realista. Para atingir bons resultados nesse conjunto, o modelo precisa aprender padrões gerais, independentes das variações individuais de cada paciente.
-
-É importante frisar que a adoção desta estratégia torna os resultados mais aplicáveis a cenários clínicos gerais, e que a não utilização dela em outros trabalhos não invalida seus resultados; apenas limita a sua aplicabilidade nesse cenário.
-
-O uso de engenharia de \textit{features} também pode auxiliar os modelos. Embora redes profundas sejam capazes de aprender automaticamente representações a partir dos dados brutos, a inclusão de \textit{features} pode ser especialmente útil em cenários com dados limitados. Os detalhes das \textit{features} utilizadas neste trabalho são apresentados na Seção~\ref{sec:modelos}.
-
 
 \section{Arquiteturas}
 \label{sec:modelos}
 
 Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
 
-A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, obtendo o melhor desempenho. 
+A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, onde obteve o melhor desempenho. 
 A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
 
 
 \begin{figure}[H]
   \centering
   \input{figuras/gru_pura} % insere o tikzpicture puro
-  \caption{Arquitetura híbrida CNN+GRU.}
+  \caption{Arquitetura GRU pura.}
   \label{fig:gru_pura}
 \end{figure}
 
@@ -330,76 +394,56 @@ das CNNs.
 
 \chapter{Resultados e discussões}
 
-\section{Resultados preliminares}
+\section{Resultados do modelo GRU}
 
-Os primeiros experimentos foram realizados considerando o problema de classificação binária entre a classe \textit{N} (batimentos normais) e o restante das classes, utilizando a arquitetura descrita em \ref{fig:gru_pura}, proposta por \cite{narotamo2024}. Os resultados médios de validação, obtidos a partir de validação cruzada com cinco \textit{folds}, são apresentados na Tabela~\ref{tab:resultados_iniciais}.
+A seguir, os resultados alcançados pelo modelo descrita em \ref{fig:gru_pura}:
 
 \begin{table}[H]
 \centering
-\caption{Resultados do modelo inicial (\textit{N} vs. restante das classes).}
-\label{tab:resultados_iniciais}
+\caption{Resultados do GRU (\textit{N} vs. \textit{V}) na validação}
+\label{tab:resultado_cv_gru_validacao}
 \begin{tabular}{lcc}
 \hline
 \textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
 \hline
-Precisão & 0.7119 & 0.1780 \\
-Revocação & 0.6697 & 0.2248 \\
-F1-Score & 0.6358 & 0.1222 \\
-Acurácia & 0.8312 & 0.0589 \\
+Precisão & 0.8515 & 0.1825 \\
+\textit{Recall} & 0.8039  & 0.0795 \\
+\textit{F1-Score} & 0.8060 & 0.0760 \\
+Acurácia & 0.9640 & 0.0278 \\
 \hline
 \end{tabular}
 \end{table}
 
-Observa-se que o modelo apresentou desempenho moderado, com destaque para a acurácia relativamente alta (0,83), mas com *recall* e *F1-Score* inferiores, indicando dificuldades na detecção de batimentos não normais. Essa limitação pode estar associada ao forte desbalanceamento entre as classes, além da complexidade do problema ao agrupar múltiplos tipos de arritmia em um único grupo.
+Na tabela \ref{tab:resultado_cv_gru_validacao}, tem-se as métricas médias com seus respectivos desvio padrão na \textit{cross-validação} de cinco \textit{folds}.
+Os resultados indicam que o modelo achou aproximadamente 80\% dos casos positivos, com um desvio padrão relativamente baixo, indicando boa estabilidade.
+Além disso, a precisão do modelo foi maior que seu \textit{recall}, indicando um perfil mais conservador na classificação. 
 
-\section{Resultados após simplificação do problema}
-
-Após a simplificação do problema para distinguir apenas entre as classes \textit{N} (normal) e \textit{V} (ventricular), observou-se melhora consistente em todas as métricas (Tabela~\ref{tab:resultados_finais}).
+A seguir os resultados no treino:
 
 \begin{table}[H]
 \centering
-\caption{Resultados do modelo simplificado (\textit{N} vs. \textit{V}).}
-\label{tab:resultados_finais}
+\caption{Resultados do GRU (\textit{N} vs. \textit{V}) no treino}
+\label{tab:resultado_cv_gru_treino}
 \begin{tabular}{lcc}
 \hline
 \textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
 \hline
-Precisão & 0.7990 & 0.2146 \\
-Revocação & 0.8518 & 0.0934 \\
-F1-Score & 0.8098 & 0.1377 \\
-Acurácia & 0.9655 & 0.0275 \\
+Precisão & 0.9872 & 0.0121 \\
+\textit{Recall} & 0.9782 & 0.0150 \\
+F1-Score & 0.9827 & 0.0134 \\
+Acurácia & 0.9969 & 0.0024 \\
 \hline
 \end{tabular}
 \end{table}
 
-O modelo apresentou desempenho satisfatório, com aumento expressivo em todas as métricas, especialmente no \textit{recall} e no \textit{F1-Score}. Tanto o \textit{recall} quanto a acurácia mostraram-se mais estáveis, conforme indica o desvio padrão reduzido. Apesar da melhora da precisão média, observou-se aumento em seu desvio padrão, o que sugere maior variabilidade entre os \textit{folds}. Essa instabilidade também se refletiu no \textit{F1-Score}, possivelmente devido à dependência entre ambas as métricas. É importante destacar que a classe \textit{V} representa batimentos ventriculares, geralmente associados a arritmias potencialmente graves e de maior relevância clínica.
+Pelos resultados da tabela \ref{tab:resultado_cv_gru_treino}, há uma evidência de sobreaguaste; isto é, o modelo apresenta uma falha em sua capacidade
+de generalização. Durante o treino de um modelo de aprendizado de máquina, busca-se a partir de uma amostra da população estimar uma curva que melhor
+se encaixa na população. Modelos flexíveis como uma rede neural tem uma grande capacidade de se ajustar a essa amostra e, caso ela seja pequena, por exemplo,
+o modelo pode acabar aprendendo as particularidades da amostra ao invés de padrões generalizáveis. 
 
-A melhoria no desempenho pode ser explicada pela diminuição da heterogeneidade dentro da classe positiva (arrítmica). 
-Batimentos das classes \textit{Q} e \textit{F}, além de muito raros, apresentam características bastante distintas. 
-A classe \textit{Q} abrange batimentos não classificados, enquanto a classe \textit{F} corresponde à fusão entre batimentos normais (\textit{N}) e ventriculares (\textit{V}). 
-Por outro lado, batimentos da classe \textit{V} possuem morfologia bem definida, e os da classe \textit{S} apresentam um padrão rítmico característico, distinto dos batimentos normais. 
-Assim, desenvolver uma regra de decisão capaz de englobar simultaneamente essas diferentes classes mostrou-se desafiador para a arquitetura utilizada.
+No caso do MIT-BIH; o desbalanceamento junto com as diferenças entre os batimentos de cada paciente pode ter causado esse sobre-ajuste.
 
-A seguir, a curva ROC e de precisão vs \textit{recall} no melhor e pior \textit{fold}:
-
-
-
-\begin{table}[H]
-\centering
-\caption{Distribuição das classes N (0) e V (1) nos conjuntos de treino e validação por fold.}
-\label{tab:distribuicao_nv}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf{Fold} & \textbf{Treino N} & \textbf{Treino V} & \textbf{Validação N} & \textbf{Validação V} \\ \hline
-1 & 32 082 & 3 512 & 5 798 & 200 \\ \hline
-2 & 33 922 & 3 160 & 3 958 & 552 \\ \hline
-3 & 28 671 & 2 757 & 9 209 & 955 \\ \hline
-4 & 28 053 & 3 091 & 9 827 & 621 \\ \hline
-5 & 28 792 & 2 328 & 9 088 & 1 384 \\ \hline
-\end{tabular}
-\end{table}
-
-O melhor \textit{fold} foi o último e o pior foi o terceiro. A seguir, os gráficos nesses \textit{folds}:
+A seguir, a matriz de confusão no melhor e pior \textit{fold} respectivamente:
 
 \begin{figure}[H]
   \centering
@@ -408,7 +452,8 @@ O melhor \textit{fold} foi o último e o pior foi o terceiro. A seguir, os gráf
   \label{fig:matriz_confusao_melhor_fold_gru}
 \end{figure}
 
-No pior fold:
+Pel figura \ref{fig:ap_gru_melhor_fold}, no melhor \textit{fold}, o modelo achou 96\% das arritmias. Porém no pior, como pode ser visto
+na figura \ref{fig:ap_gru_pior_fold}, o modelo só conseguiu achar 76\% das classes positivas
 
 \begin{figure}[H]
   \centering
@@ -417,7 +462,8 @@ No pior fold:
   \label{fig:matriz_confusao_pior_fold_gru}
 \end{figure}
 
-No pior caso, o modelo ainda conseguiu acertar 70\% dos casos positivos. 
+As duas figuras ilustram como o modelo conseguiu aprender melhor a classe negativa do que a classe positiva; evidenciado pelo fato dele confundir
+muito menos negativo com positivo do que o contrário. Um resultado esperado devido a essa ser a classe dominante em todos os \textit{folds}.
 
 A seguir a curva ROC no melhor \textit{fold}:
 
@@ -438,18 +484,21 @@ Considerando que o \textit{baseline}, um classificador aleatório, tem um \texti
   \label{fig:roc_pior_fold_gru}
 \end{figure}
 
-No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0.83. 
-Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva precisão vs \textit{recall}:
+No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0.87. 
+Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva PR:
 
 \begin{figure}[H]
   \centering
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_pior_fold.png} % insere o tikzpicture puro
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
   \label{fig:ap_gru_pior_fold}
 \end{figure}
 
 Nesse gráfico, o \textit{baseline} não é fixo, mas igual a prevalência da classe positivos. No pior \textit{fold}, a proporção foi de aproximadamente
-5,94\%, contrastando com o 38\% alcançado pelo modelo. No melhor caso:
+9,39\%, contrastando com o 49\% alcançado pelo modelo. Entretanto, a precisão foi baixa, pelo gráfico, é possível ver que, por exemplo, seria 
+possível ter um recall de 80\% porém com uma precisão menor que 60\%.
+
+No melhor caso:
 
 \begin{figure}[H]
   \centering
@@ -458,9 +507,95 @@ Nesse gráfico, o \textit{baseline} não é fixo, mas igual a prevalência da cl
   \label{fig:ap_gru_melhor_fold}
 \end{figure}
 
-Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 0.97, enquanto que a proporção de casos positivos foi de 13,21\%.
+Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 80\%, enquanto que a proporção de casos positivos foi de 13,21\%. No melhor caso, 
+entretanto, o modelo para ter 80\% de \textit{recall}, teria que baixar sua precisão para menos de 20\%. 
 
 Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
+
+\section{Resultados do modelo híbrido GRU e CNN}
+
+O modelo híbrido apresentou resultado superior em relação ao modelo descrito em \ref{fig:gru_pura}. Na tabela \ref{tab:resultado_cv_gru_cnn_validacao}
+abaixo, é possível ver que o modelo obteve média maior em todas as métricas. Apesar disso, o modelo obteve um desvio padrão maior 
+no \textit{recall} e \textit{F1-score}. 
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo híbrido CNN e GRU (\textit{N} vs. \textit{V}) na validação}
+\label{tab:resultado_cv_gru_cnn_validacao}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.8800 &  0.1684 \\
+\textit{Recall} & 0.8726  & 0.0857 \\
+\textit{F1-Score} & 0.8593 & 0.0866 \\
+Acurácia & 0.9730 & 0.0258 \\
+\hline
+\end{tabular}
+\end{table}
+
+Na tabela  \ref{tab:resultado_cv_gru_cnn_treino}, é possível observar que ainda há \textit{overfit} porém a diferença entre os resultados
+do treino e validação do modelo \ref{fig:cnn_gru} é menor quando comparado com o modelo \ref{fig:gru_pura}. Por exemplo, a 
+diferença percentual entre o \textit{f1-score} do primeiro modelo foi de aproximadamente 9.56\% enquanto que para o segundo, foi de, aproximadamente, 17.98\%
+
+\begin{table}[H]
+\centering
+\caption{Resultados do modelo híbrido CNN e GRU (\textit{N} vs. \textit{V}) no treino}
+\label{tab:resultado_cv_gru_cnn_treino}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
+\hline
+Precisão & 0.9698 &  0.0180 \\
+\textit{Recall} & 0.9313  & 0.0268 \\
+\textit{F1-Score} & 0.9502 & 0.0222\\
+Acurácia & 0.9915 & 0.0035 \\
+\hline
+\end{tabular}
+\end{table}
+
+Ambos os modelos tiveram os seu melhor e pior desempenho nos mesmos \textit{fold}. No melhor, o modelo híbrido obteve um AP de 0.96, como
+pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
+
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_melhor_fold_1.png} 
+  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:roc_cnn_gru_melhor_fold}
+\end{figure}
+
+Considerando a curva PR, o AP também foi maior:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_melhor_fold_1.png} 
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:ap_cnn_gru_melhor_fold}
+\end{figure}
+
+Pelo gráfico \ref{fig:ap_cnn_gru_melhor_fold}, nesse \textit{fold}, o modelo conseguiria manter um \textit{recall} de até 80\%
+enquanto sua precisão permanece em torno de quase 100\%, desempenho superior ao modelo GRU puro.
+
+A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_pior_fold_3.png} 
+  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu pior \textit{fold}}
+  \label{fig:roc_cnn_gru_pior_fold}
+\end{figure}
+
+O AP foi de 0.87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na figura
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_pior_fold_3.png} 
+  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:ap_cnn_gru_pior_fold}
+\end{figure}
+
+Nesse cenário, o modelo conseguiria manter um \textit{recall} de até 80\% com um pouco menos de 60\% de precisão.
 
 \chapter{Conclusão}
 
