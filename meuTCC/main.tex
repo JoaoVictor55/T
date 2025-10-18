@@ -443,21 +443,37 @@ o modelo pode acabar aprendendo as particularidades da amostra ao invés de padr
 
 No caso do MIT-BIH; o desbalanceamento junto com as diferenças entre os batimentos de cada paciente pode ter causado esse sobre-ajuste.
 
-A seguir, a matriz de confusão no melhor e pior \textit{fold} respectivamente:
+Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo modelo em cada \textit{fold} na validação:
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_melhor_fold_gru.png} % insere o tikzpicture puro
+   \includegraphics[width=1.0\textwidth]{figuras/modelos_resultados/gru/gru_metricas_por_fold.png} % insere o tikzpicture puro
+  \caption{Métricas do modelo \ref{fig:gru_pura} por fold \textit{fold}}
+  \label{fig:gru_resultados_por_fold}
+\end{figure}
+
+No \textit{fold} três, o modelo obteve sua menor precisão, aproximadamente 0,51 porém obteve um alto \textit{recall}, aproximadamente 0,96.
+Essa discrepância sugere que neste \textit{fold}, havia batimentos normais que fugiam do padrão aprendido no treino, fazendo com que o modelo
+confundisse eles com batimentos da classe V. Nos demais \textit{folds}, a precisão foi maior que o \textit{recall}, sugerindo a presença 
+de arritmias com características mais sutis, que confundiram o modelo.
+
+Considerando o \textit{f1-score}, o terceiro \textit{fold} foi eleito o pior. Como o \textit{fold} cinco empatou com o segundo por 
+esse mesmo critério, como desempate, aquele com o maior \textit{recall}, o quinto, foi considerado o melhor. 
+
+Na figura \ref{fig:matriz_confusao_melhor_fold_gru}, está a matriz de  confusão do modelo em seu melhor \textit{fold}:
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru.png} % insere o tikzpicture puro
   \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
   \label{fig:matriz_confusao_melhor_fold_gru}
 \end{figure}
 
-Pel figura \ref{fig:ap_gru_melhor_fold}, no melhor \textit{fold}, o modelo achou 96\% das arritmias. Porém no pior, como pode ser visto
-na figura \ref{fig:ap_gru_pior_fold}, o modelo só conseguiu achar 76\% das classes positivas
+O modelo achou 78\% das arritmias. Porém no pior, como pode ser visto na figura \ref{fig:ap_gru_pior_fold}, o modelo conseguiu achar 96\% das arritmias.
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_pior_fold_gru.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru.png} % insere o tikzpicture puro
   \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
   \label{fig:matriz_confusao_pior_fold_gru}
 \end{figure}
@@ -470,7 +486,7 @@ A seguir a curva ROC no melhor \textit{fold}:
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_melhor_fold.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/roc_gru_melhor_fold.png} % insere o tikzpicture puro
   \caption{Curva \textit{ROC} modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
   \label{fig:roc_melhor_fold_gru}
 \end{figure}
@@ -479,7 +495,7 @@ Considerando que o \textit{baseline}, um classificador aleatório, tem um \texti
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_pior_fold.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/roc_gru_pior_fold.png} % insere o tikzpicture puro
   \caption{Curva \textit{ROC} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
   \label{fig:roc_pior_fold_gru}
 \end{figure}
@@ -489,7 +505,7 @@ Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melh
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_pior_fold.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/ap_gru_pior_fold.png} % insere o tikzpicture puro
   \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
   \label{fig:ap_gru_pior_fold}
 \end{figure}
@@ -502,7 +518,7 @@ No melhor caso:
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_melhor_fold.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/ap_gru_melhor_fold.png} % insere o tikzpicture puro
   \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
   \label{fig:ap_gru_melhor_fold}
 \end{figure}
@@ -554,13 +570,14 @@ Acurácia & 0.9915 & 0.0035 \\
 \end{tabular}
 \end{table}
 
-Ambos os modelos tiveram os seu melhor e pior desempenho nos mesmos \textit{fold}. No melhor, o modelo híbrido obteve um AP de 0.96, como
-pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
+A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Novamente, a escolha foi feita baseado no \textit{f1-score}:
+
+No melhor, o modelo híbrido obteve um AP de 0.96, como pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
 
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_melhor_fold_1.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/roc_cnn_melhor_fold_1.png} 
   \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
   \label{fig:roc_cnn_gru_melhor_fold}
 \end{figure}
@@ -569,7 +586,7 @@ Considerando a curva PR, o AP também foi maior:
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_melhor_fold_1.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png} 
   \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
   \label{fig:ap_cnn_gru_melhor_fold}
 \end{figure}
@@ -581,7 +598,7 @@ A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_cnn_pior_fold_3.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/roc_cnn_pior_fold_3.png} 
   \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu pior \textit{fold}}
   \label{fig:roc_cnn_gru_pior_fold}
 \end{figure}
@@ -590,7 +607,7 @@ O AP foi de 0.87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na
 
 \begin{figure}[H]
   \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_cnn_pior_fold_3.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png} 
   \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
   \label{fig:ap_cnn_gru_pior_fold}
 \end{figure}
