@@ -395,6 +395,7 @@ das CNNs.
 \chapter{Resultados e discussões}
 
 \section{Resultados do modelo GRU}
+\label{sec:resultados_gru}
 
 A seguir, os resultados alcançados pelo modelo descrita em \ref{fig:gru_pura}:
 
@@ -455,7 +456,7 @@ Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo
 No \textit{fold} três, o modelo obteve sua menor precisão, aproximadamente 0,51 porém obteve um alto \textit{recall}, aproximadamente 0,96.
 Essa discrepância sugere que neste \textit{fold}, havia batimentos normais que fugiam do padrão aprendido no treino, fazendo com que o modelo
 confundisse eles com batimentos da classe V. Nos demais \textit{folds}, a precisão foi maior que o \textit{recall}, sugerindo a presença 
-de arritmias com características mais sutis, que confundiram o modelo.
+de arritmias com características mais sutis, que fizeram com que o modelo as confundissem com batimentos normais.
 
 Considerando o \textit{f1-score}, o terceiro \textit{fold} foi eleito o pior. Como o \textit{fold} cinco empatou com o segundo por 
 esse mesmo critério, como desempate, aquele com o maior \textit{recall}, o quinto, foi considerado o melhor. 
@@ -481,8 +482,7 @@ O modelo achou 78\% das arritmias. Porém no pior, como pode ser visto na figura
 As duas figuras ilustram como o modelo conseguiu aprender melhor a classe negativa do que a classe positiva; evidenciado pelo fato dele confundir
 muito menos negativo com positivo do que o contrário. Um resultado esperado devido a essa ser a classe dominante em todos os \textit{folds}.
 
-A seguir a curva ROC no melhor \textit{fold}:
-
+A seguir, na figura \ref{fig:roc_cnn_gru_melhor_fold}, a curva ROC no melhor \textit{fold}:
 
 \begin{figure}[H]
   \centering
@@ -491,7 +491,7 @@ A seguir a curva ROC no melhor \textit{fold}:
   \label{fig:roc_melhor_fold_gru}
 \end{figure}
 
-Considerando que o \textit{baseline}, um classificador aleatório, tem um \textit{ROC} de 0.5, o melhor foi significantemente melhor.
+Considerando que o \textit{baseline}, um classificador aleatório, tem um \textit{ROC} de 0,5, o melhor foi significantemente melhor.
 
 \begin{figure}[H]
   \centering
@@ -500,7 +500,7 @@ Considerando que o \textit{baseline}, um classificador aleatório, tem um \texti
   \label{fig:roc_pior_fold_gru}
 \end{figure}
 
-No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0.87. 
+No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0,87. 
 Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva PR:
 
 \begin{figure}[H]
@@ -511,7 +511,7 @@ Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melh
 \end{figure}
 
 Nesse gráfico, o \textit{baseline} não é fixo, mas igual a prevalência da classe positivos. No pior \textit{fold}, a proporção foi de aproximadamente
-9,39\%, contrastando com o 49\% alcançado pelo modelo. Entretanto, a precisão foi baixa, pelo gráfico, é possível ver que, por exemplo, seria 
+9,39\%, contrastando com o 49\% alcançado pelo modelo. Entretanto, a precisão foi baixa. Pelo gráfico, é possível ver que, por exemplo, seria 
 possível ter um recall de 80\% porém com uma precisão menor que 60\%.
 
 No melhor caso:
@@ -529,6 +529,7 @@ entretanto, o modelo para ter 80\% de \textit{recall}, teria que baixar sua prec
 Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
 
 \section{Resultados do modelo híbrido GRU e CNN}
+\label{sec:resultados_gru_cnn}
 
 O modelo híbrido apresentou resultado superior em relação ao modelo descrito em \ref{fig:gru_pura}. Na tabela \ref{tab:resultado_cv_gru_cnn_validacao}
 abaixo, é possível ver que o modelo obteve média maior em todas as métricas. Apesar disso, o modelo obteve um desvio padrão maior 
@@ -552,7 +553,7 @@ Acurácia & 0.9730 & 0.0258 \\
 
 Na tabela  \ref{tab:resultado_cv_gru_cnn_treino}, é possível observar que ainda há \textit{overfit} porém a diferença entre os resultados
 do treino e validação do modelo \ref{fig:cnn_gru} é menor quando comparado com o modelo \ref{fig:gru_pura}. Por exemplo, a 
-diferença percentual entre o \textit{f1-score} do primeiro modelo foi de aproximadamente 9.56\% enquanto que para o segundo, foi de, aproximadamente, 17.98\%
+diferença percentual entre o \textit{f1-score} do primeiro modelo foi de aproximadamente 9,56\% enquanto que para o segundo, foi de, aproximadamente, 17,98\%
 
 \begin{table}[H]
 \centering
@@ -570,9 +571,44 @@ Acurácia & 0.9915 & 0.0035 \\
 \end{tabular}
 \end{table}
 
-A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Novamente, a escolha foi feita baseado no \textit{f1-score}:
+Na figura \ref{fig:gru_cnn_resultados_por_fold}, estão os resultados obtidos pelo modelo híbrido em cada \textit{fold}.
 
-No melhor, o modelo híbrido obteve um AP de 0.96, como pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=1.0\textwidth]{figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png} 
+  \caption{Métricas do modelo híbrido CNN com GRU por \textit{fold}}
+  \label{fig:gru_cnn_resultados_por_fold}
+\end{figure}
+
+O modelo manteve a tendencia de ter uma precisão acima da acurácia na maioria dos \textit{folds}. É possível observar também que o modelo
+obteve um \textit{recall} maior que o modelo GRU puro em todos os \textit{folds} e uma precisão, no geral, maior ou igual. Sendo as exceções,
+os \textit{folds} quatro e cinco, porém a diferença foi de, aproximadamente, 0,01 pontos percentuais. 
+
+A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Repetindo os critérios descritos na seção \ref{sec:resultados_gru}, o melhor
+\textit{fold} foi o segundo e o pior foi o terceiro.
+
+Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz de confusão do modelo em seu melhor \textit{fold}. O modelo
+exibiu um \textit{recall} maior que o modelo GRU puro.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1.png} 
+  \caption{Matriz de confusão modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:matriz_confusao_cnn_gru_melhor_fold}
+\end{figure}
+
+Na matriz de confusão do pior \textit{fold}, ilustrado na figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, é possível 
+notar um \textit{recall} maior que a do melhor, reforçando a ideia de uma alta sensibilidade.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3.png} 
+  \caption{Matriz de confusão modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \label{fig:matriz_confusao_cnn_gru_pior_fold}
+\end{figure}
+
+
+No melhor, o modelo híbrido obteve um AP de 0,96, como pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
 
 
 \begin{figure}[H]
@@ -603,7 +639,7 @@ A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
   \label{fig:roc_cnn_gru_pior_fold}
 \end{figure}
 
-O AP foi de 0.87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na figura
+O AP foi de 0,87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na figura
 
 \begin{figure}[H]
   \centering
@@ -613,6 +649,52 @@ O AP foi de 0.87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na
 \end{figure}
 
 Nesse cenário, o modelo conseguiria manter um \textit{recall} de até 80\% com um pouco menos de 60\% de precisão.
+
+De modo geral, os modelos exibiram um perfil semelhante em seu pior e melhor caso. No pior, a sensibilidade foi maior, resultados
+em maiores erros de falso positivo, como resultado, o \textit{recall} foi alto e a precisão foi baixa. No melhor caso, houve um 
+equilíbrio maior e, apesar do \textit{recall} mais baixo, a alta precisão aumentou o \textit{f1-score}.
+
+Em contextos médicos, é preferível um \textit{recall} maior, pois falsos negativos são mais danosos que um falso positivo; isto é, é melhor
+dizer que um batimento normal é arrítmico do que o contrário. Entretanto, uma precisão muito baixa pode indicar que o modelo é 
+tão bom quanto um modelo aleatório; o que o tornaria inútil. 
+
+Como evidenciado pelo AP, ambos os modelos se saíram bem melhor do que esse \textit{baseline}.
+
+\chapter{Análise de erros no pior \textit{fold}}
+\label{ch:analise_erros_pior_fold}
+
+Pelos critérios adotados, o pior \textit{fold} de ambos os modelos foi o terceiro. Devido ao \textit{recall} maior que a precisão, supõe-se que 
+a razão era por haver batimentos normais com características mais heterodoxas o que pode ter confundido os modelos. Para obter um melhor entendimento
+dessa questão, foi feita uma breve análise dos batimentos e pacientes desse \textit{fold}. 
+
+\section{Análise de erros do modelo híbrido CNN com GRU}
+\label{sec:analise_erros_cnn_gru}
+
+Na tabela \ref{tab:erros_acertos_por_paciente} a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
+
+\begin{table}[H]
+\centering
+\caption{Total dos erros e acertos por paciente no \textit{fold} de validação}
+\label{tab:erros_acertos_por_paciente}
+\begin{tabular}{lcc}
+\hline
+\textbf{Pacientes} & \textbf{Erros} & \textbf{Acertos}\\
+\hline
+119 & 0 &  1972 \\
+203 & 772  & 2186\\
+205 & 11 & 2616\\
+209 & 1 & 2606\\
+\hline
+\end{tabular}
+\end{table}
+
+Aproximadamente, 98,46\% de todos os erros foram desse paciente. O modelo errou em torno de 35,31\% de seus batimentos. Conforme visto na 
+figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
+
+Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
+a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
+
+
 
 \chapter{Conclusão}
 
