@@ -60,7 +60,8 @@ contração ventricular prematura (classe V) e batimento de escape ventricular (
 \section{Métricas}
 \label{sec:metricas}
 
-As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score} e AUC (\textit{Area Under the Curve}).  
+As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score}, AUC (\textit{Area Under the Curve}) e AP (textit{Average Precision}). Esses 
+dois últimos são exibidos juntos ao gráficos \textit{ROC} e \textit{PR}, respectivamente.
 
 A sensibilidade representa a capacidade do modelo em identificar corretamente as classes positivas, isto é, os batimentos arrítmicos. Sua equação é dada por:
 
@@ -90,14 +91,14 @@ A acurácia corresponde ao acerto global do modelo, considerando tanto as classe
 \text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
 \end{equation}
 
-A AUC mede a capacidade do modelo em separar as classes positivas das negativas, variando entre 0 e 1. Valores próximos de 1 indicam separação perfeita, enquanto 0,5 corresponde a um modelo com desempenho equivalente ao acaso. 
+A AUC mede a capacidade do modelo em separar as classes positivas das negativas, variando entre 0 e 1. Valores próximos de 1 indicam separação perfeita, enquanto 0,5 corresponde a um modelo com desempenho equivalente ao acaso,
+o \textit{baseline}.
 
-Essa métrica é calculada a partir da área sob a curva ROC, ilustrada na Figura~\ref{fig:roc}.
-
+Essa métrica é calculada a partir da área sob a curva ROC. Na Figura~\ref{fig:roc_perfect}, é ilustrado a curva ROC de um classificador perfeito.
 
 \begin{figure}[H]
     \centering
-    \caption{Exemplo de curva ROC: comparação entre modelo aleatório e modelo com bom desempenho.}
+    \caption{Curva ROC de um Classificador Perfeito: Comparação com Modelo Aleatório.}
     \begin{tikzpicture}
         \begin{axis}[
             width=0.7\textwidth,
@@ -116,33 +117,29 @@ Essa métrica é calculada a partir da área sob a curva ROC, ilustrada na Figur
         \addplot[domain=0:1, dashed, thick, color=black] {x};
         \addlegendentry{Aleatório (AUC=0,5)}
 
-        % Curva ROC simulada
-        \addplot[color=blue, very thick] coordinates {
-            (0,0)
-            (0.1,0.6)
-            (0.2,0.75)
-            (0.4,0.85)
-            (0.6,0.9)
-            (0.8,0.95)
-            (1,1)
+        % Curva ROC do Classificador Perfeito
+        \addplot[color=red, very thick] coordinates {
+            (0,0)  % Inicia
+            (0,1)  % Sobe verticalmente até TPR=1, mantendo FPR=0
+            (1,1)  % Segue horizontalmente até o fim, mantendo TPR=1
         };
-        \addlegendentry{Modelo (AUC \textasciitilde 0,9)}
+        \addlegendentry{Perfeito (AUC=1,0)}
 
         \end{axis}
         
     \end{tikzpicture}
-    \label{fig:roc}
+    \label{fig:roc_perfect}
     \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Já a curva PR, Precisão vs \textit{Recall}, ilustrada abaixo:
-
+Já a curva PR, Precisão vs \textit{Recall} representa a precisão em função do \textit{recall}. Na figura Figure~\ref{fig:roc_perfect},
+é ilustrada a curva PR de um classificador perfeito.
 
 \pgfplotsset{compat=1.18}
 
 \begin{figure}[H]
     \centering
-    \caption{Curva Precisão–Recall genérica.}
+    \caption{Curva Precisão–Recall de um Classificador Perfeito: Comparação com Baseline.}
     \begin{tikzpicture}
         \begin{axis}[
             width=0.7\textwidth,
@@ -156,23 +153,15 @@ Já a curva PR, Precisão vs \textit{Recall}, ilustrada abaixo:
             legend cell align={left},
             thick
         ]
-        % Curva principal (exemplo genérico)
-        \addplot[color=blue, ultra thick] coordinates {
-            (0.0,1.0)
-            (0.1,0.95)
-            (0.2,0.92)
-            (0.3,0.88)
-            (0.4,0.83)
-            (0.5,0.79)
-            (0.6,0.74)
-            (0.7,0.68)
-            (0.8,0.62)
-            (0.9,0.55)
-            (1.0,0.48)
+        
+        % Curva PR do Classificador Perfeito
+        \addplot[color=red, ultra thick] coordinates {
+            (0.0, 1.0)  % Precisão = 1, Recall = 0
+            (1.0, 1.0)  % Precisão = 1, Recall = 1
         };
-        \addlegendentry{Modelo}
+        \addlegendentry{Perfeito (AUPRC=1,0)}
 
-        % Linha base (baseline)
+        % Linha base (baseline) - Mantida como exemplo
         \addplot[dashed, color=gray] coordinates {
             (0,0.2) (1,0.2)
         };
@@ -180,7 +169,7 @@ Já a curva PR, Precisão vs \textit{Recall}, ilustrada abaixo:
         \end{axis}
     \end{tikzpicture}
     
-    \label{fig:pr_curve_nv}
+    \label{fig:pr_curve_perfect}
     \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 

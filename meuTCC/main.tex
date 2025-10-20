@@ -4,9 +4,7 @@
     oneside,             % impressão só frente (use "twoside" se frente e verso)
     a4paper,             % papel A4
     brazil               % idioma principal
-    
 ]{abntex2}
-
 % Pacotes básicos
 \usepackage[utf8]{inputenc}   % acentuação
 \usepackage[T1]{fontenc}      % codificação da fonte
@@ -25,19 +23,14 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning, shapes.geometric, arrows.meta, arrows}
 
-
-
 \pgfplotsset{compat=1.18} 
-
-
-
 
 % Recuo e espaçamento entre parágrafos (ABNT)
 \setlength{\parindent}{1.25cm} % recuo de 1,25 cm
-\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
+%\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
 
 % Informações do trabalho
-\titulo{Título do seu TCC}
+\titulo{Título do seu TCCe}
 \autor{João Victor Sousa}
 \local{Ilhéus - Bahia}
 \data{2025}
@@ -68,26 +61,14 @@ Inclua objetivos, metodologia, resultados e conclusões.
 \tableofcontents
 
 %lista de tabelas
+\newpage
 \listoftables
 
 %lista de figuras
+\newpage
 \listoffigures
 
-%chapt* é um captulo sem numeração
-\chapter*{Lista de Siglas} 
-\begin{tabular}{ll}
-AUC & Area Under Curve \\
-RNN & Redes Neurais Recorrentes \\
-CNN & Redes Neurais Convolucionais \\
-LSTM & Long Short-Term Memory \\
-AAMI & Association for the Advancement of Medical Instrumentation   \\
-GRU & Gated Unit Recurrent \\
-ECG & Eletrocardiograma \\
-TP & Verdadeiro Positivo \\
-FP & Falso Positivo \\
-TN & Verdadeiro Negativo \\
-FN & Falso Negativo \\
-\end{tabular}
+\include{includes/lista_siglas}
 
 
 % Capítulos
@@ -95,7 +76,7 @@ FN & Falso Negativo \\
 Texto da introdução.
 
 \input{inputs/fundamentacao_teorica}
-\input{inputs/metdologia.tex}
+\input{inputs/metdologia}
 \include{inputs/resultados_e_discussoes}
 
 
