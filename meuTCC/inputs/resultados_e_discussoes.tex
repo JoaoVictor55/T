@@ -334,3 +334,72 @@ figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são 
 
 Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
 a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
+
+Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz de confusão desse paciente.
+
+\begin{figure}[H]
+  \centering
+  \caption{Matriz de confusão do paciente 203}
+   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png} 
+  \label{fig:matriz_confusao_paciente_mais_dificil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+O modelo confundiu seis batimentos ventriculares como normais e 766 normais como ventriculares. Na figura
+\ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
+uma sequencia normal classificada como arrítmica e na segunda uma normal corretamente classificada.
+
+\begin{figure}[H]
+  \centering
+  \caption{ECG normal do paciente 203: erro e acerto}
+   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png} 
+  \label{fig:erro_acert_neg_class_paciente_mais_dificil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+É possível observar a forte presença de ruído em ambos os casos. E a presença de batimentos com a morfologia 
+bem deformada; após a amostra 2000 no primeiro gráfico e após a amostra 1000 no segundo.
+
+Para comparação, na figura \ref{fig:acert_neg_class_paciente_mais_facil}, paciente para o qual o modelo não cometeu erros,
+abaixo é ilustrado uma sequência normal.
+
+\begin{figure}[H]
+  \centering
+  \caption{ECG normal do paciente 119.}
+   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
+  \label{fig:acert_neg_class_paciente_mais_facil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+É possível notar uma sequencia mais limpa e com o complexo QRS com morfologia usual. Note em torno da amostra
+2000 uma contração prematura ventricular usual.
+
+Na figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo acertou e a segunda ele errou:
+
+Em ambos os casos, é observável o ruído presenta na figura \ref{fig:erro_acert_neg_class_paciente_mais_dificil}. O 
+último batimento da sequência também apresenta uma morfologia diferente da usual.
+
+\begin{figure}[H]
+  \centering
+  \caption{ECG normal do paciente 203: acerto e erro}
+   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png} 
+  \label{fig:erro_acert_pos_class_paciente_mais_dificil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+Já na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
+Observe no último batimento, uma arritmia ventricular com uma forma bem definida.
+
+\begin{figure}[H]
+  \centering
+  \caption{ECG arrítmico do paciente 119.}
+   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
+  \label{fig:acert_posclass_paciente_mais_facil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+Apesar das diferenças naturais entre ECGs de pacientes diferentes, pelo o que foi visto no gráfico e o que está registrado
+nas anotações do MIT-BIH; o ECG desse paciente possui muito ruído e QRS com morfologia mais diferente, especialmente
+quando comparando com as do paciente 119; essas diferenças pode ter levado o modelo ao erro. Apesar de que, por ser 
+pouca interpretabilidade, não é possível fazer uma afirmação.
+
