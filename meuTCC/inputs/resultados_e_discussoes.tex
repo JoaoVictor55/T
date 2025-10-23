@@ -313,9 +313,10 @@ Como evidenciado pelo AP, ambos os modelos se saíram bem melhor do que esse \te
 \chapter{Análise de erros no pior \textit{fold}}
 \label{ch:analise_erros_pior_fold}
 
-Pelos critérios adotados, o pior \textit{fold} de ambos os modelos foi o terceiro. Devido ao \textit{recall} maior que a precisão, supõe-se que 
-a razão era por haver batimentos normais com características mais heterodoxas o que pode ter confundido os modelos. Para obter um melhor entendimento
-dessa questão, foi feita uma breve análise dos batimentos e pacientes desse \textit{fold}. 
+Pelos critérios adotados, o terceiro fold foi o de pior desempenho em ambos os modelos.
+Como o recall foi superior à precisão, supõe-se que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
+Para fins de ilustração, apresenta-se a seguir uma breve análise de erros do desempenho do melhor modelo em seu cenário mais desafiador.
+Devido a essa limitação, os resultados discutidos não permitem conclusões generalizáveis, servindo apenas como apoio à interpretação dos achados.
 
 \section{Análise de erros do modelo híbrido CNN com GRU}
 \label{sec:analise_erros_cnn_gru}
