@@ -45,12 +45,22 @@ Acurácia & 0.9969 & 0.0024 \\
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Comparando os resultados da tabela \ref{tab:resultado_cv_gru_treino} com o da \ref{tab:resultado_cv_gru_validacao}, há uma evidência de sobreajuste; isto é, o modelo apresenta uma falha em sua capacidade
-de generalização. Durante o treino de um modelo de aprendizado de máquina, busca-se a partir de uma amostra da população estimar uma curva que melhor
-se encaixa na população. Modelos flexíveis como uma rede neural tem uma grande capacidade de se ajustar a essa amostra e, caso ela seja pequena, por exemplo,
-o modelo pode acabar aprendendo as particularidades da amostra ao invés de padrões generalizáveis. 
+Comparando os resultados do treino na tabela \ref{tab:resultado_cv_gru_cnn_treino} com os resultados da validação na tabela \ref{tab:resultado_cv_gru_cnn_validacao},
+observa-se um diferença substancial; evidenciando sobreajuste, isto é, o modelo apresentou uma baixa capacidade de generalização para pacientes não vistos.
 
-No caso do MIT-BIH; o desbalanceamento junto com as diferenças entre os batimentos de cada paciente pode ter causado esse sobre-ajuste.
+Esse fenômeno ocorre pois modelos com alta flexibilidade como redes neurais conseguem se ajustar intimamente com os dados de treino
+caso eles não sejam representativos da população, eles podem aprender ruído e particularidades dessa amostra ao invés de padrões generalizáveis
+No contexto do MIT-BIH, o desbalanceamento das classes pode ter causado isso. Como há poucos exemplos da classe positiva, é fácil para o modelo memorizar
+padrões morfológicos e rítmicos das arritmias do conjunto de treino, falhando ao encontrar variações dessas instâncias em pacientes diferentes.
+
+Outra evidência é a diferença entre a acurácia média do conjunto de treino em relação ao conjunto de validação. Observa-se uma 
+diferença significantemente menor. Esta métrica é dominada pela classe negativa, indicando que o modelo conseguiu aprender padrões mais generalizáveis
+ao ser exposto a mais exemplos dessa classe. 
+
+Diferente da acurácia, as demais métricas são muito mais sensíveis ao desempenho na classe positiva.
+
+O particionamento usado torna a tarefa de generalização mais desafiadora, pois o modelo é avaliado com ECGs não vistos
+durante o treino.
 
 Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo modelo em cada \textit{fold} na validação:
 
