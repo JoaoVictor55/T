@@ -5,7 +5,6 @@
     a4paper,             % papel A4
     brazil               % idioma principal
 ]{abntex2}
-
 % Pacotes básicos
 \usepackage[utf8]{inputenc}   % acentuação
 \usepackage[T1]{fontenc}      % codificação da fonte
@@ -24,19 +23,14 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning, shapes.geometric, arrows.meta, arrows}
 
-
-
 \pgfplotsset{compat=1.18} 
-
-
-
 
 % Recuo e espaçamento entre parágrafos (ABNT)
 \setlength{\parindent}{1.25cm} % recuo de 1,25 cm
-\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
+%\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
 
 % Informações do trabalho
-\titulo{Título do seu TCC}
+\titulo{Título do seu TCCe}
 \autor{João Victor Sousa}
 \local{Ilhéus - Bahia}
 \data{2025}
@@ -66,401 +60,25 @@ Inclua objetivos, metodologia, resultados e conclusões.
 % Sumário
 \tableofcontents
 
-%chapt* é um captulo sem numeração
-\chapter*{Lista de Siglas} 
-\begin{tabular}{ll}
-AUC & Area Under Curve \\
-RNN & Redes Neurais Recorrentes \\
-CNN & Redes Neurais Convolucionais \\
-LSTM & Long Short-Term Memory \\
-AAMI & Association for the Advancement of Medical Instrumentation   \\
-GRU & Gated Unit Recurrent \\
-ECG & Eletrocardiograma \\
-TP & Verdadeiro Positivo \\
-FP & Falso Positivo \\
-TN & Verdadeiro Negativo \\
-FN & Falso Negativo \\
-\end{tabular}
+%lista de tabelas
+\newpage
+\listoftables
+
+%lista de figuras
+\newpage
+\listoffigures
+
+\include{includes/lista_siglas}
 
 
 % Capítulos
 \chapter{Introdução}
 Texto da introdução.
 
-\chapter{Fundamentação Teórica}
+\input{inputs/fundamentacao_teorica}
+\input{inputs/metdologia}
+\include{inputs/resultados_e_discussoes}
 
-\section{ECG}
-
-\subsection{O funcionamento do coração}
-
-O coração é um órgão muscular composto por quatro câmaras que se contraem em sequência regular, bombeando o sangue de forma eficiente \cite{msd_ecg}. As contrações são controladas por correntes elétricas que percorrem o coração com precisão e velocidade regulada. 
-
-O processo inicia no nódulo sinoatrial, localizado no átrio direito, que funciona como marcapasso natural do coração. A frequência cardíaca é determinada pela frequência de disparos desse nódulo, sendo modulada pelo sistema nervoso autônomo e por hormônios presentes na corrente sanguínea \cite{msd_ecg}. O sistema nervoso simpático aumenta a frequência cardíaca, enquanto o parassimpático, por meio do nervo vago, a reduz. Hormônios como a epinefrina (adrenalina) e norepinefrina (noradrenalina), produzidos pelo sistema simpático, também elevam a frequência cardíaca. Além disso, o hormônio tireoidiano liberado pela glândula da tireoide exerce influência na frequência cardíaca.
-
-Em repouso, a frequência cardíaca em adultos varia entre 60 e 100 batimentos por minuto, sendo geralmente mais baixa em indivíduos jovens e em bom condicionamento físico \cite{msd_ecg}.
-
-\subsection{Tipos de arritmia}
-
-As arritmias podem ser classificadas de forma simplificada em três tipos principais:
-\begin{itemize}
-    \item Taquicardia: frequência excessivamente rápida;
-    \item Bradicardia: frequência excessivamente lenta;
-    \item Irregular: quando os impulsos percorrem o coração por vias irregulares.
-\end{itemize}
-
-\subsection{O batimento cardíaco}
-
-O batimento cardíaco inicia-se no nódulo sinoatrial, cuja corrente elétrica atravessa o átrio direito e, em seguida, o átrio esquerdo, promovendo sua contração. O sangue é então impulsionado dos átrios para os ventrículos. A corrente elétrica passa pelo nódulo atrioventricular, único ponto de conexão entre átrios e ventrículos, que retarda o impulso, garantindo enchimento completo dos ventrículos. 
-
-Em seguida, o impulso segue pelo feixe de His, que se divide em ramos para conduzir a corrente a cada ventrículo, permitindo sua ativação uniforme e subsequente contração, bombeando o sangue para o corpo \cite{msd_ecg}.
-
-\subsection{O que é ECG?}
-
-Segundo Cascino e Shea \cite{msd_ecg}, o eletrocardiograma (ECG) é um exame não invasivo que registra a atividade elétrica do coração. 
-Ele é realizado pela colocação de eletrodos na pele do paciente, geralmente 12, chamados de derivações. 
-Esses eletrodos registram tanto a direção quanto a magnitude da corrente elétrica. 
-
-O registro resultante gera uma onda que reflete a atividade elétrica do coração. 
-Cada etapa do ciclo cardíaco é representada na morfologia do traçado: 
-a onda \textbf{P} corresponde à ativação dos átrios, 
-o complexo \textbf{QRS} à ativação dos ventrículos 
-e a onda \textbf{T} ao processo de repolarização ventricular.  
-
-O ECG é uma ferramenta fundamental no diagnóstico de problemas cardíacos, 
-permitindo identificar, por exemplo, episódios de infarto do miocárdio, 
-oferta insuficiente de sangue e oxigênio ao coração (isquemia), 
-hipertrofia das paredes cardíacas e diferentes tipos de arritmias.
-
-\chapter{Metodologia}
-
-Primeiramente, foi necessário definir qual banco de dados seria utilizado para o treinamento e a validação. Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}, recomendado pela AAMI. O banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. Os 23 primeiros registros foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. Os 25 registros restantes foram escolhidos de modo a incluir arritmias raras, mas clinicamente significativas.
-
-Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do complexo R, realizada por três cardiologistas independentes.
-
-\section{Particionamento dos dados e classes}
-\label{sec:particionamento}
-
-Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.  
-
-Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 são normalmente chamados de DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234) de DS2.
-
-De acordo com a AAMI (apud \citeonline{silva2025}), são definidas cinco classes de arritmia: N, SVEB, VEB, F e Q, correspondentes a batimento normal, batimento supraventricular ectópico, batimento ventricular ectópico, fusão de batimento ventricular e normal e batimento não classificado, respectivamente. A Tabela~\ref{tab:particionamento} apresenta a distribuição dessas classes no conjunto de dados.
-
-\begin{table}[htb]
-\centering
-\caption{Particionamento inter-paciente proposto por Chazel et al.}
-\label{tab:particionamento}
-\begin{tabular}{|l|c|c|c|c|c|c|}
-\hline
-Conjunto & N & SVEB & VEB & F & Q & Total \\ \hline
-DS1 & 45 866 & 944 & 3 788 & 415 & 8 & 51 021 \\ \hline
-DS2 & 44 259 & 1 837 & 3 221 & 388 & 7 & 49 712 \\ \hline
-Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
-\end{tabular}
-\legend{Fonte: Adaptado de Silva et al. (2025).}
-\end{table}
-
-O conjunto DS1 foi então subdividido em treinamento e validação por meio de validação cruzada, inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais.  
-
-Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária, na qual a classe positiva corresponde a arritmia e a classe negativa a batimentos normais.
-
-
-\section{Métricas}
-\label{sec:metricas}
-
-As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score} e AUC (\textit{Area Under the Curve}).  
-
-A sensibilidade representa a capacidade do modelo em identificar corretamente as classes positivas, isto é, os batimentos arrítmicos. Sua equação é dada por:
-
-\begin{equation}
-\text{Sensibilidade} = \frac{TP}{TP + FN}
-\end{equation}
-
-em que $TP$ são os verdadeiros positivos e $FN$ os falsos negativos.  
-
-A precisão, por sua vez, indica a proporção de batimentos classificados como arrítmicos que realmente pertencem a essa classe:
-
-\begin{equation}
-\text{Precisão} = \frac{TP}{TP + FP}
-\end{equation}
-
-onde $FP$ representa os falsos positivos. Precisão e sensibilidade estão relacionadas por um \textit{trade-off}. No contexto médico, prioriza-se elevada sensibilidade, ainda que à custa de menor precisão, uma vez que falsos negativos são mais prejudiciais que falsos positivos.  
-
-O \textit{F1-score} é a média harmônica entre precisão e sensibilidade, buscando um equilíbrio entre ambas:
-
-\begin{equation}
-\text{\textit{F1-score}} = \frac{2 \cdot \text{Precisão} \cdot \text{Sensibilidade}}{\text{Precisão} + \text{Sensibilidade}}
-\end{equation}
-
-A acurácia corresponde ao acerto global do modelo, considerando tanto as classes positivas quanto as negativas:
-
-\begin{equation}
-\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
-\end{equation}
-
-A AUC mede a capacidade do modelo em separar as classes positivas das negativas, variando entre 0 e 1. Valores próximos de 1 indicam separação perfeita, enquanto 0,5 corresponde a um modelo com desempenho equivalente ao acaso. 
-
-Essa métrica é calculada a partir da área sob a curva ROC, ilustrada na Figura~\ref{fig:roc}.
-
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.7\textwidth,
-            height=0.6\textwidth,
-            grid=both,
-            xlabel={Taxa de Falsos Positivos (FPR)},
-            ylabel={Taxa de Verdadeiros Positivos (TPR)},
-            xmin=0, xmax=1,
-            ymin=0, ymax=1,
-            legend pos=south east,
-            legend style={font=\small},
-            tick label style={font=\small}
-        ]
-
-        % Linha do classificador aleatório
-        \addplot[domain=0:1, dashed, thick, color=black] {x};
-        \addlegendentry{Aleatório (AUC=0,5)}
-
-        % Curva ROC simulada
-        \addplot[color=blue, very thick] coordinates {
-            (0,0)
-            (0.1,0.6)
-            (0.2,0.75)
-            (0.4,0.85)
-            (0.6,0.9)
-            (0.8,0.95)
-            (1,1)
-        };
-        \addlegendentry{Modelo (AUC \textasciitilde 0,9)}
-
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Exemplo de curva ROC: comparação entre modelo aleatório e modelo com bom desempenho.}
-    \label{fig:roc}
-\end{figure}
-
-A matriz de confusão, por fim, fornece uma representação tabular dos acertos e erros do modelo, como exemplificado na Tabela~\ref{tab:matriz_confusao}.
-
-\begin{table}[H]
-\centering
-\caption{Exemplo de matriz de confusão binária}
-\label{tab:matriz_confusao}
-\begin{tabular}{|c|c|c|}
-\hline
-\multirow{2}{*}{\textbf{Classe Verdadeira}} & \multicolumn{2}{c|}{\textbf{Classe Predita}} \\ \cline{2-3} 
- & Positiva & Negativa \\ \hline
-Positiva & TP & FN \\ \hline
-Negativa & FP & TN \\ \hline
-\end{tabular}
-\legend{Fonte: Elaborado pelo autor.}
-\end{table}
-
-Essas métricas em conjunto permitem avaliar não apenas a proporção global de acertos, mas também a capacidade do modelo em detectar corretamente arritmias, aspecto essencial em aplicações médicas.
-
-\section{Tipos de redes usadas}
-\label{sec:tipo_redes}
-
-Inicialmente, foram escolhidas redes neurais recorrentes (RNNs) e seus subtipos, como LSTM e GRU. Segundo \citeonline{james2023}, esse tipo de rede apresenta grande potencial para lidar com dados sequenciais, como no processamento de linguagem natural, previsão de preços e outros tipos de séries temporais. Como o componente temporal é relevante para o diagnóstico das arritmias, optou-se por esse tipo de modelo.
-
-Além das RNNs, foram utilizadas redes neurais convolucionais (CNNs), conhecidas por sua habilidade em reconhecer padrões em diferentes domínios \citeonline{james2023}. Em particular, CNNs unidimensionais (1D-CNNs) têm se mostrado eficazes na análise de sinais fisiológicos, sendo amplamente aplicadas à classificação de ECG \cite{narotamo2024}.
-
-A motivação para essa combinação está na complementaridade entre os modelos: enquanto as RNNs são eficazes na captura de dependências temporais, as CNNs se destacam na identificação de características morfológicas do sinal.
-
-\section{Pré-processamento e entrada para os modelos}
-\label{sec:pre_process}
-
-Os sinais de ECG foram segmentados em batimentos individuais utilizando a biblioteca NeuroKit2 \cite{makowski2021neurokit}.
-
-O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: arrítmicos e normais. Para isso, os modelos recebem uma sequência de batimentos e realizam a classificação do último batimento da sequência. Cada sequência é composta exclusivamente por batimentos de um único paciente.
-
-Tanto as CNNs quanto as RNNs recebem como entrada uma matriz tridimensional com a seguinte estrutura: $(\text{tamanho do batch}, \text{tamanho da sequência}, \text{número de features})$.
-
-Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
-
-\section{Desafios e estratégias}
-\label{sec:desafios_estrategias}
-
-O banco MIT-BIH apresenta desafios consideráveis para a classificação de arritmias, com 48 pacientes, cada um com 30 minutos de gravação em condições reais. Três problemas principais precisam ser superados: escassez de dados individuais, presença de ruído e desbalanceamento das classes, conforme mostrado na Tabela~\ref{tab:particionamento}.
-
-A estratégia de classificação binária ajuda parcialmente a lidar com o desbalanceamento, pois o modelo, em vez de identificar cinco classes diferentes, precisa classificar apenas duas.
-
-Outra dificuldade está na própria arritmia. Certos tipos apresentam sinais muito parecidos ou praticamente idênticos aos normais, diferenciando-se apenas pelo ritmo. Outros possuem morfologias bem distintas no ECG. Inicialmente, foram utilizadas RNNs, mas os modelos apresentaram dificuldades de generalização, evidenciadas pela diferença entre desempenho em treino e teste.
-
-Para contornar essa limitação, foram incorporadas CNNs, permitindo que as RNNs se concentrassem na captura de padrões temporais, enquanto as CNNs extraem as características morfológicas do ECG.
-
-Além disso, a estratégia de divisão inter-paciente dificulta a tarefa, pois o modelo recebe no conjunto de validação sinais de pacientes diferentes, simulando um cenário clínico mais realista. Para atingir bons resultados nesse conjunto, o modelo precisa aprender padrões gerais, independentes das variações individuais de cada paciente.
-
-É importante frisar que a adoção desta estratégia torna os resultados mais aplicáveis a cenários clínicos gerais, e que a não utilização dela em outros trabalhos não invalida seus resultados; apenas limita a sua aplicabilidade nesse cenário.
-
-O uso de engenharia de \textit{features} também pode auxiliar os modelos. Embora redes profundas sejam capazes de aprender automaticamente representações a partir dos dados brutos, a inclusão de \textit{features} pode ser especialmente útil em cenários com dados limitados. Os detalhes das \textit{features} utilizadas neste trabalho são apresentados na Seção~\ref{sec:modelos}.
-
-
-\section{Arquiteturas}
-\label{sec:modelos}
-
-Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
-
-A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, obtendo o melhor desempenho. 
-A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
-
-
-\begin{figure}[H]
-  \centering
-  \input{figuras/gru_pura} % insere o tikzpicture puro
-  \caption{Arquitetura híbrida CNN+GRU.}
-  \label{fig:gru_pura}
-\end{figure}
-
-A segunda rede é uma híbrida de CNN com GRU:
-
-\begin{figure}[H]
-  \centering
-  \input{figuras/cnn_gru} % insere o tikzpicture puro
-  \caption{Arquitetura híbrida CNN+GRU.}
-  \label{fig:cnn_gru}
-\end{figure}
-
-O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32 e 64 filtros respectivamente e cada 
-uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente.
-
-Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
-das CNNs.
-
-\chapter{Resultados e discussões}
-
-\section{Resultados preliminares}
-
-Os primeiros experimentos foram realizados considerando o problema de classificação binária entre a classe \textit{N} (batimentos normais) e o restante das classes, utilizando a arquitetura descrita em \ref{fig:gru_pura}, proposta por \cite{narotamo2024}. Os resultados médios de validação, obtidos a partir de validação cruzada com cinco \textit{folds}, são apresentados na Tabela~\ref{tab:resultados_iniciais}.
-
-\begin{table}[H]
-\centering
-\caption{Resultados do modelo inicial (\textit{N} vs. restante das classes).}
-\label{tab:resultados_iniciais}
-\begin{tabular}{lcc}
-\hline
-\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
-\hline
-Precisão & 0.7119 & 0.1780 \\
-Revocação & 0.6697 & 0.2248 \\
-F1-Score & 0.6358 & 0.1222 \\
-Acurácia & 0.8312 & 0.0589 \\
-\hline
-\end{tabular}
-\end{table}
-
-Observa-se que o modelo apresentou desempenho moderado, com destaque para a acurácia relativamente alta (0,83), mas com *recall* e *F1-Score* inferiores, indicando dificuldades na detecção de batimentos não normais. Essa limitação pode estar associada ao forte desbalanceamento entre as classes, além da complexidade do problema ao agrupar múltiplos tipos de arritmia em um único grupo.
-
-\section{Resultados após simplificação do problema}
-
-Após a simplificação do problema para distinguir apenas entre as classes \textit{N} (normal) e \textit{V} (ventricular), observou-se melhora consistente em todas as métricas (Tabela~\ref{tab:resultados_finais}).
-
-\begin{table}[H]
-\centering
-\caption{Resultados do modelo simplificado (\textit{N} vs. \textit{V}).}
-\label{tab:resultados_finais}
-\begin{tabular}{lcc}
-\hline
-\textbf{Métrica} & \textbf{Média} & \textbf{Desvio Padrão} \\
-\hline
-Precisão & 0.7990 & 0.2146 \\
-Revocação & 0.8518 & 0.0934 \\
-F1-Score & 0.8098 & 0.1377 \\
-Acurácia & 0.9655 & 0.0275 \\
-\hline
-\end{tabular}
-\end{table}
-
-O modelo apresentou desempenho satisfatório, com aumento expressivo em todas as métricas, especialmente no \textit{recall} e no \textit{F1-Score}. Tanto o \textit{recall} quanto a acurácia mostraram-se mais estáveis, conforme indica o desvio padrão reduzido. Apesar da melhora da precisão média, observou-se aumento em seu desvio padrão, o que sugere maior variabilidade entre os \textit{folds}. Essa instabilidade também se refletiu no \textit{F1-Score}, possivelmente devido à dependência entre ambas as métricas. É importante destacar que a classe \textit{V} representa batimentos ventriculares, geralmente associados a arritmias potencialmente graves e de maior relevância clínica.
-
-A melhoria no desempenho pode ser explicada pela diminuição da heterogeneidade dentro da classe positiva (arrítmica). 
-Batimentos das classes \textit{Q} e \textit{F}, além de muito raros, apresentam características bastante distintas. 
-A classe \textit{Q} abrange batimentos não classificados, enquanto a classe \textit{F} corresponde à fusão entre batimentos normais (\textit{N}) e ventriculares (\textit{V}). 
-Por outro lado, batimentos da classe \textit{V} possuem morfologia bem definida, e os da classe \textit{S} apresentam um padrão rítmico característico, distinto dos batimentos normais. 
-Assim, desenvolver uma regra de decisão capaz de englobar simultaneamente essas diferentes classes mostrou-se desafiador para a arquitetura utilizada.
-
-A seguir, a curva ROC e de precisão vs \textit{recall} no melhor e pior \textit{fold}:
-
-
-
-\begin{table}[H]
-\centering
-\caption{Distribuição das classes N (0) e V (1) nos conjuntos de treino e validação por fold.}
-\label{tab:distribuicao_nv}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf{Fold} & \textbf{Treino N} & \textbf{Treino V} & \textbf{Validação N} & \textbf{Validação V} \\ \hline
-1 & 32 082 & 3 512 & 5 798 & 200 \\ \hline
-2 & 33 922 & 3 160 & 3 958 & 552 \\ \hline
-3 & 28 671 & 2 757 & 9 209 & 955 \\ \hline
-4 & 28 053 & 3 091 & 9 827 & 621 \\ \hline
-5 & 28 792 & 2 328 & 9 088 & 1 384 \\ \hline
-\end{tabular}
-\end{table}
-
-O melhor \textit{fold} foi o último e o pior foi o terceiro. A seguir, os gráficos nesses \textit{folds}:
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_melhor_fold_gru.png} % insere o tikzpicture puro
-  \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
-  \label{fig:matriz_confusao_melhor_fold_gru}
-\end{figure}
-
-No pior fold:
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/matriz_confusao_pior_fold_gru.png} % insere o tikzpicture puro
-  \caption{Matriz de confusão do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
-  \label{fig:matriz_confusao_pior_fold_gru}
-\end{figure}
-
-No pior caso, o modelo ainda conseguiu acertar 70\% dos casos positivos. 
-
-A seguir a curva ROC no melhor \textit{fold}:
-
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_melhor_fold.png} % insere o tikzpicture puro
-  \caption{Curva \textit{ROC} modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
-  \label{fig:roc_melhor_fold_gru}
-\end{figure}
-
-Considerando que o \textit{baseline}, um classificador aleatório, tem um \textit{ROC} de 0.5, o melhor foi significantemente melhor.
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/roc_gru_pior_fold.png} % insere o tikzpicture puro
-  \caption{Curva \textit{ROC} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
-  \label{fig:roc_pior_fold_gru}
-\end{figure}
-
-No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0.83. 
-Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva precisão vs \textit{recall}:
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_pior_fold.png} % insere o tikzpicture puro
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
-  \label{fig:ap_gru_pior_fold}
-\end{figure}
-
-Nesse gráfico, o \textit{baseline} não é fixo, mas igual a prevalência da classe positivos. No pior \textit{fold}, a proporção foi de aproximadamente
-5,94\%, contrastando com o 38\% alcançado pelo modelo. No melhor caso:
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/ap_gru_melhor_fold.png} % insere o tikzpicture puro
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
-  \label{fig:ap_gru_melhor_fold}
-\end{figure}
-
-Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 0.97, enquanto que a proporção de casos positivos foi de 13,21\%.
-
-Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
 
 \chapter{Conclusão}
 
