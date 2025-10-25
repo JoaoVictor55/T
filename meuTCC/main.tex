@@ -1,26 +1,126 @@
-\documentclass[
-    12pt,                % tamanho da fonte
-    openright,           % capítulos começam sempre em página ímpar
-    oneside,             % impressão só frente (use "twoside" se frente e verso)
-    a4paper,             % papel A4
-    brazil               % idioma principal
+ \documentclass[
+
+12pt, % tamanho da fonte
+
+openright, % capítulos começam sempre em página ímpar
+
+oneside, % impressão só frente (use "twoside" se frente e verso)
+
+a4paper, % papel A4
+
+brazil % idioma principal
+
 ]{abntex2}
+
 % Pacotes básicos
-\usepackage[utf8]{inputenc}   % acentuação
-\usepackage[T1]{fontenc}      % codificação da fonte
-\usepackage{lmodern}          % usa fonte Latin Modern
-\usepackage{microtype}        % melhora a justificação
+
+\usepackage[utf8]{inputenc} % acentuação
+
+\usepackage[T1]{fontenc} % codificação da fonte
+
+\usepackage{lmodern} % usa fonte Latin Modern
+
+\usepackage{microtype} % melhora a justificação
+
+\usepackage{graphicx} % inserir figuras
+
+\usepackage[alf]{abntex2cite} % citações padrão ABNT
+
+\usepackage{url}
+
+\usepackage{indentfirst} % recuo no primeiro parágrafo
+
+\usepackage{ragged2e} % para justificação
+
+\usepackage{amsmath} % para \text{} e outras paradas de equação
+
+\usepackage{multirow} %para o multirow
+
+\usepackage{float} % necessário para [H]
+
+\usepackage{tikz} %desenho de diagramas
+
+\usepackage{pgfplots}
+
+\usepackage{tikz}
+
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta, arrows}
+
+
+\pgfplotsset{compat=1.18}
+
+
+%regras da UESC :X
+
+\usepackage[
+
+letterpaper, % Usa o tamanho de papel padrão (A4 é o padrão na maioria das distribuições modernas, mas 'a4paper' pode ser usado para forçar)
+
+top=3cm, % Margem superior padrão [cite: 2472]
+
+bottom=2cm, % Margem inferior [cite: 2475]
+
+left=3cm, % Margem esquerda [cite: 2473]
+
+right=2cm, % Margem direita [cite: 2474]
+
+headsep=0.5cm % Espaço entre o cabeçalho e o texto (ajuste fino opcional)
+
+]{geometry}
+
+
+\usepackage{titlesec}
+
+\usepackage{calc}
+
+
+% Define a formatação das Seções Primárias (1 INTRODUÇÃO, 2 FUNDAMENTAÇÃO TEÓRICA, etc.)
+
+% A UESC exige: 7cm no topo. Títulos em CAIXA ALTA e Negrito.
+
+
+\titleformat{\section}[block] % block é um estilo adequado para seções numeradas
+
+{
+
+\normalfont\Large\bfseries\MakeUppercase % Estilo: CAIXA ALTA, Negrito, Grande
+
+}
+
+{
+
+\thesection % Número da seção (Ex: 1)
+
+}
+
+{
+
+1em % Espaço entre o número e o título (mantemos 1em, que é o padrão)
+
+}
+
+{
+
+% Comando que insere espaço vertical antes do título (o 7cm é a margem + o que vem antes do título)
+
+\vspace*{\dimexpr 7cm-\topskip-\baselineskip} % Subtrai valores internos do LaTeX
+
+}
+
+
+% Recuo e espaçamento entre parágrafos (ABNT)
+
+\setlength{\parindent}{1.25cm} % recuo de 1,25 cm
+
+%\setlength{\parskip}{0.2cm} % espaço entre parágrafos -- PACOTES DE CONTEÚDO E RECURSOS ---
 \usepackage{graphicx}         % inserir figuras
 \usepackage[alf]{abntex2cite}      % citações padrão ABNT
 \usepackage{url}  
-\usepackage{indentfirst}       % recuo no primeiro parágrafo
-\usepackage{ragged2e}          % para justificação
 \usepackage{amsmath} % para \text{} e outras paradas de equação
-\usepackage{multirow} %para o multirow
+\usepackage{multirow} % para o multirow
 \usepackage{float} % necessário para [H]
-\usepackage{tikz} %desenho de diagramas
 \usepackage{pgfplots}
-\usepackage{tikz}
+\usepackage{tikz} % desenho de diagramas
 \usetikzlibrary{positioning, shapes.geometric, arrows.meta, arrows}
 
 \pgfplotsset{compat=1.18} 
@@ -28,8 +128,8 @@
 % Recuo e espaçamento entre parágrafos (ABNT)
 \setlength{\parindent}{1.25cm} % recuo de 1,25 cm
 %\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
-
 % Informações do trabalho
+
 \titulo{Título do seu TCCe}
 \autor{João Victor Sousa}
 \local{Ilhéus - Bahia}
