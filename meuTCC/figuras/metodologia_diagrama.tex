@@ -1,0 +1,20 @@
+\begin{tikzpicture}[node distance=1.5cm, every node/.style={draw, rounded corners, minimum width=2.8cm, minimum height=1cm, align=center}]
+
+%passos
+\node (passo0) {Definição do problema};
+\node [below=of passo0] (passo1) {Escolha do banco};
+\node [below=of passo1] (passo2) {Pré processamento};
+\node [below=of passo2] (passo3) {Escolha dos modelos};
+\node [below=of passo3] (passo4) {Escolha da estratégia de validação};
+\node [below=of passo4] (passo5) {Aplicação do modelo};
+\node [below=of passo5] (passo6) {Escolha do melhor modelo};
+
+%conexões
+\draw[->](passo0) -- (passo1);
+\draw[->](passo1) -- (passo2);
+\draw[->](passo2) -- (passo3);
+\draw[->](passo3) -- (passo4);
+\draw[->](passo4) -- (passo5);
+\draw[->](passo5) -- (passo6);
+
+\end{tikzpicture}

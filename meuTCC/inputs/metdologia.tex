@@ -1,38 +1,36 @@
 \chapter{Metodologia}
 
+A metodologia é esquematizada na figura \ref{fig:metodologia} que ilustra o fluxo de trabalho. Esse processo envolve a definição do problema,
+a escolha do banco, o pré-processamento, escolha das estratégias de validação, e aplicação do modelo, culminando na escolha do melhor modelo.
+
+\begin{figure}[H]
+  \centering
+  \caption{Esquema a metodologia adotada.}
+  \input{figuras/metodologia_diagrama} % insere o tikzpicture puro
+  \label{fig:metodologia}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+Cada um desses passos introduz considerações, e as decisões tomadas influenciam nos passos seguintes. Por exemplo, a escolha do banco impacta diretamente em 
+quais tipos de pré-processamento necessário, como a limpeza. Contanto, antes mesmo da escolha do banco, é necessário definir qual o problema, visto que 
+que as anotações presentes podem limitar o escopo dos problemas resolvidos. 
+
+Nas seções subsequentes, detalha-se as decisões adotadas em cada etapa da metodologia, bem como os critérios considerados para tais escolha
 
 
-Primeiramente, foi necessário definir qual banco de dados seria utilizado para o treinamento e a validação. Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}, recomendado pela AAMI. O banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. Os 23 primeiros registros foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. Os 25 registros restantes foram escolhidos de modo a incluir arritmias raras, mas clinicamente significativas.
-
-Uma característica importante desse banco é a anotação de cada batimento cardíaco em torno do pico R, realizada por três cardiologistas independentes.
-
-\section{Particionamento dos dados e classes}
+\section{O banco de dados}
 \label{sec:particionamento}
 
-Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.  
+Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}. Segundo \citeonline{physionet_annotations}, o banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. 
+Os 23 primeiros registros, de 100 a 124, foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. 
+Os 25 registros, 200 até 234, restantes foram escolhidos de modo a incluir arritmias raras e com formato complexo, mas clinicamente significativas.
+Cada uma das anotações foram feitas com por três cardiologistas independentes. Os sinais foram coletados com duas derivações; uma superior e outra inferior. A superior
+é majoritariamente utilizando a derivação MLII (modified limb II) que é feita com o eletrodo no peito. 
+Em alguns casos, foi utilizado as derivações V1 (ou mais raramente, V2, V3 e V4); que também são obtidas com os eletrodos no peito.
 
-Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 são normalmente chamados de DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234) de DS2.
+Neste trabalho, foi utilizado somente a derivação superior, pois permite uma melhor visão do complexo QRS \cite{physionet_annotations}.
 
-De acordo com a AAMI (apud \citeonline{silva2025}), são definidas cinco classes de arritmia: N, SVEB, VEB, F e Q, correspondentes a batimento normal, batimento supraventricular ectópico, batimento ventricular ectópico, fusão de batimento ventricular e normal e batimento não classificado, respectivamente. A Tabela~\ref{tab:particionamento} apresenta a distribuição dessas classes no conjunto de dados.
-
-\begin{table}[htb]
-\centering
-\caption{Particionamento inter-paciente proposto por Chazel et al.}
-\label{tab:particionamento}
-\begin{tabular}{|l|c|c|c|c|c|c|}
-\hline
-Conjunto & N & SVEB & VEB & F & Q & Total \\ \hline
-DS1 & 45 866 & 944 & 3 788 & 415 & 8 & 51 021 \\ \hline
-DS2 & 44 259 & 1 837 & 3 221 & 388 & 7 & 49 712 \\ \hline
-Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
-\end{tabular}
-\legend{Fonte: Adaptado de Silva et al. (2025).}
-\end{table}
-
-O conjunto DS1 foi então subdividido em treinamento e validação por meio de validação cruzada, inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais.  
-
-É importante ressaltar que o MIT-BIH detalha muito outros tipos de batimentos. Essas cinco classes são uma proposta da AAMI, feita a partir do agrupamento desses tipos.
-Uma lista das anotações pode ser encontrada em \cite{physionet_annotations}. O mapeamento entre os tipos descritos originalmente e as cinco classes foi feito da seguinte maneira:
+Na tabela \ref{tab:mapeamento_classes}, é detalhado o mapeamento entre as classes originais de batimentos para as cinco definidas pela AAMI.
 
 \begin{table}[H]
 \centering
@@ -49,17 +47,115 @@ F, f & F (Fusão) \\
 Q, ?, / & Q (Desconhecida) \\
 \hline
 \end{tabular}
-\legend{Fonte: Elaborado pelo autor.}
+\legend{Fonte: Adaptado de Silva et al. (2025).}
 \end{table}
 
+O objetivo foi a detecção de batimentos da classe V que compreende: contração prematura ventricular (ou PVC, classe V) e batimento ventricular de escape, classe E, \cite{physionet_annotations}.
+Segundo \citeonline{Sattar_Premature_2025}, PVCs são batimentos originários dos ventrículos e podem ocorrer em indivíduos saudáveis, sua morfologia é variada, dependendo da origem, ou a doença estrutural ou ainda o medicamento usado.
+Ainda segundo o autor, caso ocorram frequentemente, elas podem causar sintomas como fadiga e palpitações e podem evoluir para
+disfunções ventriculares; sendo também, muitas vezes, a primeira manifestação de doenças estruturais do coração. 
 
-Considerando o desbalanceamento dos dados e visando maior simplicidade, adotou-se a classificação binária; onde a classe positiva corresponde a arritmia ventricular e a negativa ao batimento normal.
+O MIT-BIH é um banco aberto e muito utilizado para a classificação de arritmias, permitindo uma comparação com demais trabalhos.
+Além de ser recomendado pela AAMI.
 
-A arritmia ventricular é o tipo arrítmico mais prevalente no MIT-BIH e apresenta uma morfologia marcante. Ela é composta dos tipos arrítmicos: contração prematura
-contração ventricular prematura (classe V) e batimento de escape ventricular (classe E).
+\section{Pré-processamento}
+\label{sec:pre_process}
+
+Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de pré-processamento que consistiu em uma limpeza de ruídos e segmentação.
+Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
+Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
+
+Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}
+
+\subsection{Features}
+
+A única \textit{feature} usada foi o intervalo RR que é calculado da seguinte forma: 
+
+\begin{equation}
+\text{pré RR intervalo} = R_{i-1} - R_{i}
+\end{equation}
+
+\begin{equation}
+\text{pós RR intervalo} = R_{i} - R_{i+1}
+\end{equation}
+
+Esses intervalos correspondem ao intervalo entre o batimento \textit{i} e o anterior e posterior, respectivamente.
+
+\section{Arquiteturas}
+\label{sec:modelos}
+
+Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
+
+A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, onde obteve o melhor desempenho. 
+A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
 
 
-\section{Métricas}
+\begin{figure}[H]
+  \centering
+  \caption{Arquitetura GRU pura.}
+  \input{figuras/gru_pura} % insere o tikzpicture puro
+  \label{fig:gru_pura}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+A segunda rede é uma híbrida de CNN com GRU:
+
+\begin{figure}[H]
+  \centering
+  \caption{Arquitetura híbrida CNN e GRU.}
+  \input{figuras/cnn_gru} % insere o tikzpicture puro
+  \label{fig:cnn_gru}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32 e 64 filtros respectivamente e cada 
+uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente.
+
+Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
+das CNNs.
+
+Ambos os modelos recebem uma sequência de 16 batimentos junto com as \textit{features} RR.
+
+Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
+
+\section{Estratégia de avaliação}
+
+Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. 
+O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. 
+Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.
+
+Nesta divisão, o banco costuma ser dividido em Ds1 e Ds2. O primeiro costuma ser usado para treino e o segundo para teste.
+Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 formam o DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234), o Ds2
+
+Note que o conjunto Ds1 inclui 12 registros que são resultados da seleção aleatória e 22 dos registros com as morfologias complexas. Já no Ds2 possui 
+oito dessa primeira seleção e 22 da segunda; sendo mais desafiador e feito para testar a capacidade de generalização do modelo.
+
+Na tabela \ref{tab:particionamento}, é mostrado a distribuição das cinco classes nos dois conjuntos.
+
+\begin{table}[htb]
+\centering
+\caption{Particionamento inter-paciente proposto por Chazel et al.}
+\label{tab:particionamento}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+Conjunto & N & SVEB & VEB & F & Q & Total \\ \hline
+DS1 & 45 866 & 944 & 3 788 & 415 & 8 & 51 021 \\ \hline
+DS2 & 44 259 & 1 837 & 3 221 & 388 & 7 & 49 712 \\ \hline
+Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
+\end{tabular}
+\legend{Fonte: Adaptado de Silva et al. (2025).}
+\end{table}
+
+Como pode ser observado, as classes são desbalanceadas dentro do mesmo conjunto, porém, balanceada entre eles.
+
+A avaliação foi feita utilizando uma avaliação cruzada no conjunto Ds1 inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais, utilizando o particionados
+inter-paciente. Esta estratégia permite avaliar o modelo com ECGs de pacientes para o qual ele não foi treinado; sendo mais próximo de um contexto clínico 
+e expõe o modelo a mais variação.
+
+Outra estratégia ser o particionamento intra-paciente, onde batimentos de um mesmo paciente podem aparecer tanto no treino quanto na validação. Essa estratégia seria 
+mais adequada para um modelo personalizado, por exemplo. 
+
+\subsection{Métricas}
 \label{sec:metricas}
 
 As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score}, AUC (\textit{Area Under the Curve}) e AP (textit{Average Precision}). Esses 
@@ -134,6 +230,13 @@ Essa métrica é calculada a partir da área sob a curva ROC. Na Figura~\ref{fig
     \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+A curva vermelha representa um classificador perfeito com TPR, sinônimo de \textit{recall}, sempre igual a um. O raciocínio é que 
+para aumentar o \textit{recall}, a quantidade de classes negativas que são classificadas como positivas, calculada por FPR, aumenta. 
+Entretanto, para um classificador perfeito, esse \textit{trade-off} não existe.
+
+A linha tracejada representa um classificador aleatório, o \textit{baseline}. Neste caso, por exemplo, para achar 60\% das classes positivas,
+cerca de 0,6 de \textit{recall}, o modelo classificaria 60\%  das classes negativas como positivas.
+
 Já a curva PR, Precisão vs \textit{Recall} representa a precisão em função do \textit{recall}. Na figura Figure~\ref{fig:roc_perfect},
 é ilustrada a curva PR de um classificador perfeito.
 
@@ -175,12 +278,14 @@ Já a curva PR, Precisão vs \textit{Recall} representa a precisão em função 
     \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+Como há uma relação de \textit{trade-off} entre a precisão e o \textit{recall}, conforme ajusta-se o limiar de decisão para aumentar o \textit{recall},
+a precisão tende a cair. Entretanto, assim como ocorre na ROC, esse \textit{trade-off} não existe para um classificador perfeito; ou seja, a precisão é 
+sempre 100\% independente do valor do \textit{recall}.
 
-Na figura \ref{fig:pr_curve_perfect} representa uma curva PR genérica, a curva mostra a precisão em função do \textit{recall}. Como ilustrado,
-conforme aumenta-se o \textit{recall}, há uma diminuição da precisão e vice-versa; representado o \textit{trade-off}. O AP é a área do gráfico; quanto
-maior, melhor. Um modelo aleatório teria um AP igual a frequência da classe positiva.
+Já a linha tracejada, marca o desempenho de um classificador aleatório; o \textit{baseline}. A linha corresponde a frequência da classe positiva, isto é, 
+o classificador aleatório sempre tem uma precisão igual a frequência da classe positiva. AP é o análogo da AUC para esta curva.
 
-A matriz de confusão, por fim, fornece uma representação tabular dos acertos e erros do modelo, como exemplificado na Tabela~\ref{tab:matriz_confusao}.
+Na tabela \ref{tab:matriz_confusao} é ilustrada a matriz de confusão.
 
 \begin{table}[H]
 \centering
@@ -196,7 +301,19 @@ Negativa & FP & TN \\ \hline
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Essas métricas em conjunto permitem avaliar não apenas a proporção global de acertos, mas também a capacidade do modelo em detectar corretamente arritmias, aspecto essencial em aplicações médicas.
+Em sentido anti-horário, a partir do canto superior esquerdo temos: 
+
+\begin{enumerate}
+\item {TP} \textit{true positive}, quantos casos positivos foram corretamente classificados;
+\item {FN} \textit{false negative}, quantos casos positivos foram incorretamente classificados;
+\item {FP} \textit{false positive}, quantos casos negativos foram incorretamente classificados;
+\item {TN} \textit{true negative}, quantos casos negativos foram incorretamente classificados.
+\end{enumerate}
+
+Essas métricas mostram o desempenho do modelo em perspectivas diferentes, 
+precisão, \textit{recall}, \textit{f1 score} e acurácia, mostram o desempenho do modelo para um determinado limiar. Neste trabalho, foi escolhido como 50\%. 
+Já as curvas PR e ROC mostram o impacto no desempenho do modelo para diferentes limiares e a matriz de confusão permite visualizar os tipos de erros e acertos
+individualmente. 
 
 \section{Tipos de redes usadas}
 \label{sec:tipo_redes}
@@ -206,53 +323,3 @@ Inicialmente, foram escolhidas redes neurais recorrentes (RNNs) e seus subtipos,
 Além das RNNs, foram utilizadas redes neurais convolucionais (CNNs), conhecidas por sua habilidade em reconhecer padrões em diferentes domínios \citeonline{james2023}. Em particular, CNNs unidimensionais (1D-CNNs) têm se mostrado eficazes na análise de sinais fisiológicos, sendo amplamente aplicadas à classificação de ECG \cite{narotamo2024}.
 
 A motivação para essa combinação está na complementaridade entre os modelos: enquanto as RNNs são eficazes na captura de dependências temporais, as CNNs se destacam na identificação de características morfológicas do sinal.
-
-\section{Pré-processamento e entrada para os modelos}
-\label{sec:pre_process}
-
-Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de pré-processamento que consistiu em uma limpeza de ruídos e segmentação.
-Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
-Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
-
-Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}
-
-O objetivo do trabalho é a classificação de batimentos cardíacos em duas classes: normais e arritmia ventricular. 
-Para isso, os modelos recebem uma sequência de 16 batimentos e realizam a classificação do último batimento da sequência. 
-Cada sequência é composta exclusivamente por batimentos de um único paciente
-
-Tanto as CNNs quanto as RNNs recebem como entrada uma matriz tridimensional com a seguinte estrutura: $(\text{tamanho do batch}, \text{tamanho da sequência}, \text{número de features})$.
-
-Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
-
-\section{Arquiteturas}
-\label{sec:modelos}
-
-Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
-
-A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, onde obteve o melhor desempenho. 
-A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
-
-
-\begin{figure}[H]
-  \centering
-  \caption{Arquitetura GRU pura.}
-  \input{figuras/gru_pura} % insere o tikzpicture puro
-  \label{fig:gru_pura}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-A segunda rede é uma híbrida de CNN com GRU:
-
-\begin{figure}[H]
-  \centering
-  \caption{Arquitetura híbrida CNN e GRU.}
-  \input{figuras/cnn_gru} % insere o tikzpicture puro
-  \label{fig:cnn_gru}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32 e 64 filtros respectivamente e cada 
-uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente.
-
-Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
-das CNNs.
