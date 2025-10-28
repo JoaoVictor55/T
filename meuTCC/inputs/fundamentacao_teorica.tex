@@ -27,7 +27,7 @@ A quantidade de eletrodos varia, mas geralmente são 12 \cite{msd_ecg}.
 
 Ao registrar a magnitude e direção da corrente, as derivações geram uma onda que representa a atividade elétrica do coração. O passo a passo descrito em \ref{sec:funciionamento_coracao} é refletido em sua morfologia.
 
-Na figura \ref{fig:ecg_exemplo_coracao}, um  ECG de um batimento, observe que ele é subdividido em: onda P, complexo QRS e onda T \cite{msd_ecg}. Note que cada uma dessas partes se refere a um estágio do batimento.
+Na figura \ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, observe que ele é subdividido em: onda P, complexo QRS e onda T \cite{msd_ecg}. Note que cada uma dessas partes se refere a um estágio do batimento.
 
 \begin{figure}[H]
   \centering
@@ -59,19 +59,24 @@ As arritmias podem ser classificadas de forma simplificada em três tipos princi
 Observe na figura \ref{fig:ecg_exemplo_coracao}, exemplos desses três tipos arrítmicos ilustrados em um ECG.
 
 \subsection{Padrões de classificação para algoritmos (AAMI)}
+\label{sub_sec:padroes_arritmias_aami}
 
 A AAMI define cinco classes de arritmia: normal (N), ventricular (V), supraventricular (S), fusão (F) e não classificado (Q) \cite{silva2025,saadatnejad2020}.
 
-As arritmias ventriculares incluem, por exemplo, as contrações prematuras ventriculares (PVCs) e os batimentos de escape. De acordo com \citeonline{Sattar_Premature_2025}, as PVCs são batimentos originários dos ventrículos que podem ocorrer mesmo em indivíduos saudáveis. Sua morfologia é variável, dependendo da origem do impulso, de doenças estruturais ou ainda de uso de medicamentos. Quando frequentes, podem causar fadiga e palpitações, evoluindo para disfunções ventriculares e, em alguns casos, representando a primeira manifestação de cardiopatias estruturais.
+As arritmias ventriculares incluem, por exemplo, as contrações prematuras ventriculares (PVCs) e os batimentos de escape. 
+O batimento ventricular de escape atua como um mecanismo compensatório, funcionando como um “backup” protetivo do coração quando o marcapasso natural falha temporariamente.
+De acordo com \citeonline{Sattar_Premature_2025}, as PVCs são batimentos originários dos ventrículos que podem ocorrer mesmo em indivíduos saudáveis. Sua morfologia é variável, dependendo da origem do impulso, de doenças estruturais ou ainda de uso de medicamentos. Quando frequentes, podem causar fadiga e palpitações, evoluindo para disfunções ventriculares e, em alguns casos, representando a primeira manifestação de cardiopatias estruturais.
 
 \citeonline{msdmanuals_ventricular} cita ainda outras causas potenciais de PVCs, como doenças da artéria coronária (especialmente durante ou após infarto), dilatação ventricular decorrente de insuficiência cardíaca e alterações nas válvulas cardíacas. Em pacientes com doenças estruturais, as PVCs podem progredir para arritmias mais graves, como taquicardia ventricular (VT) e fibrilação ventricular (FV), que representam risco de morte súbita.
 
 \citeonline{mitchell2024afib,mitchell2024vt} descrevem tanto a fibrilação quanto a taquicardia ventricular como arritmias originadas nos ventrículos.
-O batimento ventricular de escape atua como um mecanismo compensatório, funcionando como um “backup” protetivo do coração quando o marcapasso natural falha temporariamente.
 
-Já a fibrilação ventricular (FV) é caracterizada por batimentos rápidos e desordenados, resultantes de sinais elétricos caóticos nos ventrículos. Essa condição leva à perda de consciência em poucos segundos e à morte caso não haja intervenção imediata, configurando-se como um tipo de parada cardíaca. Entre suas causas estão afogamentos, choques elétricos e falha cardíaca.
+A taquicardia ventricular (TV) produz uma frequência cardíaca de até 120 bpm e é formada por uma sequência de contrações ventriculares prematuras (PVCs). Quando persiste por mais de 30 segundos, recebe a denominação de taquicardia sustentada. Costuma ocorrer em indivíduos com alterações estruturais cardíacas, como infarto do miocárdio, falha cardíaca ou cardiomiopatia. Os sintomas incluem fraqueza, tontura e desconforto torácico. Caso persista por mais de 30 segundos, o tratamento é indicado mesmo na ausência de sintomas, uma vez que pode evoluir para fibrilação ventricular.
 
-A taquicardia ventricular (TV), por outro lado, produz uma frequência cardíaca de até 120 bpm e é formada por uma sequência de contrações ventriculares prematuras (PVCs). Quando persiste por mais de 30 segundos, recebe a denominação de taquicardia sustentada. Costuma ocorrer em indivíduos com alterações estruturais cardíacas, como infarto do miocárdio, falha cardíaca ou cardiomiopatia. Os sintomas incluem fraqueza, tontura e desconforto torácico. Caso persista por mais de 30 segundos, o tratamento é indicado mesmo na ausência de sintomas, uma vez que pode evoluir para fibrilação ventricular.
+Outro tipo de arritmia ventricular é o \textit{flutter} ventricular. Segundo o \citeonline{mesh_ventricular_flutter}, elas são caracterizadas por uma taquicardia extremamente rápida e instável hemodinamicamente (150 a 300 bpm).
+São potencialmente fatais e, tipicamente, evoluem para a fibrilação ventricular.
+
+A fibrilação ventricular (FV), por outro lado, é caracterizada por batimentos rápidos e desordenados, resultantes de sinais elétricos caóticos nos ventrículos. Essa condição leva à perda de consciência em poucos segundos e à morte caso não haja intervenção imediata, configurando-se como um tipo de parada cardíaca. Entre suas causas estão afogamentos, choques elétricos e falha cardíaca.
 
 Apesar de ocorrerem também em indivíduos saudáveis, as PVCs possuem significância clínica, pois podem estar associadas a outros tipos de arritmias ventriculares graves. É importante considerar o contexto do batimento: no caso da taquicardia ventricular, por exemplo, o diagnóstico é estabelecido a partir de uma sequência de PVCs que produz uma frequência cardíaca elevada (>20 bpm). Assim, o diagnóstico depende de uma combinação de características temporais e morfológicas, observando-se o contexto dos batimentos e, naturalmente, os sintomas clínicos.
 
