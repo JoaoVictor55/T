@@ -54,7 +54,46 @@ O objetivo foi a detecção de batimentos da classe V que compreende: contraçã
 Conforme discutido na seção \ref{sub_sec:padroes_arritmias_aami}, apesar de ocorrerem em indivíduos saudáveis, esses tipos arrítmicos possuem relevância clínica pois estão associados a tipos mais graves.
 
 Essas anotações são anotações de batimento, isto é, elas são feitas em cada pico R no ECG. Além delas, existem as anotações de ritmo dentro as quais, podemos destacar: o ritmo normal identificado por (N,
-e a taquicardia ventricular; identificado por (VFL.
+e a taquicardia ventricular; identificado por (VFL. Dentro de um contexto rítmico, podem haver batimentos normais ou arrítmicos.
+
+Por exemplo, na figura \ref{fig:p100_ritmo_normal}, é mostrado o trecho de um ECG. Note a anotação de ritmo, (N, indicando que o mesmo 
+é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, e uma arritmia superventricular; 
+o batimento atrial prematuro, classe A.
+
+\begin{figure}[H]
+  \centering
+  \caption{Trecho ECG com ritmo normal do paciente 100 com arritmia classe A}
+  \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p100_ritmo_normal.png}  % <-- CERTO
+  \label{fig:p100_ritmo_normal}
+  \legend{Fonte: Adaptado de PhysionNet}
+\end{figure}
+
+Na figura \ref{fig:p100_ritmo_normal_arrV} é mostrado um outro trecho do mesmo paciente, o ritmo também é normal
+
+\begin{figure}[H]
+  \centering
+  \caption{Trecho ECG com ritmo normal do paciente 100 com com arritmia classe V}
+  \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p100_ritmo_normal_classV.png}  % <-- CERTO
+  \label{fig:p100_ritmo_normal_arrV}
+  \legend{Fonte: Adaptado de PhysionNet}
+\end{figure}
+
+Porém, nota-se um PVC, identificado pela anotação V. Na figura \ref{fig:p106_ritmo_normal_arrV}, um trecho do paciente 106 é mostrado.
+o ECG é de outro paciente.
+
+\begin{figure}[H]
+  \centering
+  \caption{Trecho ECG com ritmo normal do paciente 106 com com arritmia classe V}
+  \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png}  % <-- CERTO
+  \label{fig:p106_ritmo_normal_arrV}
+  \legend{Fonte: Adaptado de PhysionNet}
+\end{figure}
+
+Aqui temos a ocorrência de uma taquicardia ventricular, identificado por (VT. Nela, ocorrem três PVCs em sequência. 
+Note a diferença morfológica entre eles. Após esse evento, o ritmo é normal. Nesse segundo momento, ocorre um outro PVC.
+
+As classes de ritmo não foram utilizadas explicitamente, visto que o objetivo era classificar batimentos. Ou seja, há sequencias 
+com ritmo normal ou com taquicardia ventricular, mas o algoritmo não as classifica.
 
 O MIT-BIH é um banco aberto e muito utilizado para a classificação de arritmias, permitindo uma comparação com demais trabalhos.
 Além de ser recomendado pela AAMI.
@@ -80,7 +119,8 @@ A única \textit{feature} usada foi o intervalo RR que é calculado da seguinte 
 \text{pós RR intervalo} = R_{i} - R_{i+1}
 \end{equation}
 
-Esses intervalos correspondem ao intervalo entre o batimento \textit{i} e o anterior e posterior, respectivamente.
+Esses intervalos correspondem ao intervalo entre o batimento \textit{i} e o anterior e posterior, respectivamente. O intervalo RR corresponde ao intervalo 
+entre dois batimentos.
 
 \section{Arquiteturas}
 \label{sec:modelos}
@@ -118,6 +158,11 @@ das CNNs.
 Ambos os modelos recebem uma sequência de 16 batimentos junto com as \textit{features} RR.
 
 Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
+
+Segundo \citeonline{james2023}, RNNs apresentam grande potencial para lidar com dados sequenciais, como no processamento de linguagem natural, previsão de preços e outros tipos de séries temporais. Já as CNN são boas extratoras de \textit{features}, ganhando destaque na área 
+de visão computacional. Conforme discuto na seção \ref{sub_sec:padroes_arritmias_aami}, o diagnostico das arritmias acontece tanto observando o contexto dos batimentos quanto 
+a morfologia do batimento em si. Portanto, a razão por trás da escolha desses dois tipos é que enquanto a CNN pode aprender os padrões locais de um único batimento, isto é, a morfologia individual, 
+a RNN pode aprender o contexto da sequência.
 
 \section{Estratégia de avaliação}
 
@@ -315,12 +360,3 @@ Essas métricas mostram o desempenho do modelo em perspectivas diferentes,
 precisão, \textit{recall}, \textit{f1 score} e acurácia, mostram o desempenho do modelo para um determinado limiar. Neste trabalho, foi escolhido como 50\%. 
 Já as curvas PR e ROC mostram o impacto no desempenho do modelo para diferentes limiares e a matriz de confusão permite visualizar os tipos de erros e acertos
 individualmente. 
-
-\section{Tipos de redes usadas}
-\label{sec:tipo_redes}
-
-Inicialmente, foram escolhidas redes neurais recorrentes (RNNs) e seus subtipos, como LSTM e GRU. Segundo \citeonline{james2023}, esse tipo de rede apresenta grande potencial para lidar com dados sequenciais, como no processamento de linguagem natural, previsão de preços e outros tipos de séries temporais. Como o componente temporal é relevante para o diagnóstico das arritmias, optou-se por esse tipo de modelo.
-
-Além das RNNs, foram utilizadas redes neurais convolucionais (CNNs), conhecidas por sua habilidade em reconhecer padrões em diferentes domínios \citeonline{james2023}. Em particular, CNNs unidimensionais (1D-CNNs) têm se mostrado eficazes na análise de sinais fisiológicos, sendo amplamente aplicadas à classificação de ECG \cite{narotamo2024}.
-
-A motivação para essa combinação está na complementaridade entre os modelos: enquanto as RNNs são eficazes na captura de dependências temporais, as CNNs se destacam na identificação de características morfológicas do sinal.
