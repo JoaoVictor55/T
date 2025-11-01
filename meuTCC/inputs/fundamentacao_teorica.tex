@@ -51,9 +51,9 @@ Variações no ritmo cardíaco são fenômenos fisiológicos normais. Durante a 
 As arritmias podem ser classificadas de forma simplificada em três tipos principais:
 
 \begin{enumerate}
-    \item Taquicardia: frequência excessivamente rápida;
-    \item Bradicardia: frequência excessivamente lenta;
-    \item Irregular: quando os impulsos percorrem o coração por vias irregulares.
+    \item \textbf{Taquicardia} — frequência excessivamente rápida;
+    \item \textbf{Bradicardia} — frequência excessivamente lenta;
+    \item \textbf{Irregular} — quando os impulsos percorrem o coração por vias irregulares.
 \end{enumerate}
 
 Observe na figura \ref{fig:ecg_exemplo_coracao}, exemplos desses três tipos arrítmicos ilustrados em um ECG.
@@ -271,44 +271,276 @@ Dessa maneira, cada peso recebe uma medida precisa de sua influência no erro ob
 Por fim, os parâmetros são atualizados aplicando-se o gradiente descendente — ou outra técnica de otimização —, 
 movendo os pesos na direção que reduz o erro da rede.
 
-\section{Redes Neurais Convolucionais}
+Redes profundas, entretanto, podem ser propensas a um problema denominado genericamente como gradiente instáveis que se manifesta 
+de duas formas distintas: desvanecimento do gradiente — \textit{vanishing gradient}  —  e a explosão do gradiente  — \textit{exploding gradient}  — 
+que ocorre quando os pesos ficam exponencialmente pequenos ou exponencialmente grandes respectivamente.
+
+No primeiro caso, a atualização torna-se cada vez menor conforme o gradiente flui para as camadas mais iniciais. Na prática
+a rede para de aprender. Por exemplo, considere uma rede com três camadas. Se a taxa de contribuição do gradiente 
+da camada três for 0,5 e o gradiente local da camada dois for 0,3, a contribuição do erro nesta camada (devido a regra da cadeia)
+será de \(0,5 \times 0,3 = 0,15\). Na primeira camada que possui um gradiente local de 0,1, o erro seria de \(0,15 \times 0,1 = 0,015\)
+Com mais camadas, esse erro seria multiplicado por gradientes cada vez menores, chegando a zero nas camadas iniciais. 
+Como pode ser visto na equação \ref{for:gradiente_descendente}, isso significa que esses pesos não seriam atualizados.
 
 \section{Redes Neurais Recorrentes e suas variações}
 
-Uma rede neural recorrente — RNN — pode ser entendida intuitivamente como uma rede com uma memória. \citeonline{james2023} diz que as RNN
-se destacam em dados cuja natureza é sequencial, tais como:
+Uma rede neural recorrente — \textit{Recurrent Neural Network} (RNN) — pode ser entendida, de forma intuitiva, como uma rede que possui memória. 
+Segundo \citeonline{james2023}, as RNNs se destacam em tarefas que envolvem dados com natureza sequencial, como:
 
 \begin{itemize}
-    \item Documentos tais como resenhas de livros, filmes, jornais e \textit{tweets}. O autor explica que a sequência e posição relativa
-    das palavras ajuda a capturar a narrativa, os temas e os tons. Dentre as aplicações, é possível citar analise de sentimento e tradução.
-    \item Series temporais como temperatura, precipitação, velocidade do vento, qualidade do ar e outras. Assim, é possível prever o clima 
-    com uma janela de dias ou mesmo décadas.
-    \item Sinais sonoros como voz gravada, música e outros. Uma das aplicações citadas é legendas automáticas, tradução ou mesmo, a classificação
-    de determinadas características.
+    \item \textbf{Documentos textuais} — como resenhas de livros, filmes, artigos jornalísticos ou \textit{tweets}. 
+    Nesses casos, a sequência e a posição relativa das palavras ajudam a capturar a narrativa, os temas e o tom do texto. 
+    Entre as aplicações estão a análise de sentimento, a tradução automática e a sumarização de textos.
+    
+    \item \textbf{Séries temporais} — como temperatura, precipitação, velocidade do vento, qualidade do ar, entre outros. 
+    As RNNs podem ser usadas para prever o comportamento dessas variáveis em diferentes horizontes de tempo, de dias a décadas.
+    
+    \item \textbf{Sinais sonoros} — como voz gravada e música. 
+    Aplicações incluem legendagem automática, tradução de fala e classificação de sons.
 \end{itemize}
 
-A entrada de uma RNN é uma sequência. Por exemplo, se a tarefa for classificar um documento, um documento seria uma sequência \(X = \{X_1, X_2, ..., X_L\}\) de 
-\textit{L} palavras onde cada \textit{\(X_{l}\)} representa uma palavra. Na figura \ref{fig:rnn_exemplo} é ilustrada uma simples RNN com apenas um neurônio na camada
-de entrada, oculta e saída.
+A entrada de uma RNN é uma sequência. 
+Por exemplo, em uma tarefa de classificação de documentos, um texto pode ser representado como uma sequência 
+\( X = \{X_1, X_2, ..., X_L\} \) de \(L\) elementos, onde cada \(X_l\) representa uma palavra (ou vetor de características da palavra).  
+
+Na Figura \ref{fig:rnn_exemplo}, é ilustrada uma RNN simples com apenas um neurônio em cada camada — de entrada, oculta e saída.
 
 \begin{figure}[H]
   \centering
   \caption{Exemplo de uma RNN}
-   \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/rnn_exemplo.png} % insere o tikzpicture puro
+   \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/rnn_exemplo.png}
   \label{fig:rnn_exemplo}
-    \legend{Fonte: Adaptado de  \citeonline{james2023}}
+  \legend{Fonte: Adaptado de \citeonline{james2023}}
 \end{figure}
 
-O \textit{loop} na parte da esquerda simboliza a retro-alimentação da rede. Na direita, a RNN é "desenrolada" assim: 
-a rede processa um \(X_l\) de cada vez e produz a ativação \(A_{l}\) a partir de tanto dessa entrada quanto da ativação
-\(A_{l-1}\), ou seja, a ativação anterior. \(A_{l}\) é utilizado como entrada da camada de saída, produzindo \(O_{l}\).
-Neste exemplo, apenas a última ativação desse camada é utilizada como saída final.
+O \textit{loop} à esquerda representa a retroalimentação da rede.  
+À direita, a RNN é ``desenrolada'' no tempo: a rede processa um elemento \(X_l\) de cada vez e produz a ativação \(A_l\), 
+calculada a partir tanto da entrada atual quanto da ativação anterior \(A_{l-1}\). 
+Essa ativação é então usada para gerar a saída \(O_l\). 
+Neste exemplo, apenas a última ativação da sequência é utilizada como saída final.
 
-Mais formalmente, supondo que \(X_l\) tenha \textit{p} componentes; \(X_{l}^{T} = (X_{l1}, X_{l2}, ..., X_{lp}) \)
-e a camada de saída tenha \textit{K} unidades \(A_{l}^{T} = (A_{l1}, A_{l2}, ..., A_{lK})\). A matriz \textbf{W} 
-é uma coleção de \(K \times (p + 1)\) pesos da camada de entrada e \textbf{U} é uma coleção de \(K \times K\) pesos 
-da camada recorrente e \textbf{B} é um vetor de \(K + 1\) pesos para a camada de saída. A ativação é calculado como:
+Mais formalmente, suponha que cada entrada \(X_l\) possua \(p\) componentes:  
+\( X_{l}^{T} = (X_{l1}, X_{l2}, ..., X_{lp}) \), 
+e que a camada oculta tenha \(K\) unidades:  
+\( A_{l}^{T} = (A_{l1}, A_{l2}, ..., A_{lK}) \). 
+A matriz \(\mathbf{W}\) representa os \(K \times (p + 1)\) pesos da camada de entrada, 
+\(\mathbf{U}\) representa os \(K \times K\) pesos recorrentes (entre ativações sucessivas), 
+e \(\mathbf{B}\) é o vetor de pesos da camada de saída. 
+A ativação é calculada por:
 
 \begin{equation}
-  A_{lk} = g\left( w_{k0}+ \sum_{j=1}^{p}w_{kj}\times X_{l,p}  + \sum_{s=1}^Ku_{ks}\times A_{l-1,s}\right)
+  A_{lk} = g\left( w_{k0} + \sum_{j=1}^{p} w_{kj} X_{lj} + \sum_{s=1}^{K} u_{ks} A_{l-1,s} \right)
 \end{equation}
+
+A saída é dada por:
+
+\begin{equation}
+  O_{l} = \beta_{0} + \sum_{k=1}^{K} \beta_k A_{lk}
+\end{equation}
+
+Em problemas de classificação binária, a função sigmoide pode ser usada na camada de saída.  
+Note que as matrizes \(\mathbf{U}\), \(\mathbf{W}\) e \(\mathbf{B}\) são compartilhadas entre todas as etapas temporais, 
+o que permite que a rede capture dependências sequenciais nos dados.
+
+Segundo \citeonline{geron2022hands}, a entrada e saída de uma RNN pode ser configurada de três maneiras:
+
+\begin{itemize}
+    \item \textbf{Sequencia para sequencia (sequence-to-sequence)} —  A entrada e a saída são sequencias. Um exemplo seria a previsão 
+    do consumo de energia onde a rede recebe o consumo nos últimos \textit{N} dias e prever os próximos \textit{N - 1} dias.
+    
+    \item \textbf{Sequencia para vetor (sequencie-to-vector)} — Apenas a entrada é uma sequência. É o caso do exemplo discutido acima. 
+    Outra aplicação, além da já citada, é análise de sentimentos de uma resenha, onde a rede recebe uma sequência de palavras e deve classificar em:
+    gostei ou não gostei.
+    
+    \item \textbf{Vetor para sequência (vector-to-sequence)} — Apenas a saída é uma sequência. A rede recebe o mesmo vetor 
+    em cada passo de tempo. Um exemplo é gerar a legenda de uma imagem. Assim, a rede receberia a imagem ou mesmo a saída
+    de uma CNN e baseado nisso, ela gera a legenda.
+\end{itemize}
+
+Existem duas variações de RNN muito utilizadas: a LSTM — \textit{long short term memory} e a GRU — \textit{gated recurrent unit}.
+Ambas foram desenvolvidas para amenizar o problema do \textit{vanishing gradient} que ocorre na camada recorrente da RNN, o que 
+faz com que a rede "esqueça" sequencias longas.
+
+\subsection{Long Short-Term Memory (LSTM)}
+
+\citeonline{geron2022hands} descreve a LSTM (\textit{Long Short-Term Memory}) como uma célula recorrente que combina três componentes principais: 
+uma memória de curto prazo, uma memória de longo prazo e um mecanismo de esquecimento. 
+Na Figura \ref{fig:lstm_exemplo}, é apresentado o diagrama de uma célula LSTM típica.
+
+\begin{figure}[H]
+  \centering
+  \caption{Esquema de uma célula LSTM}
+  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/lstm_celula.png}
+  \label{fig:lstm_exemplo}
+  \legend{Fonte: Adaptado de \citeonline{geron2022hands}}
+\end{figure}
+
+A célula LSTM é composta por quatro unidades \textit{fully connected} (FC), formando uma estrutura semelhante à apresentada na Seção~\ref{sec:ann}.  
+As saídas dessas unidades são representadas por \( f_t \), \( i_t \), \( o_t \) e \( g_t \), 
+onde as três primeiras correspondem às portas de controle — \textit{forget} (\textbf{f}), \textit{input} (\textbf{i}) e \textit{output} (\textbf{o}) — 
+enquanto \( g_t \) é a saída da unidade principal (\textbf{g}).  
+As variáveis \( h_t \) e \( c_t \) representam, respectivamente, a memória de curto prazo (\textit{hidden state}) e a memória de longo prazo (\textit{cell state}).
+
+De forma simplificada, o funcionamento de uma LSTM ocorre da seguinte maneira:  
+a entrada atual \( X_t \) e a memória de curto prazo anterior \( h_{t-1} \) são fornecidas à célula.  
+Essas duas informações são processadas pelas quatro camadas FC, que calculam os vetores \( f_t \), \( i_t \), \( o_t \) e \( g_t \).  
+
+O vetor \( f_t \) atua como um filtro de esquecimento, controlando qual fração da memória anterior \( c_{t-1} \) deve ser mantida.  
+Em seguida, o vetor \( i_t \) define o quanto da nova informação \( g_t \) será incorporada à memória.  
+O novo estado de memória de longo prazo é então atualizado conforme:
+
+\[
+c_t = f_t \odot c_{t-1} + i_t \odot g_t
+\]
+
+Por fim, a saída da célula é obtida aplicando uma função tangente hiperbólica sobre \( c_t \) — cuja fórmula é dada em \ref{sec:ann} —, modulada pela porta de saída \( o_t \):
+
+\[
+h_t = o_t \odot \tanh(c_t)
+\]
+
+onde o operador \(\odot\) indica a multiplicação elemento a elemento (\textit{element-wise}).  
+
+O controle exercido por cada porta ocorre porque suas funções de ativação são do tipo logística (sigmoide), cujo contradomínio é o intervalo \([0,1]\).  
+Assim, o valor produzido por cada porta funciona como um coeficiente de passagem: se a ativação for próxima de 0, a informação é bloqueada; 
+se for próxima de 1, ela é totalmente transmitida.  
+Essa estrutura permite que a LSTM controle de forma adaptativa o fluxo de informação ao longo do tempo, 
+mitigando o problema do \textit{vanishing gradient} presente em RNNs tradicionais.
+
+\subsection{GRU}
+
+Segundo \citeonline{geron2022hands}, a Gated Recurrent Unit (GRU) — proposta por Kyunghyun Cho et al. (2014) — 
+é uma versão simplificada da LSTM que mantém desempenho equivalente em diversas tarefas. 
+Na figura \ref{fig:gru_exemplo}, é apresentado um esquema ilustrativo dessa célula.
+
+\begin{figure}[H]
+  \centering
+  \caption{Esquema de uma célula GRU}
+  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/gru_celula.png}
+  \label{fig:gru_exemplo}
+  \legend{Fonte: Adaptado de \citeonline{geron2022hands}}
+\end{figure}
+
+Os vetores de estado \(r_t\), \(z_t\) e \(g_t\) correspondem às três unidades totalmente conectadas 
+(\textbf{r}, \textbf{z} e \textbf{g}), enquanto \(h_t\) representa a memória da célula. 
+A unidade \textbf{r} controla a quantidade de informação de \(h_{t-1}\) que é transmitida para \textbf{g}, 
+enquanto \textbf{z} desempenha o papel do mecanismo de esquecimento. 
+Note que há multiplicações elemento a elemento entre \(z_t\) e \(h_{t-1}\), e entre \((1 - z_t)\) e \(g_t\); 
+desse modo, para que novas informações sejam incorporadas à memória, parte das informações antigas precisa ser descartada.
+
+O mecanismo de controle da GRU é, portanto, mais simples que o da LSTM, o que se traduz em um número menor 
+de parâmetros a serem aprendidos durante o treinamento.
+
+Cabe ressaltar, entretanto, que a simplicidade da GRU não implica necessariamente em melhor desempenho. 
+Estudos como \citeonline{narotamo2024} e \citeonline{saadatnejad2020} relatam resultados distintos 
+em diferentes contextos e conjuntos de dados.
+
+
+\section{Redes Neurais Convolucionais}
+
+Segundo \citeonline{james2023}, as redes neurais convolucionais — ou CNNs (\textit{Convolutional Neural Networks}) — 
+tiveram grande destaque a partir de 2010, especialmente em tarefas de classificação de imagens. 
+Esse avanço se deve, em parte, ao surgimento de grandes bases de dados e ao aumento da capacidade computacional, 
+mas também à criação de uma nova arquitetura de rede neural, inspirada no funcionamento da percepção visual humana.
+
+As CNNs constroem uma hierarquia de \textit{features} que se tornam progressivamente mais complexas. 
+Na figura \ref{fig:cnn_tigre}, é apresentado um esquema ilustrativo de como uma CNN reconheceria um tigre: 
+nas primeiras camadas são extraídos padrões simples, como bordas e formas básicas; então, elas são combinadas para 
+formar os olhos, orelhas, até quem, enfim, a rede reconhece o tigre.
+
+\begin{figure}[H]
+  \centering
+  \caption{Esquema de como uma CNN identificaria um tigre}
+  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/cnn_tigre.png}
+  \label{fig:cnn_tigre}
+  \legend{Fonte: Adaptado de \citeonline{james2023}}
+\end{figure}
+
+De modo geral, uma CNN é composta por duas estruturas principais: 
+as \textit{camadas convolucionais}, responsáveis por extrair características relevantes dos dados, 
+e as \textit{camadas de pooling}, que reduzem a dimensionalidade e mantêm apenas as informações mais significativas.
+
+Para compreender o funcionamento de uma convolução, considere a seguinte matriz, representando uma imagem:
+
+\[
+\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i \\
+j & k & l \\
+\end{bmatrix}
+\]
+
+e um filtro convolucional \(2 \times 2\):
+
+\[
+\begin{bmatrix}
+\alpha & \beta \\
+\gamma & \delta
+\end{bmatrix}
+\]
+
+A operação de convolução consiste em multiplicar o filtro elemento a elemento com cada submatriz \(2 \times 2\) da imagem, 
+somar os resultados e, em seguida, deslizar o filtro sobre a matriz. 
+O resultado dessa operação é:
+
+\[
+\begin{bmatrix}
+a\alpha + b\beta + d\gamma + e\delta & 
+b\alpha + c\beta + e\gamma + f\delta \\[4pt]
+d\alpha + e\beta + g\gamma + h\delta & 
+e\alpha + f\beta + h\gamma + i\delta \\[4pt]
+g\alpha + h\beta + j\gamma + k\delta & 
+h\alpha + i\beta + k\gamma + l\delta \\
+\end{bmatrix}
+\]
+
+O filtro atua como um detector de padrões locais: se uma submatriz se assemelha ao filtro, ela será destacada na saída. 
+É importante notar que a convolução \textbf{não} é uma multiplicação matricial tradicional.
+
+Após a convolução, aplica-se normalmente uma camada de \textit{pooling}, que resume as \textit{features} extraídas.
+O \textit{max pooling}, por exemplo, seleciona o maior valor em cada submatriz \(2 \times 2\) não sobreposta:
+
+\[
+\text{Max pool} \quad
+\begin{bmatrix}
+1 & 2 & 5 & 3 \\
+3 & 0 & 1 & 2 \\
+2 & 1 & 3 & 4 \\
+1 & 1 & 2 & 0
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+3 & 5 \\
+2 & 4
+\end{bmatrix}
+\]
+
+Na figura \ref{fig:cnn_ar_exemplo}, é ilustrada uma arquitetura típica de CNN.
+
+\begin{figure}[H]
+  \centering
+  \caption{Arquitetura típica de uma CNN}
+  \includegraphics[width=1.0\textwidth]{figuras/ann_exemplos/cnn_arquitetura.png}
+  \label{fig:cnn_ar_exemplo}
+  \legend{Fonte: Adaptado de \citeonline{james2023}}
+\end{figure}
+
+A entrada consiste em uma imagem tridimensional, na qual a terceira dimensão — denominada \textit{canal} — 
+corresponde às cores no modelo RGB. 
+A primeira camada convolucional transforma a imagem inicial em uma nova representação, 
+por exemplo, de dimensão \((32, 32, 6)\), onde o número 6 corresponde à quantidade de filtros aplicados. 
+Em seguida, uma camada de \textit{pooling} reduz essa dimensão para \((16, 16, 6)\). 
+Novas camadas convolucionais e de \textit{pooling} podem ser adicionadas até que, ao final, 
+os dados sejam achatados (\textit{flattened}) e passados para camadas totalmente conectadas (\textit{FC}) para a classificação.
+
+De modo geral, cada camada convolucional aumenta a profundidade do canal (número de filtros), 
+enquanto as camadas de \textit{pooling} reduzem as dimensões espaciais da imagem.
+
+Por fim, conforme \citeonline{geron2022hands}, CNNs não se limitam a imagens: 
+elas também podem ser aplicadas a sinais unidimensionais. 
+Nesses casos, um filtro unidimensional é deslizado sobre o sinal, 
+permitindo que a rede aprenda padrões locais (com tamanho máximo igual ao do filtro). 
+Com múltiplos filtros, obtém-se uma sequência de \textit{features} que podem, em seguida, 
+ser processadas por uma RNN, capturando dependências temporais mais longas.
+
