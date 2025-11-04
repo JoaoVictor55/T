@@ -15,7 +15,7 @@ Cada um desses passos introduz considerações, e as decisões tomadas influenci
 quais tipos de pré-processamento necessário, como a limpeza. Contanto, antes mesmo da escolha do banco, é necessário definir qual o problema, visto que 
 que as anotações presentes podem limitar o escopo dos problemas resolvidos. 
 
-Nas seções subsequentes, detalha-se as decisões adotadas em cada etapa da metodologia, bem como os critérios considerados para tais escolha
+Nas seções subsequentes, detalha-se as decisões adotadas em cada etapa da metodologia, bem como os critérios considerados para tais escolha.
 
 \section{O banco de dados}
 \label{sec:particionamento}
@@ -52,12 +52,12 @@ Q, ?, / & Q (Desconhecida) \\
 O objetivo foi a detecção de batimentos da classe V que compreende: contração prematura ventricular (ou PVC, classe V) e batimento ventricular de escape, classe E, \cite{physionet_annotations}.
 Conforme discutido na seção \ref{sub_sec:padroes_arritmias_aami}, apesar de ocorrerem em indivíduos saudáveis, esses tipos arrítmicos possuem relevância clínica pois estão associados a tipos mais graves.
 
-Essas anotações são anotações de batimento, isto é, elas são feitas em cada pico R no ECG. Além delas, existem as anotações de ritmo dentro as quais, podemos destacar: o ritmo normal identificado por (N,
+Essas anotações são anotações de batimento, isto é, elas são feitas em cada pico R no ECG. Além delas, existem as anotações de ritmo dentre as quais, podemos destacar: o ritmo normal identificado por (N,
 e a taquicardia ventricular; identificado por (VFL. Dentro de um contexto rítmico, podem haver batimentos normais ou arrítmicos.
 
 Por exemplo, na figura \ref{fig:p100_ritmo_normal}, é mostrado o trecho de um ECG. Note a anotação de ritmo, (N, indicando que o mesmo 
-é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, e uma arritmia superventricular; 
-o batimento atrial prematuro, classe A.
+é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, uma arritmia superventricular,
+mais precisamente, o batimento atrial prematuro, classe A.
 
 \begin{figure}[H]
   \centering
@@ -104,7 +104,10 @@ Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de 
 Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
 Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
 
-Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}
+Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}.
+A vantagem dessa abordagem é poder ter um batimento completo, com menor risco de cortar ou incluir partes de batimentos adjacentes, caso a segmentação 
+fosse feita utilizando uma janela de tempo fixa. Entretanto, como os batimentos possuem tamanhos diferentes, eles foram em seguida, remostrados para 
+terem 800ms utilizando a função resample presenta na biblioteca Scipy \cite{2020SciPy-NMeth}.
 
 \subsection{Features}
 
@@ -158,10 +161,16 @@ Ambos os modelos recebem uma sequência de 16 batimentos junto com as \textit{fe
 
 Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
 
-Segundo \citeonline{james2023}, RNNs apresentam grande potencial para lidar com dados sequenciais, como no processamento de linguagem natural, previsão de preços e outros tipos de séries temporais. Já as CNN são boas extratoras de \textit{features}, ganhando destaque na área 
-de visão computacional. Conforme discuto na seção \ref{sub_sec:padroes_arritmias_aami}, o diagnostico das arritmias acontece tanto observando o contexto dos batimentos quanto 
-a morfologia do batimento em si. Portanto, a razão por trás da escolha desses dois tipos é que enquanto a CNN pode aprender os padrões locais de um único batimento, isto é, a morfologia individual, 
-a RNN pode aprender o contexto da sequência.
+Conforme discutido na seções \ref{sec:fundamentos_rnn} e \ref{sec:fundamentos_cnn}, redes neurais recorrentes mostram bom desempenho para lidar com dados sequenciais. Mais precisamente, as 
+RNNs e suas variações tem uma boa capacidade em aprender o contexto da sequência e como ela evolui. Já as CNNs são boas extratoras de \textit{features}. Elas montam uma 
+hierarquia de \textit{features} em um nível progressivo de sofisticação, permitindo distinguir as instâncias das classes
+Em um cenário de de um ECG, elas poderia aprender partes morfológicas como as ondas P ou partes do complexo QRS.
+
+Na seção \ref{sub_sec:padroes_arritmias_aami}, foi discutido como a classificação de arritmias considera, entre outras coisas, os aspectos morfológicos do batimento e também o 
+contexto sequencial que ele está. Desse modo, o uso de redes RNN e CNN para poder explorar essas duas frentes.
+
+A rede RNN pode aprender bem as características de uma sequência normal e o seu desempenho poderia ser potencializado com o acréscimo da CNN; pois enquanto 
+a CNN aprende as características locais, a RNN pode aprender como as características se encaixam no contexto maior.
 
 \section{Estratégia de avaliação}
 
@@ -172,8 +181,8 @@ Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapas
 Nesta divisão, o banco costuma ser dividido em Ds1 e Ds2. O primeiro costuma ser usado para treino e o segundo para teste.
 Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 formam o DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234), o Ds2
 
-Note que o conjunto Ds1 inclui 12 registros que são resultados da seleção aleatória e 22 dos registros com as morfologias complexas. Já no Ds2 possui 
-oito dessa primeira seleção e 22 da segunda; sendo mais desafiador e feito para testar a capacidade de generalização do modelo.
+Note que o conjunto Ds1 inclui 12 registros que são resultados da seleção aleatória e 10 dos registros com as morfologias complexas. Já no Ds2 possui 
+oito dessa primeira seleção e 14 da segunda; sendo mais desafiador e feito para testar a capacidade de generalização do modelo.
 
 Na tabela \ref{tab:particionamento}, é mostrado a distribuição das cinco classes nos dois conjuntos.
 
