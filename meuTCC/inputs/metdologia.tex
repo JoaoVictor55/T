@@ -160,7 +160,8 @@ das CNNs.
 
 Ambos os modelos recebem uma sequência de 16 batimentos junto com as \textit{features} RR.
 
-Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
+Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau},responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
+Ambos monitoraram o \textit{f1-score}.
 
 Conforme discutido na seções \ref{sec:fundamentos_rnn} e \ref{sec:fundamentos_cnn}, redes neurais recorrentes mostram bom desempenho para lidar com dados sequenciais. Mais precisamente, as 
 RNNs e suas variações tem uma boa capacidade em aprender o contexto da sequência e como ela evolui. Já as CNNs são boas extratoras de \textit{features}. Elas montam uma 
@@ -238,7 +239,7 @@ Na tabela \ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold
 \label{sec:metricas}
 
 As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score}, AUC (\textit{Area Under the Curve}) e AP (textit{Average Precision}). Esses 
-dois últimos são exibidos juntos ao gráficos \textit{ROC} e \textit{PR}, respectivamente.
+dois últimos são exibidos juntos ao gráficos \textit{ROC} e \textit{PR}, respectivamente. Além da curva de calibração para avaliar o pior cenário.
 
 A sensibilidade representa a capacidade do modelo em identificar corretamente as classes positivas, isto é, os batimentos arrítmicos. Sua equação é dada por:
 
@@ -389,7 +390,51 @@ Em sentido anti-horário, a partir do canto superior esquerdo temos:
 \item {TN} \textit{true negative}, quantos casos negativos foram incorretamente classificados.
 \end{enumerate}
 
+\citeonline{mizilPredictingGoodProbs} apresentam uma definição visual de um modelo perfeitamente calibrado. Em um diagrama de confiabilidade, o modelo é considerado bem calibrado quando, para cada bin de probabilidade, a média das probabilidades previstas corresponde à frequência observada da classe positiva nesse mesmo bin.
+
+Na figura \ref{fig:calibracao_exemplo} é ilustrada um exemplo desse diagrama.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Diagrama de calibração mostrando curvas de modelos perfeitamente calibrado, superconfiante e subconfiante.}
+    \label{fig:calibracao_exemplo}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=10cm, height=8cm,
+        xmin=0, xmax=1, ymin=0, ymax=1,
+        xlabel={Probabilidade prevista},
+        ylabel={Probabilidade observada (acurácia)},
+        xtick={0,0.2,0.4,0.6,0.8,1},
+        ytick={0,0.2,0.4,0.6,0.8,1},
+        grid=both,
+        major grid style={gray!40},
+        minor tick num=1,
+        legend style={at={(0.02,0.98)},anchor=north west,font=\small},
+        axis lines=left
+      ]
+
+      % Linha perfeita (diagonal)
+      \addplot [black, thick, dashed, domain=0:1, samples=201] {x};
+      % Modelo superconfiante
+      \addplot [blue, very thick, domain=0:1, samples=201, smooth] {x - 0.18*x*(1-x)};
+      % Modelo subconfiante
+      \addplot [red, very thick, domain=0:1, samples=201, smooth] {x + 0.18*x*(1-x)};
+
+      \legend{Perfeitamente calibrado, Superconfiante, Subconfiante}
+      \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Um modelo perfeitamente calibrado terá uma curva na diagonal. Logo, caso a probabilidade média prevista seja de 40\%,
+então a ocorrência da classe positiva será de 40\%. Um modelo superconfiante terá sua curva abaixo da diagonal, assim, nesse 
+mesmo caso, a ocorrência da classe positiva seria abaixo de 40\% e para um modelo subconfiante, a ocorrência da classe positiva 
+é maior que a média da probabilidade prevista. 
+
+Os autores explicam que calibração é um aspecto aparte do desempenho, medido pelas demais métricas supracitadas. Muitos contextos,
+apenas ter um bom ROC, por exemplo, não é suficiente. Logo, é possível ter um alto desempenho, porém, ter uma calibração ruim.
+
 Essas métricas mostram o desempenho do modelo em perspectivas diferentes, 
 precisão, \textit{recall}, \textit{f1 score} e acurácia, mostram o desempenho do modelo para um determinado limiar. Neste trabalho, foi escolhido como 50\%. 
 Já as curvas PR e ROC mostram o impacto no desempenho do modelo para diferentes limiares e a matriz de confusão permite visualizar os tipos de erros e acertos
-individualmente. 
+individualmente. A calibração, por outro lado, está relacionada com o quanto as probabilidades previstas refletem a ocorrência real 
+dos casos positivos.
