@@ -1,4 +1,5 @@
 \chapter{Metodologia}
+\label{ch:metodologia}
 
 A metodologia é esquematizada na figura \ref{fig:metodologia} que ilustra o fluxo de trabalho. Esse processo envolve a definição do problema,
 a escolha do banco, o pré-processamento, escolha das estratégias de validação, e aplicação do modelo, culminando na escolha do melhor modelo.
@@ -208,6 +209,30 @@ e expõe o modelo a mais variação.
 
 Outra estratégia ser o particionamento intra-paciente, onde batimentos de um mesmo paciente podem aparecer tanto no treino quanto na validação. Essa estratégia seria 
 mais adequada para um modelo personalizado, por exemplo. 
+
+Na tabela \ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Distribuição dos IDs dos Pacientes por Fold para Conjuntos de Treinamento e Validação}
+    \label{tab:folds}
+    \small % Reduz o tamanho da fonte da tabela para melhor encaixe
+    \begin{tabular}{|>{\centering\arraybackslash}p{1.5cm}|>{\raggedright\arraybackslash}p{7.5cm}|>{\raggedright\arraybackslash}p{5.5cm}|}
+        \toprule
+        \textbf{Fold} & \textbf{Conjunto de Treinamento} & \textbf{Conjunto de Validação} \\
+        \midrule
+        1 & 101, 106, 108, 109, 112, 114, 116, 119, 122, 124, 203, 205, 207, 208, 209, 215, 220, 223 & 115, 118, 201, 230 \\
+        \midrule
+        2 & 101, 108, 109, 112, 114, 115, 116, 118, 119, 201, 203, 205, 207, 208, 209, 215, 220, 223, 230 & 106, 122, 124 \\
+        \midrule
+        3 & 101, 106, 108, 109, 112, 114, 115, 116, 118, 122, 124, 201, 207, 208, 215, 220, 223, 230 & 119, 203, 205, 209 \\
+        \midrule
+        4 & 106, 112, 114, 115, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 230 & 101, 108, 109, 116, 220, 223 \\
+        \midrule
+        5 & 101, 106, 108, 109, 115, 116, 118, 119, 122, 124, 201, 203, 205, 209, 220, 223, 230 & 112, 114, 207, 208, 215 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsection{Métricas}
 \label{sec:metricas}

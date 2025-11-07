@@ -52,6 +52,8 @@ Esse fenômeno ocorre pois modelos com alta flexibilidade como redes neurais con
 caso eles não sejam representativos da população, eles podem aprender ruído e particularidades dessa amostra ao invés de padrões generalizáveis
 No contexto do MIT-BIH, o desbalanceamento das classes pode ter causado isso. Como há poucos exemplos da classe positiva, é fácil para o modelo memorizar
 padrões morfológicos e rítmicos das arritmias do conjunto de treino, falhando ao encontrar variações dessas instâncias em pacientes diferentes.
+Conforme descrito nas seções \ref{sub_sec:padroes_arritmias_aami} e também em \ref{sec:particionamento}, existe uma grande variação 
+entre as arritmias, tanto de paciente para paciente quanto intra-paciente.
 
 Outra evidência é a diferença entre a acurácia média do conjunto de treino em relação ao conjunto de validação. Observa-se uma 
 diferença significantemente menor. Esta métrica é dominada pela classe negativa, indicando que o modelo conseguiu aprender padrões mais generalizáveis
@@ -116,7 +118,8 @@ gráfico \ref{fig:gru_resultados_por_fold}.
 %As duas figuras ilustram como o modelo conseguiu aprender melhor a classe negativa do que a classe positiva; evidenciado pelo fato dele confundir
 %muito menos negativo com positivo do que o contrário. Um resultado esperado devido a essa ser a classe dominante em todos os \textit{folds}.
 
-A seguir, na figura \ref{fig:roc_cnn_gru_melhor_fold}, a curva ROC no melhor \textit{fold}:
+A seguir, na figura \ref{fig:roc_cnn_gru_melhor_fold}, a curva ROC no melhor \textit{fold}. Conforme discutido na seção \ref{sec:metricas},
+esta curva mostra os diferentes valore do \textit{recall} e do FRP para todos os possíveis limiares de decisão.
 
 \begin{figure}[H]
   \centering
@@ -126,18 +129,24 @@ A seguir, na figura \ref{fig:roc_cnn_gru_melhor_fold}, a curva ROC no melhor \te
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Considerando que o \textit{baseline}, um classificador aleatório, tem um \textit{ROC} de 0,5, o melhor foi significantemente melhor.
+Considerando que o \textit{baseline}, um classificador aleatório, tem uma \textit{AUC} de 0,5, o melhor foi significantemente melhor.
+O gráfico mostra ainda que o modelo consegue ter um \textit{recall} de quase 80\% ao custo de um FPR de 0\%; ou seja, ele não comete 
+erros de falso positivo. Para além desse valor, o modelo começaria a cometer tais erros, aumentando o FPR.
 
 \begin{figure}[H]
   \centering
-  \caption{Curva \textit{ROC} do modelo \ref{fig:gru_pura} em seu melhor \textit{fold}}
+  \caption{Curva \textit{ROC} do modelo \ref{fig:gru_pura} em seu pior \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru/roc_gru_pior_fold.png} % insere o tikzpicture puro
   \label{fig:roc_pior_fold_gru}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{ROC} de 0,87. 
-Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva PR:
+No pior fold, \ref{fig:roc_pior_fold_gru}, o modelo ainda conseguiu manter uma performance satisfatória, com um \textit{AUC} de 0,93. 
+Neste caso, o modelo tem um \textit{recall} de quase 100\% enquanto mantém um FPR de menos de 20\%. Além desse valor, o \textit{recall}
+cresce devagar conforme o erro aumenta, comportamento diferente do observado no pior caso.
+
+Entretanto, devido ao desbalanceamento dos conjuntos, o desempenho pode ser melhor analisado com a curva PR. Conforme a seção \ref{sec:metricas},
+esse gráfico mostra os diferentes valores do \textit{recall} e da precisão para todos os possíveis limiares de decisão.
 
 \begin{figure}[H]
   \centering
@@ -192,7 +201,8 @@ Acurácia & 0.9730 & 0.0258 \\
 
 Na tabela  \ref{tab:resultado_cv_gru_cnn_treino}, é possível observar que ainda há \textit{overfit} porém a diferença entre os resultados
 do treino e validação do modelo \ref{fig:cnn_gru} é menor quando comparado com o modelo \ref{fig:gru_pura}. Por exemplo, a 
-diferença percentual entre o \textit{f1-score} do primeiro modelo foi de aproximadamente 9,56\% enquanto que para o segundo, foi de, aproximadamente, 17,98\%
+diferença percentual entre o \textit{f1-score} de treino e validação para o modelo híbrido foi de aproximadamente 9,56\% 
+enquanto que para o modelo recorrente puro, foi de, aproximadamente, 17,98\%.
 
 \begin{table}[H]
 \centering
@@ -239,7 +249,9 @@ Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz d
 \end{figure}
 
 Como pode ser visto no gráfico; o modelo não cometeu nenhum erro de falso positivo e errou 41 arritmias, classificando-as
-como batimentos normais. 
+como batimentos normais. Neste \textit{fold}, a classe positiva compõe, aproximadamente. 12,23\% do total. Assim, sendo 
+levemente menos balanceado que o melhor \textit{fold} do modelo GRU puro e com um desempenho superior: com um \textit{f1-score}
+de 0,97 contra 0,87. 
 
 Na matriz de confusão do pior \textit{fold}, ilustrado na figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, novamente,
 a situação se inverte; a quantidade de erros de falsos negativos foi menor que as de falsos positivos, refletindo em um
@@ -265,6 +277,10 @@ No melhor, o modelo híbrido obteve um AP de 0,96, como pode ser visto na figura
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+Que é maior que o AP do modelo GRU puro, como pode ser observado na figura \ref{fig:roc_melhor_fold_gru}.
+No seu melhor caso, o modelo híbrido consegue ter um \textit{recall} maior que 80\% sem cometer erros de falso positivo enquanto 
+que o modelo puro teria conseguiria apenas com um \textit{recall} menor que 80\%.
+
 Considerando a curva PR, o AP também foi maior:
 
 \begin{figure}[H]
@@ -275,8 +291,10 @@ Considerando a curva PR, o AP também foi maior:
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Pelo gráfico \ref{fig:ap_cnn_gru_melhor_fold}, nesse \textit{fold}, o modelo conseguiria manter um \textit{recall} de até 80\%
-enquanto sua precisão permanece em torno de quase 100\%, desempenho superior ao modelo GRU puro.
+Pelo gráfico \ref{fig:ap_cnn_gru_melhor_fold}. O AP do modelo foi de 0,96 enquanto que o \textit{baseline} seria de aproximadamente
+12,23\% e, além disso, o AP foi maior que o obtido pelo GRU puro. Entretanto, assim como ocorre com esse modelo, a precisão 
+cai bastante quando o \textit{recall} passa de um determinado valor. Entretanto, no modelo híbrido, isso ocorre quando o 
+\textit{recall} se aproxima de pouco mais de 90\% enquanto que outro modelo, quando ele se aproxima de 80\%.
 
 A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
 
@@ -288,7 +306,8 @@ A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-O AP foi de 0,87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na figura
+O AP foi de 0,95. Levemente maior que a do GRU puro que foi de 0,93. No pior caso, o modelo consegue ter um \textit{recall}
+de quase 100\% ao custo de um FPR de aproximadamente 20\%.
 
 \begin{figure}[H]
   \centering
@@ -299,6 +318,7 @@ O AP foi de 0,87, igual ao obtido no modelo GRU puro. Já a curva PR descrita na
 \end{figure}
 
 Nesse cenário, o modelo conseguiria manter um \textit{recall} de até 80\% com um pouco menos de 60\% de precisão.
+O AP foi de 55\% enquanto que o do GRU puro foi e 49\% e o \textit{baseline} foi de 9,39\%.
 
 De modo geral, os modelos exibiram um perfil semelhante em seu pior e melhor caso. No pior, a sensibilidade foi maior, resultados
 em maiores erros de falso positivo, como resultado, o \textit{recall} foi alto e a precisão foi baixa. No melhor caso, houve um 
@@ -308,109 +328,9 @@ Em contextos médicos, é preferível um \textit{recall} maior, pois falsos nega
 dizer que um batimento normal é arrítmico do que o contrário. Entretanto, uma precisão muito baixa pode indicar que o modelo é 
 tão bom quanto um modelo aleatório; o que o tornaria inútil. 
 
-Como evidenciado pelo AP, ambos os modelos se saíram bem melhor do que esse \textit{baseline}.
+Como evidenciado pelo AP, ambos os modelos se saíram bem melhor do que esse \textit{baseline}. 
+Por tanto, apesar do desbalanceamento e da variabilidade da classe positiva, os modelos conseguiram 
+aprender padrões que lhes permitem classificar as arritmias, entretanto, esses padrões ainda não são 
+perfeitamente generalizáveis.
 
-\chapter{Análise de erros no pior \textit{fold}}
-\label{ch:analise_erros_pior_fold}
-
-Pelos critérios adotados, o terceiro fold foi o de pior desempenho em ambos os modelos.
-Como o recall foi superior à precisão, supõe-se que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
-Para fins de ilustração, apresenta-se a seguir uma breve análise de erros do desempenho do melhor modelo em seu cenário mais desafiador.
-Devido a essa limitação, os resultados discutidos não permitem conclusões generalizáveis, servindo apenas como apoio à interpretação dos achados.
-
-\section{Análise de erros do modelo híbrido CNN com GRU}
-\label{sec:analise_erros_cnn_gru}
-
-Na tabela \ref{tab:erros_acertos_por_paciente} a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
-
-\begin{table}[H]
-\centering
-\caption{Total dos erros e acertos por paciente no \textit{fold} de validação}
-\label{tab:erros_acertos_por_paciente}
-\begin{tabular}{lcc}
-\hline
-\textbf{Pacientes} & \textbf{Erros} & \textbf{Acertos}\\
-\hline
-119 & 0 &  1972 \\
-203 & 772  & 2186\\
-205 & 11 & 2616\\
-209 & 1 & 2606\\
-\hline
-\end{tabular}
-\legend{Fonte: Elaborado pelo autor.}
-\end{table}
-
-Aproximadamente, 98,46\% de todos os erros foram desse paciente. O modelo errou em torno de 35,31\% de seus batimentos. Conforme visto na 
-figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
-
-Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
-a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
-
-Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz de confusão desse paciente.
-
-\begin{figure}[H]
-  \centering
-  \caption{Matriz de confusão do paciente 203}
-   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png} 
-  \label{fig:matriz_confusao_paciente_mais_dificil}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-O modelo confundiu seis batimentos ventriculares como normais e 766 normais como ventriculares. Na figura
-\ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
-uma sequencia normal classificada como arrítmica e na segunda uma normal corretamente classificada.
-
-\begin{figure}[H]
-  \centering
-  \caption{ECG normal do paciente 203: erro e acerto}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png} 
-  \label{fig:erro_acert_neg_class_paciente_mais_dificil}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-É possível observar a forte presença de ruído em ambos os casos. E a presença de batimentos com a morfologia 
-bem deformada; após a amostra 2000 no primeiro gráfico e após a amostra 1000 no segundo.
-
-Para comparação, na figura \ref{fig:acert_neg_class_paciente_mais_facil}, paciente para o qual o modelo não cometeu erros,
-abaixo é ilustrado uma sequência normal.
-
-\begin{figure}[H]
-  \centering
-  \caption{ECG normal do paciente 119.}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
-  \label{fig:acert_neg_class_paciente_mais_facil}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-É possível notar uma sequencia mais limpa e com o complexo QRS com morfologia usual. Note em torno da amostra
-2000 uma contração prematura ventricular usual.
-
-Na figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo acertou e a segunda ele errou:
-
-Em ambos os casos, é observável o ruído presenta na figura \ref{fig:erro_acert_neg_class_paciente_mais_dificil}. O 
-último batimento da sequência também apresenta uma morfologia diferente da usual.
-
-\begin{figure}[H]
-  \centering
-  \caption{ECG normal do paciente 203: acerto e erro}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png} 
-  \label{fig:erro_acert_pos_class_paciente_mais_dificil}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-Já na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
-Observe no último batimento, uma arritmia ventricular com uma forma bem definida.
-
-\begin{figure}[H]
-  \centering
-  \caption{ECG arrítmico do paciente 119.}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
-  \label{fig:acert_posclass_paciente_mais_facil}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-Apesar das diferenças naturais entre ECGs de pacientes diferentes, pelo o que foi visto no gráfico e o que está registrado
-nas anotações do MIT-BIH; o ECG desse paciente possui muito ruído e QRS com morfologia mais diferente, especialmente
-quando comparando com as do paciente 119; essas diferenças pode ter levado o modelo ao erro. Apesar de que, por ser 
-pouca interpretabilidade, não é possível fazer uma afirmação.
-
+\input{inputs/analise_de_erros}
