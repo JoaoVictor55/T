@@ -154,6 +154,7 @@ A segunda rede é uma híbrida de CNN com GRU:
 
 O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32 e 64 filtros respectivamente e cada 
 uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente.
+A camada recorrente é formada por 256 neurônios.
 
 Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
 das CNNs.
@@ -173,6 +174,16 @@ contexto sequencial que ele está. Desse modo, o uso de redes RNN e CNN para pod
 
 A rede RNN pode aprender bem as características de uma sequência normal e o seu desempenho poderia ser potencializado com o acréscimo da CNN; pois enquanto 
 a CNN aprende as características locais, a RNN pode aprender como as características se encaixam no contexto maior.
+
+Por fim, segundo \citeonline{geron2022hands}, não há uma formula universal da escolha dos hiperparâmetros tais como: quantidade de neurônios, tamanho dos filtros, ou 
+quantidade de camada. Geralmente, quanto mais camadas e neurônios, mais complexas são as relações que a rede pode aprender, porém isso pode 
+trazer questões como o gradiente instável ou \textit{overfit}.
+A escolha no fim vai depender de fatores como 
+os recursos computacionais disponíveis e a a quantidade de dados ou mesmo quão desempenho espera-se do modelo.
+
+Neste trabalho, a escolha do tamanho da sequência foi baseada nos melhores resultados iniciais
+e os demais hiperparâmetros foram escolhidos via experimentação com arquiteturas apresentadas em outros trabalhos tais como: \citeonline{narotamo2024}.
+
 
 \section{Estratégia de avaliação}
 

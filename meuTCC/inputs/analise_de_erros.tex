@@ -108,6 +108,49 @@ Observe no último batimento, uma arritmia ventricular.
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+Para visualizar a distribuição dos intervalos RR, foi utilizado um scatter plot das features RR, em que o eixo X representa o intervalo RR anterior e o eixo Y, o subsequente. 
+
+Na figura \ref{fig:poicare_fp}, é ilustrado um caso de falso positivo referente ao paciente mais desafiador. Observa-se que o último batimento da sequência (o 16º) ocorreu de forma relativamente mais prematura, uma vez que se encontra na região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como discutido na seção \ref{sub_sec:padroes_arritmias_aami}, não existe um padrão universal de ECG normal.
+
+A figura \ref{fig:poicare_tp} mostra um caso de verdadeiro positivo do mesmo paciente. O último batimento também ocorre de forma antecipada, porém sua posição mais próxima à linha de identidade indica que o intervalo com o sucessor é aproximadamente igual ao intervalo com o anterior.
+
+Já a figura \ref{fig:poicare_tn} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+
+Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
+
+\begin{figure}[H]
+  \centering
+  \caption{Scatter plot do paciente 203 de um falso positivo.}
+   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png} 
+  \label{fig:poicare_fp}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \caption{Scatter plot do paciente 203 de um verdadeiro positivo.}
+   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tp.png} 
+  \label{fig:poicare_tp}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \caption{Scatter plot do paciente 203 de um verdadeiro negativo.}
+   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tn.png} 
+  \label{fig:poicare_tn}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \caption{Scatter plot do paciente 119 de uma sequência normal.}
+   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/poincare_paciente_mais_facil_neg.png} 
+  \label{fig:poicare_neg_maisfacil}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
 Para visualizar o quão confiante o modelo foi em seus erros, abaixo está a curva de calibração para esse paciente:
 
 \begin{figure}[H]
