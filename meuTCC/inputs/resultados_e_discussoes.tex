@@ -206,7 +206,7 @@ enquanto que para o modelo recorrente puro, foi de, aproximadamente, 17,98\%.
 
 \begin{table}[H]
 \centering
-\caption{Resultados do modelo híbrido CNN e GRU (\textit{N} vs. \textit{V}) no treino}
+\caption{édia das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular no treino}
 \label{tab:resultado_cv_gru_cnn_treino}
 \begin{tabular}{lcc}
 \hline
@@ -225,7 +225,7 @@ Na figura \ref{fig:gru_cnn_resultados_por_fold}, estão os resultados obtidos pe
 
 \begin{figure}[H]
   \centering
-  \caption{Métricas do modelo híbrido CNN com GRU por \textit{fold}}
+  \caption{Métricas do modelo híbrido CNN e GRU por \textit{fold}}
    \includegraphics[width=1.0\textwidth]{figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png} 
   \label{fig:gru_cnn_resultados_por_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -242,7 +242,7 @@ Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz d
 
 \begin{figure}[H]
   \centering
-  \caption{Matriz de confusão modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \caption{Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png} 
   \label{fig:matriz_confusao_cnn_gru_melhor_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -259,7 +259,7 @@ a situação se inverte; a quantidade de erros de falsos negativos foi menor que
 
 \begin{figure}[H]
   \centering
-  \caption{Matriz de confusão modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \caption{Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png} 
   \label{fig:matriz_confusao_cnn_gru_pior_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -271,7 +271,7 @@ No melhor, o modelo híbrido obteve um AP de 0,96, como pode ser visto na figura
 
 \begin{figure}[H]
   \centering
-  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \caption{Curva \textit{ROC} modelo híbrido CNN e GRU em seu melhor \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/roc_cnn_melhor_fold_1.png} 
   \label{fig:roc_cnn_gru_melhor_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -285,7 +285,7 @@ Considerando a curva PR, o AP também foi maior:
 
 \begin{figure}[H]
   \centering
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \caption{Curva precisão vs \textit{recall} do modelo híbrido CNN e GRU em seu melhor \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png} 
   \label{fig:ap_cnn_gru_melhor_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -300,7 +300,7 @@ A curva \textit{ROC} desse modelo no pior \textit{fold} é descrita a seguir:
 
 \begin{figure}[H]
   \centering
-  \caption{Curva \textit{ROC} modelo \ref{fig:cnn_gru} em seu pior \textit{fold}}
+  \caption{Curva \textit{ROC} modelo híbrido CNN e GRU em seu pior \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/roc_cnn_pior_fold_3.png} 
   \label{fig:roc_cnn_gru_pior_fold}
   \legend{Fonte: Elaborado pelo autor.}
@@ -311,7 +311,7 @@ de quase 100\% ao custo de um FPR de aproximadamente 20\%.
 
 \begin{figure}[H]
   \centering
-  \caption{Curva precisão vs \textit{recall} do modelo \ref{fig:cnn_gru} em seu melhor \textit{fold}}
+  \caption{Curva precisão vs \textit{recall} do modelo híbrido CNN e GRU em seu melhor \textit{fold}}
    \includegraphics[width=0.7\textwidth]{figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png} 
   \label{fig:ap_cnn_gru_pior_fold}
   \legend{Fonte: Elaborado pelo autor.}
