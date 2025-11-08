@@ -40,6 +40,11 @@
 \tipotrabalho{Trabalho de Conclusão de Curso}
 \preambulo{Trabalho apresentado ao Curso de Y da Universidade X como requisito parcial para obtenção do título de Bacharel.}
 
+%centraliza e deixa o título das seções abaixo maior
+\renewcommand{\contentsname}{\centering\textbf{\large SUMÁRIO}}
+\renewcommand{\listfigurename}{\centering\textbf{\large LISTA DE ILUSTRAÇÕES}}
+\renewcommand{\listtablename}{\centering\textbf{\large LISTA DE TABELAS}}
+\renewcommand{\resumoname}{\centering\textbf{\large RESUMO}}
 \begin{document}
 
 % Capa e folha de rosto
@@ -56,21 +61,24 @@ Inclua objetivos, metodologia, resultados e conclusões.
 \textbf{Palavras-chave}: palavra1. palavra2. palavra3.
 \end{resumo}
 
+%PRÉ TEXTUAIS:
+
 % Sumário
-\tableofcontents
+\tableofcontents*
 
 %lista de tabelas
 \newpage
-\listoftables
+\listoftables*
 
 %lista de figuras
 \newpage
-\listoffigures
+\listoffigures*
 
 \include{includes/lista_siglas}
 
 
 % Capítulos
+\textual %numeração das páginas 
 \chapter{Introdução}
 Texto da introdução.
 
@@ -83,8 +91,9 @@ Texto da introdução.
 
 Texto da conclusão.
 
-% Referências (BibTeX)
+
+\addcontentsline{toc}{section}{REFERÊNCIAS}
 \bibliographystyle{abntex2-alf}
-%\bibliographystyle{abntex2-modelo-referencias}
+%\bibliographystyle{abntex2-modelo-referencias} -> add estilo
 \bibliography{referencias}
 \end{document}

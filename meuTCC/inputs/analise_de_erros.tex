@@ -151,31 +151,27 @@ Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal d
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Para visualizar o quão confiante o modelo foi em seus erros, abaixo está a curva de calibração para esse paciente:
+Para visualizar o quão confiante o modelo foi em seus erros, na figura \ref{fig:curva_calibracao_pior_paciente} está a curva de calibração para esse paciente.
+É possível observa um cenário de superconfiança, pois a curva está abaixo da diagonal. 
+Por exemplo, considerando que em um grupo, o modelo preveja que em média, 90\% deles serão arrítmicos, a realidade é que menos de 60\% deles são.
+
+Conforme a discussão da seção \ref{sec:metricas}, a calibração não é diretamente relacionada ao desempenho de um modelo medida pelas métricas usuais.
+Assim, mesmo se o modelo fosse muito sensível e tivesse uma precisão baixa, caso ele fosse bem calibrado, o tomador de decisão poderia 
+confiar que as probabilidades previstas seriam mais realista.
+
+Entretanto, existem técnicas que podem calibrar modelos. Em seu trabalho, \citeonline{mizilPredictingGoodProbs} apontou alguns exemplos como 
+Calibração de Platt e regressão isotônica que são apropriados para classificação binária.
+
+Já a explicabilidade, existem técnicas \textit{post-hoc} como LIME \cite{ribeiroWhyShouldTrustYou} ou SHAP \cite{lundbergSHAPE}.
+Tais técnicas são aplicadas aos modelos já treinados e buscam identificar quais \textit{features} foram mais relevantes 
+para a classificação; permitindo que o tomador de decisão entender o "raciocínio" do modelo.
 
 \begin{figure}[H]
   \centering
   \caption{Curva de calibração para o paciente 203.}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente.png} 
+   \includegraphics[width=0.8\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente.png} 
   \label{fig:curva_calibracao_pior_paciente}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
-
-Pela curva, observa-se um cenário de superconfiança. Quando o modelo prever, por exemplo, que em média, 
-90\% dos batimentos são arrítmicos, menos de 60\% deles realmente são.
-
-Apesar das diferenças naturais entre ECGs de pacientes diferentes, pelo o que foi visto no gráfico e o que está registrado
-nas anotações do MIT-BIH; o ECG desse paciente possui muito ruído e QRS com morfologia mais diferente, especialmente
-quando comparando com as do paciente 119; essas diferenças pode ter levado o modelo ao erro. Apesar de que, por ser 
-pouca interpretabilidade, não é possível fazer uma afirmação.
-
-Além disso, observa-se um alta confiança nos erros. Novamente, a maioria dos erros são de falsos positivos, que são menos 
-danosos que um falso negativo no contexto médico. Entretanto, a superconfiança do modelo adiciona uma outra dimensão ao problema; 
-quando um modelo é bem calibrado, então a média da probabilidade prevista para um grupo corresponde a média da frequência da classe positiva 
-nesse grupo; o que ajuda muito na tomada de decisão, mesmo que a performance do modelo não seja boa.
-
-O último ponto é a interpretabilidade, que não foi tratada nesse trabalho, que permite ao tomador de decisão entender o que numa determinada amosta mais influenciou 
-o resultado do modelo. Isso adiciona mais transparência e certamente, torna a confiança do mesmo no modelo maior. Conforme 
-ilustrado nessa seção, o fato de redes neurais terem pouca interpretabilidade dificulta entender o porquê a rede errou ou acertou.
 
 
