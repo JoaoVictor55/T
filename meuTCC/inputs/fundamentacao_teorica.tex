@@ -125,7 +125,7 @@ Bilhões de neurônios interligam-se por meio de sinapses, formando redes altame
 Esse é o princípio em que se baseiam as redes neurais artificiais (ANNs): pequenas unidades computacionais simples que, ao se conectarem, são capazes de realizar funções complexas. É importante destacar que um neurônio artificial, no contexto das ANNs, não é uma réplica de um neurônio biológico, mas sim uma abstração matemática inspirada em seu funcionamento.
 
 Segundo \citeonline{james2023}, uma ANN pode ser vista como uma função que recebe um conjunto de  p preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
-Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede neural feedforward.
+Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede neural \textit{feedforward}.
 
 \begin{figure}[H]
   \centering
@@ -135,10 +135,10 @@ Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede
     \legend{Fonte: Adaptado de  \citeonline{james2023}}
 \end{figure}
 
-Essa rede é composta por três camadas principais: a camada de entrada (input layer), a camada oculta (hidden layer) e a camada de saída (output layer).
+Essa rede é composta por três camadas principais: a camada de entrada (\textit{Input layer}), a camada oculta (\textit{Hidden layer}) e a camada de saída (\textit{Output layer}).
 Cada neurônio na camada oculta é conectado a todos os neurônios da camada de entrada, assim como os neurônios da camada de saída são conectados aos da camada oculta.
 
-A cada conexão é atribuído um peso, que representa a força da relação entre os neurônios — em analogia à intensidade das sinapses no cérebro biológico. Além disso, cada neurônio possui um viés (bias), que desloca o ponto de ativação.
+A cada conexão é atribuído um peso, que representa a força da relação entre os neurônios — em analogia à intensidade das sinapses no cérebro biológico. Além disso, cada neurônio possui um viés (\textit{bias}), que desloca o ponto de ativação.
 
 A ativação de um neurônio é determinada por uma função de ativação não linear, essencial para permitir que a rede aprenda relações complexas entre as variáveis de entrada.
 Sem essa função, uma ANN de múltiplas camadas seria equivalente a uma simples regressão linear.
