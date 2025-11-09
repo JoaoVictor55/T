@@ -1,0 +1,13 @@
+\chapter{Trabalhos correlatos}
+
+\citeonline{chazal2004} propuseram um método automático para classificação de arritmias nas cinco classes definidas pela AAMI (descritas na seção \ref{sub_sec:padroes_arritmias_aami}), utilizando o banco de dados MIT-BIH. O classificador empregado foi o discriminante linear, um método estatístico paramétrico baseado na suposição de distribuição Gaussiana dos dados.
+
+A metodologia incluiu etapas de pré-processamento, extração de features e classificação. Foram avaliadas diferentes configurações e estratégias de particionamento, incluindo a tradicional (intrapaciente) e a proposta pelos autores (interpaciente, com os conjuntos Ds1 e Ds2 descritos em \ref{sec:particionamento}). O estudo demonstrou que a partição intrapaciente gera resultados otimistas e não representa adequadamente a capacidade de generalização do modelo.
+
+O pré-processamento aplicava filtros de mediana e passa-baixa para remoção do baseline wander. Em seguida, as features foram extraídas a partir de duas abordagens principais: (i) janelas fixas centradas no pico R e (ii) janelas adaptadas à duração do batimento, considerando o complexo QRS e a onda T. Também foram utilizadas medidas temporais, como duração do QRS, intervalos RR e presença da onda P.
+
+A melhor configuração encontrada combinava features segmentadas com janela temporal flexível, intervalos RR, presença da onda P e durações do QRS e da onda T — todas extraídas sem escalar o sinal —, processadas por dois discriminantes lineares independentes, um para cada derivação do MIT-BIH. Essa abordagem obteve desempenho superior às demais e se tornou referência para estudos posteriores.
+
+Apesar dos bons resultados, o método depende fortemente da qualidade das features e do pré-processamento, sendo sensível à variação morfológica entre pacientes — um ponto que trabalhos mais recentes, baseados em aprendizado profundo, buscam superar.
+
+Ja em \citeonline{saadatnejad2020}
