@@ -10,4 +10,24 @@ A melhor configuração encontrada combinava features segmentadas com janela tem
 
 Apesar dos bons resultados, o método depende fortemente da qualidade das features e do pré-processamento, sendo sensível à variação morfológica entre pacientes — um ponto que trabalhos mais recentes, baseados em aprendizado profundo, buscam superar.
 
-Ja em \citeonline{saadatnejad2020}
+Em \citeonline{saadatnejad2020}, foi proposto um modelo baseado em redes LSTM (ver Seção~\ref{sec:ann}) para a classificação de arritmias voltado a dispositivos móveis. 
+Com o objetivo de atender às restrições computacionais de sistemas embarcados, os autores desenvolveram uma arquitetura composta por dois modelos simples que realizam 
+classificações independentes, seguidos por uma rede neural artificial (ANN) responsável pela decisão final.
+
+A entrada do modelo consiste em batimentos cardíacos segmentados utilizando uma janela temporal fixa, 
+características extraídas via transformada \textit{wavelet} de Daubechies de ordem dois, e intervalos RR, conforme sugerido por \citeonline{chazal2004}. 
+O sistema é dividido em dois submodelos, denominados \(\alpha\) e \(\beta\). 
+O primeiro (\(\alpha\)) possui dois ramos de LSTM: um recebe o sinal reamostrado (\textit{downsampled}) concatenado com os intervalos RR, 
+enquanto o outro recebe o sinal combinado com as características \textit{wavelet}. 
+Já o segundo submodelo (\(\beta\)) é composto por duas camadas LSTM, recebendo como entrada os componentes principais do sinal, 
+concatenados com as características \textit{wavelet} e os intervalos RR. 
+Em ambos os casos, a saída das LSTM é conectada a uma camada totalmente conectada (FC, \textit{Fully Connected}) para a classificação.
+
+O treinamento foi conduzido sob uma divisão \textit{intrapaciente}, na qual foi desenvolvido um modelo especialista para cada indivíduo. 
+De acordo com as recomendações da AAMI, os autores separaram os dados em conjuntos locais e globais: 
+os dados locais corresponderam aos cinco primeiros minutos dos registros dos pacientes do conjunto Ds2, 
+enquanto o conjunto global foi composto pelo conjunto Ds1 completo. 
+Para teste, utilizou-se o restante do conjunto Ds2, excluindo os minutos empregados no treinamento.
+
+Por se tratar de um modelo voltado a dispositivos vestíveis — e, portanto, de uso pessoal —, essa divisão não constitui necessariamente um vazamento de dados, 
+embora o viés de sobreposição entre indivíduos permaneça. Assim, é importante considerar esse aspecto ao comparar os resultados com trabalhos que adotam a divisão \textit{interpaciente}.
