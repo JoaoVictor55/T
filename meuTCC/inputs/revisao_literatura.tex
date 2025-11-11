@@ -10,7 +10,15 @@ A melhor configuração encontrada combinava features segmentadas com janela tem
 
 Apesar dos bons resultados, o método depende fortemente da qualidade das features e do pré-processamento, sendo sensível à variação morfológica entre pacientes — um ponto que trabalhos mais recentes, baseados em aprendizado profundo, buscam superar.
 
-Em \citeonline{saadatnejad2020}, foi proposto um modelo baseado em redes LSTM (ver Seção~\ref{sec:ann}) para a classificação de arritmias voltado a dispositivos móveis. 
+Em \citeonline{kiranyaz2016real}, foi proposto um leve modelo de classificação de arritmias baseado em CNN (ver Seção~\ref{sec:fundamentos_cnn}). Os autores seguiram o particionamento intra-paciente com cinco minutos de treinamento específico — oriundo do conjunto ds2 — e treinamento global a partir de amostras aleatórias do conjunto ds1. Os dados de treino totais somam menos de 1\% dos batimentos totais. 
+
+A AAMI define que dados de pacientes específicos não podem ultrapassar cinco minutos; regra seguida pelos autores.
+
+Não foi utilizado engenharia de features, empregando apenas o sinal crú em duas entradas: uma com o batimento segmentado e uma outra com três sequências de batimentos; para fornecer contexto temporal. Em ambos os casos os autores utilizaram 64 ou 128 amostras, sendo que no primeiro caso, a perda de desempenho foi insignificante. O modelo é formado por três camadas convolucionais modificadas, isto é, elas fazem tanto a convolução quanto o \textit{downsampling}, e duas camadas de perceptrons.
+
+No trabalho, os autores destacam a leveza do modelo, justificando que a partição usada dispensa o uso de redes profundas e o uso de engenharia de features.
+
+Em \citeonline{saadatnejad2020}, foi proposto um modelo baseado em redes LSTM (ver Seção~\ref{sec:fundamentos_rnn}) para a classificação de arritmias voltado a dispositivos móveis. 
 Com o objetivo de atender às restrições computacionais de sistemas embarcados, os autores desenvolveram uma arquitetura composta por dois modelos simples que realizam 
 classificações independentes, seguidos por uma rede neural artificial (ANN) responsável pela decisão final.
 
