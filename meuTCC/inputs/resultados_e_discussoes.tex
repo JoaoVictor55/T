@@ -1,5 +1,5 @@
 \chapter{Resultados e discussões}
-
+\label{sec:resultados}
 \section{Resultados do modelo GRU}
 \label{sec:resultados_gru}
 
@@ -238,7 +238,9 @@ os \textit{folds} quatro e cinco, porém a diferença foi de, aproximadamente, 0
 A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Repetindo os critérios descritos na seção \ref{sec:resultados_gru}, o melhor
 \textit{fold} foi o segundo e o pior foi o terceiro.
 
-Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz de confusão do modelo em seu melhor \textit{fold}:
+Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz de confusão do modelo em seu melhor \textit{fold}.
+Neste cenário, o modelo não cometeu nenhum erro de falso positivo, mas 41 de falso positivo. Além de ter acertado 511 arritmias 
+e 3.968 batimentos normais.
 
 \begin{figure}[H]
   \centering
@@ -250,11 +252,11 @@ Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz d
 
 Como pode ser visto no gráfico; o modelo não cometeu nenhum erro de falso positivo e errou 41 arritmias, classificando-as
 como batimentos normais. Neste \textit{fold}, a classe positiva compõe, aproximadamente. 12,23\% do total. Assim, sendo 
-levemente menos balanceado que o melhor \textit{fold} do modelo GRU puro e com um desempenho superior: com um \textit{f1-score}
+levemente menos balanceado que o melhor \textit{fold} do modelo GRU puro, que  tinha 13,21\% de classes positivas,  e com um desempenho superior: com um \textit{f1-score}
 de 0,97 contra 0,87. 
 
 Na matriz de confusão do pior \textit{fold}, ilustrado na figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, novamente,
-a situação se inverte; a quantidade de erros de falsos negativos foi menor que as de falsos positivos, refletindo em um
+a situação se inverte; a quantidade de erros de falsos negativos, oito, foi menor que as de falsos positivos, 776, refletindo em um
 \textit{recall} maior que a precisão; como pode ser observado no gráfico \ref{fig:gru_cnn_resultados_por_fold}.
 
 \begin{figure}[H]
@@ -265,9 +267,7 @@ a situação se inverte; a quantidade de erros de falsos negativos foi menor que
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-
 No melhor, o modelo híbrido obteve um AP de 0,96, como pode ser visto na figura \ref{fig:roc_cnn_gru_melhor_fold}:
-
 
 \begin{figure}[H]
   \centering
@@ -323,6 +323,10 @@ O AP foi de 55\% enquanto que o do GRU puro foi e 49\% e o \textit{baseline} foi
 De modo geral, os modelos exibiram um perfil semelhante em seu pior e melhor caso. No pior, a sensibilidade foi maior, resultados
 em maiores erros de falso positivo, como resultado, o \textit{recall} foi alto e a precisão foi baixa. No melhor caso, houve um 
 equilíbrio maior e, apesar do \textit{recall} mais baixo, a alta precisão aumentou o \textit{f1-score}.
+
+Esse ganho de desempenho sugere que o uso da CNN para extração de \textit{features} morfológicas pode ter sido uma vantagem. A 
+camada recorrente do modelo híbrido não precisou aprendê-las do sinal, apenas precisou se concentrar em como elas se encaixam 
+no contexto da sequência.
 
 Em contextos médicos, é preferível um \textit{recall} maior, pois falsos negativos são mais danosos que um falso positivo; isto é, é melhor
 dizer que um batimento normal é arrítmico do que o contrário. Entretanto, uma precisão muito baixa pode indicar que o modelo é 
