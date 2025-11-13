@@ -21,6 +21,19 @@
 \usepackage{tikz} %desenho de diagramas
 \usepackage{pgfplots}
 \usepackage{tikz}
+
+%tabelinha de trabalhos correlatos
+\usepackage{amssymb}
+\usepackage{booktabs} % Para linhas horizontais de melhor qualidade
+\usepackage{array} % Para p{} column type
+\usepackage{makecell} % Para quebras de linha nas células
+\usepackage{geometry}
+\usepackage{adjustbox}
+\usepackage{tabularx} % Pacote para ajustar a largura das colunas X
+\usepackage{longtable} % Para tabelas que quebram entre páginas
+\usepackage{calc}
+%configurações
+
 \usetikzlibrary{positioning, shapes.geometric, arrows.meta, arrows}
 
 \pgfplotsset{compat=1.18} 
@@ -28,6 +41,9 @@
 % Recuo e espaçamento entre parágrafos (ABNT)
 \setlength{\parindent}{1.25cm} % recuo de 1,25 cm
 %\setlength{\parskip}{0.2cm}    % espaço entre parágrafos
+\geometry{a4paper, margin=1in} % Ajusta margens para caber a tabela
+
+\setlength{\tabcolsep}{4pt} % Reduz o espaço entre colunas
 
 \titulo{Título do seu TCCe}
 \autor{João Victor Sousa}

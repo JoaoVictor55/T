@@ -1,0 +1,77 @@
+\begingroup % Cria um grupo local para as configurações de fonte
+\centering
+\footnotesize 
+
+% Definição de larguras
+% Calculando as larguras para a coluna p{} manual
+% Largura restante = \textwidth - (Largura de l) - (Bordas)
+% Colunas: l + p1 + p2 + p3 + p4 + p5
+% Vamos alocar 10% para o Trabalho, e 18% para o restante (5 * 0.18 = 90%).
+\newlength{\colwidthA}
+\newlength{\colwidthB}
+\newlength{\colwidthC}
+\newlength{\colwidthD}
+\newlength{\colwidthE}
+
+% Coluna Trabalho (Ano) - 10% da largura do texto
+\setlength{\colwidthA}{0.1\textwidth} 
+
+% As 5 colunas restantes dividem o 90% restante. 
+% (0.9 * \textwidth) / 5 = 0.18\textwidth (aproximadamente)
+\setlength{\colwidthB}{0.18\textwidth} % Tipo de Modelo
+\setlength{\colwidthC}{0.18\textwidth} % Particionamento
+\setlength{\colwidthD}{0.18\textwidth} % Features Incluídas
+\setlength{\colwidthE}{0.18\textwidth} % Segmentação do Batimento e Limpeza
+
+% Usamos l (para a primeira) e p{largura} com \raggedright para as demais.
+\begin{longtable}{|>{\RaggedRight}p{\colwidthA}|>{\RaggedRight}p{\colwidthB}|>{\RaggedRight}p{\colwidthC}|>{\RaggedRight}p{\colwidthD}|>{\RaggedRight}p{\colwidthE}|>{\RaggedRight}p{\colwidthE}|}
+% A RaggedRight (do pacote ragged2e, que você tem) é a versão de parágrafo de \raggedright.
+
+% ---------------------------------
+% Definição do Cabeçalho da Tabela
+% ---------------------------------
+
+\caption{Metodologias de Classificação de Batimentos Cardíacos: Modelos, Particionamento, Features, Segmentação e Limpeza}
+\label{tab:metodologia_trabalhos}\\
+\hline
+\textbf{Trabalho (Ano)} & \textbf{Tipo de Modelo (Arquitetura)} & \textbf{Particionamento} & \textbf{Features Incluídas} & \textbf{Segmentação do Batimento} & \textbf{Limpeza / Pré-processamento} \\
+\hline
+\endhead % Fim do Cabeçalho (Repete em todas as páginas)
+
+% ---------------------------------
+% Definição do Rodapé para a Continuação
+% ---------------------------------
+\multicolumn{6}{|r|}{Continua na próxima página...} \\
+\hline
+\endfoot % Fim do Rodapé (Aparece em todas as páginas, exceto na última)
+
+% ---------------------------------
+% Definição do Rodapé da Última Página
+% ---------------------------------
+\hline
+\endlastfoot % Fim da Tabela
+
+% ---------------------------------
+% Conteúdo da Tabela
+% ---------------------------------
+
+% O \makecell foi removido, exceto nas células onde há uma quebra manual forte
+% mas o longtable com p{} já quebra automaticamente.
+% Vamos manter o \makecell[l] para a primeira coluna para garantir o alinhamento
+% e a quebra manual (se necessário).
+
+\makecell[l]{de Chazal \\ et al. (2004)} & \textbf{Classificador Estatístico / Discriminantes Lineares (LDs)} (Configuração IX: 2 LDs combinados). & \textbf{Inter-Patient} (Baseado em Registros – DD1). Treino em DS1, Teste em DS2 (Independente). & $\bullet$ Morfologia ECG (amostragem segmentada e de intervalo fixo). $\bullet$ Intervalos de Batimento (Duração QRS/T, Presença P-wave). $\bullet$ Intervalos RR (Pré/Pós-RR, RR Médio, RR Local). & Batimentos \textbf{manualmente detectados} (pontos fiduciais). Segmentação QRS/T estimada por programa externo. & $\bullet$ \textbf{Filtros de Mediana} (200ms e 600ms de largura) para remover \textit{baseline wander}. $\bullet$ \textbf{Filtro passa-baixa de 12 taps} (3-dB em 35 Hz) para ruído de alta frequência. $\bullet$ Ponderação de exemplos para evitar domínio de classes grandes. \\
+\hline
+\makecell[l]{Kiranyaz \\ et al. (2016)} & \textbf{CNN 1-D Adaptativa} (Funde extração de features e classificação). & \textbf{Patient-Specific}. Treino: Dados Globais + Dados Locais (primeiros 5 min do paciente). & $\bullet$ \textbf{Amostras brutas de ECG} (64 ou 128 amostras no pico R). $\bullet$ Beat Trio (captura características temporais dos vizinhos). $\bullet$ Representação FFT (Opcional). & Segmentação em \textbf{64 ou 128 amostras centradas no pico R}. Uso de \textit{Beat Trio} para contexto temporal. & Dados crús. \\
+\hline
+\makecell[l]{Mousavi \\ et al. (2019)} & \textbf{Sequence-to-Sequence Deep Learning} (CNN-Bi-RNN Encoder-Decoder com LSTM). & Testado nos paradigmas \textbf{Inter-patient} e \textbf{Intra-patient}. & $\bullet$ \textbf{Amostras brutas de ECG}. $\bullet$ CNN automaticamente extrai 128 características. & Sinal de ECG contínuo dividido em \textbf{sequências de 280 amostras}. & $\bullet$ \textbf{Filtro passa-banda} (0.5 – 40 Hz). $\bullet$ Subtração da onda T/P. $\bullet$ Aumento de dados (\textbf{SMOTE}) para reequilibrar classes minoritárias. \\
+\hline
+\makecell[l]{Li \\ et al. (2019)} & \textbf{Rede Neural Convolucional Adversarial} (Adversarial CNN) (Encoder-Classifier-Adversary). & \textbf{Inter-patient} (DS1 Treino, DS2 Teste), garantindo a separação de pacientes. & $\bullet$ \textbf{Amostras brutas de ECG} (2 canais). $\bullet$ Features RR Interval (pré-RR ratio, near-pre-RR ratio, RR médio). & \textbf{150 pontos} centrados no pico R (50 antes do pico R e 100 depois). & $\bullet$ \textbf{Remoção do \textit{baseline wander}} por escalonamento da média dos segmentos subtraídos. \\
+\hline
+\makecell[l]{Saadatnejad \\ et al. (2020)} & \textbf{LSTM-Based RNN} (Múltiplas LSTMs combinadas: Modelos $\alpha$ e $\beta$). Arquitetura Híbrida Wavelet + LSTM. & \textbf{Patient-Specific}. Treino: Local (primeiros 5 min) + Global (batimentos rep.). & $\bullet$ \textbf{Amostras brutas de ECG} ($X_{ecg}$). $\bullet$ Features de \textbf{Wavelet} (db2, 4 níveis) ($X_w$). $\bullet$ Features de Intervalo RR ($X_{rr}$: RR anterior/seguinte, RR médio local/geral). & Segmento de \textbf{comprimento fixo} baseado no pico R (Pan-Tompkin). 0.25s antes e 0.45s depois do pico R. & $\bullet$ \textbf{Down sampling} por um fator de 2 antes da Transformada Wavelet (DWT). $\bullet$ Uso da DWT para capturar info. de domínio de tempo e frequência. \\
+\hline
+\makecell[l]{Este TCC} & \textbf{GRU e GRU com CNN} (Comparação entre dois modelos distintos). & \textbf{Interpaciente}. Cross-validação no DS1. & $\bullet$ Sequência de 16 batimentos $\bullet$ Intervalo RR anterior/posterior. & Janela baseada no tamanho do paciente seguido por reamostragem. & Remoção de \textit{baseline wander} e \textit{powerline}. \\
+\hline
+
+\end{longtable}
+\endgroup
