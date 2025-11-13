@@ -122,9 +122,6 @@ A única \textit{feature} usada foi o intervalo RR que é calculado da seguinte 
 \text{pós RR intervalo} = R_{i} - R_{i+1}
 \end{equation}
 
-Esses intervalos correspondem ao intervalo entre o batimento \textit{i} e o anterior e posterior, respectivamente. O intervalo RR corresponde ao intervalo 
-entre dois batimentos.
-
 \section{Arquiteturas}
 \label{sec:modelos}
 
@@ -152,8 +149,9 @@ A segunda rede é uma híbrida de CNN com GRU:
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32 e 64 filtros respectivamente e cada 
-uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente.
+O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32, com \textit{kernel} de tamanho sete, e 64 filtros, com \textit{kernel} de tamanho cinco, respectivamente.
+Todos com \textit{padding} igual. Cada 
+uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente. 
 A camada recorrente é formada por 256 neurônios.
 
 Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
@@ -184,6 +182,7 @@ os recursos computacionais disponíveis e a a quantidade de dados ou mesmo quão
 Neste trabalho, a escolha do tamanho da sequência foi baseada nos melhores resultados iniciais
 e os demais hiperparâmetros foram escolhidos via experimentação com arquiteturas apresentadas em outros trabalhos tais como: \citeonline{narotamo2024}.
 
+As redes foram treinadas por 50 épocas.
 
 \section{Estratégia de avaliação}
 
