@@ -1,5 +1,16 @@
 \chapter{Trabalhos correlatos}
 
+A aplicação de métodos para a detecção de arritmias não é uma ideia nova. Conforme \citeonline{moody2001}, desde a década de 60, 
+havia estudos que buscavam desenvolver algoritmos para a análise de arritmias. \citeonline{SAFDAR2024107908}, aponta algumas técnicas
+clássicas utilizadas como \textit{Support Vector Machine (SVM)} , \textit{K-nearest neighbor (KNN)} e \textit{Random Forest}.
+
+Os autores mostram que nos últimos anos técnicas de \textit{deep learning}, redes neurais, vem ganhando tração. Muito por dispensar ou depender menos intensamente
+de \textit{features} manuais, podendo aprende-las automaticamente. Dentre as primeiras técnicas usadas está as redes \textit{feed-forward}, seguido pelas
+CNN e LSTM, além de abordagens híbridas.
+
+A presente seção apresenta uma revisão de alguns trabalhos voltados a aplicação de modelos de aprendizado de máquina para a detecção
+de arritmias cardíacas. 
+
 \citeonline{chazal2004} propuseram um método automático para classificação de arritmias nas cinco classes definidas pela AAMI (descritas na seção \ref{sub_sec:padroes_arritmias_aami}), utilizando o banco de dados MIT-BIH. O classificador empregado foi o discriminante linear, um método estatístico paramétrico baseado na suposição de distribuição Gaussiana dos dados.
 
 A metodologia incluiu etapas de pré-processamento, extração de features e classificação. Foram avaliadas diferentes configurações e estratégias de particionamento, incluindo a tradicional (intrapaciente) e a proposta pelos autores (interpaciente, com os conjuntos Ds1 e Ds2 descritos em \ref{sec:particionamento}). O estudo demonstrou que a partição intrapaciente gera resultados otimistas e não representa adequadamente a capacidade de generalização do modelo.
