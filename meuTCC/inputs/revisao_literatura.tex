@@ -10,6 +10,30 @@ A melhor configuração encontrada combinava features segmentadas com janela tem
 
 Apesar dos bons resultados, o método depende fortemente da qualidade das features e do pré-processamento, sendo sensível à variação morfológica entre pacientes — um ponto que trabalhos mais recentes, baseados em aprendizado profundo, buscam superar.
 
+\citeonline{Mousavi2018InterAI}, 2019, propuseram um modelo baseado em \textit{encoder-decoder} para a classificação de cada batimento em uma sequência (\textit{sequence-to-sequence}, ou seq2seq). 
+O pré-processamento consiste na normalização do sinal, segmentação em batimentos individuais e reamostragem para 280 amostras, sem o uso de filtros para remoção de ruídos. 
+O modelo foi avaliado nas partições interpaciente e intrapaciente, utilizando os conjuntos Ds1 e Ds2.
+
+A arquitetura é composta por uma sub-rede convolucional com três camadas contendo 32, 64 e 128 filtros, responsável pela extração inicial das \textit{features}. 
+As representações obtidas alimentam o \textit{encoder}, que codifica a sequência em uma nova representação latente, utilizada pelo \textit{decoder} para gerar uma sequência de classificações. 
+Tanto o \textit{encoder} quanto o \textit{decoder} são implementados com LSTM bidirecionais, de modo que a rede processa a sequência de entrada em ambas as direções — direta e reversa.
+
+Para lidar com o desbalanceamento das classes, os autores aplicaram a técnica \textit{SMOTE} (\textit{Synthetic Minority Oversampling Technique}) para gerar amostras sintéticas apenas no conjunto de treinamento, 
+aumentando a representatividade das classes minoritárias sem afetar os dados de validação e teste.
+
+
+Em \citeonline{Zhang2021InterpatientEH}, é proposta uma rede neural convolucional profunda para a classificação de arritmias nas cinco classes definidas pela AAMI. Os autores enfatizam a importância de o modelo aprender características invariantes entre pacientes, de modo a melhorar sua capacidade de generalização. Enquanto outros trabalhos — como este TCC — buscam que o modelo aprenda essas características diretamente a partir dos dados, Zhang et al. propuseram uma estratégia adversarial para induzir esse comportamento.
+
+A arquitetura é composta por um encoder, responsável por extrair as características mais relevantes da entrada, seguido por dois ramos:
+um classificador, que prevê o tipo de batimento, e uma rede adversária, que tenta identificar a qual paciente o batimento pertence.
+A função de perda é baseada na cross-entropy (uma generalização da BCE para múltiplas classes) e é modificada de forma a maximizar a perda da rede adversária enquanto minimiza a do classificador.
+
+Esses dois objetivos são conflitantes: quanto melhor a rede adversária for em identificar o paciente, menor será a invariância das features aprendidas. Assim, um hiperparâmetro 
+\textit{k} é introduzido para controlar o trade-off entre a generalização (obtida ao maximizar a perda adversária) e o desempenho de classificação (que tende a cair quando o modelo foca apenas em padrões gerais).
+
+A entrada do modelo consiste em batimentos individuais e em razões entre intervalos RR: a razão entre o pré-RR e a média dos pré-RR da gravação, e a razão entre o pré-RR e o pré-RR mais próximo. Os autores destacam que o intervalo pré-RR tem alta capacidade discriminativa para distinguir batimentos ventriculares e supraventriculares de batimentos normais — ainda que, isoladamente, não seja suficiente para separar esses dois tipos de arritmia entre si.
+
+%intrapaciente
 Em \citeonline{kiranyaz2016real}, foi proposto um leve modelo de classificação de arritmias baseado em CNN (ver Seção~\ref{sec:fundamentos_cnn}). Os autores seguiram o particionamento intra-paciente com cinco minutos de treinamento específico — oriundo do conjunto ds2 — e treinamento global a partir de amostras aleatórias do conjunto ds1. Os dados de treino totais somam menos de 1\% dos batimentos totais. 
 
 A AAMI define que dados de pacientes específicos não podem ultrapassar cinco minutos; regra seguida pelos autores.
