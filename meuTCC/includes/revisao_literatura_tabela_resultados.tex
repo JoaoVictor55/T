@@ -9,7 +9,7 @@
 % Vamos alocar 10% para o Trabalho, e 18% para o restante (5 * 0.18 = 90%).
 
 % Coluna Trabalho (Ano) - 10% da largura do texto
-\setlength{\colwidthA}{0.1\textwidth} 
+\setlength{\colwidthA}{0.18\textwidth} 
 
 % As 5 colunas restantes dividem o 90% restante. 
 % (0.9 * \textwidth) / 5 = 0.18\textwidth (aproximadamente)
@@ -53,18 +53,18 @@
 % mas o longtable com p{} já quebra automaticamente.
 % Vamos manter o \makecell[l] para a primeira coluna para garantir o alinhamento
 % e a quebra manual (se necessário).
-\makecell[l]{de Chazal \\ et al. \\(2004)} & DS2. & 77,7. & 81,9. \\
+\makecell[l]{de Chazal et al. \\ (2004)} & DS2. & 77,7. & 81,9. \\
 \hline
-\makecell[l] {Mousavi \\ et al.} & DS2. & 98,98. & 97,40.\\
+\makecell[l] {Mousavi et al. \\(2019)} & DS2. & 98,98. & 97,40.\\
 \hline
-\makecell[l] {Li \\ et al.} & DS2. & 92,5.& 97,40.\\
+\makecell[l] {Li et al.\\(2019)} & DS2. & 92,5.& 97,40.\\
 \hline
-\makecell[l] {Saadat\\nejad \\ et al.} & Intrapaciente. & 98,22.& 92,97.\\
+\makecell[l] {Saadatnejad et al.\\(2020)} & Intrapaciente. & 98,22.& 92,97.\\
 \hline
-\makecell[l] {Kiranyaz \\ et al.} & Intrapaciente. & 95,0.& 89,5.\\
+\makecell[l] {Kiranyaz et al. \\(2016)} & Intrapaciente. & 95,0.& 89,5.\\
 \hline
-\makecell[l] {Teste \\ TCC (GRU)} & Interpaciente. & 95,0.& 89,5.\\
+\makecell[l] {TCC (GRU)} & Cross-validação 5 folds (ds1). & 80,39.& 85,15.\\
 \hline
-\makecell[l] {Teste \\ TCC (Híbrido)} & Interpaciente. & 95,0.& 89,5.\\
+\makecell[l] {TCC (Híbrido)} & Cross-validação 5 folds (ds1). & 87,26.& 88,0.\\
 \end{longtable}
 \endgroup
