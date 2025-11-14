@@ -1,0 +1,70 @@
+\begingroup % Cria um grupo local para as configurações de fonte
+\centering
+\footnotesize 
+
+% Definição de larguras
+% Calculando as larguras para a coluna p{} manual
+% Largura restante = \textwidth - (Largura de l) - (Bordas)
+% Colunas: l + p1 + p2 + p3 + p4 + p5
+% Vamos alocar 10% para o Trabalho, e 18% para o restante (5 * 0.18 = 90%).
+
+% Coluna Trabalho (Ano) - 10% da largura do texto
+\setlength{\colwidthA}{0.1\textwidth} 
+
+% As 5 colunas restantes dividem o 90% restante. 
+% (0.9 * \textwidth) / 5 = 0.18\textwidth (aproximadamente)
+\setlength{\colwidthB}{0.18\textwidth} % Tipo de Modelo
+\setlength{\colwidthC}{0.18\textwidth} % Particionamento
+\setlength{\colwidthD}{0.18\textwidth} % Features Incluídas
+\setlength{\colwidthE}{0.18\textwidth} % Segmentação do Batimento e Limpeza
+
+% Usamos l (para a primeira) e p{largura} com \raggedright para as demais.
+\begin{longtable}{|>{\RaggedRight}p{\colwidthA}|>{\RaggedRight}p{\colwidthB}|>{\RaggedRight}p{\colwidthC}|>{\RaggedRight}p{\colwidthD}|>{\RaggedRight}p{\colwidthE}|>{\RaggedRight}p{\colwidthE}|}
+% A RaggedRight (do pacote ragged2e, que você tem) é a versão de parágrafo de \raggedright.
+
+% ---------------------------------
+% Definição do Cabeçalho da Tabela
+% ---------------------------------
+
+\caption{Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}
+\label{tab:resultados_trabalhos}\\
+\hline
+\textbf{Trabalho (Ano)} & \textbf{Dataset} & \textbf{Sensibilidade (\%)} & \textbf{Precisão (\%)} \\
+\hline
+\endhead % Fim do Cabeçalho (Repete em todas as páginas)
+
+% --------
+
+\multicolumn{6}{|r|}{Continua na próxima página...} \\
+\hline
+\endfoot % Fim do Rodapé (Aparece em todas as páginas, exceto na última)
+
+% ---------------------------------
+% Definição do Rodapé da Última Página
+% ---------------------------------
+\hline
+\endlastfoot % Fim da Tabela
+
+% ---------------------------------
+% Conteúdo da Tabela
+% ---------------------------------
+
+% O \makecell foi removido, exceto nas células onde há uma quebra manual forte
+% mas o longtable com p{} já quebra automaticamente.
+% Vamos manter o \makecell[l] para a primeira coluna para garantir o alinhamento
+% e a quebra manual (se necessário).
+\makecell[l]{de Chazal \\ et al. \\(2004)} & DS2. & 77,7. & 81,9. \\
+\hline
+\makecell[l] {Mousavi \\ et al.} & DS2. & 98,98. & 97,40.\\
+\hline
+\makecell[l] {Li \\ et al.} & DS2. & 92,5.& 97,40.\\
+\hline
+\makecell[l] {Saadat\\nejad \\ et al.} & Intrapaciente. & 98,22.& 92,97.\\
+\hline
+\makecell[l] {Kiranyaz \\ et al.} & Intrapaciente. & 95,0.& 89,5.\\
+\hline
+\makecell[l] {Teste \\ TCC (GRU)} & Interpaciente. & 95,0.& 89,5.\\
+\hline
+\makecell[l] {Teste \\ TCC (Híbrido)} & Interpaciente. & 95,0.& 89,5.\\
+\end{longtable}
+\endgroup
