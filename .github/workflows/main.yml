@@ -10,42 +10,31 @@ on:
 # Define o conjunto de jobs que serão executados
 jobs:
   build_latex:
-    # O job será executado em um runner do Ubuntu mais recente
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Faz o checkout do código
       - name: Checkout do Repositório
         uses: actions/checkout@v4
 
-      # 2. Compila o documento LaTeX
-      # Esta ação é mantida pela comunidade e encapsula o processo de compilação
-      - name: Compilar LaTeX
+      - name: Compilar LaTeX (na raiz)
         uses: xu-cheng/latex-action@v2
         with:
-          # Substitua 'main.tex' pelo nome do seu arquivo principal (.tex)
           root_file: main.tex 
-          # Este comando garante que pacotes como biblatex/biber sejam executados
           compiler: latexmk
-          args: "-pdf -xelatex -shell-escape"
+          # Argumentos simplificados pois o latexmk já procura em subpastas padrão
+          args: -pdf -xelatex
+          # Opcional, para garantir pacotes:
+          extra_system_packages: >
+            texlive-bibtex-extra 
+            texlive-latex-extra 
+            texlive-pictures
 
-      # 3. Publica o PDF como um Artefato
-      - name: Upload do PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: Seu-Documento-PDF
-          # O arquivo PDF gerado (o nome deve coincidir com o root_file)
-          path: main.pdf
-
-# O Job de Deploy
   deploy_pages:
-    # Garante que este job só rode após o job de build ter sucesso
     needs: build_latex
-    
-    # As permissões são obrigatórias para o deploy
+    # Permissões e ambientes...
     permissions:
-      pages: write      # Necessário para publicar no GitHub Pages
-      id-token: write   # Necessário para autenticação
+      pages: write     
+      id-token: write  
 
     environment:
       name: github-pages
@@ -53,29 +42,22 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Download do Artefato Compilado
+      - name: main.pdf
         uses: actions/download-artifact@v4
         with:
-          name: Seu-Documento-Final
+          name: main.pdf # Deve coincidir com o nome do upload acima
           path: ./temp-pdf
           
-      # 1. Cria a estrutura para o Pages (o Pages precisa de um diretório)
-      - name: Configurar Pages
-        uses: actions/configure-pages@v5
-        
-      # 2. Move o PDF para o local correto para o Pages
-      - name: Preparar PDF para o Pages
+      - name: Configurar Pages e Mover PDF
         run: |
           mkdir public
-          cp ./temp-pdf/main.pdf public/index.pdf  # Renomeia para index.pdf (opcional)
+          cp ./temp-pdf/main.pdf public/index.pdf 
 
-      # 3. Faz o Upload do PDF para o Pages
       - name: Upload do Pages Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./public # Pasta que contém o arquivo PDF
+          path: ./public
 
-      # 4. Faz o Deploy
       - name: Deploy para GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
