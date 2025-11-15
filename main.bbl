@@ -1,0 +1,171 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[{Agência Brasil} 2024]{agenciabrasil_cvds_2024}
+\abntrefinfo{{Agência Brasil}}{{Agência Brasil}}{2024}
+{{Agência Brasil}. \emph{Doenças cardiovasculares matam 400 mil brasileiros por ano}. 2024. \url{https://agenciabrasil.ebc.com.br/saude/noticia/2024-09/doencas-cardiovasculares-matam-400-mil-brasileiros-por-ano}.
+Acessado em: 15 de novembro de 2025.}
+
+\bibitem[Cascino e Shea 2025]{msd_ecg}
+\abntrefinfo{Cascino e Shea}{CASCINO; SHEA}{2025}
+{CASCINO, T.; SHEA, M.~J. \emph{Eletrocardiograma (ECG)}. 2025. MSD Manual de Medicina.
+Revisado por Jonathan G. Howlett.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/pt/casa/dist\%C3\%BArbios-do-cora\%C3\%A7\%C3\%A3o-e-dos-vasos-sangu\%C3\%ADneos/diagn\%C3\%B3stico-de-dist\%C3\%BArbios-do-cora\%C3\%A7\%C3\%A3o-e-dos-vasos-sangu\%C3\%ADneos/eletrocardiograma}.}
+
+\bibitem[Chazal, O'Dwyer e Reilly 2004]{chazal2004}
+\abntrefinfo{Chazal, O'Dwyer e Reilly}{CHAZAL; O'DWYER; REILLY}{2004}
+{CHAZAL, P. de; O'DWYER, M.; REILLY, R. Automatic classification of heartbeats using ecg morphology and heartbeat interval features.
+\emph{IEEE Transactions on Biomedical Engineering}, v.~51, n.~7, p. 1196--1206, 2004.}
+
+\bibitem[Géron 2022]{geron2022hands}
+\abntrefinfo{Géron}{GéRON}{2022}
+{GéRON, A. \emph{Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems}. 3. ed. Sebastopol, CA: O'Reilly Media, 2022.
+ISBN 9781098125974.}
+
+\bibitem[James et al. 2023]{james2023}
+\abntrefinfo{James et al.}{JAMES et al.}{2023}
+{JAMES, G. et al. \emph{An Introduction to Statistical Learning: with applications in Python}. Cham: Springer, 2023. Disponível em: \url{https://www.statlearning.com/}. Acesso em: 28 ago. 2025.}
+
+\bibitem[Kiranyaz, Ince e Gabbouj 2016]{kiranyaz2016real}
+\abntrefinfo{Kiranyaz, Ince e Gabbouj}{KIRANYAZ; INCE; GABBOUJ}{2016}
+{KIRANYAZ, S.; INCE, T.; GABBOUJ, M. Real-time patient-specific ecg classification by 1-d convolutional neural networks.
+\emph{IEEE Transactions on Biomedical Engineering}, IEEE, Piscataway, NJ, EUA, v.~63, n.~3, p. 664--674, mar 2016.
+Dispon{\'\i}vel em: \url{https://ieeexplore.ieee.org/document/7222471}.}
+
+\bibitem[Lundberg e Lee 2017]{lundbergSHAPE}
+\abntrefinfo{Lundberg e Lee}{LUNDBERG; LEE}{2017}
+{LUNDBERG, S.~M.; LEE, S.-I. A unified approach to interpreting model predictions. In:  \emph{Proceedings of the 31st International Conference on Neural Information Processing Systems}. Red Hook, NY, USA: Curran Associates Inc., 2017.  (NIPS'17), p. 4768–4777.
+ISBN 9781510860964.}
+
+\bibitem[Makowski et al. 2021]{Makowski2021neurokit}
+\abntrefinfo{Makowski et al.}{MAKOWSKI et al.}{2021}
+{MAKOWSKI, D. et al. {NeuroKit}2: A python toolbox for neurophysiological signal processing.
+\emph{Behavior Research Methods}, Springer Science and Business Media {LLC}, v.~53, n.~4, p. 1689--1696, feb 2021.
+Dispon{\'\i}vel em: \url{https://doi.org/10.3758\%2Fs13428-020-01516-y}.}
+
+\bibitem[Mitchell 2024]{mitchell2024hisbloqueio}
+\abntrefinfo{Mitchell}{MITCHELL}{2024a}
+{MITCHELL, L.~B.
+Web Page, \emph{Bundle Branch Block}. MSD Manual, 2024.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/home/heart-and-blood-vessel-disorders/abnormal-heart-rhythms/bundle-branch-block}.}
+
+\bibitem[Mitchell 2024]{mitchell2024afib}
+\abntrefinfo{Mitchell}{MITCHELL}{2024b}
+{MITCHELL, L.~B.
+Web Page, \emph{Ventricular Fibrillation}. MSD Manual, 2024.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/home/heart-and-blood-vessel-disorders/abnormal-heart-rhythms/ventricular-fibrillation}.}
+
+\bibitem[Mitchell 2024]{msdmanuals_ventricular}
+\abntrefinfo{Mitchell}{MITCHELL}{2024c}
+{MITCHELL, L.~B. \emph{Ventricular Premature Beats}. 2024.
+Disponível na versão para leigos.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/home/heart-and-blood-vessel-disorders/abnormal-heart-rhythms/ventricular-premature-beats}.}
+
+\bibitem[Mitchell 2024]{mitchell2024vt}
+\abntrefinfo{Mitchell}{MITCHELL}{2024d}
+{MITCHELL, L.~B.
+Web Page, \emph{Ventricular Tachycardia}. MSD Manual, 2024.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/home/heart-and-blood-vessel-disorders/abnormal-heart-rhythms/ventricular-tachycardia}.}
+
+\bibitem[Mitchell 2025]{Mitchell_Arritmias_MSD}
+\abntrefinfo{Mitchell}{MITCHELL}{2025}
+{MITCHELL, L.~B. \emph{Visão Geral das Arritmias}. 2025.
+Dispon{\'\i}vel em: \url{https://www.msdmanuals.com/pt/profissional/doen\%C3\%A7as-cardiovasculares/vis\%C3\%a3o-geral-de-arritmias-e-doen\%C3\%a7as-de-condu\%C3\%a7\%C3\%a3o/vis\%C3\%a3o-geral-das-arritmias?query=arritmia}.}
+
+\bibitem[Moody e Mark 2001]{moody2001}
+\abntrefinfo{Moody e Mark}{MOODY; MARK}{2001}
+{MOODY, G.; MARK, R. The impact of the mit-bih arrhythmia database.
+\emph{IEEE Engineering in Medicine and Biology Magazine}, v.~20, n.~3, p. 45--50, 2001.}
+
+\bibitem[Moody 1997]{physionet_annotations}
+\abntrefinfo{Moody}{MOODY}{1997}
+{MOODY, G.~B. \emph{{MIT-BIH Arrhythmia Database Directory}}. 1997. Recurso online.
+Revisado em 24 de junho de 2010.
+Dispon{\'\i}vel em: \url{https://archive.physionet.org/physiobank/database/html/mitdbdir/intro.htm}.}
+
+\bibitem[Moody e Mark 2005]{mitbih2005}
+\abntrefinfo{Moody e Mark}{MOODY; MARK}{2005}
+{MOODY, G.~B.; MARK, R.~G. \emph{MIT-BIH Arrhythmia Database}. 2005. Disponível em: \url{https://www.physionet.org/physiobank/database/mitdb/}.
+Acesso em: 28 set. 2025.}
+
+\bibitem[Mousavi e Afghah 2018]{Mousavi2018InterAI}
+\abntrefinfo{Mousavi e Afghah}{MOUSAVI; AFGHAH}{2018}
+{MOUSAVI, S.; AFGHAH, F. Inter- and intra- patient ecg heartbeat classification for arrhythmia detection: A sequence to sequence deep learning approach.
+\emph{ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, p. 1308--1312, 2018.
+Dispon{\'\i}vel em: \url{https://api.semanticscholar.org/CorpusID:56173441}.}
+
+\bibitem[Narotamo et al. 2024]{narotamo2024}
+\abntrefinfo{Narotamo et al.}{NAROTAMO et al.}{2024}
+{NAROTAMO, H. et al. Deep learning for ecg classification: A comparative study of 1d and 2d representations and multimodal fusion approaches.
+\emph{Biomedical Signal Processing and Control}, Elsevier, 2024.}
+
+\bibitem[Niculescu-Mizil e Caruana 2005]{mizilPredictingGoodProbs}
+\abntrefinfo{Niculescu-Mizil e Caruana}{NICULESCU-MIZIL; CARUANA}{2005}
+{NICULESCU-MIZIL, A.; CARUANA, R. Predicting good probabilities with supervised learning. In:  \emph{Proceedings of the 22nd International Conference on Machine Learning}. New York, NY, USA: Association for Computing Machinery, 2005.  (ICML '05), p. 625–632.
+ISBN 1595931805. Dispon{\'\i}vel em: \url{https://doi.org/10.1145/1102351.1102430}.}
+
+\bibitem[Patti, Horenstein e Ashurst 2025]{statpearls_svt}
+\abntrefinfo{Patti, Horenstein e Ashurst}{PATTI; HORENSTEIN; ASHURST}{2025}
+{PATTI, L.; HORENSTEIN, M.~S.; ASHURST, J.~V. \emph{Supraventricular Tachycardia}. Treasure Island, FL: StatPearls Publishing, 2025. Disponível em: NCBI Bookshelf. Acesso em: 25 out. 2025. Dispon{\'\i}vel em: \url{https://www.ncbi.nlm.nih.gov/books/NBK441972/}.}
+
+\bibitem[Ribeiro, Singh e Guestrin 2016]{ribeiroWhyShouldTrustYou}
+\abntrefinfo{Ribeiro, Singh e Guestrin}{RIBEIRO; SINGH; GUESTRIN}{2016}
+{RIBEIRO, M.~T.; SINGH, S.; GUESTRIN, C. "why should i trust you?": Explaining the predictions of any classifier. In:  \emph{Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}. New York, NY, USA: Association for Computing Machinery, 2016.  (KDD '16), p. 1135–1144.
+ISBN 9781450342322. Dispon{\'\i}vel em: \url{https://doi.org/10.1145/2939672.2939778}.}
+
+\bibitem[Saadatnejad, Oveisi e Hashemi 2020]{saadatnejad2020}
+\abntrefinfo{Saadatnejad, Oveisi e Hashemi}{SAADATNEJAD; OVEISI; HASHEMI}{2020}
+{SAADATNEJAD, S.; OVEISI, M.; HASHEMI, M. Lstm-based ecg classification for continuous monitoring on personal wearable devices.
+\emph{IEE Journal of Biomedical and Health Informatics}, v.~24, n.~2, 2020.}
+
+\bibitem[Safdar, Nowak e Pałka 2024]{SAFDAR2024107908}
+\abntrefinfo{Safdar, Nowak e Pałka}{SAFDAR; NOWAK; PAłKA}{2024}
+{SAFDAR, M.~F.; NOWAK, R.~M.; PAłKA, P. Pre-processing techniques and artificial intelligence algorithms for electrocardiogram (ecg) signals analysis: A comprehensive review.
+\emph{Computers in Biology and Medicine}, v.~170, p. 107908, 2024.
+ISSN 0010-4825.
+Dispon{\'\i}vel em: \url{https://www.sciencedirect.com/science/article/pii/S0010482523013732}.}
+
+\bibitem[Sattar e Hashmi 2025]{Sattar_Premature_2025}
+\abntrefinfo{Sattar e Hashmi}{SATTAR; HASHMI}{2025}
+{SATTAR, Y.; HASHMI, M.~F. Premature ventricular complex.
+\emph{StatPearls [Internet]}, StatPearls Publishing, Treasure Island, FL, 2025.
+Última atualização: 16 de fevereiro de 2025.
+Dispon{\'\i}vel em: \url{https://www.ncbi.nlm.nih.gov/books/NBK547713/}.}
+
+\bibitem[Silva et al. 2025]{silva2025}
+\abntrefinfo{Silva et al.}{SILVA et al.}{2025}
+{SILVA, G. A.~L. et al. \emph{A Systematic Review of ECG Arrhythmia Classification: Adherence to Standards, Fair Evaluation, and Embedded Feasibility}. 2025. ArXiv:2503.07276v1.
+Acesso em: 28 set. 2025.}
+
+\bibitem[{Texas Heart Institute} s.d.]{texasheart_arrhythmias}
+\abntrefinfo{{Texas Heart Institute}}{{Texas Heart Institute}}{s.d.}
+{{Texas Heart Institute}. \emph{Categories of Arrhythmias}. s.d.
+Acesso em: 25 out. 2025.
+Dispon{\'\i}vel em: \url{https://www.texasheart.org/heart-health/heart-information-center/topics/categories-of-arrhythmias/}.}
+
+\bibitem[{U.S. National Library of Medicine} 2025]{mesh_ventricular_flutter}
+\abntrefinfo{{U.S. National Library of Medicine}}{{U.S. National Library of Medicine}}{2025}
+{{U.S. National Library of Medicine}. \emph{{Ventricular Flutter - MeSH Descriptor Data}}. 2025. \url{https://www.ncbi.nlm.nih.gov/mesh?Db=mesh&Cmd=DetailsSearch&Term=C23.550.073.961}.
+Acesso em: 25 out. 2025.}
+
+\bibitem[Virtanen et al. 2020]{2020SciPy-NMeth}
+\abntrefinfo{Virtanen et al.}{VIRTANEN et al.}{2020}
+{VIRTANEN, P. et al. {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}.
+\emph{Nature Methods}, v.~17, p. 261--272, 2020.}
+
+\bibitem[{World Health Organization} 2025]{who_cvds_2025}
+\abntrefinfo{{World Health Organization}}{{World Health Organization}}{2025}
+{{World Health Organization}. \emph{Cardiovascular diseases (CVDs)}. 2025. \url{https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)}.
+Acessado em: 15 de novembro de 2025.}
+
+\bibitem[Zhang et al. 2021]{Zhang2021InterpatientEH}
+\abntrefinfo{Zhang et al.}{ZHANG et al.}{2021}
+{ZHANG, J. et al. Interpatient ecg heartbeat classification with an adversarial convolutional neural network.
+\emph{Journal of Healthcare Engineering}, v.~2021, 2021.
+Dispon{\'\i}vel em: \url{https://api.semanticscholar.org/CorpusID:235683987}.}
+
+\end{thebibliography}

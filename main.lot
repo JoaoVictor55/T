@@ -1,0 +1,13 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {table}{\numberline {1}{Metodologias de Classificação de Batimentos Cardíacos: Modelos, Particionamento, Features, Segmentação e Limpeza}}{33}{table.3.1}%
+\contentsline {table}{\numberline {1}{Metodologias de Classificação de Batimentos Cardíacos: Modelos, Particionamento, Features, Segmentação e Limpeza}}{34}{table.3.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Mapeamento das anotações originais do MIT-BIH para as classes AAMI.}}{36}{table.4.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Distribuição das classes nos conjuntos Ds1 e Ds2}}{42}{table.4.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Distribuição dos IDs dos Pacientes por Fold para Conjuntos de Treinamento e Validação}}{42}{table.4.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Exemplo de matriz de confusão binária}}{45}{table.4.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular na validação}}{47}{table.5.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular no treino}}{47}{table.5.7}%
+\contentsline {table}{\numberline {8}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular na validação}}{54}{table.5.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces édia das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular no treino}}{54}{table.5.9}%
+\contentsline {table}{\numberline {10}{Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{61}{table.5.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Total dos erros e acertos por paciente no \textit {fold} de validação}}{62}{table.6.11}%

@@ -1,0 +1,41 @@
+\chapter{Introdução}
+\section{Contextualização}
+\label{sec:contextualizacao}
+
+Segundo a Organização Mundial da Saúde (\citeonline{who_cvds_2025}), as doenças cardiovasculares estão entre as principais causas de morte no mundo. Em 2022, foram responsáveis por aproximadamente 32\% de todos os óbitos globais. Ainda segundo \citeonline{agenciabrasil_cvds_2024}, as arritmias cardíacas causam cerca de 320 mil mortes súbitas anualmente.
+
+Um dos principais exames utilizados no diagnóstico de doenças cardiovasculares é o eletrocardiograma (ECG), obtido por meio de eletrodos posicionados na superfície da pele para medir as correntes elétricas que controlam as contrações do músculo cardíaco. A partir desse exame, é possível identificar diversas alterações, incluindo arritmias, caracterizadas por perturbações na condução ou na origem dos impulsos elétricos cardíacos.
+
+Nos últimos anos, métodos de aprendizagem de máquina vêm sendo empregados para auxiliar no diagnóstico de arritmias, com o objetivo de otimizar o processo e apoiar o trabalho dos especialistas. Entretanto, a aplicação dessas técnicas não é trivial. O ritmo cardíaco apresenta grande variabilidade entre indivíduos — e até dentro de um mesmo indivíduo — tanto em condições normais quanto patológicas. Além disso, o sinal de ECG é naturalmente sujeito a ruídos, artefatos e distorções.
+
+Essa variabilidade torna a detecção automática de arritmias um desafio, pois o modelo precisa aprender características que sejam generalizáveis a diferentes pacientes e condições. Soma-se a isso o desafio de projetar o próprio sistema de detecção: é necessário avaliar cuidadosamente decisões relacionadas a pré-processamento, seleção de \textit{features}, arquitetura do modelo e escolha de métricas, garantindo que estas sejam adequadas ao contexto clínico do problema.
+
+Diante desse cenário, o presente trabalho tem como objetivo aplicar um modelo de aprendizado profundo para a detecção de arritmias em sinais de ECG, investigando as decisões metodológicas envolvidas e analisando como interpretar adequadamente os resultados obtidos.
+
+Vale destacar que o foco deste trabalho não é propor um novo método ou alcançar desempenho de estado da arte, mas compreender o processo de modelagem, as decisões envolvidas e como interpretar os resultados obtidos.
+
+\section{Problema de pesquisa}
+
+\label{sec:problema_pesquisa}
+
+O desafio da aplicação de modelos de aprendizagem de máquina em sinais de ECG envolve tanto a busca por um bom desempenho quanto a definição das decisões metodológicas adequadas. Para isso, é fundamental compreender o domínio do problema, identificar quais \textit{features} são relevantes, selecionar as métricas apropriadas e avaliar como essas escolhas influenciam o processo de modelagem.
+
+Grande parte da complexidade surge da necessidade de conciliar dois domínios distintos: a cardiologia, que fornece o conhecimento clínico necessário para interpretar o sinal, e a aprendizagem de máquina, que disponibiliza as ferramentas computacionais para modelá-lo. Essa interseção exige entendimento suficiente de ambos os campos para formular o problema de modo coerente e avaliar corretamente os resultados.
+
+Diante desses desafios, estabeleceram-se os seguintes objetivos.
+
+\section{Objetivos}
+\subsection{Objetivo geral}
+
+Aplicar um modelo de aprendizagem profunda para a classificação de arritmias cardíacas em sinais de ECG e compreender os aspectos metodológicos envolvidos nesse processo.
+\subsection{Objetivos específicos}
+
+\begin{itemize}
+
+    \item \textbf{Compreender o eletrocardiograma e as arritmias cardíacas}: estudar a morfologia do ECG e sua relação com o funcionamento cardíaco, identificando padrões associados a diferentes arritmias.
+    \item \textbf{Analisar uma base de dados de ECG}: entender a estrutura do banco de dados utilizado, incluindo suas anotações e a relação destas com as patologias estudadas.
+    \item \textbf{Investigar técnicas de pré-processamento}: avaliar quais procedimentos são necessários para preparar o sinal antes de sua utilização em modelos baseados em redes neurais.
+    \item \textbf{Estudar arquiteturas de redes neurais aplicadas ao problema}: analisar como diferentes tipos de redes podem explorar características específicas do ECG.
+    \item \textbf{Avaliar métricas adequadas ao desempenho do modelo}: compreender como cada métrica contribui para a interpretação do modelo no contexto da classificação de arritmias.
+    \item \textbf{Realizar experimentos de classificação de arritmias}: aplicar uma arquitetura de rede neural ao problema e avaliar seu desempenho por meio de experimentação.
+\end{itemize}
