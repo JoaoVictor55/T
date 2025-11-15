@@ -36,3 +36,46 @@ jobs:
           name: Seu-Documento-PDF
           # O arquivo PDF gerado (o nome deve coincidir com o root_file)
           path: main.pdf
+
+# O Job de Deploy
+  deploy_pages:
+    # Garante que este job só rode após o job de build ter sucesso
+    needs: build_latex
+    
+    # As permissões são obrigatórias para o deploy
+    permissions:
+      pages: write      # Necessário para publicar no GitHub Pages
+      id-token: write   # Necessário para autenticação
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download do Artefato Compilado
+        uses: actions/download-artifact@v4
+        with:
+          name: Seu-Documento-Final
+          path: ./temp-pdf
+          
+      # 1. Cria a estrutura para o Pages (o Pages precisa de um diretório)
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+        
+      # 2. Move o PDF para o local correto para o Pages
+      - name: Preparar PDF para o Pages
+        run: |
+          mkdir public
+          cp ./temp-pdf/main.pdf public/index.pdf  # Renomeia para index.pdf (opcional)
+
+      # 3. Faz o Upload do PDF para o Pages
+      - name: Upload do Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./public # Pasta que contém o arquivo PDF
+
+      # 4. Faz o Deploy
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
