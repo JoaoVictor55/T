@@ -1,0 +1,38 @@
+name: Compilar LaTeX e Publicar PDF
+
+# Dispara o workflow em todo push para o branch principal (main/master)
+on:
+  push:
+    branches:
+      - main  # Altere para 'master' se for o nome do seu branch principal
+      - master
+
+# Define o conjunto de jobs que serão executados
+jobs:
+  build_latex:
+    # O job será executado em um runner do Ubuntu mais recente
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Faz o checkout do código
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      # 2. Compila o documento LaTeX
+      # Esta ação é mantida pela comunidade e encapsula o processo de compilação
+      - name: Compilar LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          # Substitua 'main.tex' pelo nome do seu arquivo principal (.tex)
+          root_file: main.tex 
+          # Este comando garante que pacotes como biblatex/biber sejam executados
+          compiler: latexmk
+          args: "-pdf -xelatex -shell-escape"
+
+      # 3. Publica o PDF como um Artefato
+      - name: Upload do PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Seu-Documento-PDF
+          # O arquivo PDF gerado (o nome deve coincidir com o root_file)
+          path: main.pdf
