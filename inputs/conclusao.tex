@@ -1,0 +1,28 @@
+\chapter{Conclusão}
+O presente trabalho buscou entender o processo de aplicação de redes neurais para a classificação de arritmias.
+Para tal, foi formulado um problema, a identificação de arritmias ventriculares e aplicado dois modelos de 
+redes neurais; um composto por GRUs e outro por GRUs com CNN que apresentam formas diferentes de abordar o 
+problema; enquanto no primeiro existe um foco no ECG em seu contexto sequencial, o outro emprega uma camada 
+convolucional para extrair características locais e então entender essas características no seu contexto. 
+
+Através das análises das métricas, verificou-se que o modelo híbrido apresentou desempenho superior, apesar 
+da existência de um \textit{overfit}. Para ganhar uma intuição maior sobre as razões, foi feita uma breve análise 
+do pior caso do modelo, onde foi verificado que o modelo falhou devido a um paciente com sinais mais atípicos, embora 
+clinicamente relevantes. 
+
+Durante a análise foi identificado outros problemas como superconfiança da rede que é um empecilho para uma adoção em 
+cenário real, embora tais problemas não sejam restritos a esse modelo. 
+
+\section{Trabalhos futuros}
+
+Como trabalho futuro, sugere-se continuar a explicação do pior cenário. Desta vez, analisando os demais 
+sinais presentes junto com o uso de um método de explicabilidade, como o LIME. Com isso, será possível 
+aprofundar compreensão das razões que levaram a rede a falhar nesse caso. Como a abordagem híbrida atingiu melhores 
+resultados, propõe-se continuar testando novas arquiteturas com o uso de redes recorrentes bidirecionais. 
+É preciso, também, contornar o problema do desbalanceamento, que pode ser feito ou com uso de dados artificiais ou 
+com a abordagem de redes concorrentes. 
+
+Ao atingir um resultado mais satisfatório, pode-se seguir com o teste final no conjunto Ds2 e, em seguida, 
+aplicar métodos para calibrar o modelo, obtendo probabilidades confiáveis e o uso de métodos para explicabilidade.
+Com isso, ao final, o modelo não teria apenas um bom desempenho, mas também a confiança necessária para ser aplicado 
+em um cenário crítico.

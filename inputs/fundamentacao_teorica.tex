@@ -1,4 +1,5 @@
 \chapter{Fundamentação Teórica}
+\label{ch:fundamentacao}
 
 \section{Funcionamento do coração}
 \label{sec:funciionamento_coracao}
@@ -10,7 +11,7 @@ Na figura \ref{fig:coracao_esquema_eletrico}, o sistema de condução elétrico 
 \begin{figure}[H]
   \centering
   \caption{Sistema de condução do coração}
-   \includegraphics[width=0.6\textwidth]{figuras/coracao_sistema_eletrico.png} % insere o tikzpicture puro
+   \includegraphics[width=0.35\textwidth]{figuras/coracao_sistema_eletrico.png} % insere o tikzpicture puro
   \label{fig:coracao_esquema_eletrico}
     \legend{Fonte: Adaptado de \citeonline{Mitchell_Arritmias_MSD}}
 \end{figure}
@@ -32,7 +33,7 @@ Na figura \ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, o
 \begin{figure}[H]
   \centering
   \caption{Exemplo de ECG com sua morfologia destacada}
-   \includegraphics[width=0.8\textwidth]{figuras/ecg_exemplo_coracao.png} % insere o tikzpicture puro
+   \includegraphics[width=0.7\textwidth]{figuras/ecg_exemplo_coracao.png} % insere o tikzpicture puro
   \label{fig:ecg_exemplo_coracao}
     \legend{Fonte: Adaptado de  \citeonline{msd_ecg}}
 \end{figure}
@@ -133,7 +134,7 @@ Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede
 \begin{figure}[H]
   \centering
   \caption{Exemplo de uma ANN \textit{feed-foward}}
-   \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/ann_ff_exemplo.png} % insere o tikzpicture puro
+   \includegraphics[width=0.55\textwidth]{figuras/ann_exemplos/ann_ff_exemplo.png} % insere o tikzpicture puro
   \label{fig:ann_ff_exemplo}
     \legend{Fonte: Adaptado de  \citeonline{james2023}}
 \end{figure}
@@ -206,7 +207,7 @@ Na Figura \ref{fig:funcoes_ativacao_exemplo}, são ilustradas as três funções
 \begin{figure}[H]
   \centering
   \caption{Funções de ativação Sigmoid, Tanh e ReLU}
-  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/funcoes_de_ativacao.png}
+  \includegraphics[width=0.6\textwidth]{figuras/ann_exemplos/funcoes_de_ativacao.png}
   \label{fig:funcoes_ativacao_exemplo}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -312,7 +313,7 @@ Na Figura \ref{fig:rnn_exemplo}, é ilustrada uma RNN simples com apenas um neur
 \begin{figure}[H]
   \centering
   \caption{Exemplo de uma RNN}
-   \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/rnn_exemplo.png}
+   \includegraphics[width=0.6\textwidth]{figuras/ann_exemplos/rnn_exemplo.png}
   \label{fig:rnn_exemplo}
   \legend{Fonte: Adaptado de \citeonline{james2023}}
 \end{figure}
@@ -374,7 +375,7 @@ Na Figura \ref{fig:lstm_exemplo}, é apresentado o diagrama de uma célula LSTM 
 \begin{figure}[H]
   \centering
   \caption{Esquema de uma célula LSTM}
-  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/lstm_celula.png}
+  \includegraphics[width=0.55\textwidth]{figuras/ann_exemplos/lstm_celula.png}
   \label{fig:lstm_exemplo}
   \legend{Fonte: Adaptado de \citeonline{geron2022hands}}
 \end{figure}
@@ -420,7 +421,7 @@ Na figura \ref{fig:gru_exemplo}, é apresentado um esquema ilustrativo dessa cé
 \begin{figure}[H]
   \centering
   \caption{Esquema de uma célula GRU}
-  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/gru_celula.png}
+  \includegraphics[width=0.55\textwidth]{figuras/ann_exemplos/gru_celula.png}
   \label{fig:gru_exemplo}
   \legend{Fonte: Adaptado de \citeonline{geron2022hands}}
 \end{figure}
@@ -456,7 +457,7 @@ formar os olhos, orelhas, até que, enfim, a rede reconhece o tigre.
 \begin{figure}[H]
   \centering
   \caption{Esquema de como uma CNN identificaria um tigre}
-  \includegraphics[width=0.8\textwidth]{figuras/ann_exemplos/cnn_tigre.png}
+  \includegraphics[width=0.55\textwidth]{figuras/ann_exemplos/cnn_tigre.png}
   \label{fig:cnn_tigre}
   \legend{Fonte: Adaptado de \citeonline{james2023}}
 \end{figure}
@@ -549,3 +550,4 @@ permitindo que a rede aprenda padrões locais (com tamanho máximo igual ao do f
 Com múltiplos filtros, obtém-se uma sequência de \textit{features} que podem, em seguida, 
 ser processadas por uma RNN, capturando dependências temporais mais longas.
 
+\input{inputs/revisao_literatura}
