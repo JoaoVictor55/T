@@ -1,21 +1,10 @@
 name: Compilar LaTeX e Publicar PDF
-uses: xu-cheng/latex-action@v2
-with:
-    root_file: main.tex 
-    compiler: latexmk
-    # Argumentos simplificados
-    args: -pdf -xelatex
-    # Remova ou deixe em branco se o seu documento não precisa de algo fora do TeX Live básico
-    # Se precisar de algum pacote TeX Live, use 'extra_packages' (Veja a Observação)
-    extra_system_packages: "" # <--- Deixe vazio ou remova completamente.
-    extra_packages: >
-            biblatex 
-            titlesec
+
 # Dispara o workflow em todo push para o branch principal (main/master)
 on:
   push:
     branches:
-      - main  # Altere para 'master' se for o nome do seu branch principal
+      - main
       - master
 
 # Define o conjunto de jobs que serão executados
@@ -27,27 +16,29 @@ jobs:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
 
-      - name: Compilar LaTeX (na raiz)
+      - name: Compilar LaTeX e Instalar Pacotes
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex 
           compiler: latexmk
-          # Argumentos simplificados pois o latexmk já procura em subpastas padrão
+          # Use -xelatex para suporte a fontes e unicode
           args: -pdf -xelatex
-          # Opcional, para garantir pacotes:
-          extra_system_packages: >
-            texlive-bibtex-extra 
-            texlive-latex-extra 
-            texlive-pictures
+          
+          # Use 'extra_packages' para pacotes TeX Live (nomes tlmgr)
+          extra_packages: >
+            biblatex 
+            titlesec
+          # Removido 'extra_system_packages' para evitar conflito no Alpine Linux
+          
       - name: Upload do PDF Compilado como Artefato
         uses: actions/upload-artifact@v4
         with:
-          name: main.pdf # <--- NOME DO ARTEFATO: Deve coincidir com o nome do download
-          path: main.pdf # <--- CAMINHO DO ARQUIVO: Onde o PDF foi gerado pelo latex-action
-
+          name: main.pdf # NOME DO ARTEFATO: Deve ser o mesmo no download
+          path: main.pdf # Caminho do arquivo PDF gerado
+          
   deploy_pages:
-    needs: build_latex
-    # Permissões e ambientes...
+    needs: build_latex # Este job só roda após a compilação (build_latex)
+    # Permissões necessárias para usar GitHub Pages
     permissions:
       pages: write     
       id-token: write  
@@ -58,21 +49,23 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: main.pdf
+      - name: Baixar o Artefato main.pdf
         uses: actions/download-artifact@v4
         with:
-          name: main.pdf # Deve coincidir com o nome do upload acima
+          name: main.pdf # Deve coincidir exatamente com o nome do upload acima
           path: ./temp-pdf
           
       - name: Configurar Pages e Mover PDF
         run: |
+          # O GitHub Pages serve a pasta 'public'
           mkdir public
+          # Move o PDF baixado para o local de publicação e o renomeia para index.pdf (URL raiz)
           cp ./temp-pdf/main.pdf public/index.pdf 
 
       - name: Upload do Pages Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./public
+          path: ./public # Faz o upload da pasta 'public'
 
       - name: Deploy para GitHub Pages
         id: deployment
