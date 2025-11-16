@@ -113,22 +113,23 @@ Por fim, foi necessário uniformizar o tamanho dos batimentos antes de alimentá
 
 Na figura abaixo é ilustrado um batimento segmentado e limpo e o seu trecho correspondente crú.
 
-\begin{figure}[H]
-  \centering
-   \caption{ECG original vs limpo e segmentado}
-   \includegraphics[width=0.6\textwidth]{figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png} 
-  \label{fig:ecg_original_vs_tratado}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-Já na figura é ilustrado o mesmo batimento segmentado e o mesmo após ser reamostrado.
-
-\begin{figure}[H]
-  \centering
-   \caption{ECG original vs limpo e segmentado}
-   \includegraphics[width=0.6\textwidth]{figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png} 
-  \label{fig:ecg_tratado_e_reamostrado}
-  \legend{Fonte: Elaborado pelo autor.}
+\begin{figure}[h!]
+    \centering
+    \caption{Comparação entre o ECG original, segmentado e reamostrado}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png}
+        \subcaption{ECG crú e segmentado}
+        \label{fig:image1}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png} 
+        \subcaption{ECG segmentado e reamostrado}
+        \label{fig:image2}
+    \end{minipage}
+    \label{fig:twoimages}
+    \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
 \subsection{Features}

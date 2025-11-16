@@ -1,6 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
+A level-1 auxiliary file: includes/resumo.aux
 A level-1 auxiliary file: includes/lista_siglas.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -29,7 +30,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 +---------------------------------------------------------+
 You've used 32 entries,
             6714 wiz_defined-function locations,
-            1408 strings with 17558 characters,
+            1409 strings with 17577 characters,
 and the built_in function-call counts, 53867 in all, are:
 = -- 6487
 > -- 983

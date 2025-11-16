@@ -1,0 +1,26 @@
+\setlength{\absparsep}{18pt}
+\begin{resumo}
+
+O presente trabalho teve como objetivo principal aplicar modelos de aprendizagem profunda para a classificação de arritmias cardíacas ventriculares em sinais de ECG. O foco não foi alcançar o estado da arte, mas sim compreender o processo metodológico envolvido , investigando as técnicas de pré-processamento , as arquiteturas de redes neurais e as métricas de avaliação adequadas ao problema.
+
+Para isso, a metodologia utilizou o banco de dados MIT-BIH Arrhythmia Database , focando na classe ventricular (V). O pré-processamento incluiu a limpeza de ruídos do sinal , segmentação e reamostragem dos batimentos para 288 amostras , além da inclusão dos intervalos RR como features. Foram comparadas duas arquiteturas: um modelo GRU puro e um modelo híbrido (CNN + GRU). Ambos foram treinados com sequências de 16 batimentos e avaliados usando uma estratégia interpaciente com validação cruzada de 5 folds no conjunto DS1.
+
+Os resultados indicaram que o modelo híbrido (CNN + GRU) teve um desempenho superior ao do GRU puro , atingindo um F1-Score médio de 0,8593 e recall de 0,8726, em comparação com 0,8060 de F1-Score do modelo GRU. Embora ambos os modelos tenham demonstrado sobreajuste , o fenômeno foi menos intenso no modelo híbrido. Uma análise de erros do pior cenário revelou que 98,46\% das falhas se concentraram em um único paciente (203), notório por sua complexidade. Além disso, identificou-se um problema de superconfiança nas previsões do modelo.
+
+Em conclusão, o trabalho atingiu seu objetivo de explorar e compreender o processo de aplicação de deep learning ao ECG. A superioridade do modelo híbrido sugere que a estratégia de usar CNNs para extração de características morfológicas combinada com GRUs para análise temporal é vantajosa. A análise dos erros, do overfitting e da superconfiança evidenciou os desafios práticos e as limitações atuais para a aplicação desses modelos em cenários clínicos reais, principalmente devido à alta variabilidade dos sinais entre pacientes.
+
+\vspace{\onelineskip}
+\noindent 
+\textbf{Palavras-chave}: aprendizado de máquina. eletrocardiograma. redes neurais
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+     
+    \vspace{\onelineskip}
+    
+    \noindent 
+    \textbf{Keywords}: 
+ \end{otherlanguage*}
+\end{resumo}
