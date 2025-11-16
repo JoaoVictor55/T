@@ -18,29 +18,54 @@ on:
 # Define o conjunto de jobs que serão executados
 jobs:
   build_latex:
-    # O job será executado em um runner do Ubuntu mais recente
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Faz o checkout do código
       - name: Checkout do Repositório
         uses: actions/checkout@v4
 
-      # 2. Compila o documento LaTeX
-      # Esta ação é mantida pela comunidade e encapsula o processo de compilação
-      - name: Compilar LaTeX
+      - name: Compilar LaTeX (na raiz)
         uses: xu-cheng/latex-action@v2
         with:
-          # Substitua 'main.tex' pelo nome do seu arquivo principal (.tex)
           root_file: main.tex 
-          # Este comando garante que pacotes como biblatex/biber sejam executados
           compiler: latexmk
-          args: "-pdf -xelatex -shell-escape"
+          # Argumentos simplificados pois o latexmk já procura em subpastas padrão
+          args: -pdf -xelatex
+          # Opcional, para garantir pacotes:
+          extra_system_packages: >
+            texlive-bibtex-extra 
+            texlive-latex-extra 
+            texlive-pictures
 
-      # 3. Publica o PDF como um Artefato
-      - name: Upload do PDF
-        uses: actions/upload-artifact@v4
+  deploy_pages:
+    needs: build_latex
+    # Permissões e ambientes...
+    permissions:
+      pages: write     
+      id-token: write  
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: main.pdf
+        uses: actions/download-artifact@v4
         with:
-          name: Seu-Documento-PDF
-          # O arquivo PDF gerado (o nome deve coincidir com o root_file)
-          path: main.pdf
+          name: main.pdf # Deve coincidir com o nome do upload acima
+          path: ./temp-pdf
+          
+      - name: Configurar Pages e Mover PDF
+        run: |
+          mkdir public
+          cp ./temp-pdf/main.pdf public/index.pdf 
+
+      - name: Upload do Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./public
+
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
