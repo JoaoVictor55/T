@@ -1,5 +1,13 @@
 name: Compilar LaTeX e Publicar PDF
-
+uses: xu-cheng/latex-action@v2
+with:
+    root_file: main.tex 
+    compiler: latexmk
+    # Argumentos simplificados
+    args: -pdf -xelatex
+    # Remova ou deixe em branco se o seu documento não precisa de algo fora do TeX Live básico
+    # Se precisar de algum pacote TeX Live, use 'extra_packages' (Veja a Observação)
+    extra_system_packages: "" # <--- Deixe vazio ou remova completamente.
 # Dispara o workflow em todo push para o branch principal (main/master)
 on:
   push:
