@@ -101,18 +101,43 @@ Além de ser recomendado pela AAMI.
 \section{Pré-processamento}
 \label{sec:pre_process}
 
-Antes de usar o sinal do ECG como entrada, ele precisou passar por uma etapa de pré-processamento que consistiu em uma limpeza de ruídos e segmentação.
-Para a diminuição do ruído, foi utilizando um filtro passa-alta de ordem 5 de 0,5 hz, seguido por uma filtragem de linha de energia de 60hz. 
-Isso foi importante para remover ruídos musculares e ruídos oriundos da alimentação dos aparelhos. 
+Antes de utilizar o sinal de ECG como entrada dos modelos, foi necessária uma etapa de pré-processamento composta por limpeza de ruídos, segmentação e padronização dos batimentos. Essa etapa é importante porque o ECG está sujeito a diversos artefatos que podem prejudicar o aprendizado das redes neurais. Como o exame registra a atividade elétrica do coração, correntes elétricas externas ou internas ao organismo podem modificar o sinal. Entre os ruídos mais comuns estão o ruído muscular (proveniente da contração de outros músculos), o baseline wander (variação lenta associada à respiração) e a interferência de 60 Hz da rede elétrica, como discutido na seção \ref{sec:trabalhos_correlatos}.
 
-Em seguida, os batimentos foram segmentados em batimentos individuais. Nas duas etapas foram utilizadas a biblioteca NeuroKit2 \cite{Makowski2021neurokit}.
-A vantagem dessa abordagem é poder ter um batimento completo, com menor risco de cortar ou incluir partes de batimentos adjacentes, caso a segmentação 
-fosse feita utilizando uma janela de tempo fixa. Entretanto, como os batimentos possuem tamanhos diferentes, eles foram em seguida, remostrados para 
-terem 800ms utilizando a função resample presenta na biblioteca Scipy \cite{2020SciPy-NMeth}.
+Apesar disso, alguns trabalhos utilizam o sinal praticamente cru, delegando ao próprio modelo o papel de identificar o que é ou não relevante. Essa abordagem simplifica o pré-processamento, mas aumenta a complexidade do problema de aprendizado e pode demandar bases maiores ou arquiteturas mais robustas.
+
+Outro desafio importante é a segmentação do ECG em batimentos individuais. Conforme observado nos trabalhos correlatos, existem duas abordagens principais: o uso de janelas de tempo fixas ou janelas adaptadas ao tamanho do batimento. Janelas fixas são simples, mas podem cortar partes importantes do complexo QRS ou incluir trechos de batimentos vizinhos. Em ambas as estratégias, o pico R é normalmente utilizado como referência. Uma vantagem do MIT-BIH é que esses picos já estão anotados; quando não estão, podem ser identificados por algoritmos como o de \citeonline{pantompkins1985}.
+
+Neste trabalho, optou-se por trabalhar com o sinal o mais próximo possível do original, preservando suas características fisiológicas e facilitando análises posteriores. Por isso, adotou-se a segmentação flexível. Inicialmente, o sinal foi limpo com um filtro passa-alta de 0,5 Hz (ordem 5), seguido de filtragem da linha de energia a 60 Hz. Em seguida, foi executada a segmentação. Ambas as etapas utilizaram a biblioteca NeuroKit2 \cite{Makowski2021neurokit}.
+
+Por fim, foi necessário uniformizar o tamanho dos batimentos antes de alimentá-los nos modelos. A média das amostras por batimento foi de aproximadamente 284; portanto, adotou-se uma reamostragem para 288 amostras, correspondendo a 800 ms de duração. Essa etapa foi realizada com a função resample da biblioteca SciPy \cite{2020SciPy-NMeth}.
+
+Na figura abaixo é ilustrado um batimento segmentado e limpo e o seu trecho correspondente crú.
+
+\begin{figure}[H]
+  \centering
+   \caption{ECG original vs limpo e segmentado}
+   \includegraphics[width=0.6\textwidth]{figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png} 
+  \label{fig:ecg_original_vs_tratado}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+Já na figura é ilustrado o mesmo batimento segmentado e o mesmo após ser reamostrado.
+
+\begin{figure}[H]
+  \centering
+   \caption{ECG original vs limpo e segmentado}
+   \includegraphics[width=0.6\textwidth]{figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png} 
+  \label{fig:ecg_tratado_e_reamostrado}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
 
 \subsection{Features}
 
-A única \textit{feature} usada foi o intervalo RR que é calculado da seguinte forma: 
+Após o pré-processamento, é necessário avaliar quais features devem ser utilizadas. Em problemas de ECG, essas features precisam ser relevantes para o domínio clínico. Por outro lado, redes neurais apresentam a vantagem de aprender representações diretamente dos dados brutos, o que reduz a necessidade de engenharia manual de atributos. Ainda assim, algumas features simples podem complementar o aprendizado, fornecendo informação explícita que ajude o modelo a distinguir padrões.
+
+Neste trabalho, optou-se por utilizar apenas o intervalo RR como feature adicional, permitindo que a própria rede aprenda as demais características relevantes a partir do sinal segmentado. O intervalo RR é uma informação particularmente útil porque descreve o tempo entre batimentos consecutivos. Essa informação ajuda na identificação de arritmias cuja principal manifestação é temporal, como no caso dos batimentos ventriculares prematuros (PVCs), em que ocorre um encurtamento característico desse intervalo.
+
+Assim, para um batimento \textit{i}, seu intervalo RR é calculado da seguinte forma.
 
 \begin{equation}
 \text{pré RR intervalo} = R_{i-1} - R_{i}
@@ -122,14 +147,19 @@ A única \textit{feature} usada foi o intervalo RR que é calculado da seguinte 
 \text{pós RR intervalo} = R_{i} - R_{i+1}
 \end{equation}
 
+Note que é necessário saber sobre o próximo batimento, isto é o futuro. Em um contexto de classificação em tempo real, 
+por exemplo, isso poderia ser um vazamento, o que não é o caso deste projeto.
+
 \section{Arquiteturas}
 \label{sec:modelos}
 
-Foram testadas dois tipos de arquiteturas, uma é o uso de RNNs puras e a outra é uma arquitetura híbrida com CNNs. 
+Após o pré-processamento e a definição das features, é necessário escolher as arquiteturas de rede neural que serão avaliadas. Como discutido por \citeonline{geron2022hands}, a busca por hiperparâmetros ideais e por configurações de modelo costuma ser um processo altamente experimental, podendo incluir técnicas automáticas — como grid search ou random search —, mas que, no contexto de redes neurais profundas, frequentemente se torna inviável devido ao custo computacional.
 
-A primeira arquitetura de pura é composta por três camadas de GRUs com 256 unidades ocultas. Essa arquitetura foi utilizada em \citeonline{narotamo2024}, onde obteve o melhor desempenho. 
-A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela também recebeu os intervalos RRs pré e pós:
+Uma alternativa prática consiste em partir de arquiteturas já propostas na literatura e adaptá-las ao problema estudado. Seguindo essa estratégia, para o modelo recorrente puro foi adotada como referência a arquitetura apresentada em \citeonline{narotamo2024}. No trabalho original, os autores utilizam três camadas de GRUs, cada uma com 256 unidades ocultas, explorando a capacidade das redes recorrentes de modelar dependências temporais no sinal.
 
+Neste projeto, a arquitetura base foi mantida, mas com adaptações. Diferentemente do trabalho original, que utiliza um conjunto de features mais elaborado e entradas estruturadas em múltiplos ramos, aqui optou-se por uma abordagem mais simples: o sinal segmentado é concatenado diretamente às features do intervalo RR e alimentado ao modelo como uma única entrada.
+
+A Figura \ref{fig:gru_pura} apresenta um esquema da arquitetura utilizada.
 
 \begin{figure}[H]
   \centering
@@ -139,7 +169,16 @@ A diferença é que nesse trabalho, além da rede receber o sinal do ECG, ela ta
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-A segunda rede é uma híbrida de CNN com GRU:
+A segunda arquitetura avaliada é um modelo híbrido composto por camadas convolucionais seguidas de uma camada recorrente do tipo GRU. Nessa abordagem, o bloco convolucional é aplicado individualmente a cada batimento da sequência, gerando para cada um deles um mapa de features que, em seguida, compõe a nova sequência processada pelo bloco recorrente.
+
+O bloco convolucional é formado por duas camadas de CNN: a primeira com 32 filtros e kernel de tamanho sete, e a segunda com 64 filtros e kernel de tamanho cinco, ambas utilizando padding adequado para preservar o comprimento da entrada. A escolha do tamanho do filtro, ou kernel, 
+envolve a escolha entre padrões globais, com um kernel maior, ou padrões mais locais, com um kernel menor. Arquiteturas profundas costumam usar kernels pequenos. Como esta tem apenas duas camadas, foi utilizado um de tamanho sete, e outro de tamanho 5.
+
+Cada camada convolucional é seguida por batch normalization — para estabilizar o treinamento — e por global max pooling, que reduz a dimensionalidade do mapa de features e contribui para mitigar sobreajuste ao reter apenas as ativações mais relevantes.
+
+A etapa recorrente é composta por uma camada GRU com 256 unidades, responsável por modelar a dependência temporal entre os batimentos por meio das representações produzidas pelo bloco convolucional.
+
+Essa arquitetura representa uma versão simplificada do modelo proposto por \citeonline{narotamo2024}. 
 
 \begin{figure}[H]
   \centering
@@ -149,49 +188,28 @@ A segunda rede é uma híbrida de CNN com GRU:
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-O bloco de CNN precisou ser aplicado em cada batimento dentro da sequência. Trata-se de duas camadas de CNN com 32, com \textit{kernel} de tamanho sete, e 64 filtros, com \textit{kernel} de tamanho cinco, respectivamente.
-Todos com \textit{padding} igual. Cada 
-uma seguida por uma camada de \textit{batch normalization} e \textit{global max pooling} para evitar sobre ajuste e reduzir as \textit{features} respectivamente. 
-A camada recorrente é formada por 256 neurônios.
-
 Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
-das CNNs.
+das CNNs já que o objetivo era que esta extraísse \textit{features} morfológicas.
 
-Ambos os modelos recebem uma sequência de 16 batimentos junto com as \textit{features} RR.
+\subsection{Tamanho da sequência}
 
-Para otimização do processo de treinamento, foram utilizados os mecanismos de \textit{early stopping} e \textit{reduce on plateau},responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente.
-Ambos monitoraram o \textit{f1-score}.
+Para otimizar o processo de treinamento, foram empregados os mecanismos de early stopping e reduce on plateau, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente. Ambos monitoraram o f1-score, de forma que a rede buscasse um equilíbrio entre precisão e recall. Assim, mesmo após o treinamento, era possível ajustar manualmente esse compromisso com auxílio da curva PR.
 
-Conforme discutido na seções \ref{sec:fundamentos_rnn} e \ref{sec:fundamentos_cnn}, redes neurais recorrentes mostram bom desempenho para lidar com dados sequenciais. Mais precisamente, as 
-RNNs e suas variações tem uma boa capacidade em aprender o contexto da sequência e como ela evolui. Já as CNNs são boas extratoras de \textit{features}. Elas montam uma 
-hierarquia de \textit{features} em um nível progressivo de sofisticação, permitindo distinguir as instâncias das classes
-Em um cenário de de um ECG, elas poderia aprender partes morfológicas como as ondas P ou partes do complexo QRS.
+Em ambos os modelos, utilizou-se uma sequência composta por 16 batimentos, sendo a classificação realizada apenas no último elemento da sequência. Dessa forma, o problema caracteriza-se como uma tarefa de sequência para vetor, conforme discutido na Seção~\ref{sec:fundamentos_rnn}.
 
-Na seção \ref{sub_sec:padroes_arritmias_aami}, foi discutido como a classificação de arritmias considera, entre outras coisas, os aspectos morfológicos do batimento e também o 
-contexto sequencial que ele está. Desse modo, o uso de redes RNN e CNN para poder explorar essas duas frentes.
+A escolha do tamanho da sequência foi feita empiricamente. Inicialmente, avaliou-se uma arquitetura simples — uma única camada de LSTM com 100 unidades — utilizando uma validação cruzada one hold out. Embora validações com mais folds reduzam o viés na estimativa de generalização, conforme \citeonline{james2023}, o custo computacional cresce proporcionalmente, o que motivou a escolha desse arranjo mais enxuto para experimentação inicial.
 
-A rede RNN pode aprender bem as características de uma sequência normal e o seu desempenho poderia ser potencializado com o acréscimo da CNN; pois enquanto 
-a CNN aprende as características locais, a RNN pode aprender como as características se encaixam no contexto maior.
+Foram testadas sequências de 10, 16 e 20 batimentos. Houve melhora de desempenho ao passar de 10 para 16 batimentos, porém o aumento para 20 resultou em um consumo de memória excessivamente elevado, sem ganho proporcional. Por esse motivo, definiu-se o tamanho final da sequência como 16 batimentos.
 
-Por fim, segundo \citeonline{geron2022hands}, não há uma formula universal da escolha dos hiperparâmetros tais como: quantidade de neurônios, tamanho dos filtros, ou 
-quantidade de camada. Geralmente, quanto mais camadas e neurônios, mais complexas são as relações que a rede pode aprender, porém isso pode 
-trazer questões como o gradiente instável ou \textit{overfit}.
-A escolha no fim vai depender de fatores como 
-os recursos computacionais disponíveis e a a quantidade de dados ou mesmo quão desempenho espera-se do modelo.
-
-Neste trabalho, a escolha do tamanho da sequência foi baseada nos melhores resultados iniciais
-e os demais hiperparâmetros foram escolhidos via experimentação com arquiteturas apresentadas em outros trabalhos tais como: \citeonline{narotamo2024}.
-
-As redes foram treinadas por 50 épocas.
+As redes foram treinadas por até 50 épocas.
 
 \section{Estratégia de avaliação}
 
-Os dados foram particionados seguindo a estratégia inter-paciente proposta por Chazel et al. (apud \citeonline{silva2025}), na qual batimentos de um mesmo paciente não podem aparecer simultaneamente nos conjuntos de treinamento e validação. 
-O objetivo é garantir a capacidade de generalização do modelo para diferentes pacientes. 
-Além disso, conforme recomendado pela AAMI, registros de pacientes com marcapasso foram excluídos.
-
-Nesta divisão, o banco costuma ser dividido em Ds1 e Ds2. O primeiro costuma ser usado para treino e o segundo para teste.
-Os registros 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230 formam o DS1. Os demais (100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234), o Ds2
+Em seguida, é preciso escolher uma estratégia de avaliação. Conforme apresentado na seção \ref{sec:trabalhos_correlatos},
+existem duas estratégias principais: a interpaciente e a intra-paciente. Na primeira, o modelo é exposto a um cenário mais realista,
+ele precisa classificar ECG inéditos. O desafio reside justamente na variabilidade dos tipos arrítmicos. Assim, \citeonline{chazal2004}
+propôs dois conjuntos de dados para o MIT-BIH; o Ds1 que é formado por: 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230
+e o Ds2, formado por: 100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234.
 
 Note que o conjunto Ds1 inclui 12 registros que são resultados da seleção aleatória e 10 dos registros com as morfologias complexas. Já no Ds2 possui 
 oito dessa primeira seleção e 14 da segunda; sendo mais desafiador e feito para testar a capacidade de generalização do modelo.
@@ -216,10 +234,7 @@ Como pode ser observado, as classes são desbalanceadas dentro do mesmo conjunto
 
 A avaliação foi feita utilizando uma avaliação cruzada no conjunto Ds1 inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais, utilizando o particionados
 inter-paciente. Esta estratégia permite avaliar o modelo com ECGs de pacientes para o qual ele não foi treinado; sendo mais próximo de um contexto clínico 
-e expõe o modelo a mais variação.
-
-Outra estratégia ser o particionamento intra-paciente, onde batimentos de um mesmo paciente podem aparecer tanto no treino quanto na validação. Essa estratégia seria 
-mais adequada para um modelo personalizado, por exemplo. 
+e expõe o modelo a mais variação. Além disso, conforme a AAMI, batimentos com marcapasso foram excluídos por serem não representativos.
 
 Na tabela \ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold}.
 

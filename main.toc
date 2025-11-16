@@ -26,26 +26,26 @@
 \contentsline {subsection}{\numberline {2.5.1}Long Short-Term Memory (LSTM)}{24}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}GRU}{25}{subsection.2.5.2}%
 \contentsline {section}{\numberline {2.6}Redes Neurais Convolucionais}{26}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Trabalhos correlatos}{28}{section.2.7}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Trabalhos correlatos}}{29}{chapter.3}%
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Metodologia}}{34}{chapter.3}%
+\contentsline {section}{\numberline {3.1}O banco de dados}{35}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Pré-processamento}{37}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Features}{39}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Arquiteturas}{40}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Tamanho da sequência}{42}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Estratégia de avaliação}{43}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Métricas}{44}{subsection.3.4.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Metodologia}}{34}{chapter.4}%
-\contentsline {section}{\numberline {4.1}O banco de dados}{35}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Pré-processamento}{37}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Features}{37}{subsection.4.2.1}%
-\contentsline {section}{\numberline {4.3}Arquiteturas}{38}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Estratégia de avaliação}{40}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Métricas}{41}{subsection.4.4.1}%
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Resultados e discussões}}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Resultados do modelo GRU}{49}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Resultados do modelo híbrido GRU e CNN}{55}{section.4.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Resultados e discussões}}{46}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Resultados do modelo GRU}{46}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Resultados do modelo híbrido GRU e CNN}{52}{section.5.2}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Análise de erros no pior \textit {fold}}}{64}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Análise de erros do modelo híbrido CNN com GRU}{64}{section.5.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Análise de erros no pior \textit {fold}}}{61}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Análise de erros do modelo híbrido CNN com GRU}{61}{section.6.1}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {7}\MakeTextUppercase []{Conclusão}}{71}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Trabalhos futuros}{71}{section.7.1}%
-\contentsline {section}{REFERÊNCIAS}{71}{section.7.1}%
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusão}}{74}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Trabalhos futuros}{74}{section.6.1}%
+\contentsline {section}{REFERÊNCIAS}{74}{section.6.1}%
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{72}{section*.8}%
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{75}{section*.8}%

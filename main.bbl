@@ -108,6 +108,11 @@ Dispon{\'\i}vel em: \url{https://api.semanticscholar.org/CorpusID:56173441}.}
 {NICULESCU-MIZIL, A.; CARUANA, R. Predicting good probabilities with supervised learning. In:  \emph{Proceedings of the 22nd International Conference on Machine Learning}. New York, NY, USA: Association for Computing Machinery, 2005.  (ICML '05), p. 625–632.
 ISBN 1595931805. Dispon{\'\i}vel em: \url{https://doi.org/10.1145/1102351.1102430}.}
 
+\bibitem[Pan e Tompkins 1985]{pantompkins1985}
+\abntrefinfo{Pan e Tompkins}{PAN; TOMPKINS}{1985}
+{PAN, J.; TOMPKINS, W.~J. A real-time qrs detection algorithm.
+\emph{IEEE Transactions on Biomedical Engineering}, BME-32, n.~3, p. 230--236, 1985.}
+
 \bibitem[Patti, Horenstein e Ashurst 2025]{statpearls_svt}
 \abntrefinfo{Patti, Horenstein e Ashurst}{PATTI; HORENSTEIN; ASHURST}{2025}
 {PATTI, L.; HORENSTEIN, M.~S.; ASHURST, J.~V. \emph{Supraventricular Tachycardia}. Treasure Island, FL: StatPearls Publishing, 2025. Disponível em: NCBI Bookshelf. Acesso em: 25 out. 2025. Dispon{\'\i}vel em: \url{https://www.ncbi.nlm.nih.gov/books/NBK441972/}.}
