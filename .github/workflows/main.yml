@@ -60,7 +60,20 @@ jobs:
           # O GitHub Pages serve a pasta 'public'
           mkdir public
           # Move o PDF baixado para o local de publicação e o renomeia para index.pdf (URL raiz)
-          cp https://joaovictor55.github.io/T/index.pdf 
+          cp ./temp-pdf/main.pdf public/index.pdf 
+          # Cria um index.html que redireciona para o index.pdf
+          echo '
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta http-equiv="refresh" content="0; url=index.pdf">
+              <title>Documento Compilado</title>
+            </head>
+            <body>
+              <p>O documento está em <a href="index.pdf">index.pdf</a>.</p>
+            </body>
+            </html>
+          ' > public/index.html
 
       - name: Upload do Pages Artifact
         uses: actions/upload-pages-artifact@v4
