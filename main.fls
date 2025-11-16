@@ -788,11 +788,11 @@ INPUT ./figuras/analise_erros/poincare_paciente_mais_facil_neg.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_facil_neg.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_facil_neg.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_facil_neg.png
-INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente.png
-INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente.png
-INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente.png
-INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente.png
-INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente.png
+INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png
+INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png
+INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png
+INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png
+INPUT ./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png
 INPUT ./inputs/conclusao.tex
 INPUT ./inputs/conclusao.tex
 INPUT inputs/conclusao.tex

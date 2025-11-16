@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  16 NOV 2025 14:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  16 NOV 2025 19:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1633,13 +1633,13 @@ File: figuras/analise_erros/poincare_paciente_mais_facil_neg.png Graphic file (t
 <use figuras/analise_erros/poincare_paciente_mais_facil_neg.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.png  used on input line 154.
 (pdftex.def)             Requested size: 317.07614pt x 313.77415pt.
- [70 <./figuras/analise_erros/poincare_paciente_mais_dificil_tp.png> <./figuras/analise_erros/poincare_paciente_mais_dificil_tn.png>]
-<figuras/analise_erros/curva_calibracao_pior_paciente.png, id=896, 723.4227pt x 379.4175pt>
-File: figuras/analise_erros/curva_calibracao_pior_paciente.png Graphic file (type png)
-<use figuras/analise_erros/curva_calibracao_pior_paciente.png>
-Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente.png  used on input line 178.
+ [70 <./figuras/analise_erros/poincare_paciente_mais_dificil_tp.png> <./figuras/analise_erros/poincare_paciente_mais_dificil_tn.png>] [71 <./figuras/analise_erros/poincare_paciente_mais_facil_neg.png>]
+<figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=901, 723.4227pt x 379.4175pt>
+File: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png Graphic file (type png)
+<use figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png>
+Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png  used on input line 184.
 (pdftex.def)             Requested size: 362.37569pt x 190.05563pt.
- [71 <./figuras/analise_erros/poincare_paciente_mais_facil_neg.png>])) (./inputs/conclusao.tex [72 <./figuras/analise_erros/curva_calibracao_pior_paciente.png>]) (./main.bbl [73
+)) (./inputs/conclusao.tex [72 <./figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png>]) (./main.bbl [73
 
 ]
 bibitemlist
@@ -1667,14 +1667,14 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  45532 strings out of 474222
- 1003887 string characters out of 5748733
+ 1004013 string characters out of 5748733
  1957975 words of memory out of 5000000
  66419 multiletter control sequences out of 15000+600000
  705497 words of font info for 285 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1058b,2279s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (77 pages, 4414411 bytes).
+Output written on main.pdf (77 pages, 4423939 bytes).
 PDF statistics:
  1245 PDF objects out of 1440 (max. 8388607)
  1025 compressed objects within 11 object streams

@@ -156,12 +156,18 @@ os modelos receberam as mesmas \textit{features} RR, então a vantagem da extra�
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Para visualizar o quão confiante o modelo foi em seus erros, na figura \ref{fig:curva_calibracao_pior_paciente} está a curva de calibração para esse paciente.
-É possível observa um cenário de superconfiança, pois a curva está abaixo da diagonal. 
-Por exemplo, considerando que em um grupo, o modelo preveja que em média, 90\% deles serão arrítmicos, a realidade é que menos de 60\% deles são. É possível observar,
+Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 113, 
+
+Em ambos os casos, o modelo foi superconfiante, pois as curvas se mantém a baixo da diagonal principal. Entretanto,
+como a curva do paciente 119 se aproxima mais da diagonal, então a para este paciente, a falta de calibração
+foi menos severa. Após o \textit{bin} de probabilidade média de 80\%, próximo ao de 100\%, a curva do paciente 119 cruza a diagonal; assim 
+o cenário se inverte, o modelo passa a ser pouco confiante.
+
+Para o paciente 203, considerando que em um grupo, o modelo preveja que em média, 90\% deles serão arrítmicos, a realidade é que menos de 60\% deles são. É possível observar,
 também, como a superconfiança é mais intensa para \textit{bins} abaixo dos 80\%.
 
 Conforme a discussão da seção \ref{sec:metricas}, a calibração não é diretamente relacionada ao desempenho de um modelo medida pelas métricas usuais.
+Isto pode ser observada na curva de calibração do paciente 113 onde o desempenho foi alto, mas a falta de calibração também existe.
 Assim, mesmo se o modelo fosse muito sensível e tivesse uma precisão baixa, caso ele fosse bem calibrado, o tomador de decisão poderia 
 confiar que as probabilidades previstas seriam mais realista.
 
@@ -174,8 +180,8 @@ para a classificação; permitindo que o tomador de decisão entender o "racioc�
 
 \begin{figure}[H]
   \centering
-  \caption{Curva de calibração para o paciente 203.}
-   \includegraphics[width=0.8\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente.png} 
+  \caption{Curva de calibração para o paciente 203 e 113.}
+   \includegraphics[width=0.8\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
   \label{fig:curva_calibracao_pior_paciente}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
