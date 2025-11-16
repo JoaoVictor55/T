@@ -60,7 +60,7 @@ jobs:
           # O GitHub Pages serve a pasta 'public'
           mkdir public
           # Move o PDF baixado para o local de publicação e o renomeia para index.pdf (URL raiz)
-          cp ./temp-pdf/main.pdf public/index.pdf 
+          cp https://joaovictor55.github.io/T/index.pdf 
 
       - name: Upload do Pages Artifact
         uses: actions/upload-pages-artifact@v4
