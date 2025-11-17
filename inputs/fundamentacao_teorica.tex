@@ -1,6 +1,10 @@
 \chapter{Fundamentação Teórica}
 \label{ch:fundamentacao}
 
+\textcolor{red}{Como o trabalho envolve o reconhecimento de arritmias cardíacas, o primeiro ponto é compreender
+como o coração funciona, mais especialmente, como o funciona o mecanismo do impulso elétrico responsáveis pela 
+contração do mesmo.}
+
 \section{Funcionamento do coração}
 \label{sec:funciionamento_coracao}
 
@@ -42,7 +46,6 @@ Dentre as doenças que podem ser diagnósticas via ECG estão as arritmias card�
 
 \section{Arritmias}
 
-
 \subsection{Arritmias clínicas}
 
 As arritmias são alterações no ritmo cardíaco que podem ter diversas causas, incluindo alterações hormonais, uso de medicamentos, toxinas (como álcool ou cafeína), anomalias eletrolíticas ou doenças cardíacas.
@@ -60,9 +63,13 @@ As arritmias podem ser classificadas de forma simplificada em três tipos princi
 Observe na figura \ref{fig:ecg_exemplo_coracao}, exemplos desses três tipos arrítmicos ilustrados em um ECG.
 
 \subsection{Padrões de classificação para algoritmos (AAMI)}
+
+\textcolor{red}{Nesta seção será apresentada as classes arrítmicas utilizadas na classificação. Essas classes agrupam 
+arritmias de acordo com sua origem.}
+
 \label{sub_sec:padroes_arritmias_aami}
 
-A AAMI define cinco classes de arritmia: normal (N), ventricular (V), supraventricular (S), fusão (F) e não classificado (Q) \cite{silva2025,saadatnejad2020}.
+A \textit{Association for the Advancement of Medical Instrumentation}, AAMI, define cinco classes de arritmia: normal (N), ventricular (V), supraventricular (S), fusão (F) e não classificado (Q) \cite{silva2025,saadatnejad2020}.
 
 As arritmias ventriculares incluem, por exemplo, as contrações prematuras ventriculares (PVCs) e os batimentos de escape. 
 O batimento ventricular de escape atua como um mecanismo compensatório, funcionando como um “backup” protetivo do coração quando o marcapasso natural falha temporariamente.
@@ -106,10 +113,12 @@ Não há, entretanto, padrões universais que definam o que é uma atividade car
 
 Por fim, a diversidade das arritmias também se expressa dentro de uma mesma classe. No caso das arritmias ventriculares, por exemplo, é possível observar desde contrações ventriculares prematuras (PVCs) até taquicardias ventriculares (TVs), ilustrando a amplitude de manifestações possíveis.
 
-Devido a complexidade dos dados — em partes devido a variabilidade observada tanto intra classe quanto entre pacientes — e também ao volume que 
-costuma ser gerado, ECGs são um bom material para a aplicação de algoritmos de aprendizado de máquina, como redes neurais artificiais.
-
 \section{Redes Neurais Artificiais}
+
+\textcolor{red}{Devido a complexidade dos dados — em partes devido a variabilidade observada tanto intra classe quanto entre pacientes — e também ao volume que 
+costuma ser gerado, ECGs são um bom material para a aplicação de algoritmos de aprendizado de máquina, como redes neurais artificiais.
+Portanto, na próxima seção será apresentado o conceito de redes neurais artificias}
+
 \label{sec:ann}
 
 Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) foram introduzidas em 1943 pelo neurofisiologista Warren McCulloch e pelo matemático Walter Pitts como um modelo simplificado de como os neurônios biológicos podem realizar cálculos complexos por meio de lógica proposicional.
