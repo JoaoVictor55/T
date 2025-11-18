@@ -27,7 +27,7 @@
 \contentsline {figure}{\numberline {26}{\ignorespaces Curva precisão vs \textit {recall} do modelo GRU em seu melhor \textit {fold}}}{55}{figure.caption.39}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Métricas do modelo híbrido CNN e GRU por \textit {fold}}}{57}{figure.caption.42}%
 \contentsline {figure}{\numberline {28}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{58}{figure.caption.43}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{59}{figure.caption.44}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu pior \textit {fold}}}{59}{figure.caption.44}%
 \contentsline {figure}{\numberline {30}{\ignorespaces Curva \textit {ROC} modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{59}{figure.caption.45}%
 \contentsline {figure}{\numberline {31}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{60}{figure.caption.46}%
 \contentsline {figure}{\numberline {32}{\ignorespaces Curva \textit {ROC} modelo híbrido CNN e GRU em seu pior \textit {fold}}}{61}{figure.caption.47}%
