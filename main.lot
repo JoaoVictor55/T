@@ -4,7 +4,7 @@
 \contentsline {table}{\numberline {2}{\ignorespaces Mapeamento das anotações originais do MIT-BIH para as classes AAMI.}}{36}{table.caption.18}%
 \contentsline {table}{\numberline {3}{\ignorespaces Distribuição das classes nos conjuntos Ds1 e Ds2}}{43}{table.caption.25}%
 \contentsline {table}{\numberline {4}{\ignorespaces Distribuição dos IDs dos Pacientes por Fold para Conjuntos de Treinamento e Validação}}{44}{table.caption.26}%
-\contentsline {table}{\numberline {5}{\ignorespaces Exemplo de matriz de confusão binária}}{47}{table.caption.29}%
+\contentsline {table}{\numberline {5}{\ignorespaces Exemplo de matriz de confusão binária}}{46}{table.caption.29}%
 \contentsline {table}{\numberline {6}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular na validação}}{49}{table.caption.31}%
 \contentsline {table}{\numberline {7}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular no treino}}{49}{table.caption.32}%
 \contentsline {table}{\numberline {8}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular na validação}}{56}{table.caption.40}%
