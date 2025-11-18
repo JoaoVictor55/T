@@ -158,7 +158,7 @@ Após o pré-processamento e a definição das features, é necessário escolher
 
 Uma alternativa prática consiste em partir de arquiteturas já propostas na literatura e adaptá-las ao problema estudado. Seguindo essa estratégia, para o modelo recorrente puro foi adotada como referência a arquitetura apresentada em \citeonline{narotamo2024}. No trabalho original, os autores utilizam três camadas de GRUs, cada uma com 256 unidades ocultas, explorando a capacidade das redes recorrentes de modelar dependências temporais no sinal.
 
-Neste projeto, a arquitetura base foi mantida, mas com adaptações. Diferentemente do trabalho original, que utiliza um conjunto de features mais elaborado e entradas estruturadas em múltiplos ramos, aqui optou-se por uma abordagem mais simples: o sinal segmentado é concatenado diretamente às features do intervalo RR e alimentado ao modelo como uma única entrada.
+Neste projeto, a arquitetura base foi mantida, mas além de receber o sinal do eletrocardiograma, o modelo recebeu também os intervalos RR.
 
 A Figura \ref{fig:gru_pura} apresenta um esquema da arquitetura utilizada.
 
