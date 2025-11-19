@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex main"] 1763502321.29456 "main.aux" "main.bbl" "main" 1763502561.07014 0
+["bibtex main"] 1763502977.79949 "main.aux" "main.bbl" "main" 1763502983.36208 0
   "./referencias.bib" 1763303075.53214 19421 b8e5b4fa62fceb8b799ba45ab0aa7c86 ""
   "/usr/share/texlive/texmf-dist/bibtex/bib/abntex2/abntex2-options.bib" 1357081713 5396 4eb260dac60f150ae608d45252853090 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/abntex2/abntex2-alf.bst" 1543183680 60064 0819ac8568f9a482510a46e3a8a6f605 ""
-  "includes/lista_siglas.aux" 1763502556.62978 2193 5d33d14a5d70e6565f1f4dc6923fd1ed "pdflatex"
-  "includes/resumo.aux" 1763502556.55079 2075 2caba020c47f7b9e769334cdcd87ccd9 "pdflatex"
-  "main.aux" 1763502560.52149 46311 dc408b12f77961254f382e2c7a663784 "pdflatex"
+  "includes/lista_siglas.aux" 1763502979.11593 2193 a90caa16746d96d1d07fb84cd71920db "pdflatex"
+  "includes/resumo.aux" 1763502979.04991 2075 859f64074619e1f25917f4ea509947ad "pdflatex"
+  "main.aux" 1763502982.82573 46311 63254083199eeda09e02ad9b3d06f97c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1763502555.27907 "/home/joao/Documentos/TCC/main.tex" "main.pdf" "main" 1763502561.0707 0
+["pdflatex"] 1763502977.92571 "/home/joao/Documentos/TCC/main.tex" "main.pdf" "main" 1763502983.36251 0
   "/etc/texmf/web2c/texmf.cnf" 1759069112.0286 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/joao/Documentos/TCC/main.tex" 1763312658.6298 3293 b6c8296752a831ad3b97e739fb7c7554 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -366,9 +366,9 @@
   "figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png" 1763211593.63526 20766 bc9952ce5da86af37ab8e3a1d5d5e700 ""
   "figuras/modelos_resultados/gru_cnn/roc_cnn_melhor_fold_1.png" 1763211593.63579 30588 954153930a00bfd87292006ede0c4d36 ""
   "figuras/modelos_resultados/gru_cnn/roc_cnn_pior_fold_3.png" 1763211593.63605 32585 8bf0e2fa9e62e9b9119a1c960c9ee76b ""
-  "includes/lista_siglas.aux" 1763502556.62978 2193 5d33d14a5d70e6565f1f4dc6923fd1ed "pdflatex"
+  "includes/lista_siglas.aux" 1763502979.11593 2193 a90caa16746d96d1d07fb84cd71920db "pdflatex"
   "includes/lista_siglas.tex" 1763211593.63605 487 ee86e0e47b857c2510d56ba9735d673b ""
-  "includes/resumo.aux" 1763502556.55079 2075 2caba020c47f7b9e769334cdcd87ccd9 "pdflatex"
+  "includes/resumo.aux" 1763502979.04991 2075 859f64074619e1f25917f4ea509947ad "pdflatex"
   "includes/resumo.tex" 1763303075.52652 2421 4253b7aff5318f40dc1254eeb5a1a48b ""
   "includes/revisao_literatura_tabela_metodos.tex" 1763211593.63605 6277 435896c9704118ca9b9607e3d5cc606b ""
   "includes/revisao_literatura_tabela_resultados.tex" 1763211593.63605 2808 9732bb28735816e84be5d62ef1a320fb ""
@@ -377,14 +377,14 @@
   "inputs/fundamentacao_teorica.tex" 1763417364.73031 38019 12da187d08b819a013f14534a8c3f9c4 ""
   "inputs/introducao.tex" 1763303075.52715 6982 39af74861c5dd5a9ea69b633c6576f82 ""
   "inputs/metdologia.tex" 1763502555.02904 28798 c18b90ff1d7f0fe81c5798946359d6ad ""
-  "inputs/resultados_e_discussoes.tex" 1763501070.42411 19416 8ec93d2ffce8c92a8a868846cab9b5f8 ""
+  "inputs/resultados_e_discussoes.tex" 1763502965.35622 19416 605eb167baab153cbf3234b9e4fcf168 ""
   "inputs/revisao_literatura.tex" 1763303075.52782 10389 1098696a1ad5d0c5ec0fe3ed7aad6e31 ""
-  "main.aux" 1763502560.52149 46311 dc408b12f77961254f382e2c7a663784 "pdflatex"
-  "main.bbl" 1763502321.42486 11174 7dee7770163585927007feb06c8fcc5a "bibtex main"
-  "main.lof" 1763502560.53113 5811 a5aa5e7d4c6878d86668cd24a582c735 "pdflatex"
-  "main.lot" 1763502560.53013 2122 c383a25dc537e78da09e2066876d0b93 "pdflatex"
+  "main.aux" 1763502982.82573 46311 63254083199eeda09e02ad9b3d06f97c "pdflatex"
+  "main.bbl" 1763502977.91886 11174 7dee7770163585927007feb06c8fcc5a "bibtex main"
+  "main.lof" 1763502982.83612 5811 6fe099747784c778f38ef8b2dc3c5647 "pdflatex"
+  "main.lot" 1763502982.83612 2122 da81df8412299b785cd955a6d31a1273 "pdflatex"
   "main.tex" 1763312658.6298 3293 b6c8296752a831ad3b97e739fb7c7554 ""
-  "main.toc" 1763502560.53013 4395 d0acaae05486d5fd36b01b68915782ce "pdflatex"
+  "main.toc" 1763502982.83612 4395 8621279db552a65b94c3e7ef82bebc3a "pdflatex"
   (generated)
   "includes/lista_siglas.aux"
   "includes/resumo.aux"
