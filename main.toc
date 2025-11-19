@@ -17,9 +17,10 @@
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Fundamentação Teórica}}{13}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Funcionamento do coração}{13}{section.2.1}%
 \contentsline {section}{\numberline {2.2}O eletrocardiograma}{14}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Arritmias}{15}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Arritmias}{14}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Arritmias clínicas}{15}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Padrões de classificação para algoritmos (AAMI)}{15}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.2.1}Arritmias Ventriculares}{15}{subsubsection.2.3.2.1}%
 \contentsline {section}{\numberline {2.4}Redes Neurais Artificiais}{17}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Treinamento de redes neurais}{21}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Redes Neurais Recorrentes e suas variações}{23}{section.2.5}%

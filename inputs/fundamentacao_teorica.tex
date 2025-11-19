@@ -1,16 +1,17 @@
 \chapter{Fundamentação Teórica}
 \label{ch:fundamentacao}
 
-\textcolor{red}{Como o trabalho envolve o reconhecimento de arritmias cardíacas, o primeiro ponto é compreender
+Como o trabalho envolve o reconhecimento de arritmias cardíacas, o primeiro ponto é compreender
 como o coração funciona, mais especialmente, como o funciona o mecanismo do impulso elétrico responsáveis pela 
-contração do mesmo.}
+contração do mesmo. Em seguida, entender o princípio de funcionamento das redes neurais, que integra a solução 
+para o problema. Por fim, será apresentado alguns trabalhos que correlacionaram as duas áreas.
 
 \section{Funcionamento do coração}
 \label{sec:funciionamento_coracao}
 
 O coração é um órgão muscular composto por quatro câmaras — átrio direito e esquerdo, e ventrículo direito e esquerdo — que se contraem de forma rítmica, bombeando sangue para o corpo. Essas contrações são controladas por correntes elétricas que percorrem o coração de maneira precisa e em velocidade controlada.
 
-Na figura \ref{fig:coracao_esquema_eletrico}, o sistema de condução elétrico do coração é ilustrado.
+Na Figura~\ref{fig:coracao_esquema_eletrico}, o sistema de condução elétrica do coração é ilustrado.
 
 \begin{figure}[H]
   \centering
@@ -27,12 +28,12 @@ Posteriormente, a corrente percorre o feixe de His (4), que se divide e conduz o
 \section{O eletrocardiograma}
 \label{sec:ecg}
 
-O eletrocardiograma, ECG, é um enxame não invasivo usado para medir a atividade elétrica do coração. Ele é feito a partir do contato de eletrodos, chamados de derivações ou \textit{leads}, sobre a pele.
+O eletrocardiograma, ECG, é um exame não invasivo usado para medir a atividade elétrica do coração. Ele é feito a partir do contato de eletrodos, chamados de derivações ou \textit{leads}, sobre a pele.
 A quantidade de eletrodos varia, mas geralmente são 12 \cite{msd_ecg}.
 
 Ao registrar a magnitude e direção da corrente, as derivações geram uma onda que representa a atividade elétrica do coração. O passo a passo descrito em \ref{sec:funciionamento_coracao} é refletido em sua morfologia.
 
-Na figura \ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, observe que ele é subdividido em: onda P, complexo QRS e onda T \cite{msd_ecg}. Note que cada uma dessas partes se refere a um estágio do batimento.
+Na Figura~\ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, observe que ele é subdividido em: onda P, complexo QRS e onda T \cite{msd_ecg}. Note que cada uma dessas partes se refere a um estágio do batimento.
 
 \begin{figure}[H]
   \centering
@@ -42,16 +43,18 @@ Na figura \ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, o
     \legend{Fonte: Adaptado de  \citeonline{msd_ecg}}
 \end{figure}
 
-Dentre as doenças que podem ser diagnósticas via ECG estão as arritmias cardíacas. 
-
 \section{Arritmias}
+
+As doenças cardíacas podem ser diversas. Dentre elas, as arritmias são um grupo que podem ser diagnósticas via ECG
 
 \subsection{Arritmias clínicas}
 
 As arritmias são alterações no ritmo cardíaco que podem ter diversas causas, incluindo alterações hormonais, uso de medicamentos, toxinas (como álcool ou cafeína), anomalias eletrolíticas ou doenças cardíacas.
 Segundo \citeonline{Mitchell_Arritmias_MSD}, em adultos em repouso, a frequência cardíaca normal varia entre 60 e 100 batimentos por minuto (bpm). Frequências mais baixas, conhecidas como bradicardia sinusal, são comuns em atletas, crianças pequenas, adolescentes, jovens adultos e durante o sono. Por outro lado, a taquicardia sinusal ocorre quando a frequência se eleva, podendo ser observada durante o esforço físico, doenças, estimulação neural simpática ou emoção intensa.
 
-Variações no ritmo cardíaco são fenômenos fisiológicos normais. Durante a respiração, por exemplo, é comum que a frequência aumente e diminua levemente — comportamento conhecido como arritmia sinusal respiratória. O autor ainda observa que um ritmo cardíaco perfeitamente regular pode indicar patologias no sistema nervoso autônomo, como ocorre em casos de diabetes avançado. Dessa forma, ainda não existe um indicador global e definitivo do que seria um ritmo sinusal considerado saudável.
+Variações no ritmo cardíaco são fenômenos fisiológicos normais. Durante a respiração, por exemplo, é comum que a frequência aumente e diminua levemente, comportamento conhecido como arritmia sinusal respiratória. O autor ainda observa que um ritmo cardíaco perfeitamente regular pode indicar patologias no sistema nervoso autônomo, como ocorre em casos de diabetes avançado. Dessa forma, ainda não existe um indicador global e definitivo do que seria um ritmo sinusal considerado saudável.
+
+
 As arritmias podem ser classificadas de forma simplificada em três tipos principais:
 
 \begin{enumerate}
@@ -60,16 +63,15 @@ As arritmias podem ser classificadas de forma simplificada em três tipos princi
     \item \textbf{Irregular} — quando os impulsos percorrem o coração por vias irregulares.
 \end{enumerate}
 
-Observe na figura \ref{fig:ecg_exemplo_coracao}, exemplos desses três tipos arrítmicos ilustrados em um ECG.
+Observe na Figura~\ref{fig:ecg_exemplo_coracao}, exemplos desses três tipos arrítmicos ilustrados em um ECG.
 
 \subsection{Padrões de classificação para algoritmos (AAMI)}
-
-\textcolor{red}{Nesta seção será apresentada as classes arrítmicas utilizadas na classificação. Essas classes agrupam 
-arritmias de acordo com sua origem.}
 
 \label{sub_sec:padroes_arritmias_aami}
 
 A \textit{Association for the Advancement of Medical Instrumentation}, AAMI, define cinco classes de arritmia: normal (N), ventricular (V), supraventricular (S), fusão (F) e não classificado (Q) \cite{silva2025,saadatnejad2020}.
+
+\subsubsection{Arritmias Ventriculares}
 
 As arritmias ventriculares incluem, por exemplo, as contrações prematuras ventriculares (PVCs) e os batimentos de escape. 
 O batimento ventricular de escape atua como um mecanismo compensatório, funcionando como um “backup” protetivo do coração quando o marcapasso natural falha temporariamente.
