@@ -10,8 +10,21 @@ cenário real, embora tais problemas não sejam restritos a esse modelo.
 
 \section{Trabalhos futuros}
 
-Como trabalhos futuros, sugere-se aprofundar a análise do pior cenário, incluindo a avaliação dos demais sinais disponíveis e o uso de métodos de explicabilidade, como o LIME, para compreender de forma mais clara os padrões que levaram à falha do modelo.
+Como trabalhos futuros, sugere-se aprofundar a análise do pior cenário, incluindo a avaliação dos demais sinais disponíveis e o
+uso de métodos de explicabilidade. 
+Existem métodos \textit{post-hoc} como o LIME \cite{ribeiroWhyShouldTrustYou}; que fornece explicabilidade local e que poderia
+auxiliar a entender quais \textit{features} mais contribuíram para o erro do modelo. Outro método, o SHAP \cite{lundbergSHAPE}
+fornece explicabilidade global. Além de auxiliar na etapa de debug, tais métodos podem contribuir para a confiança de tomadores 
+de decisão nos modelos; pois os mesmos poderiam entender o "raciocínio" dos modelos.
+
+Para a calibração, \citeonline{mizilPredictingGoodProbs} apontou métodos como a calibração de Platt, regressão isotônica que são apropriados para a classificação binária.
+
+A etapa de pré-processamento poderia ser reavaliada, para poder remover os  ruídos observados no pior caso. Outra alternativa é diminuir o tamanho 
+da sequência e amostras de um batimento. Por mais que uma sequência maior, por exemplo, possa fornecer mais informação aos modelos, ela pode acabar incluindo 
+mais ruído também. O mesmo para a quantidade de amostras.
 
 Considerando que a abordagem híbrida obteve os melhores resultados, recomenda-se investigar novas arquiteturas, especialmente variantes bidirecionais das redes recorrentes. Outro ponto importante é o tratamento do desbalanceamento, que pode ser abordado por meio de geração de dados sintéticos ou estratégias baseadas em redes concorrentes.
 
-Após a superação dessas limitações e a obtenção de resultados mais robustos, propõe-se realizar a avaliação final no conjunto Ds2 e, posteriormente, aplicar técnicas de calibração para produzir probabilidades confiáveis, bem como métodos adicionais de explicabilidade. Essas etapas visam não apenas melhorar o desempenho do modelo, mas também aumentar sua confiabilidade para aplicação em um cenário clínico.
+Após a superação dessas limitações e a obtenção de resultados mais robustos, propõe-se realizar a avaliação final no conjunto Ds2 e, posteriormente, aplicar técnicas de calibração para produzir probabilidades confiáveis, bem como métodos adicionais de explicabilidade.
+Essas etapas visam não apenas melhorar o desempenho do modelo, mas também aumentar sua confiabilidade para aplicação em um cenário clínico e assim, contribuir 
+para o uso de inteligência artificial em uma área tão crítica de maneira segura e responsável.

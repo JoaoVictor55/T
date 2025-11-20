@@ -1,15 +1,21 @@
 \chapter{Análise de erros no pior \textit{fold}}
 \label{ch:analise_erros_pior_fold}
 
-Pelos critérios adotados, o terceiro fold foi o de pior desempenho em ambos os modelos.
-Como o recall foi superior à precisão, supõe-se que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
-Para fins de ilustração, apresenta-se a seguir uma breve análise de erros do desempenho do melhor modelo em seu cenário mais desafiador.
-Devido a essa limitação, os resultados discutidos não permitem conclusões generalizáveis, servindo apenas como apoio à interpretação dos achados.
+Nesta seção, será apresentada uma breve análise de erros do modelo híbrido em seu pior \textit{fold}. 
+Conforme os critérios adotados, o eleito foi o terceiro — para ambos os modelos.
+
+Como o recall foi superior à precisão, supoi-se que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
+Assim, o objetivo desta seção é verificar como os erros estão distribuídos em relação aos pacientes e quais características
+o ECG dos mesmos têm. Por fim, será apresentado também a curva de calibração do modelo, para visualizar a questão da
+calibração do mesmo.
+
+Devido ao fato de redes neurais serem modelos caixa-preta, não é possível afirmar quais características contribuíram para 
+os erros, logo, a análise serve apenas para construir uma intuição inicial para os resultados achados.
 
 \section{Análise de erros do modelo híbrido CNN com GRU}
 \label{sec:analise_erros_cnn_gru}
 
-Na tabela \ref{tab:erros_acertos_por_paciente} a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
+Na tabela~\ref{tab:erros_acertos_por_paciente}, a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
 
 \begin{table}[H]
 \centering
@@ -31,12 +37,26 @@ Na tabela \ref{tab:erros_acertos_por_paciente} a seguir, é possível ver que a 
 Aproximadamente, 98,46\% de todos os erros foram desse paciente. O modelo errou em torno de 35,31\% de seus batimentos. Conforme visto na 
 figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
 
-No paciente 209, o modelo acertou a única classe positiva que existia. O único erro cometido foi um falso positivo. Já no paciente 
+Já no paciente 209, o modelo acertou a única classe positiva que existia. O único erro cometido foi um falso positivo. Já no paciente 
 205, o modelo acertou 69 das 71 classes positivas e errou 9 classes negativas, das 2.556. Nesses dois pacientes, a classe positiva 
 era extremamente rara, mas em números absolutos, a maioria dos erros foram de falsos positivos.
 
 Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
 a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
+
+Como o paciente 203 dominou os erros neste \textit{fold} e para o paciente 119, não houve erros, na próxima seção, a análise 
+se concentrar neste dois casos. 
+
+Primeiro, será exibida a matriz de confusão do paciente 203 para ilustrar os tipos de erros e acertos, em seguida 
+uma comparação entre os trechos de ECG de ambos os pacientes, para comparar a morfologia e possíveis ruídos, e um 
+\textit{scatter-plot} dos intervalos RR, para analisar a taxa cardíaca de ambos os pacientes. Neste gráfico, 
+o eixo X representa o intervalo RR anterior e o eixo Y, o subsequente. 
+
+Por fim, a curva de 
+calibração, para poder ilustrar o cenário de superconfiança em dois casos distintos; um de alto desempenho e outro de 
+desempenho menor.
+
+\subsubsection{Comparação morfológica entre o paciente 203 e 119}
 
 Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz de confusão desse paciente.
 
@@ -48,9 +68,11 @@ Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz 
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-O modelo confundiu seis batimentos ventriculares como normais e 766 normais como ventriculares. Na figura
+O modelo confundiu seis batimentos ventriculares como normais e 766 normais como ventriculares.
+
+Na figura
 \ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
-uma sequencia normal classificada como arrítmica e na segunda uma normal corretamente classificada.
+um falso positivo e na segunda um verdadeiro negativo.
 
 \begin{figure}[H]
   \centering
@@ -63,16 +85,16 @@ uma sequencia normal classificada como arrítmica e na segunda uma normal corret
 É possível observar a forte presença de ruído em ambos os casos. E a presença de batimentos com a morfologia 
 bem deformada; após a amostra 2000 no primeiro gráfico e após a amostra 1000 no segundo. 
 
-O modelo previu uma probabilidade de aproximadamente 0,97, indicando não só um erro, mas um erro com muita confiança. Já no segundo 
-ECG, a probabilidade prevista foi de aproximadamente 0,12. Foi um acerto relativamente confiante.
+O modelo tinha 97\% de confiança que o primeiro ECG era da classe positiva. Logo, não é apenas um erro, mas um erro com 
+muita confiança; o que já insinua um cenário de superconfiança. No segundo caso, o modelo tinha 12\% de confiança que a 
+sequência pertencia a classe positiva, ou seja, 88\% de chance de ser da classe negativa; um acerto com confiança.
 
-Para comparação, na figura \ref{fig:acert_neg_class_paciente_mais_facil}, paciente para o qual o modelo não cometeu erros,
-abaixo é ilustrado uma sequência normal.
+Na figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequência normal do paciente mais fácil;
 
 \begin{figure}[H]
   \centering
   \caption{ECG normal do paciente 119.}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
   \label{fig:acert_neg_class_paciente_mais_facil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -80,54 +102,79 @@ abaixo é ilustrado uma sequência normal.
 É possível notar uma sequencia mais limpa e com o complexo QRS com morfologia usual. Note em torno da amostra
 2000 uma contração prematura ventricular.
 
-Na figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo acertou e a segunda ele errou:
+Na figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo errou e a segunda ele acertou:
 
 Em ambos os casos, é observável o ruído presenta na figura \ref{fig:erro_acert_neg_class_paciente_mais_dificil}. O 
 último batimento da sequência também apresenta uma morfologia diferente da usual.
 
 \begin{figure}[H]
   \centering
-  \caption{ECG normal do paciente 203: acerto e erro}
+  \caption{ECG arrítmico do paciente 203: acerto e erro}
    \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png} 
   \label{fig:erro_acert_pos_class_paciente_mais_dificil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-A probabilidade prevista para o caso errado foi de aproximadamente 16\%, indicando um erro com confiança. Já o acerto 
-teve uma probabilidade de 0,97\%. A ausência da arritmia usual pode ser uma causa, o modelo pode ter associado a sua 
-presença a classe ser arrítmica. Porém, novamente, como o modelo é caixa preta, não é possível afirmar.
+O modelo tinha 16\% de confiança que era um caso da classe positiva, logo, 84\% que era da classe negativa; um erro 
+confiante. É possível notar uma morfologia relativamente mais limpa e uniforma, principalmente quando comparada às demais sequências 
+apresentadas deste paciente, levando o modelo a confundi-la com uma sequência normal.
 
-Já na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
+Já no segundo caso, o modelo tinha 97\% de confiança que era um caso da classe positiva; sendo um 
+acerto com confiança. Nota-se a presença de arritmias ventriculares e um sinal com mais ruído; visualmente,
+esta sequência é diferente da anterior.
+
+Na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
 Observe no último batimento, uma arritmia ventricular.
 
 \begin{figure}[H]
   \centering
   \caption{ECG arrítmico do paciente 119.}
-   \includegraphics[width=1.0\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
   \label{fig:acert_posclass_paciente_mais_facil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Para visualizar a distribuição dos intervalos RR, foi utilizado um scatter plot das features RR, em que o eixo X representa o intervalo RR anterior e o eixo Y, o subsequente. 
+\subsubsection{Comparação temporal entre o paciente 203 e 119}
 
-Na figura \ref{fig:poicare_fp}, é ilustrado um caso de falso positivo referente ao paciente mais desafiador. Observa-se que o último batimento da sequência (o 16º) ocorreu de forma relativamente mais prematura, uma vez que se encontra na região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como discutido na seção \ref{sub_sec:padroes_arritmias_aami}, não existe um padrão universal de ECG normal.
+Na figura \ref{fig:poincarefp}, é ilustrado o gráfico de dispersão de um falso positivo do paciente 209.
+Note o último batimento da sequência (o 16º), em relação aos demais, ele ocorreu de forma mais prematura uma vez que se encontra na
+região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo
+entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com
+um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como
+discutido na seção \ref{sub_sec:padroes_arritmias_aami}, não existe um padrão universal de ECG normal.
 
-A figura \ref{fig:poicare_tp} mostra um caso de verdadeiro positivo do mesmo paciente. O último batimento também ocorre de forma antecipada, porém sua posição mais próxima à linha de identidade indica que o intervalo com o sucessor é aproximadamente igual ao intervalo com o anterior.
+A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo paciente. O último batimento também ocorre de forma antecipada, porém sua posição mais próxima à linha de identidade indica que o intervalo com o sucessor é aproximadamente igual ao intervalo com o anterior.
 
-Já a figura \ref{fig:poicare_tn} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+\begin{figure}[h!]
+    \centering
+    \caption{Scatter plot do paciente 203 de um falso positivo e um verdadeiro positivo.}
 
-Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png}
+        \subcaption{ECG cru e segmentado}
+        \label{fig:poincarefp}
+    \end{minipage}
 
-Conforme visto na seção \ref{ch:resultados}, este \textit{fold} também foi o pior caso do modelo GRU e o mesmo ainda se saiu pior que o 
-híbrido, com menor \textit{recall} e precisão. O que pode ser outra evidência da vantagem da CNN. Como a CNN atua como extrator de 
-\textit{features} da morfologia, ela pode ter mitigado o impacto do ruído e da forma menos usual do ECG deste paciente, resultando 
-em um desempenho melhor. Além disso, conforme visto, é possível que os intervalos RR tenha contribuído menos para a separação. Como ambos
-os modelos receberam as mesmas \textit{features} RR, então a vantagem da extração feita pela CNN, pode ter ajudado o híbrido a se destacar.
+    %\vspace{0.5cm} % espaço entre as imagens
 
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tp.png} 
+        \subcaption{ECG segmentado e reamostrado}
+        \label{fig:poincaretp}
+    \end{minipage}
+
+    \legend{Fonte: Elaborado pelo autor.}
+    \label{fig:poincare_fp_tp_maisDificil}
+\end{figure}
+
+
+\iffalse
 \begin{figure}[H]
   \centering
   \caption{Scatter plot do paciente 203 de um falso positivo.}
-   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png} 
+   \includegraphics[width=0.70\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png} 
   \label{fig:poicare_fp}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -135,15 +182,21 @@ os modelos receberam as mesmas \textit{features} RR, então a vantagem da extra�
 \begin{figure}[H]
   \centering
   \caption{Scatter plot do paciente 203 de um verdadeiro positivo.}
-   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tp.png} 
+   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tp.png} 
   \label{fig:poicare_tp}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
+\fi
 
+Já a figura \ref{fig:poicare_tn} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+
+Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
+
+\iffalse
 \begin{figure}[H]
   \centering
   \caption{Scatter plot do paciente 203 de um verdadeiro negativo.}
-   \includegraphics[width=0.6\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tn.png} 
+   \includegraphics[width=0.75\textwidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tn.png} 
   \label{fig:poicare_tn}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -155,6 +208,32 @@ os modelos receberam as mesmas \textit{features} RR, então a vantagem da extra�
   \label{fig:poicare_neg_maisfacil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
+\fi
+
+\begin{figure}[h!]
+    \centering
+    \caption{Scatter plot da sequência normal do paciente 203 e 119}
+
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tn.png}
+        \subcaption{ECG cru e segmentado}
+        \label{fig:poincare_tn_MaisDificil}
+    \end{minipage}
+
+    %\vspace{0.5cm} % espaço entre as imagens
+
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_facil_neg.png} 
+        \subcaption{ECG segmentado e reamostrado}
+        \label{fig:poincaretp}
+    \end{minipage}
+
+    \legend{Fonte: Elaborado pelo autor.}
+    \label{fig:poincare_tn_MaisFacil}
+\end{figure}
+
 
 Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 113, 
 
@@ -171,19 +250,31 @@ Isto pode ser observada na curva de calibração do paciente 113 onde o desempen
 Assim, mesmo se o modelo fosse muito sensível e tivesse uma precisão baixa, caso ele fosse bem calibrado, o tomador de decisão poderia 
 confiar que as probabilidades previstas seriam mais realista.
 
-Entretanto, existem técnicas que podem calibrar modelos. Em seu trabalho, \citeonline{mizilPredictingGoodProbs} apontou alguns exemplos como 
-Calibração de Platt e regressão isotônica que são apropriados para classificação binária.
-
-Já a explicabilidade, existem técnicas \textit{post-hoc} como LIME \cite{ribeiroWhyShouldTrustYou} ou SHAP \cite{lundbergSHAPE}.
-Tais técnicas são aplicadas aos modelos já treinados e buscam identificar quais \textit{features} foram mais relevantes 
-para a classificação; permitindo que o tomador de decisão entender o "raciocínio" do modelo.
-
 \begin{figure}[H]
   \centering
   \caption{Curva de calibração para o paciente 203 e 119.}
-   \includegraphics[width=0.8\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
+   \includegraphics[width=0.9\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
   \label{fig:curva_calibracao_pior_paciente}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+\subsubsection{Conclusão da análise de erros}
 
+O objetivo desta seção foi analisar as sequências de batimentos do modelo híbrido em seu pior \textit{fold} para ganhar 
+uma intuição adicional às razões da falha do mesmo. Foi identificado que a grande maioria dos erros veio de um único 
+paciente, o 203, que as anotações do MIT-BIH o classifica como muito difícil, devido a presença de ruído e arritmias 
+atípicas. 
+
+Comparando o paciente 203 com o 119 — paciente para o qual o modelo não cometeu erros — foi identificodo que esse possui 
+um sinal mais limpo e sem grandes morfologias atípicas. Além disso, no paciente 203, 
+num caso de falso positivo, o intervalo do último batimento da 
+em relação ao seu antecessor é mais curto, o que poderia fazer com que o modelo o confundisse com uma arritmia. 
+
+Além disso, a curva de calibração mostrou um cenário de superconfiança para ambos os pacientes, reinforçando a ideia de que 
+ela não tem relação direta com o desempenho.
+
+Conforme visto na seção \ref{ch:resultados}, este \textit{fold} também foi o pior caso do modelo GRU e o mesmo ainda se saiu pior que o 
+híbrido, com menor \textit{recall} e precisão. O que pode ser outra evidência da vantagem da CNN. Como a CNN atua como extrator de 
+\textit{features} da morfologia, ela pode ter mitigado o impacto do ruído e da forma menos usual do ECG deste paciente, resultando 
+em um desempenho melhor. Além disso, conforme visto, é possível que os intervalos RR tenha contribuído menos para a separação. Como ambos
+os modelos receberam as mesmas \textit{features} RR, então a vantagem da extração feita pela CNN, pode ter ajudado o híbrido a se destacar.

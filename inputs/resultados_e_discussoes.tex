@@ -1,9 +1,26 @@
 \chapter{Resultados e discussões}
 \label{ch:resultados}
+
+Nesta seção, serão apresentados os resultados alcançados pelos modelos. Primeiro, a média das métricas com o objetivo de ter uma visão geral do desempenho. 
+Em seguida, será feita uma comparação entre as médias na validação com as do treino, para identificar o \textit{overfit}. 
+Então, a partir das métricas individuais em cada \textit{fold}, será identificado o pior e o melhor caso de cada modelo utilizando como critério o \textit{f1-score}. 
+Apesar do recall ser mais importante, foi adotado o \textit{f1-score} como critério, pois o ajuste no \textit{trade-off} pode ser feito manualmente e a 
+critério de um tomador de decisão, 
+usando a curva ROC ou \textit{precisão-recall}. Em caso de empate será usado o \textit{recall}. 
+
+Para estes casos, será analisada a matriz de confusão, onde poderá ser feito a análise dos tipos de erros e acertos e as curvas de \textit{precisão-recall}, 
+para averiguar o impacto da precisão e recall em diferentes \textit{folds} e como os modelos se comparam com o \textit{baseline}.
+
+Então, será eleito o melhor modelo considerando o maior \textit{f1-score} médio. Nesta etapa, é importante analisar também o desvio padrão; é desejável 
+que o melhor modelo não tenha apenas um \textit{f1-score} médio alto, mas um desvio padrão baixo, indicando maior estabilidade.
+
+Por fim, será feita a comparação dos modelos com os apresentados na revisão da literatura.
+
 \section{Resultados do modelo GRU}
+
 \label{sec:resultados_gru}
 
-A seguir, os resultados alcançados pelo modelo descrita em \ref{fig:gru_pura}:
+Na Tabela~\ref{tab:resultado_cv_gru_validacao} é mostrado o resultado médio do modelo GRU puro na validação junto com os respectivos desvio padrão.
 
 \begin{table}[H]
 \centering
@@ -22,7 +39,6 @@ Acurácia & 0,9640 & 0,0278 \\
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Na tabela \ref{tab:resultado_cv_gru_validacao}, tem-se as métricas médias com seus respectivos desvio padrão na \textit{cross-validação} de cinco \textit{folds}.
 Os resultados indicam que o modelo achou aproximadamente 80\% dos casos positivos, com um desvio padrão relativamente baixo, indicando boa estabilidade.
 Além disso, a precisão do modelo foi maior que seu \textit{recall}, indicando um perfil mais conservador na classificação. 
 
@@ -48,8 +64,9 @@ Acurácia & 0,9969 & 0,0024 \\
 Comparando os resultados do treino na tabela \ref{tab:resultado_cv_gru_cnn_treino} com os resultados da validação na tabela \ref{tab:resultado_cv_gru_cnn_validacao},
 observa-se um diferença substancial; evidenciando sobreajuste, isto é, o modelo apresentou uma baixa capacidade de generalização para pacientes não vistos.
 
-Esse fenômeno ocorre pois modelos com alta flexibilidade como redes neurais conseguem se ajustar intimamente com os dados de treino
-caso eles não sejam representativos da população, eles podem aprender ruído e particularidades dessa amostra ao invés de padrões generalizáveis
+Esse fenômeno ocorre pois modelos com alta flexibilidade, como redes neurais, conseguem se ajustar intimamente com os dados de treino.
+Caso eles não sejam representativos da população, tais modelos podem aprender ruído e particularidades dessa amostra ao invés de padrões generalizáveis.
+
 No contexto do MIT-BIH, o desbalanceamento das classes pode ter causado isso. Como há poucos exemplos da classe positiva, é fácil para o modelo memorizar
 padrões morfológicos e rítmicos das arritmias do conjunto de treino, falhando ao encontrar variações dessas instâncias em pacientes diferentes.
 Conforme descrito nas seções \ref{sub_sec:padroes_arritmias_aami} e também em \ref{sec:particionamento}, existe uma grande variação 
@@ -64,6 +81,8 @@ Diferente da acurácia, as demais métricas são muito mais sensíveis ao desemp
 O particionamento usado torna a tarefa de generalização mais desafiadora, pois o modelo é avaliado com ECGs não vistos
 durante o treino.
 
+\subsubsection{Resultados no pior e melhor caso (Modelo GRU)}
+
 Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo modelo em cada \textit{fold} na validação:
 
 \begin{figure}[H]
@@ -76,7 +95,7 @@ Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo
 
 No \textit{fold} três, o modelo obteve sua menor precisão, aproximadamente 0,51 porém obteve um alto \textit{recall}, aproximadamente 0,96.
 Essa discrepância sugere que neste \textit{fold}, havia batimentos normais que fugiam do padrão aprendido no treino, fazendo com que o modelo
-confundisse eles com batimentos da classe V. Nos demais \textit{folds}, a precisão foi maior que o \textit{recall}, sugerindo a presença 
+confundisse eles com batimentos da classe ventricular. Nos demais \textit{folds}, a precisão foi maior que o \textit{recall}, sugerindo a presença 
 de arritmias com características mais sutis, que fizeram com que o modelo as confundissem com batimentos normais.
 
 Considerando o \textit{f1-score}, o terceiro \textit{fold} foi eleito o pior. Como o \textit{fold} cinco empatou com o segundo por 
@@ -173,14 +192,14 @@ No melhor caso:
 Nesse \textit{fold}, o modelo alcançou um \textit{AP} de 80\%, enquanto que a proporção de casos positivos foi de 13,21\%. No melhor caso, 
 entretanto, o modelo para ter 80\% de \textit{recall}, teria que baixar sua precisão para menos de 20\%. 
 
-Apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
+Portanto, apesar do desbalanceamento, o modelo alcançou resultados satisfatórios, considerando o extremo desbalanceamento do conjunto.
 
 \section{Resultados do modelo híbrido GRU e CNN}
 \label{sec:resultados_gru_cnn}
 
-O modelo híbrido apresentou resultado superior em relação ao modelo descrito em \ref{fig:gru_pura}. Na tabela \ref{tab:resultado_cv_gru_cnn_validacao}
+O modelo híbrido apresentou resultado superior em relação ao modelo anterior. Na tabela \ref{tab:resultado_cv_gru_cnn_validacao}
 abaixo, é possível ver que o modelo obteve média maior em todas as métricas. Apesar disso, o modelo obteve um desvio padrão maior 
-no \textit{recall} e \textit{F1-score}. 
+no \textit{recall} e \textit{F1-score}, mas a diferença foi de apenas 0.0106 e 0.0062.
 
 \begin{table}[H]
 \centering
@@ -200,8 +219,8 @@ Acurácia & 0,9730 & 0,0258 \\
 \end{table}
 
 Na tabela  \ref{tab:resultado_cv_gru_cnn_treino}, é possível observar que ainda há \textit{overfit} porém a diferença entre os resultados
-do treino e validação do modelo \ref{fig:cnn_gru} é menor quando comparado com o modelo \ref{fig:gru_pura}. Por exemplo, a 
-diferença percentual entre o \textit{f1-score} de treino e validação para o modelo híbrido foi de aproximadamente 9,56\% 
+do treino e validação do modelo híbrido é menor quando comparado com o modelo GRU puro. Por exemplo, a 
+diferença relative entre o \textit{f1-score} de treino e validação para o modelo híbrido foi de aproximadamente 9,56\% 
 enquanto que para o modelo recorrente puro, foi de, aproximadamente, 17,98\%.
 
 \begin{table}[H]
@@ -237,6 +256,8 @@ os \textit{folds} quatro e cinco, porém a diferença foi de, aproximadamente, 0
 
 A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Repetindo os critérios descritos na seção \ref{sec:resultados_gru}, o melhor
 \textit{fold} foi o segundo e o pior foi o terceiro.
+
+\subsubsection{Resultados no pior e melhor caso (Modelo Híbrido)}
 
 Na figura \ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz de confusão do modelo em seu melhor \textit{fold}.
 Neste cenário, o modelo não cometeu nenhum erro de falso positivo, mas 41 de falso positivo. Além de ter acertado 511 arritmias 
@@ -328,13 +349,19 @@ Esse ganho de desempenho sugere que o uso da CNN para extração de \textit{feat
 camada recorrente do modelo híbrido não precisou aprendê-las do sinal, apenas precisou se concentrar em como elas se encaixam 
 no contexto da sequência.
 
+\subsection{Conclusão dos resultados}
+
+Nesta seção, foi apresentado os resultados obtidos pelos modelos GRU puro e híbrido. Ambos os modelos apresentaram um caso de \textit{overfit},
+evidenciado pela grande diferença entre o desempenho no treino com o da validação. A partir das métricas individuais em cada \textit{fold},
+foi identificado o pior e melhor caso. Neste primeiro, ambos os modelos tiveram uma precisão bem menor que seu \textit{recall}, invertendo a 
+tendência apresentada nos outros \textit{folds}. O que pode ter sido devido a batimentos normais com características distoantes das apresentidas
+no treino, fazendo com que os modelos os confundissem com batimentos arrítmicos. 
+
 Em contextos médicos, é preferível um \textit{recall} maior, pois falsos negativos são mais danosos que um falso positivo; isto é, é melhor
 dizer que um batimento normal é arrítmico do que o contrário. Entretanto, uma precisão muito baixa pode indicar que o modelo é 
 tão bom quanto um modelo aleatório; o que o tornaria inútil. 
 
-Como evidenciado pelo AP, ambos os modelos se saíram bem melhor do que esse \textit{baseline}. 
-Por tanto, apesar do desbalanceamento e da variabilidade da classe positiva, os modelos conseguiram 
-aprender padrões que lhes permitem classificar as arritmias, entretanto, esses padrões ainda não são 
+Entretanto, os APs dos modelos no pior caso evidenciou que eles superaram esse \textit{baseline}, indicando que foi aprendido padrões que lhes permitem classificar as arritmias, entretanto, esses padrões ainda não são 
 perfeitamente generalizáveis.
 
 Por fim, na tabela a seguir é resumido os resultados alcançados pelos modelos e os apresentados na seção \ref{sec:trabalhos_correlatos}.

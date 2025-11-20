@@ -40,13 +40,19 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Resultados e discussões}}{49}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Resultados do modelo GRU}{49}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Resultados do modelo híbrido GRU e CNN}{55}{section.4.2}%
+\contentsline {subsubsection}{\numberline {4.1.0.1}Resultados no pior e melhor caso (Modelo GRU)}{50}{subsubsection.4.1.0.1}%
+\contentsline {section}{\numberline {4.2}Resultados do modelo híbrido GRU e CNN}{56}{section.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.0.1}Resultados no pior e melhor caso (Modelo Híbrido)}{58}{subsubsection.4.2.0.1}%
+\contentsline {subsection}{\numberline {4.2.1}Conclusão dos resultados}{62}{subsection.4.2.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Análise de erros no pior \textit {fold}}}{63}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Análise de erros do modelo híbrido CNN com GRU}{63}{section.5.1}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Análise de erros no pior \textit {fold}}}{64}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Análise de erros do modelo híbrido CNN com GRU}{64}{section.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.0.1}Comparação morfológica entre o paciente 203 e 119}{65}{subsubsection.5.1.0.1}%
+\contentsline {subsubsection}{\numberline {5.1.0.2}Comparação temporal entre o paciente 203 e 119}{68}{subsubsection.5.1.0.2}%
+\contentsline {subsubsection}{\numberline {5.1.0.3}Conclusão da análise de erros}{71}{subsubsection.5.1.0.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusão}}{72}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Trabalhos futuros}{72}{section.6.1}%
-\contentsline {section}{REFERÊNCIAS}{72}{section.6.1}%
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusão}}{73}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Trabalhos futuros}{73}{section.6.1}%
+\contentsline {section}{REFERÊNCIAS}{74}{section.6.1}%
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{73}{section*.61}%
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{75}{section*.59}%
