@@ -3,11 +3,11 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de ECG com sua morfologia destacada}}{14}{figure.caption.9}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de uma ANN \textit {feed-foward}}}{19}{figure.caption.10}%
 \contentsline {figure}{\numberline {4}{\ignorespaces Funções de ativação Sigmoid, Tanh e ReLU}}{21}{figure.caption.11}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Exemplo de uma RNN}}{23}{figure.caption.12}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Exemplo de uma RNN}}{24}{figure.caption.12}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Esquema de uma célula LSTM}}{25}{figure.caption.13}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Esquema de uma célula GRU}}{26}{figure.caption.14}%
 \contentsline {figure}{\numberline {8}{\ignorespaces Esquema de como uma CNN identificaria um tigre}}{27}{figure.caption.15}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura típica de uma CNN}}{28}{figure.caption.16}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura típica de uma CNN}}{29}{figure.caption.16}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Esquema a metodologia adotada.}}{35}{figure.caption.17}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com arritmia classe A}}{37}{figure.caption.19}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com com arritmia classe V}}{37}{figure.caption.20}%
