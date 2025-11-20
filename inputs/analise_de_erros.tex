@@ -2,12 +2,12 @@
 \label{ch:analise_erros_pior_fold}
 
 Nesta seção, será apresentada uma breve análise de erros do modelo híbrido em seu pior \textit{fold}. 
-Conforme os critérios adotados, o eleito foi o terceiro — para ambos os modelos.
+Conforme os critérios adotados, o eleito foi o terceiro.
 
-Como o recall foi superior à precisão, supoi-se que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
-Assim, o objetivo desta seção é verificar como os erros estão distribuídos em relação aos pacientes e quais características
-o ECG dos mesmos têm. Por fim, será apresentado também a curva de calibração do modelo, para visualizar a questão da
-calibração do mesmo.
+Como o recall foi superior à precisão, foi suposto que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
+Assim o objetivo dessa seção é fazer uma breve exploração desse \textit{fold} e verificar como os erros estão distribuídos em relação aos pacientes,
+e quais características os dados desses pacientes têm; como a morfologia do ECG e o intervalo RR.
+Por fim, será apresentado também a curva de calibração do modelo.
 
 Devido ao fato de redes neurais serem modelos caixa-preta, não é possível afirmar quais características contribuíram para 
 os erros, logo, a análise serve apenas para construir uma intuição inicial para os resultados achados.
@@ -34,27 +34,17 @@ Na tabela~\ref{tab:erros_acertos_por_paciente}, a seguir, é possível ver que a
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Aproximadamente, 98,46\% de todos os erros foram desse paciente. O modelo errou em torno de 35,31\% de seus batimentos. Conforme visto na 
+Aproximadamente, 98,46\% de todos os erros foram desse paciente. Conforme visto na 
 figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
-
-Já no paciente 209, o modelo acertou a única classe positiva que existia. O único erro cometido foi um falso positivo. Já no paciente 
-205, o modelo acertou 69 das 71 classes positivas e errou 9 classes negativas, das 2.556. Nesses dois pacientes, a classe positiva 
-era extremamente rara, mas em números absolutos, a maioria dos erros foram de falsos positivos.
-
 Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
 a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
 
+Já no paciente 209, o modelo acertou a única classe positiva que existia. O único erro cometido foi um falso positivo. No paciente 
+205, o modelo acertou 69 das 71 classes positivas e errou 9 classes negativas, das 2.556. Nesses dois pacientes, a classe positiva 
+era extremamente rara, mas em números absolutos, a maioria dos erros foram de falsos positivos.
+
 Como o paciente 203 dominou os erros neste \textit{fold} e para o paciente 119, não houve erros, na próxima seção, a análise 
-se concentrar neste dois casos. 
-
-Primeiro, será exibida a matriz de confusão do paciente 203 para ilustrar os tipos de erros e acertos, em seguida 
-uma comparação entre os trechos de ECG de ambos os pacientes, para comparar a morfologia e possíveis ruídos, e um 
-\textit{scatter-plot} dos intervalos RR, para analisar a taxa cardíaca de ambos os pacientes. Neste gráfico, 
-o eixo X representa o intervalo RR anterior e o eixo Y, o subsequente. 
-
-Por fim, a curva de 
-calibração, para poder ilustrar o cenário de superconfiança em dois casos distintos; um de alto desempenho e outro de 
-desempenho menor.
+se concentrar neste dois casos.
 
 \subsubsection{Comparação morfológica entre o paciente 203 e 119}
 
@@ -68,7 +58,8 @@ Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz 
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-O modelo confundiu seis batimentos ventriculares como normais e 766 normais como ventriculares.
+Das 2.516 sequências normais, o modelo classificou 766 como arrítmicas e acertou 1.750 e das 472 sequências arrítmicas, o modelo acertou 
+436 e errou 6. Assim, ao todo, o modelo errou 35,31\% dos batimentos do paciente 209;
 
 Na figura
 \ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
@@ -85,8 +76,8 @@ um falso positivo e na segunda um verdadeiro negativo.
 É possível observar a forte presença de ruído em ambos os casos. E a presença de batimentos com a morfologia 
 bem deformada; após a amostra 2000 no primeiro gráfico e após a amostra 1000 no segundo. 
 
-O modelo tinha 97\% de confiança que o primeiro ECG era da classe positiva. Logo, não é apenas um erro, mas um erro com 
-muita confiança; o que já insinua um cenário de superconfiança. No segundo caso, o modelo tinha 12\% de confiança que a 
+O modelo tinha 97\% de confiança que o primeiro ECG era da classe positiva, logo foi um erro com 
+muita confiança. No segundo caso, o modelo tinha 12\% de confiança que a 
 sequência pertencia a classe positiva, ou seja, 88\% de chance de ser da classe negativa; um acerto com confiança.
 
 Na figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequência normal do paciente mais fácil;
@@ -94,7 +85,7 @@ Na figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequênc
 \begin{figure}[H]
   \centering
   \caption{ECG normal do paciente 119.}
-   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
+   \includegraphics[width=0.82\textwidth]{figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png} 
   \label{fig:acert_neg_class_paciente_mais_facil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -116,12 +107,11 @@ Em ambos os casos, é observável o ruído presenta na figura \ref{fig:erro_acer
 \end{figure}
 
 O modelo tinha 16\% de confiança que era um caso da classe positiva, logo, 84\% que era da classe negativa; um erro 
-confiante. É possível notar uma morfologia relativamente mais limpa e uniforma, principalmente quando comparada às demais sequências 
+confiante. É possível notar uma morfologia relativamente mais limpa e uniforme, principalmente quando comparada às demais sequências 
 apresentadas deste paciente, levando o modelo a confundi-la com uma sequência normal.
 
 Já no segundo caso, o modelo tinha 97\% de confiança que era um caso da classe positiva; sendo um 
-acerto com confiança. Nota-se a presença de arritmias ventriculares e um sinal com mais ruído; visualmente,
-esta sequência é diferente da anterior.
+acerto com confiança. Nota-se a presença de arritmias ventriculares e um sinal com mais ruído.
 
 Na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
 Observe no último batimento, uma arritmia ventricular.
@@ -129,7 +119,7 @@ Observe no último batimento, uma arritmia ventricular.
 \begin{figure}[H]
   \centering
   \caption{ECG arrítmico do paciente 119.}
-   \includegraphics[width=0.7\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
+   \includegraphics[width=0.82\textwidth]{figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png} 
   \label{fig:acert_posclass_paciente_mais_facil}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
