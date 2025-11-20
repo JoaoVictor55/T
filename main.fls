@@ -658,6 +658,7 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx10.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbxi10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri8.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri7.tfm
 INPUT ./inputs/resultados_e_discussoes.tex

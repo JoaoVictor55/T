@@ -292,134 +292,15 @@ Na tabela \ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold
 \subsection{Métricas}
 \label{sec:metricas}
 
-As métricas utilizadas para avaliar o desempenho dos modelos foram: sensibilidade, precisão, acurácia, \textit{F1-score}, AUC (\textit{Area Under the Curve}) e AP (textit{Average Precision}). Esses 
-dois últimos são exibidos juntos ao gráficos \textit{ROC} e \textit{PR}, respectivamente. Além da curva de calibração para avaliar o pior cenário.
+As métricas utilizadas para avaliar o desempenho dos modelos foram selecionadas em duas categorias: métricas de desempenho 
+(Sensibilidade, Precisão, Acurácia, \textit{F1-score}, AUC, AP), que quantificam os tipos de acertos e erros, e métricas de confiabilidade 
+(Curva de Calibração), que avaliam a coerência das probabilidades previstas. 
+Para iniciar, será apresentada a Matriz de Confusão, que serve como fundamento para as métricas de desempenho ao tipificar os acertos e erros 
+do modelo em termos de verdadeiros e falsos.
 
-A sensibilidade representa a capacidade do modelo em identificar corretamente as classes positivas, isto é, os batimentos arrítmicos. Sua equação é dada por:
+\subsubsection{Matriz de Confusão e Métricas Derivadas}
 
-\begin{equation}
-\text{Sensibilidade} = \frac{TP}{TP + FN}
-\end{equation}
-
-em que $TP$ são os verdadeiros positivos e $FN$ os falsos negativos.  
-
-A precisão, por sua vez, indica a proporção de batimentos classificados como arrítmicos que realmente pertencem a essa classe:
-
-\begin{equation}
-\text{Precisão} = \frac{TP}{TP + FP}
-\end{equation}
-
-onde $FP$ representa os falsos positivos. Precisão e sensibilidade estão relacionadas por um \textit{trade-off}. No contexto médico, prioriza-se elevada sensibilidade, ainda que à custa de menor precisão, uma vez que falsos negativos são mais prejudiciais que falsos positivos.  
-
-O \textit{F1-score} é a média harmônica entre precisão e sensibilidade, buscando um equilíbrio entre ambas:
-
-\begin{equation}
-\text{\textit{F1-score}} = \frac{2 \cdot \text{Precisão} \cdot \text{Sensibilidade}}{\text{Precisão} + \text{Sensibilidade}}
-\end{equation}
-
-A acurácia corresponde ao acerto global do modelo, considerando tanto as classes positivas quanto as negativas:
-
-\begin{equation}
-\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
-\end{equation}
-
-A AUC mede a capacidade do modelo em separar as classes positivas das negativas, variando entre 0 e 1. Valores próximos de 1 indicam separação perfeita, enquanto 0,5 corresponde a um modelo com desempenho equivalente ao acaso,
-o \textit{baseline}.
-
-Essa métrica é calculada a partir da área sob a curva ROC. Na Figura~\ref{fig:roc_perfect}, é ilustrado a curva ROC de um classificador perfeito.
-
-\begin{figure}[H]
-    \centering
-    \caption{Curva ROC de um Classificador Perfeito: Comparação com Modelo Aleatório.}
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.5\textwidth,
-            height=0.5\textwidth,
-            grid=both,
-            xlabel={Taxa de Falsos Positivos (FPR)},
-            ylabel={Taxa de Verdadeiros Positivos (TPR)},
-            xmin=0, xmax=1,
-            ymin=0, ymax=1,
-            legend pos=south east,
-            legend style={font=\small},
-            tick label style={font=\small}
-        ]
-
-        % Linha do classificador aleatório
-        \addplot[domain=0:1, dashed, thick, color=black] {x};
-        \addlegendentry{Aleatório (AUC=0,5)}
-
-        % Curva ROC do Classificador Perfeito
-        \addplot[color=red, very thick] coordinates {
-            (0,0)  % Inicia
-            (0,1)  % Sobe verticalmente até TPR=1, mantendo FPR=0
-            (1,1)  % Segue horizontalmente até o fim, mantendo TPR=1
-        };
-        \addlegendentry{Perfeito (AUC=1,0)}
-
-        \end{axis}
-        
-    \end{tikzpicture}
-    \label{fig:roc_perfect}
-    \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-A curva vermelha representa um classificador perfeito com TPR, sinônimo de \textit{recall}, sempre igual a um. O raciocínio é que 
-para aumentar o \textit{recall}, a quantidade de classes negativas que são classificadas como positivas, calculada por FPR, aumenta. 
-Entretanto, para um classificador perfeito, esse \textit{trade-off} não existe.
-
-A linha tracejada representa um classificador aleatório, o \textit{baseline}. Neste caso, por exemplo, para achar 60\% das classes positivas,
-cerca de 0,6 de \textit{recall}, o modelo classificaria 60\%  das classes negativas como positivas.
-
-Já a curva PR, Precisão vs \textit{Recall} representa a precisão em função do \textit{recall}. Na figura Figure~\ref{fig:roc_perfect},
-é ilustrada a curva PR de um classificador perfeito.
-
-\pgfplotsset{compat=1.18}
-
-\begin{figure}[H]
-    \centering
-    \caption{Curva Precisão–Recall de um Classificador Perfeito: Comparação com Baseline.}
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.7\textwidth,
-            height=0.5\textwidth,
-            xlabel={Recall},
-            ylabel={Precisão},
-            xmin=0, xmax=1,
-            ymin=0, ymax=1,
-            grid=major,
-            legend style={at={(0.95,0.2)},anchor=south east},
-            legend cell align={left},
-            thick
-        ]
-        
-        % Curva PR do Classificador Perfeito
-        \addplot[color=red, ultra thick] coordinates {
-            (0.0, 1.0)  % Precisão = 1, Recall = 0
-            (1.0, 1.0)  % Precisão = 1, Recall = 1
-        };
-        \addlegendentry{Perfeito (AUPRC=1,0)}
-
-        % Linha base (baseline) - Mantida como exemplo
-        \addplot[dashed, color=gray] coordinates {
-            (0,0.2) (1,0.2)
-        };
-        \addlegendentry{Baseline (proporção positiva)}
-        \end{axis}
-    \end{tikzpicture}
-    
-    \label{fig:pr_curve_perfect}
-    \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
-
-Como há uma relação de \textit{trade-off} entre a precisão e o \textit{recall}, conforme ajusta-se o limiar de decisão para aumentar o \textit{recall},
-a precisão tende a cair. Entretanto, assim como ocorre na ROC, esse \textit{trade-off} não existe para um classificador perfeito; ou seja, a precisão é 
-sempre 100\% independente do valor do \textit{recall}.
-
-Já a linha tracejada, marca o desempenho de um classificador aleatório; o \textit{baseline}. A linha corresponde a frequência da classe positiva, isto é, 
-o classificador aleatório sempre tem uma precisão igual a frequência da classe positiva. AP é o análogo da AUC para esta curva.
-
-Na tabela \ref{tab:matriz_confusao} é ilustrada a matriz de confusão.
+Na tabela \ref{tab:matriz_confusao} é ilustrada um exemplo de matriz de confusão para um classificador binário
 
 \begin{table}[H]
 \centering
@@ -435,18 +316,119 @@ Negativa & FP & TN \\ \hline
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Em sentido anti-horário, a partir do canto superior esquerdo temos: 
+Em sentido anti-horário, a partir do canto superior esquerdo tem-se: 
 
 \begin{enumerate}
-\item {TP} \textit{true positive}, quantos casos positivos foram corretamente classificados;
-\item {FN} \textit{false negative}, quantos casos positivos foram incorretamente classificados;
-\item {FP} \textit{false positive}, quantos casos negativos foram incorretamente classificados;
-\item {TN} \textit{true negative}, quantos casos negativos foram incorretamente classificados.
+\item {TP} (\textit{true positive} - verdadeiro positivo), quantos casos positivos foram corretamente classificados;
+\item {FN} (\textit{false negative} - falso negativo), quantos casos positivos foram incorretamente classificados;
+\item {FP} (\textit{false positive} - falso positivo), quantos casos negativos foram incorretamente classificados;
+\item {TN} (\textit{true negative} - verdadeiro negativo), quantos casos negativos foram incorretamente classificados.
 \end{enumerate}
 
-\citeonline{mizilPredictingGoodProbs} apresentam uma definição visual de um modelo perfeitamente calibrado. Em um diagrama de confiabilidade, o modelo é considerado bem calibrado quando, para cada bin de probabilidade, a média das probabilidades previstas corresponde à frequência observada da classe positiva nesse mesmo bin.
+Com base nesses tipos, são definidas as seguintes métricas de desempenho
 
-Na figura \ref{fig:calibracao_exemplo} é ilustrada um exemplo desse diagrama.
+\noindent\textbf{Acurácia:} Corresponde ao acerto global do modelo:
+\begin{equation}
+\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\noindent\textbf{Sensibilidade (\textit{Recall}):} Representa a capacidade do modelo em identificar corretamente a classe positiva, sendo $\text{TPR}$ (Taxa de Verdadeiros Positivos) seu sinônimo.
+\begin{equation}
+\text{Sensibilidade} = \frac{TP}{TP + FN}
+\end{equation}
+
+\noindent\textbf{Precisão:} Indica a proporção de batimentos classificados como arrítmicos que realmente pertencem à classe positiva:
+\begin{equation}
+\text{Precisão} = \frac{TP}{TP + FP}
+\end{equation}
+
+\noindent\textbf{\textit{F1-score}:} É a média harmônica entre Precisão e Sensibilidade, buscando um equilíbrio entre as duas:
+\begin{equation}
+\text{\textit{F1-score}} = \frac{2 \cdot \text{Precisão} \cdot \text{Sensibilidade}}{\text{Precisão} + \text{Sensibilidade}}
+\end{equation}
+
+\subsubsection{Curva de Precisão e Recall}
+
+Segundo \citeonline{geron2022hands}, a precisão e o \textit{recall} são um \textit{trade-off}; conforme aumenta-se o \textit{recall},
+a tendência é que o modelo comete mais erros de falsos positivos, diminuindo a precisão. Da mesma forma, conforme aumenta-se a precisão, 
+o modelo tende a cometer mais erros de falsos negativos, diminuindo a sensibilidade.
+
+Em contextos médicos, prioriza-se o \textit{recall}, pois falsos negativos são mais prejudiciais que falsos positivos. 
+Abaixo, é ilustrada uma curva precisão-\textit{recall} que  mostra o desempenho do modelo em todos os limiares de decisão possíveis e o 
+efeito desse \textit{trade-off}:
+
+\pgfplotsset{compat=1.18}
+
+\begin{figure}[H]
+    \centering
+    \caption{Curvas Precisão–Recall: Comparação entre Classificador Perfeito, Realista e Baseline.}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.7\textwidth,
+            height=0.5\textwidth,
+            xlabel={Recall},
+            ylabel={Precisão},
+            xmin=0, xmax=1,
+            ymin=0, ymax=1,
+            grid=major,
+            % Ajustado: Legenda no canto inferior esquerdo, acima do baseline (y=0.25)
+            legend style={at={(0.05,0.25)},anchor=south west}, 
+            legend cell align={left},
+            thick
+        ]
+        
+        % Curva PR do Classificador Perfeito
+        \addplot[color=red, ultra thick] coordinates {
+            (0.0, 1.0)  
+            (1.0, 1.0)  
+        };
+        \addlegendentry{Perfeito (AUPRC=1,0)}
+
+        % Curva PR do Classificador Realista 
+        \addplot[color=blue, thick, mark=*, mark size=1.5] coordinates {
+            (0.0, 0.95)
+            (0.2, 0.90)
+            (0.4, 0.85)
+            (0.6, 0.75)
+            (0.8, 0.60)
+            (1.0, 0.35)
+        };
+        \addlegendentry{Realista (AUPRC=0,75)}
+        
+        % Linha base (baseline)
+        \addplot[dashed, color=gray] coordinates {
+            (0,0.2) (1,0.2)
+        };
+        \addlegendentry{Baseline (proporção positiva)}
+        
+        \end{axis}
+    \end{tikzpicture}
+    
+    \label{fig:pr_curve_comparison}
+    \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
+
+A curva azul ilustra o \textit{trade-off} de um modelo fictício. Conforme sua sensibilidade aumenta, ele começa a cometer erros de 
+falso positivo, impactando negativamente a sua precisão. Na curva vermelha é ilustrada um modelo perfeito; nele esse \textit{trade-off}
+não existe. O modelo sempre acerta, não importa o \textit{recall}. 
+
+A AUCPR (\textit{area under curve precision recall} - ára sob a curva
+precisão sensibilidade) é uma métrica que resume essas curvas. É possível comparar essa métrica com um \textit{baseline} que corresponde 
+a um modelo que simplesmente adivinha; um acerto aleatório ou \textit{random guess}. No caso da curva PR, tal modelo teria um AUCPR igual a 
+proporção da classe positiva.
+
+Uma alternativa a curva PR é a ROC (\textit{receive operator curve}) que exibe a sensibilidade em relação a taxa de falsos positivos. O seu 
+comportamento é semelhante ao da curva PR, porém ela tende a ser otimista em conjunto de dados desbalanceados \cite{geron2022hands}.
+Assim, neste trabalho foi optado por usar apenas a curva PR, mas, será discutido a AUC (\textit{area under the curve}) dos modelos. Essa métrica 
+é equivalente a AUCPR, com a diferença que, para o \textit{baseline}, a AUC é sempre 0,5. Neste cenário, o \textit{recall} é igual à 
+taxa de falsos positivos; ou seja, ao achar 60\% das classes positivas, o modelo classifica 60\% das classes negativas como positivas, por exemplo.
+Um modelo perfeito, terá um AUC de 1,0.
+
+\subsubsection{Curva de calibração}
+
+\citeonline{mizilPredictingGoodProbs} apresentam uma definição visual de um modelo perfeitamente calibrado. 
+Supondo que para um conjunto de pacientes, a média da probabilidade prevista é de 30\%. Se o modelo for perfeitamente
+calibrado, então a frequência da classe positiva neste conjunto será de 30\%.
 
 \begin{figure}[ht]
     \centering
@@ -480,16 +462,9 @@ Na figura \ref{fig:calibracao_exemplo} é ilustrada um exemplo desse diagrama.
     \end{tikzpicture}
 \end{figure}
 
-Um modelo perfeitamente calibrado terá uma curva na diagonal. Logo, caso a probabilidade média prevista seja de 40\%,
-então a ocorrência da classe positiva será de 40\%. Um modelo superconfiante terá sua curva abaixo da diagonal, assim, nesse 
-mesmo caso, a ocorrência da classe positiva seria abaixo de 40\% e para um modelo subconfiante, a ocorrência da classe positiva 
-é maior que a média da probabilidade prevista. 
+Assim, um modelo perfeitamente calibrado tem uma curva correspondente a diagonal do diagrama. Modelos superconfiantes têm a sua curva 
+abaixo da diagonal; a média das probabilidades previstas é maior que a frequência e modelos pouco confiantes têm a curva acima; a média 
+das probabilidades previstas é menor que a frequência real.
 
-Os autores explicam que calibração é um aspecto aparte do desempenho, medido pelas demais métricas supracitadas. Muitos contextos,
-apenas ter um bom ROC, por exemplo, não é suficiente. Logo, é possível ter um alto desempenho, porém, ter uma calibração ruim.
-
-Essas métricas mostram o desempenho do modelo em perspectivas diferentes, 
-precisão, \textit{recall}, \textit{f1 score} e acurácia, mostram o desempenho do modelo para um determinado limiar. Neste trabalho, foi escolhido como 50\%. 
-Já as curvas PR e ROC mostram o impacto no desempenho do modelo para diferentes limiares e a matriz de confusão permite visualizar os tipos de erros e acertos
-individualmente. A calibração, por outro lado, está relacionada com o quanto as probabilidades previstas refletem a ocorrência real 
-dos casos positivos.
+\citeonline{mizilPredictingGoodProbs} afirmam que calibração é fundamental para a confiabilidade do modelo e não diretamente relacionado 
+ao desempenho medido pelas demais métricas.
