@@ -152,7 +152,7 @@ A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
     \begin{minipage}{0.9\textwidth}
         \centering
         \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png}
-        \subcaption{ECG cru e segmentado}
+        \subcaption{Falso positivo do paciente 203}
         \label{fig:poincarefp}
     \end{minipage}
 
@@ -161,7 +161,7 @@ A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
     \begin{minipage}{0.9\textwidth}
         \centering
         \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tp.png} 
-        \subcaption{ECG segmentado e reamostrado}
+        \subcaption{Verdadeiro positivo do paciente 203}
         \label{fig:poincaretp}
     \end{minipage}
 
@@ -188,9 +188,9 @@ A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
 \end{figure}
 \fi
 
-Já a figura \ref{fig:poicare_tn} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+Já a figura \ref{fig:poincare_tn_MaisDificil} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
 
-Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
+Por fim, a figura \ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
 
 \iffalse
 \begin{figure}[H]
@@ -217,7 +217,7 @@ Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal d
     \begin{minipage}{0.9\textwidth}
         \centering
         \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_tn.png}
-        \subcaption{ECG cru e segmentado}
+        \subcaption{Verdadeiro negativo do paciente 203}
         \label{fig:poincare_tn_MaisDificil}
     \end{minipage}
 
@@ -226,16 +226,23 @@ Por fim, a figura \ref{fig:poicare_neg_maisfacil} mostra uma sequência normal d
     \begin{minipage}{0.9\textwidth}
         \centering
         \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_facil_neg.png} 
-        \subcaption{ECG segmentado e reamostrado}
-        \label{fig:poincaretp}
+        \subcaption{Verdadeiro negativo do paciente 119}
+        \label{fig:poincare_tn_MaisFacil}
     \end{minipage}
 
     \legend{Fonte: Elaborado pelo autor.}
-    \label{fig:poincare_tn_MaisFacil}
+    \label{fig:poincare_normal_maisdificil_maisfacil}
 \end{figure}
 
+Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 113.
 
-Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 113, 
+\begin{figure}[H]
+  \centering
+  \caption{Curva de calibração para o paciente 203 e 119.}
+   \includegraphics[width=0.9\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
+  \label{fig:curva_calibracao_pior_paciente}
+  \legend{Fonte: Elaborado pelo autor.}
+\end{figure}
 
 Em ambos os casos, o modelo foi superconfiante, pois as curvas se mantém a baixo da diagonal principal. Entretanto,
 como a curva do paciente 119 se aproxima mais da diagonal, então a para este paciente, a falta de calibração
@@ -249,14 +256,6 @@ Conforme a discussão da seção \ref{sec:metricas}, a calibração não é dire
 Isto pode ser observada na curva de calibração do paciente 113 onde o desempenho foi alto, mas a falta de calibração também existe.
 Assim, mesmo se o modelo fosse muito sensível e tivesse uma precisão baixa, caso ele fosse bem calibrado, o tomador de decisão poderia 
 confiar que as probabilidades previstas seriam mais realista.
-
-\begin{figure}[H]
-  \centering
-  \caption{Curva de calibração para o paciente 203 e 119.}
-   \includegraphics[width=0.9\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
-  \label{fig:curva_calibracao_pior_paciente}
-  \legend{Fonte: Elaborado pelo autor.}
-\end{figure}
 
 \subsubsection{Conclusão da análise de erros}
 
