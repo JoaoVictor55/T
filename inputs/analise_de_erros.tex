@@ -244,6 +244,16 @@ Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva 
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
+A análise de calibração indica que o modelo está superconfiante em ambos os pacientes. Este cenário é caracterizado pelas curvas de calibração que se mantêm abaixo da diagonal principal.
+
+No caso do paciente 119, a falta de calibração é menos sevara, pois sua curva se aproxima mais da diagonal principal. Já para o paciente 203, a superconfiança é mais intensa, especialmente 
+em \textit{bins} abaixo de 80\%. Um exemplo é quando o modelo prevê que 90\% de um grupo será arrítmico, a realidade é que menos de 60\% deles o são.
+
+Conforme discutido na seção \ref{sec:metricas}, a calibração não está diretamente relacionada ao desempenho, tanto que em ambos os pacientes, a rede foi superconfiante. Seria possível 
+que o modelo tivesse um desempenho baixo e fosse bem calibrado; neste cenário, o tomador de decisão poderia confiar que as probabilidades
+previstas seriam realistas, mesmo que o modelo não discernisse tão bem.
+
+\iffalse
 Em ambos os casos, o modelo foi superconfiante, pois as curvas se mantém a baixo da diagonal principal. Entretanto,
 como a curva do paciente 119 se aproxima mais da diagonal, então a para este paciente, a falta de calibração
 foi menos severa. Após o \textit{bin} de probabilidade média de 80\%, próximo ao de 100\%, a curva do paciente 119 cruza a diagonal; assim 
@@ -256,6 +266,7 @@ Conforme a discussão da seção \ref{sec:metricas}, a calibração não é dire
 Isto pode ser observada na curva de calibração do paciente 113 onde o desempenho foi alto, mas a falta de calibração também existe.
 Assim, mesmo se o modelo fosse muito sensível e tivesse uma precisão baixa, caso ele fosse bem calibrado, o tomador de decisão poderia 
 confiar que as probabilidades previstas seriam mais realista.
+\fi
 
 \subsubsection{Conclusão da análise de erros}
 
