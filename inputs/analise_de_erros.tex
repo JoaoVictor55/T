@@ -224,9 +224,9 @@ Por fim, a figura \ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal d
     \label{fig:poincare_normal_maisdificil_maisfacil}
 \end{figure}
 
-Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 113.
+Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 119.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \caption{Curva de calibração para o paciente 203 e 119.}
    \includegraphics[width=0.9\textwidth]{figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png} 
@@ -265,12 +265,12 @@ uma intuição adicional às razões da falha do mesmo. Foi identificado que a g
 paciente, o 203, que as anotações do MIT-BIH o classifica como muito difícil, devido a presença de ruído e arritmias 
 atípicas. 
 
-Comparando o paciente 203 com o 119 — paciente para o qual o modelo não cometeu erros — foi identificodo que esse possui 
+Comparando o paciente 203 com o 119 — paciente para o qual o modelo não cometeu erros — foi identificado que esse possui 
 um sinal mais limpo e sem grandes morfologias atípicas. Além disso, no paciente 203, 
 num caso de falso positivo, o intervalo do último batimento da 
 em relação ao seu antecessor é mais curto, o que poderia fazer com que o modelo o confundisse com uma arritmia. 
 
-Além disso, a curva de calibração mostrou um cenário de superconfiança para ambos os pacientes, reinforçando a ideia de que 
+Além disso, a curva de calibração mostrou um cenário de superconfiança para ambos os pacientes, reforçando a ideia de que 
 ela não tem relação direta com o desempenho.
 
 Conforme visto na seção \ref{ch:resultados}, este \textit{fold} também foi o pior caso do modelo GRU e o mesmo ainda se saiu pior que o 
