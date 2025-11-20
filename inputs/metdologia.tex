@@ -57,7 +57,7 @@ Essas anotações são anotações de batimento, isto é, elas são feitas em ca
 e a taquicardia ventricular; identificado por (VFL. Dentro de um contexto rítmico, podem haver batimentos normais ou arrítmicos.
 
 Por exemplo, na figura \ref{fig:p100_ritmo_normal}, é mostrado o trecho de um ECG. Note a anotação de ritmo, (N, indicando que o mesmo 
-é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, uma arritmia superventricular,
+é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, uma arritmia supraventricular,
 mais precisamente, o batimento atrial prematuro, classe A.
 
 \begin{figure}[H]
@@ -101,15 +101,30 @@ Além de ser recomendado pela AAMI.
 \section{Pré-processamento}
 \label{sec:pre_process}
 
-Antes de utilizar o sinal de ECG como entrada dos modelos, foi necessária uma etapa de pré-processamento composta por limpeza de ruídos, segmentação e padronização dos batimentos. Essa etapa é importante porque o ECG está sujeito a diversos artefatos que podem prejudicar o aprendizado das redes neurais. Como o exame registra a atividade elétrica do coração, correntes elétricas externas ou internas ao organismo podem modificar o sinal. Entre os ruídos mais comuns estão o ruído muscular (proveniente da contração de outros músculos), o baseline wander (variação lenta associada à respiração) e a interferência de 60 Hz da rede elétrica, como discutido na seção \ref{sec:trabalhos_correlatos}.
+Antes de utilizar o sinal de ECG como entrada dos modelos, foi necessária uma etapa de pré-processamento composta por limpeza de ruídos, 
+segmentação e padronização dos batimentos. Essa etapa é importante porque o ECG está sujeito a diversos ruídos que podem prejudicar o 
+aprendizado das redes neurais. Como o exame registra a atividade elétrica do coração, correntes elétricas externas ou internas ao organismo 
+podem modificar o sinal. Entre os ruídos mais comuns estão o ruído muscular (proveniente da contração de outros músculos), o \textit{baseline wander} 
+(variação lenta associada à respiração) e a interferência de 60 Hz da rede elétrica, como discutido na seção \ref{sec:trabalhos_correlatos}.
 
-Apesar disso, alguns trabalhos utilizam o sinal praticamente cru, delegando ao próprio modelo o papel de identificar o que é ou não relevante. Essa abordagem simplifica o pré-processamento, mas aumenta a complexidade do problema de aprendizado e pode demandar bases maiores ou arquiteturas mais robustas.
+Apesar disso, alguns trabalhos utilizam o sinal praticamente cru, delegando ao próprio modelo o papel de identificar o que é ou não relevante. 
+Essa abordagem simplifica o pré-processamento, mas aumenta a complexidade do problema de aprendizado e pode demandar bases maiores ou arquiteturas 
+mais robustas.
 
-Outro desafio importante é a segmentação do ECG em batimentos individuais. Conforme observado nos trabalhos correlatos, existem duas abordagens principais: o uso de janelas de tempo fixas ou janelas adaptadas ao tamanho do batimento. Janelas fixas são simples, mas podem cortar partes importantes do complexo QRS ou incluir trechos de batimentos vizinhos. Em ambas as estratégias, o pico R é normalmente utilizado como referência. Uma vantagem do MIT-BIH é que esses picos já estão anotados; quando não estão, podem ser identificados por algoritmos como o de \citeonline{pantompkins1985}.
+Outro desafio importante é a segmentação do ECG em batimentos individuais. Conforme observado nos trabalhos correlatos, existem duas abordagens 
+principais: o uso de janelas de tempo fixas ou janelas adaptadas ao tamanho do batimento. Janelas fixas são simples, mas podem cortar partes 
+importantes do complexo QRS ou incluir trechos de batimentos vizinhos. Em ambas as estratégias, o pico R é normalmente utilizado como referência. 
+Uma vantagem do MIT-BIH é que esses picos já estão anotados; quando não estão, podem ser identificados por algoritmos como o de 
+\citeonline{pantompkins1985}.
 
-Neste trabalho, optou-se por trabalhar com o sinal o mais próximo possível do original, preservando suas características fisiológicas e facilitando análises posteriores. Por isso, adotou-se a segmentação flexível. Inicialmente, o sinal foi limpo com um filtro passa-alta de 0,5 Hz (ordem 5), seguido de filtragem da linha de energia a 60 Hz. Em seguida, foi executada a segmentação. Ambas as etapas utilizaram a biblioteca NeuroKit2 \cite{Makowski2021neurokit}.
+Neste trabalho, optou-se por trabalhar com o sinal o mais próximo possível do original, preservando suas características fisiológicas e 
+facilitando análises posteriores. Por isso, adotou-se a segmentação flexível. Inicialmente, o sinal foi limpo com um filtro passa-alta de 
+0,5 Hz (ordem 5), seguido de filtragem da linha de energia a 60 Hz. Em seguida, foi executada a segmentação. Ambas as etapas utilizaram a 
+biblioteca NeuroKit2 \cite{Makowski2021neurokit}.
 
-Por fim, foi necessário uniformizar o tamanho dos batimentos antes de alimentá-los nos modelos. A média das amostras por batimento foi de aproximadamente 284; portanto, adotou-se uma reamostragem para 288 amostras, correspondendo a 800 ms de duração. Essa etapa foi realizada com a função resample da biblioteca SciPy \cite{2020SciPy-NMeth}.
+Por fim, foi necessário uniformizar o tamanho dos batimentos antes de alimentá-los nos modelos. A média das amostras por batimento foi de 
+aproximadamente 284; portanto, adotou-se uma reamostragem para 288 amostras, correspondendo a 800 ms de duração. Essa etapa foi realizada com a 
+função \textit{resample} da biblioteca SciPy \cite{2020SciPy-NMeth}.
 
 Na figura abaixo é ilustrado um batimento segmentado e limpo e o seu trecho correspondente crú.
 
@@ -132,11 +147,17 @@ Na figura abaixo é ilustrado um batimento segmentado e limpo e o seu trecho cor
     \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-\subsection{Features}
+\subsection{\textit{Features}}
 
-Após o pré-processamento, é necessário avaliar quais features devem ser utilizadas. Em problemas de ECG, essas features precisam ser relevantes para o domínio clínico. Por outro lado, redes neurais apresentam a vantagem de aprender representações diretamente dos dados brutos, o que reduz a necessidade de engenharia manual de atributos. Ainda assim, algumas features simples podem complementar o aprendizado, fornecendo informação explícita que ajude o modelo a distinguir padrões.
+Após o pré-processamento, é necessário avaliar quais \textit{features} devem ser utilizadas. Em problemas de ECG, essas \textit{features} 
+precisam ser relevantes para o domínio clínico. Por outro lado, redes neurais apresentam a vantagem de aprender representações diretamente dos 
+dados brutos, o que reduz a necessidade de engenharia manual de atributos. Ainda assim, algumas \textit{features} simples podem complementar o aprendizado, 
+fornecendo informação explícita que ajude o modelo a distinguir padrões.
 
-Neste trabalho, optou-se por utilizar apenas o intervalo RR como feature adicional, permitindo que a própria rede aprenda as demais características relevantes a partir do sinal segmentado. O intervalo RR é uma informação particularmente útil porque descreve o tempo entre batimentos consecutivos. Essa informação ajuda na identificação de arritmias cuja principal manifestação é temporal, como no caso dos batimentos ventriculares prematuros (PVCs), em que ocorre um encurtamento característico desse intervalo.
+Neste trabalho, optou-se por utilizar apenas o intervalo RR como feature adicional, permitindo que a própria rede aprenda as demais 
+características relevantes a partir do sinal segmentado. O intervalo RR é uma informação particularmente útil porque descreve o tempo entre 
+batimentos consecutivos. Essa informação ajuda na identificação de arritmias cuja principal manifestação é temporal, como no caso dos batimentos 
+ventriculares prematuros (PVCs), em que ocorre um encurtamento característico desse intervalo.
 
 Assim, para um batimento \textit{i}, seu intervalo RR é calculado da seguinte forma.
 
@@ -154,9 +175,15 @@ por exemplo, isso poderia ser um vazamento, o que não é o caso deste projeto.
 \section{Arquiteturas}
 \label{sec:modelos}
 
-Após o pré-processamento e a definição das features, é necessário escolher as arquiteturas de rede neural que serão avaliadas. Como discutido por \citeonline{geron2022hands}, a busca por hiperparâmetros ideais e por configurações de modelo costuma ser um processo altamente experimental, podendo incluir técnicas automáticas — como grid search ou random search —, mas que, no contexto de redes neurais profundas, frequentemente se torna inviável devido ao custo computacional.
+Após o pré-processamento e a definição das \textit{features}, é necessário escolher as arquiteturas de rede neural que serão avaliadas. 
+Como discutido por \citeonline{geron2022hands}, a busca por hiperparâmetros ideais e por configurações de modelo costuma ser um processo 
+altamente experimental, podendo incluir técnicas automáticas — como \textit{ grid search} ou \textit{random search} —, mas que, 
+no contexto de redes neurais profundas, frequentemente se torna inviável devido ao custo computacional.
 
-Uma alternativa prática consiste em partir de arquiteturas já propostas na literatura e adaptá-las ao problema estudado. Seguindo essa estratégia, para o modelo recorrente puro foi adotada como referência a arquitetura apresentada em \citeonline{narotamo2024}. No trabalho original, os autores utilizam três camadas de GRUs, cada uma com 256 unidades ocultas, explorando a capacidade das redes recorrentes de modelar dependências temporais no sinal.
+Uma alternativa prática consiste em partir de arquiteturas já propostas na literatura e adaptá-las ao problema estudado. 
+Seguindo essa estratégia, para o modelo recorrente puro foi adotada como referência a arquitetura apresentada em \citeonline{narotamo2024}. 
+No trabalho original, os autores utilizam três camadas de GRUs, cada uma com 256 unidades ocultas, explorando a capacidade das redes recorrentes 
+de modelar dependências temporais no sinal.
 
 Neste projeto, a arquitetura base foi mantida, mas além de receber o sinal do eletrocardiograma, o modelo recebeu também os intervalos RR.
 
@@ -170,12 +197,12 @@ A Figura \ref{fig:gru_pura} apresenta um esquema da arquitetura utilizada.
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-A segunda arquitetura avaliada é um modelo híbrido composto por camadas convolucionais seguidas de uma camada recorrente do tipo GRU. Nessa abordagem, o bloco convolucional é aplicado individualmente a cada batimento da sequência, gerando para cada um deles um mapa de features que, em seguida, compõe a nova sequência processada pelo bloco recorrente.
+A segunda arquitetura avaliada é um modelo híbrido composto por camadas convolucionais seguidas de uma camada recorrente do tipo GRU. Nessa abordagem, o bloco convolucional é aplicado individualmente a cada batimento da sequência, gerando para cada um deles um mapa de \textit{features} que, em seguida, compõe a nova sequência processada pelo bloco recorrente.
 
-O bloco convolucional é formado por duas camadas de CNN: a primeira com 32 filtros e kernel de tamanho sete, e a segunda com 64 filtros e kernel de tamanho cinco, ambas utilizando padding adequado para preservar o comprimento da entrada. A escolha do tamanho do filtro, ou kernel, 
-envolve a escolha entre padrões globais, com um kernel maior, ou padrões mais locais, com um kernel menor. Arquiteturas profundas costumam usar kernels pequenos. Como esta tem apenas duas camadas, foi utilizado um de tamanho sete, e outro de tamanho 5.
+O bloco convolucional é formado por duas camadas de CNN: a primeira com 32 filtros e \textit{kernel} de tamanho sete, e a segunda com 64 filtros e \textit{kernel} de tamanho cinco, ambas utilizando \textit{padding} adequado para preservar o comprimento da entrada. A escolha do tamanho do filtro, ou \textit{kernel}, 
+envolve a escolha entre padrões globais, com um \textit{kernel} maior, ou padrões mais locais, com um \textit{kernel} menor. Arquiteturas profundas costumam usar kernels pequenos. Como esta tem apenas duas camadas, foi utilizado um de tamanho sete, e outro de tamanho cinco.
 
-Cada camada convolucional é seguida por batch normalization — para estabilizar o treinamento — e por global max pooling, que reduz a dimensionalidade do mapa de features e contribui para mitigar sobreajuste ao reter apenas as ativações mais relevantes.
+Cada camada convolucional é seguida por \textit{batch normalization} — para estabilizar o treinamento — e por \textit{global max pooling}, que reduz a dimensionalidade do mapa de \textit{features} e contribui para mitigar sobreajuste ao reter apenas as ativações mais relevantes.
 
 A etapa recorrente é composta por uma camada GRU com 256 unidades, responsável por modelar a dependência temporal entre os batimentos por meio das representações produzidas pelo bloco convolucional.
 
@@ -194,11 +221,11 @@ das CNNs já que o objetivo era que esta extraísse \textit{features} morfológi
 
 \subsection{Tamanho da sequência}
 
-Para otimizar o processo de treinamento, foram empregados os mecanismos de early stopping e reduce on plateau, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente. Ambos monitoraram o f1-score, de forma que a rede buscasse um equilíbrio entre precisão e recall. Assim, mesmo após o treinamento, era possível ajustar manualmente esse compromisso com auxílio da curva PR.
+Para otimizar o processo de treinamento, foram empregados os mecanismos de \textit{early stopping} e \textit{reduce on plateau}, responsáveis por limitar o número de épocas e ajustar dinamicamente a taxa de aprendizagem, respectivamente. Ambos monitoraram o \textit{f1-score}, de forma que a rede buscasse um equilíbrio entre precisão e \textit{recall}. Assim, mesmo após o treinamento, era possível ajustar manualmente esse compromisso com auxílio da curva PR.
 
 Em ambos os modelos, utilizou-se uma sequência composta por 16 batimentos, sendo a classificação realizada apenas no último elemento da sequência. Dessa forma, o problema caracteriza-se como uma tarefa de sequência para vetor, conforme discutido na Seção~\ref{sec:fundamentos_rnn}.
 
-A escolha do tamanho da sequência foi feita empiricamente. Inicialmente, avaliou-se uma arquitetura simples — uma única camada de LSTM com 100 unidades — utilizando uma validação cruzada one hold out. Embora validações com mais folds reduzam o viés na estimativa de generalização, conforme \citeonline{james2023}, o custo computacional cresce proporcionalmente, o que motivou a escolha desse arranjo mais enxuto para experimentação inicial.
+A escolha do tamanho da sequência foi feita empiricamente. Inicialmente, avaliou-se uma arquitetura simples — uma única camada de LSTM com 100 unidades — utilizando uma validação cruzada one hold out. Embora validações com mais \textit{folds} reduzam o viés na estimativa de generalização, conforme \citeonline{james2023}, o custo computacional cresce proporcionalmente, o que motivou a escolha desse arranjo mais enxuto para experimentação inicial.
 
 Foram testadas sequências de 10, 16 e 20 batimentos. Houve melhora de desempenho ao passar de 10 para 16 batimentos, porém o aumento para 20 resultou em um consumo de memória excessivamente elevado, sem ganho proporcional. Por esse motivo, definiu-se o tamanho final da sequência como 16 batimentos.
 
