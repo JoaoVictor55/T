@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  20 NOV 2025 12:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  20 NOV 2025 13:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1362,46 +1362,46 @@ File: figuras/ecg_exemplo_coracao.png Graphic file (type png)
 Package pdftex.def Info: figuras/ecg_exemplo_coracao.png  used on input line 41.
 (pdftex.def)             Requested size: 317.07614pt x 206.91641pt.
  [14 <./figuras/ecg_exemplo_coracao.png>] [15] [16] [17]
-<figuras/ann_exemplos/ann_ff_exemplo.png, id=387, 666.49pt x 581.17125pt>
+<figuras/ann_exemplos/ann_ff_exemplo.png, id=386, 666.49pt x 581.17125pt>
 File: figuras/ann_exemplos/ann_ff_exemplo.png Graphic file (type png)
 <use figuras/ann_exemplos/ann_ff_exemplo.png>
-Package pdftex.def Info: figuras/ann_exemplos/ann_ff_exemplo.png  used on input line 148.
+Package pdftex.def Info: figuras/ann_exemplos/ann_ff_exemplo.png  used on input line 151.
 (pdftex.def)             Requested size: 249.13371pt x 217.23811pt.
  [18] [19{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc} <./figuras/ann_exemplos/ann_ff_exemplo.png>]
 <figuras/ann_exemplos/funcoes_de_ativacao.png, id=413, 689.57625pt x 376.40625pt>
 File: figuras/ann_exemplos/funcoes_de_ativacao.png Graphic file (type png)
 <use figuras/ann_exemplos/funcoes_de_ativacao.png>
-Package pdftex.def Info: figuras/ann_exemplos/funcoes_de_ativacao.png  used on input line 221.
+Package pdftex.def Info: figuras/ann_exemplos/funcoes_de_ativacao.png  used on input line 224.
 (pdftex.def)             Requested size: 271.7835pt x 148.35432pt.
  [20{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}] [21 <./figuras/ann_exemplos/funcoes_de_ativacao.png (PNG copy)>] [22]
 <figuras/ann_exemplos/rnn_exemplo.png, id=443, 946.53625pt x 384.43625pt>
 File: figuras/ann_exemplos/rnn_exemplo.png Graphic file (type png)
 <use figuras/ann_exemplos/rnn_exemplo.png>
-Package pdftex.def Info: figuras/ann_exemplos/rnn_exemplo.png  used on input line 327.
+Package pdftex.def Info: figuras/ann_exemplos/rnn_exemplo.png  used on input line 330.
 (pdftex.def)             Requested size: 271.7835pt x 110.38084pt.
  [23 <./figuras/ann_exemplos/rnn_exemplo.png>] [24]
 <figuras/ann_exemplos/lstm_celula.png, id=467, 212.7147pt x 156.585pt>
 File: figuras/ann_exemplos/lstm_celula.png Graphic file (type png)
 <use figuras/ann_exemplos/lstm_celula.png>
-Package pdftex.def Info: figuras/ann_exemplos/lstm_celula.png  used on input line 389.
+Package pdftex.def Info: figuras/ann_exemplos/lstm_celula.png  used on input line 392.
 (pdftex.def)             Requested size: 249.13371pt x 183.40201pt.
  [25 <./figuras/ann_exemplos/lstm_celula.png>]
 <figuras/ann_exemplos/gru_celula.png, id=483, 179.7114pt x 152.9715pt>
 File: figuras/ann_exemplos/gru_celula.png Graphic file (type png)
 <use figuras/ann_exemplos/gru_celula.png>
-Package pdftex.def Info: figuras/ann_exemplos/gru_celula.png  used on input line 435.
+Package pdftex.def Info: figuras/ann_exemplos/gru_celula.png  used on input line 438.
 (pdftex.def)             Requested size: 249.13371pt x 212.07187pt.
  [26 <./figuras/ann_exemplos/gru_celula.png>]
 <figuras/ann_exemplos/cnn_tigre.png, id=500, 142.3719pt x 99.4917pt>
 File: figuras/ann_exemplos/cnn_tigre.png Graphic file (type png)
 <use figuras/ann_exemplos/cnn_tigre.png>
-Package pdftex.def Info: figuras/ann_exemplos/cnn_tigre.png  used on input line 471.
+Package pdftex.def Info: figuras/ann_exemplos/cnn_tigre.png  used on input line 474.
 (pdftex.def)             Requested size: 249.13371pt x 174.11305pt.
  [27 <./figuras/ann_exemplos/cnn_tigre.png>]
 <figuras/ann_exemplos/cnn_arquitetura.png, id=513, 247.8861pt x 58.2978pt>
 File: figuras/ann_exemplos/cnn_arquitetura.png Graphic file (type png)
 <use figuras/ann_exemplos/cnn_arquitetura.png>
-Package pdftex.def Info: figuras/ann_exemplos/cnn_arquitetura.png  used on input line 541.
+Package pdftex.def Info: figuras/ann_exemplos/cnn_arquitetura.png  used on input line 544.
 (pdftex.def)             Requested size: 452.9679pt x 106.53268pt.
  [28 <./figuras/ann_exemplos/cnn_arquitetura.png>] (./inputs/revisao_literatura.tex [29] [30] [31] (./includes/revisao_literatura_tabela_metodos.tex
 \colwidthA=\skip285
@@ -1686,7 +1686,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1058b,2279s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (76 pages, 4458072 bytes).
+Output written on main.pdf (76 pages, 4458184 bytes).
 PDF statistics:
  1271 PDF objects out of 1440 (max. 8388607)
  1050 compressed objects within 11 object streams
