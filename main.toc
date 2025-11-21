@@ -46,7 +46,7 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Resultados e discussões}}{48}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Resultados do modelo GRU}{48}{section.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.0.1}Resultados no pior e melhor caso (Modelo GRU)}{49}{subsubsection.4.1.0.1}%
+\contentsline {subsubsection}{\numberline {4.1.0.1}Resultados no pior e melhor caso (Modelo GRU)}{50}{subsubsection.4.1.0.1}%
 \contentsline {section}{\numberline {4.2}Resultados do modelo híbrido GRU e CNN}{54}{section.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.0.1}Resultados no pior e melhor caso (Modelo Híbrido)}{56}{subsubsection.4.2.0.1}%
 \contentsline {subsection}{\numberline {4.2.1}Conclusão dos resultados}{59}{subsection.4.2.1}%

@@ -81,8 +81,6 @@ Diferente da acurácia, as demais métricas são muito mais sensíveis ao desemp
 O particionamento usado torna a tarefa de generalização mais desafiadora, pois o modelo é avaliado com ECGs não vistos
 durante o treino.
 
-\subsubsection{Resultados no pior e melhor caso (Modelo GRU)}
-
 Na figura \ref{fig:gru_resultados_por_fold}, está os resultados alcançado pelo modelo em cada \textit{fold} na validação:
 
 \begin{figure}[H]
@@ -100,6 +98,8 @@ de arritmias com características mais sutis, que fizeram com que o modelo as co
 
 Considerando o \textit{f1-score}, o terceiro \textit{fold} foi eleito o pior. Como o \textit{fold} cinco empatou com o segundo por 
 esse mesmo critério, como desempate, aquele com o maior \textit{recall}, o quinto, foi considerado o melhor. 
+
+\subsubsection{Resultados no pior e melhor caso (Modelo GRU)}
 
 Na figura \ref{fig:matriz_confusao_melhor_fold_gru}, está a matriz de confusão do modelo em seu melhor \textit{fold}:
 
