@@ -428,7 +428,8 @@ Um modelo perfeito, terá um AUC de 1,0.
 
 \citeonline{mizilPredictingGoodProbs} apresentam uma definição visual de um modelo perfeitamente calibrado. 
 No eixo x do diagrama estão intervalos, ou \textit{bins}, de probabilidade e no eixo y, a média da probabilidade prevista 
-para um determinado intervalo. 
+para um determinado intervalo. Agrupa-se as amostras em cada intervalo, de acordo com a probabilidade prevista e, então,
+a média dessa probabilidade e a frequência da classe positiva. Caso essas sejam iguais, então o modelo está perfeitamente calibrado.
 
 Supondo que para um conjunto de pacientes, a média da probabilidade prevista é de 30\%. Se o modelo for perfeitamente
 calibrado, então a frequência da classe positiva neste conjunto será de 30\%.
