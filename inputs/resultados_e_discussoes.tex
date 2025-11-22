@@ -17,7 +17,6 @@ que o melhor modelo não tenha apenas um \textit{f1-score} médio alto, mas um d
 Por fim, será feita a comparação dos modelos com os apresentados na revisão da literatura.
 
 \section{Resultados do modelo GRU}
-
 \label{sec:resultados_gru}
 
 Na Tabela~\ref{tab:resultado_cv_gru_validacao} é mostrado o resultado médio do modelo GRU puro na validação junto com os respectivos desvio padrão.
@@ -99,7 +98,7 @@ de arritmias com características mais sutis, que fizeram com que o modelo as co
 Considerando o \textit{f1-score}, o terceiro \textit{fold} foi eleito o pior. Como o \textit{fold} cinco empatou com o segundo por 
 esse mesmo critério, como desempate, aquele com o maior \textit{recall}, o quinto, foi considerado o melhor. 
 
-\subsubsection{Resultados no pior e melhor caso (Modelo GRU)}
+\subsection{Resultados no pior e melhor caso (Modelo GRU)}
 
 Na Figura~\ref{fig:matriz_confusao_melhor_fold_gru}, está a matriz de confusão do modelo em seu melhor \textit{fold}:
 
@@ -187,7 +186,6 @@ de todas as sequências classificadas como arrítmicas realmente são arrítmica
 
 Na Figura~\ref{fig:ap_gru_melhor_fold}, ilustra-se a mesma curva porém no melhor \textit{fold}.
 
-
 \begin{figure}[H]
   \centering
   \caption{Curva precisão vs \textit{recall} do modelo GRU em seu melhor \textit{fold}}
@@ -267,7 +265,7 @@ os \textit{folds} quatro e cinco, porém a diferença foi de, aproximadamente, 0
 A seguir, o desempenho do modelo em seu melhor e pior \textit{fold}. Repetindo os critérios descritos na seção \ref{sec:resultados_gru}, o melhor
 \textit{fold} foi o segundo e o pior foi o terceiro.
 
-\subsubsection{Resultados no pior e melhor caso (Modelo Híbrido)}
+\subsection{Resultados no pior e melhor caso (Modelo Híbrido)}
 
 Na Figura~\ref{fig:matriz_confusao_cnn_gru_melhor_fold}, é ilustrada a matriz de confusão do modelo em seu melhor \textit{fold}.
 Neste cenário, o modelo não cometeu nenhum erro de falso negativo, mas 41 de falso positivo. Além de ter acertado 511 arritmias 
@@ -334,7 +332,7 @@ Esse ganho de desempenho sugere que o uso da CNN para extração de \textit{feat
 camada recorrente do modelo híbrido não precisou aprendê-las do sinal, apenas precisou se concentrar em como elas se encaixam 
 no contexto da sequência.
 
-\subsection{Conclusão dos resultados}
+\section{Conclusão dos resultados}
 
 Nesta seção, foi apresentado os resultados obtidos pelos modelos GRU puro e híbrido. Ambos os modelos apresentaram um caso de \textit{overfit},
 evidenciado pela grande diferença entre o desempenho no treino com o da validação. A partir das métricas individuais em cada \textit{fold},

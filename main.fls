@@ -537,10 +537,6 @@ INPUT ./figuras/ann_exemplos/ann_ff_exemplo.png
 INPUT ./figuras/ann_exemplos/ann_ff_exemplo.png
 INPUT ./figuras/ann_exemplos/ann_ff_exemplo.png
 INPUT ./figuras/ann_exemplos/ann_ff_exemplo.png
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT ./figuras/ann_exemplos/funcoes_de_ativacao.png
 INPUT ./figuras/ann_exemplos/funcoes_de_ativacao.png
 INPUT ./figuras/ann_exemplos/funcoes_de_ativacao.png
@@ -554,11 +550,13 @@ INPUT ./figuras/ann_exemplos/rnn_exemplo.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx8.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT ./figuras/ann_exemplos/lstm_celula.png
 INPUT ./figuras/ann_exemplos/lstm_celula.png
 INPUT ./figuras/ann_exemplos/lstm_celula.png
 INPUT ./figuras/ann_exemplos/lstm_celula.png
 INPUT ./figuras/ann_exemplos/lstm_celula.png
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT ./figuras/ann_exemplos/gru_celula.png
 INPUT ./figuras/ann_exemplos/gru_celula.png
 INPUT ./figuras/ann_exemplos/gru_celula.png
@@ -569,6 +567,8 @@ INPUT ./figuras/ann_exemplos/cnn_tigre.png
 INPUT ./figuras/ann_exemplos/cnn_tigre.png
 INPUT ./figuras/ann_exemplos/cnn_tigre.png
 INPUT ./figuras/ann_exemplos/cnn_tigre.png
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT ./figuras/ann_exemplos/cnn_arquitetura.png
 INPUT ./figuras/ann_exemplos/cnn_arquitetura.png
 INPUT ./figuras/ann_exemplos/cnn_arquitetura.png

@@ -126,23 +126,11 @@ Devido a complexidade dos dados — em partes devido a variabilidade observada t
 costuma ser gerado, ECGs são um bom material para a aplicação de algoritmos de aprendizado de máquina, como redes neurais que serão discutidas 
 na seguinte seção.
 
-Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) foram introduzidas em 1943 pelo neurofisiologista Warren McCulloch e pelo matemático Walter Pitts como um modelo simplificado de como os neurônios biológicos podem realizar cálculos complexos por meio de lógica proposicional.
+Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) são modelos de inteligência artificial inspirado nos neurônios biológicos
+— células encontradas no cérebro de animais responsáveis pela função cognitiva —. Elas funcionam como pequenas unidades computacionais que 
+conectam-se para executar funções complexas.
 
-O sucesso inicial levou à crença de que tais modelos poderiam ser usados no desenvolvimento de sistemas verdadeiramente inteligentes. No entanto, em parte devido às limitações na capacidade de processamento e à escassez de dados disponíveis, as ANNs foram gradualmente abandonadas em favor de outras técnicas, como as máquinas de vetor de suporte (\textit{support vector machines} — SVMs).
-
-Nas últimas décadas, entretanto, com a criação de grandes conjuntos de dados, o aumento do poder computacional proporcionado pelas GPUs e o desenvolvimento de novas arquiteturas, as ANNs passaram por um reavivamento, consolidando-se como uma das técnicas mais promissoras da inteligência artificial.
-
-O autor descreve os neurônios biológicos como células formadas por um corpo celular e uma longa extensão chamada axônio. A partir do corpo celular, partem diversas ramificações denominadas dendritos. Na extremidade do axônio, ocorrem ramificações menores chamadas telodendriais, cujas pontas possuem estruturas denominadas terminais sinápticos.
-
-O axônio de um neurônio conecta-se ao dendrito de outro, formando uma sinapse — o ponto de comunicação entre as células.
-
-Esses neurônios transmitem sinais elétricos chamados potenciais de ação (\textit{action potentials} — APs), que percorrem o axônio até os terminais sinápticos, onde estimulam a liberação de substâncias químicas conhecidas como neurotransmissores. Esses neurotransmissores permitem a comunicação entre os neurônios, podendo estimular ou inibir o disparo de novos potenciais de ação.
-
-Bilhões de neurônios interligam-se por meio de sinapses, formando redes altamente complexas. A ação coordenada dessas redes possibilita a realização de cálculos e processos cognitivos sofisticados, que inspiraram o desenvolvimento das redes neurais artificiais.
-
-Esse é o princípio em que se baseiam as redes neurais artificiais (ANNs): pequenas unidades computacionais simples que, ao se conectarem, são capazes de realizar funções complexas. É importante destacar que um neurônio artificial, no contexto das ANNs, não é uma réplica de um neurônio biológico, mas sim uma abstração matemática inspirada em seu funcionamento.
-
-Segundo \citeonline{james2023}, uma ANN pode ser vista como uma função que recebe um conjunto de  p preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
+\citeonline{james2023}, uma ANN pode ser vista como uma função que recebe um conjunto de \textit{p} preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
 Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede neural \textit{feedforward}.
 
 \begin{figure}[H]
@@ -159,69 +147,13 @@ Cada neurônio na camada oculta é conectado a todos os neurônios da camada de 
 A cada conexão é atribuído um peso, que representa a força da relação entre os neurônios — em analogia à intensidade das sinapses no cérebro biológico. Além disso, cada neurônio possui um viés (\textit{bias}), que desloca o ponto de ativação.
 
 A ativação de um neurônio é determinada por uma função de ativação não linear, essencial para permitir que a rede aprenda relações complexas entre as variáveis de entrada.
-Sem essa função, uma ANN de múltiplas camadas seria equivalente a uma simples regressão linear.
-
-Formalmente, uma ANN pode ser descrita como uma função  f(X) que recebe um vetor de p preditores X=(X1,X2,…,Xp) e produz uma previsão para a variável resposta Y.
-
-No caso da rede ilustrada na Figura \ref{fig:ann_ff_exemplo}, essa função  f pode ser expressa como:
-
-\begin{equation}
-f(X) = \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X)
-\end{equation}
-
-Onde K refere-se a quantidade de neurônios na camada oculta. \textit{h} é expandido em:
-
-\begin{equation}
-h_k = g(w_{k0} + \sum_{j=1}^{p}w_{kj}X_j)
-\end{equation}
-
-Assim, \textit{f} é construída em dois passos; primeiro, K ativações da camada oculta são calculados:
-
-\begin{equation}
-  A_k = h_k(X) = g(w_{k0} + \sum_{j=1}^{p}w_{kj}X_k)
-\end{equation}
-
-Onde \( g(z) \) é a função de ativação não linear. 
-Os parâmetros \( \beta_0, \dots, \beta_K \) e \( \omega_0, \dots, \omega_{Kp} \) precisam ser estimados — isto é, aprendidos a partir dos dados.
-
-Existem diversas funções de ativação propostas ao longo do tempo. 
-A sigmoide, por exemplo, foi amplamente utilizada nas primeiras redes neurais:
-
-\begin{equation}
-  g(z) = \frac{e^z}{1 + e^z} = \frac{1}{1 + e^{-z}}
-\end{equation}
-
-Segundo \citeonline{geron2022hands}, essa função é uma aproximação do comportamento de ativação observado em neurônios biológicos. 
-Entretanto, atualmente ela é pouco utilizada nas camadas intermediárias, uma vez que é propensa ao problema do \textit{vanishing gradient} e não é centrada em zero, o que prejudica a convergência do modelo.  
-Apesar disso, a sigmoide ainda é frequentemente empregada na camada de saída em problemas de classificação binária, pois seu contradomínio é [0, 1]; o que
-torna simples interpretar a saída dos neurônios como probabilidades.
-
-Outra função comumente utilizada é a tangente hiperbólica:
-
-\begin{equation}
-  g(z) = \tanh(z) = 2\sigma(2z) - 1
-\end{equation}
-
-Essa função é centrada em zero e possui uma derivada mais acentuada, o que ajuda a mitigar o problema do \textit{vanishing gradient}.
-
-Atualmente, a função de ativação mais popular é a ReLU (\textit{Rectified Linear Unit}), definida como:
-
-\begin{equation}
-g(z) = z_+ =
-\begin{cases}
-0, & \text{se } z < 0 \\
-z, & \text{caso contrário}
-\end{cases}
-\end{equation}
-
-A ReLU apresenta um cálculo simples e eficiente, além de acelerar o treinamento de redes profundas. 
-Embora não seja centrada em zero, o viés dos neurônios auxilia a compensar esse deslocamento.  
-Na Figura \ref{fig:funcoes_ativacao_exemplo}, são ilustradas as três funções de ativação discutidas.
+Sem essa função, uma ANN de múltiplas camadas seria equivalente a uma simples regressão linear. Dentre os exemplos de função de ativação, é possível
+citar a sigmoide (ou logística), ReLU (\textit{REctified Linear Unit}) e a tahn, ilustradas Na Figura~\ref{fig:funcoes_ativacao_exemplo}.
 
 \begin{figure}[H]
   \centering
   \caption{Funções de ativação Sigmoid, Tanh e ReLU}
-  \includegraphics[width=0.6\textwidth]{figuras/ann_exemplos/funcoes_de_ativacao.png}
+  \includegraphics[width=0.65\textwidth]{figuras/ann_exemplos/funcoes_de_ativacao.png}
   \label{fig:funcoes_ativacao_exemplo}
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
@@ -229,76 +161,22 @@ Na Figura \ref{fig:funcoes_ativacao_exemplo}, são ilustradas as três funções
 \subsection{Treinamento de redes neurais}
 
 ANNs aprendem através da minimização de uma função de custo. Uma função muito utilizada para problemas de classificação binária
-é a \textit{binary cross-entropy}:
+é a \textit{binary cross-entropy} que penaliza quando a probabilidade prevista é distante da classe real. Já a função de ativação 
+na camada de saída é a sigmoide \cite{geron2022hands}.
 
-\begin{equation}
--\frac{1}{N}\sum_{i=1}^{N}[y_i\log(p_i) + (1 - y_i)\log(1 - p_i)]
-\label{for:cross_entropy}
-\end{equation}
+Para minimizar a função de custo, as redes nêurias utilizam um algoritmo, ou variações, chamado de gradiente descendente.que ajusta 
+os parâmetros, os pesos e vieses, em pequenos passos. O quão grande é esse passo é determinado por um hiperparâmetro denominado taxa 
+de aprendizagem, \textit{learning-rate}. O cálculo da contribuição do erro pelos pesos e vieses é feito por um outro algoritmo, 
+denominado \textit{backpropagation}.
 
-Onde \( N \) é a quantidade de amostras.
+Entretanto, redes neurais, especialmente as profundas, podem ser afetas por dois problemas; o gradiente desvanecente (\textit{vanishing gradient})
+e o gradiente instável (\textit{exploding gradient}), que afetam a capacidade de aprendizado da rede. No primeiro, 
+os gradientes ficam progressivamente menores, diminuindo a atualização dos pesos. Com o tempo, a rede para de aprender. Já no segundo,
+os gradientes ficam progressivamente maiores, podendo causar problemas como \textit{overflow} numérico.
 
-Como já discutido, na camada de saída costuma-se utilizar a função de ativação sigmoide.
-Assim, uma interpretação para a Equação \ref{for:cross_entropy} é que ela penaliza o modelo quando a probabilidade estimada para uma amostra 
-se distancia de sua classe real. Por exemplo, considere que uma amostra pertença à classe positiva (\(y = 1\)); se o modelo prevê uma 
-probabilidade de apenas 0,01, o erro será significativamente maior do que se tivesse previsto 0,6.
-
-Para minimizar essa função de custo, redes neurais artificiais utilizam algoritmos baseados no \textit{gradiente descendente}. 
-Segundo \citeonline{geron2022hands}, o gradiente descendente busca encontrar o mínimo de uma função ajustando iterativamente seus parâmetros. 
-Intuitivamente, a função de custo define uma superfície de erro, e o modelo inicia em um ponto aleatório dessa superfície — 
-isto é, com pesos inicializados aleatoriamente. 
-
-A cada iteração, o gradiente da função é calculado no ponto atual, indicando a direção de maior crescimento da função de custo. 
-Os parâmetros são então atualizados na direção oposta, ou seja, na direção de maior decaimento. 
-O tamanho desse passo é controlado por um hiperparâmetro chamado taxa de aprendizado (\textit{learning rate}), denotado por \( \eta \). 
-Formalmente, a atualização é dada por:
-
-\begin{equation}
-\theta^{(i+1)} = \theta^{(i)} - \eta \nabla f(\theta)
-\label{for:gradiente_descendente}
-\end{equation}
-
-onde \( \theta \) representa o vetor de parâmetros do modelo (pesos e vieses), e \( \nabla f(\theta) \) é o gradiente da função de custo 
-em relação a esses parâmetros.
-
-Na prática, utiliza-se variações do algoritmo, como o \textit{stochastic gradient descent} (SGD), que atualiza os parâmetros a partir de 
-amostras individuais ou pequenos subconjuntos (\textit{mini-batches}) dos dados, e otimizadores mais sofisticados como o Adam, que ajusta 
-automaticamente a taxa de aprendizado ao longo do treinamento.
-
-O processo de calculo dos gradientes é realizado por outro algoritmo, chamado de \textit{backpropagation}. 
-Segundo \citeonline{geron2022hands}, um dos principais obstáculos históricos para o uso eficiente de redes neurais artificiais 
-era a dificuldade de ajustar seus parâmetros quando a rede possuía muitas camadas. 
-Aprofundar a rede, entretanto, é essencial para que ela aprenda representações (\textit{features}) mais complexas dos dados.
-
-Em 1985, David Rumelhart, Geoffrey Hinton e Ronald Williams demonstraram que um algoritmo proposto anteriormente por Seppo Linnainmaa, em 1970, 
-poderia ser aplicado para esse fim. Esse algoritmo, atualmente conhecido como \textit{backpropagation}, tornou possível o treinamento eficiente 
-de redes com múltiplas camadas.
-
-De forma simplificada, o \textit{backpropagation} é composto por duas etapas principais: \textit{forward pass} e \textit{backward pass}.
-
-Na fase \textit{forward}, os dados de entrada percorrem a rede camada por camada. 
-Cada neurônio realiza seu cálculo, multiplicando os valores de entrada pelos pesos correspondentes, somando o viés e aplicando a função de ativação. 
-O resultado dessa sequência de operações é a saída da rede, que é então comparada com o valor real (\textit{ground truth}) 
-por meio de uma função de perda, que mede o erro do modelo.
-
-Na fase \textit{backward}, o algoritmo utiliza a regra da cadeia do cálculo diferencial para determinar quanto cada parâmetro 
-(peso e viés) contribuiu para o erro total. 
-Esse cálculo é feito de trás para frente, da camada de saída até a camada de entrada, ajustando os gradientes de forma eficiente. 
-Dessa maneira, cada peso recebe uma medida precisa de sua influência no erro observado.
-
-Por fim, os parâmetros são atualizados aplicando-se o gradiente descendente — ou outra técnica de otimização —, 
-movendo os pesos na direção que reduz o erro da rede.
-
-Redes profundas, entretanto, podem ser propensas a um problema denominado genericamente como gradiente instáveis que se manifesta 
-de duas formas distintas: desvanecimento do gradiente — \textit{vanishing gradient}  —  e a explosão do gradiente  — \textit{exploding gradient}  — 
-que ocorre quando os pesos ficam exponencialmente pequenos ou exponencialmente grandes respectivamente.
-
-No primeiro caso, a atualização torna-se cada vez menor conforme o gradiente flui para as camadas mais iniciais. Na prática
-a rede para de aprender. Por exemplo, considere uma rede com três camadas. Se a taxa de contribuição do gradiente 
-da camada três for 0,5 e o gradiente local da camada dois for 0,3, a contribuição do erro nesta camada (devido a regra da cadeia)
-será de \(0,5 \times 0,3 = 0,15\). Na primeira camada que possui um gradiente local de 0,1, o erro seria de \(0,15 \times 0,1 = 0,015\)
-Com mais camadas, esse erro seria multiplicado por gradientes cada vez menores, chegando a zero nas camadas iniciais. 
-Como pode ser visto na equação \ref{for:gradiente_descendente}, isso significa que esses pesos não seriam atualizados.
+Com o tempo, variações de neurônios foram desenvolvidos, visando explorar determinadas propriedades dos dados. Na próxima seção, 
+será apresentado duas variações de neurônios artificiais; a recorrente e a convolucional. A primeira, foi pensada para problemas 
+sequenciais e a segunda, tem grande aplicação na área de processamento de imagens e padrões.
 
 \section{Redes Neurais Recorrentes e suas variações}
 \label{sec:fundamentos_rnn}
@@ -412,7 +290,7 @@ O novo estado de memória de longo prazo é então atualizado conforme:
 c_t = f_t \odot c_{t-1} + i_t \odot g_t
 \]
 
-Por fim, a saída da célula é obtida aplicando uma função tangente hiperbólica sobre \( c_t \) — cuja fórmula é dada em \ref{sec:ann} —, modulada pela porta de saída \( o_t \):
+Por fim, a saída da célula é obtida aplicando uma função tangente hiperbólica sobre \( c_t \), modulada pela porta de saída \( o_t \):
 
 \[
 h_t = o_t \odot \tanh(c_t)
