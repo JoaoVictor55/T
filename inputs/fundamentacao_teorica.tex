@@ -45,14 +45,14 @@ Na Figura~\ref{fig:ecg_exemplo_coracao}, é ilustrado um  ECG de um batimento, o
 
 \section{Arritmias}
 
-As doenças cardíacas podem ser diversas. Dentre elas, as arritmias são um grupo que podem ser diagnósticas via ECG
+As doenças cardíacas podem ser diversas. Dentre elas, as arritmias são um grupo que podem ser diagnósticas via ECG.
 
 \subsection{Arritmias clínicas}
 
-As arritmias são alterações no ritmo cardíaco que podem ter diversas causas, incluindo alterações hormonais, uso de medicamentos, toxinas (como álcool ou cafeína), anomalias eletrolíticas ou doenças cardíacas.
-Segundo \citeonline{Mitchell_Arritmias_MSD}, em adultos em repouso, a frequência cardíaca normal varia entre 60 e 100 batimentos por minuto (bpm). Frequências mais baixas, conhecidas como bradicardia sinusal, são comuns em atletas, crianças pequenas, adolescentes, jovens adultos e durante o sono. Por outro lado, a taquicardia sinusal ocorre quando a frequência se eleva, podendo ser observada durante o esforço físico, doenças, estimulação neural simpática ou emoção intensa.
+Segundo \citeonline{Mitchell_Arritmias_MSD} as arritmias são alterações no ritmo cardíaco que podem ter diversas causas, incluindo alterações hormonais, uso de medicamentos, toxinas (como álcool ou cafeína), anomalias eletrolíticas ou doenças cardíacas.
+Em adultos em repouso, a frequência cardíaca normal varia entre 60 e 100 batimentos por minuto (bpm). Frequências mais baixas, conhecidas como bradicardia sinusal, são comuns em atletas, crianças pequenas, adolescentes, jovens adultos e durante o sono. Por outro lado, a taquicardia sinusal ocorre quando a frequência se eleva, podendo ser observada durante o esforço físico, doenças, estimulação neural simpática ou emoção intensa.
 
-Variações no ritmo cardíaco são fenômenos fisiológicos normais. Durante a respiração, por exemplo, é comum que a frequência aumente e diminua levemente, comportamento conhecido como arritmia sinusal respiratória. O autor ainda observa que um ritmo cardíaco perfeitamente regular pode indicar patologias no sistema nervoso autônomo, como ocorre em casos de diabetes avançado. Dessa forma, ainda não existe um indicador global e definitivo do que seria um ritmo sinusal considerado saudável.
+O autor observa que variações no ritmo cardíaco são fenômenos fisiológicos normais. Durante a respiração, por exemplo, é comum que a frequência aumente e diminua levemente, comportamento conhecido como arritmia sinusal respiratória. Um ritmo cardíaco perfeitamente regular pode indicar patologias no sistema nervoso autônomo, como ocorre em casos de diabetes avançado. Dessa forma, ainda não existe um indicador global e definitivo do que seria um ritmo sinusal considerado saudável.
 
 As arritmias podem ser classificadas de forma simplificada em três tipos principais:
 
@@ -120,18 +120,17 @@ Dadas a maior significância clínica e o potencial risco de morte súbita assoc
 Apesar de ocorrerem em indivíduos saudáveis, PVCs estão associados a tipos arrítmicos mais graves, como a taquicardia ventricular e fibrilação atrial, representando um risco maior a vida.
 
 \section{Redes Neurais Artificiais}
+\label{sec:ann}
 
 Devido a complexidade dos dados — em partes devido a variabilidade observada tanto intra classe quanto entre pacientes — e também ao volume que 
 costuma ser gerado, ECGs são um bom material para a aplicação de algoritmos de aprendizado de máquina, como redes neurais que serão discutidas 
-na seguinte seção
-
-\label{sec:ann}
+na seguinte seção.
 
 Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) foram introduzidas em 1943 pelo neurofisiologista Warren McCulloch e pelo matemático Walter Pitts como um modelo simplificado de como os neurônios biológicos podem realizar cálculos complexos por meio de lógica proposicional.
 
 O sucesso inicial levou à crença de que tais modelos poderiam ser usados no desenvolvimento de sistemas verdadeiramente inteligentes. No entanto, em parte devido às limitações na capacidade de processamento e à escassez de dados disponíveis, as ANNs foram gradualmente abandonadas em favor de outras técnicas, como as máquinas de vetor de suporte (\textit{support vector machines} — SVMs).
 
-Nos últimos anos, entretanto, com a criação de grandes conjuntos de dados, o aumento do poder computacional proporcionado pelas GPUs e o desenvolvimento de novas arquiteturas, as ANNs passaram por um reavivamento, consolidando-se como uma das técnicas mais promissoras da inteligência artificial.
+Nas últimas décadas, entretanto, com a criação de grandes conjuntos de dados, o aumento do poder computacional proporcionado pelas GPUs e o desenvolvimento de novas arquiteturas, as ANNs passaram por um reavivamento, consolidando-se como uma das técnicas mais promissoras da inteligência artificial.
 
 O autor descreve os neurônios biológicos como células formadas por um corpo celular e uma longa extensão chamada axônio. A partir do corpo celular, partem diversas ramificações denominadas dendritos. Na extremidade do axônio, ocorrem ramificações menores chamadas telodendriais, cujas pontas possuem estruturas denominadas terminais sinápticos.
 
@@ -308,14 +307,14 @@ Uma rede neural recorrente — \textit{Recurrent Neural Network} (RNN) — pode 
 Segundo \citeonline{james2023}, as RNNs se destacam em tarefas que envolvem dados com natureza sequencial, como:
 
 \begin{itemize}
-    \item \textbf{Documentos textuais} — como resenhas de livros, filmes, artigos jornalísticos ou \textit{tweets}. 
+    \item \textbf{Documentos textuais}: como resenhas de livros, filmes, artigos jornalísticos ou \textit{tweets}. 
     Nesses casos, a sequência e a posição relativa das palavras ajudam a capturar a narrativa, os temas e o tom do texto. 
     Entre as aplicações estão a análise de sentimento, a tradução automática e a sumarização de textos.
     
-    \item \textbf{Séries temporais} — como temperatura, precipitação, velocidade do vento, qualidade do ar, entre outros. 
+    \item \textbf{Séries temporais}: como temperatura, precipitação, velocidade do vento, qualidade do ar, entre outros. 
     As RNNs podem ser usadas para prever o comportamento dessas variáveis em diferentes horizontes de tempo, de dias a décadas.
     
-    \item \textbf{Sinais sonoros} — como voz gravada e música. 
+    \item \textbf{Sinais sonoros}: como voz gravada e música. 
     Aplicações incluem legendagem automática, tradução de fala e classificação de sons.
 \end{itemize}
 
@@ -365,14 +364,14 @@ o que permite que a rede capture dependências sequenciais nos dados.
 Segundo \citeonline{geron2022hands}, a entrada e saída de uma RNN pode ser configurada de três maneiras:
 
 \begin{itemize}
-    \item \textbf{Sequencia para sequencia (sequence-to-sequence)} —  A entrada e a saída são sequencias. Um exemplo seria a previsão 
+    \item \textbf{Sequencia para sequencia (sequence-to-sequence)}: A entrada e a saída são sequencias. Um exemplo seria a previsão 
     do consumo de energia onde a rede recebe o consumo nos últimos \textit{N} dias e prever os próximos \textit{N - 1} dias.
     
-    \item \textbf{Sequencia para vetor (sequence-to-vector)} — Apenas a entrada é uma sequência, como na figura \ref{fig:rnn_exemplo}.
+    \item \textbf{Sequencia para vetor (sequence-to-vector)}: Apenas a entrada é uma sequência, como na Figura~\ref{fig:rnn_exemplo}.
     Uma aplicação é análise de sentimentos de uma resenha, onde a rede recebe uma sequência de palavras e deve classificar em:
     gostei ou não gostei.
     
-    \item \textbf{Vetor para sequência (vector-to-sequence)} — Apenas a saída é uma sequência. A rede recebe o mesmo vetor 
+    \item \textbf{Vetor para sequência (vector-to-sequence)}: Apenas a saída é uma sequência. A rede recebe o mesmo vetor 
     em cada passo de tempo. Um exemplo é gerar a legenda de uma imagem. Assim, a rede receberia a imagem ou mesmo a saída
     de uma CNN e baseado nisso, ela gera a legenda.
 \end{itemize}
@@ -427,11 +426,11 @@ se for próxima de 1, ela é totalmente transmitida.
 Essa estrutura permite que a LSTM controle de forma adaptativa o fluxo de informação ao longo do tempo, 
 mitigando o problema do \textit{vanishing gradient} presente em RNNs tradicionais.
 
-\subsection{GRU}
+\subsection{Gated Recurrent Unit (GRU)}
 
 Segundo \citeonline{geron2022hands}, a Gated Recurrent Unit (GRU) — proposta por Kyunghyun Cho et al. (2014) — 
 é uma versão simplificada da LSTM que mantém desempenho equivalente em diversas tarefas. 
-Na figura \ref{fig:gru_exemplo}, é apresentado um esquema ilustrativo dessa célula.
+Na Figura~\ref{fig:gru_exemplo}, é apresentado um esquema ilustrativo dessa célula.
 
 \begin{figure}[H]
   \centering
@@ -465,7 +464,7 @@ Esse avanço se deve, em parte, ao surgimento de grandes bases de dados e ao aum
 mas também à criação de uma nova arquitetura de rede neural, inspirada no funcionamento da percepção visual humana.
 
 As CNNs constroem uma hierarquia de \textit{features} que se tornam progressivamente mais complexas. 
-Na figura \ref{fig:cnn_tigre}, é apresentado um esquema ilustrativo de como uma CNN reconheceria um tigre: 
+Na Figura~\ref{fig:cnn_tigre}, é apresentado um esquema ilustrativo de como uma CNN reconheceria um tigre: 
 nas primeiras camadas são extraídos padrões simples, como bordas e formas básicas; então, elas são combinadas para 
 formar os olhos, orelhas, até que, enfim, a rede reconhece o tigre.
 
@@ -537,7 +536,7 @@ O \textit{max pooling}, por exemplo, seleciona o maior valor em cada submatriz \
 \end{bmatrix}
 \]
 
-Na figura \ref{fig:cnn_ar_exemplo}, é ilustrada uma arquitetura típica de CNN.
+Na Figura~\ref{fig:cnn_ar_exemplo}, é ilustrada uma arquitetura típica de CNN.
 
 \begin{figure}[H]
   \centering
