@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  22 NOV 2025 12:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  22 NOV 2025 16:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1572,35 +1572,35 @@ Package pdftex.def Info: figuras/analise_erros/matriz_confusao_paciente_mais_dif
 <figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png, id=833, 859.2903pt x 426.393pt>
 File: figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png>
-Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png  used on input line 71.
+Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png  used on input line 70.
 (pdftex.def)             Requested size: 452.9679pt x 224.77054pt.
  [63 <./figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png>]
 <figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png, id=840, 721.9773pt x 381.5856pt>
 File: figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png>
-Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png  used on input line 88.
+Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png  used on input line 87.
 (pdftex.def)             Requested size: 371.43698pt x 196.31207pt.
  [64 <./figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png> <./figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png>]
 <figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png, id=849, 859.2903pt x 426.393pt>
 File: figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png>
-Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png  used on input line 104.
+Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png  used on input line 103.
 (pdftex.def)             Requested size: 452.9679pt x 224.77054pt.
 <figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png, id=851, 721.9773pt x 379.4175pt>
 File: figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png>
-Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png  used on input line 122.
+Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png  used on input line 121.
 (pdftex.def)             Requested size: 371.43698pt x 195.19666pt.
  [65 <./figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png>]
 <figuras/analise_erros/poincare_paciente_mais_dificil_fp.png, id=860, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_fp.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_fp.png>
-Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_fp.png  used on input line 144.
+Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_fp.png  used on input line 143.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
 <figuras/analise_erros/poincare_paciente_mais_dificil_tp.png, id=861, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_tp.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_tp.png>
-Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tp.png  used on input line 153.
+Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tp.png  used on input line 152.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
 
 
@@ -1609,12 +1609,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <figuras/analise_erros/poincare_paciente_mais_dificil_tn.png, id=864, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_tn.png>
-Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png  used on input line 209.
+Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png  used on input line 208.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
 <figuras/analise_erros/poincare_paciente_mais_facil_neg.png, id=865, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_facil_neg.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_facil_neg.png>
-Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.png  used on input line 218.
+Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.png  used on input line 217.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1622,7 +1622,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=867, 723.4227pt x 379.4175pt>
 File: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png Graphic file (type png)
 <use figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png>
-Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png  used on input line 232.
+Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png  used on input line 231.
 (pdftex.def)             Requested size: 407.66833pt x 213.81549pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1670,7 +1670,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1058b,2292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (76 pages, 4372019 bytes).
+Output written on main.pdf (76 pages, 4372025 bytes).
 PDF statistics:
  1290 PDF objects out of 1440 (max. 8388607)
  1076 compressed objects within 11 object streams

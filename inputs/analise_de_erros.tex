@@ -15,7 +15,7 @@ os erros, logo, a análise serve apenas para construir uma intuição inicial pa
 \section{Análise de erros do modelo híbrido CNN com GRU}
 \label{sec:analise_erros_cnn_gru}
 
-Na tabela~\ref{tab:erros_acertos_por_paciente}, a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
+Na Tabela~\ref{tab:erros_acertos_por_paciente}, a seguir, é possível ver que a maioria dos erros foi oriunda de um paciente, o 203.
 
 \begin{table}[H]
 \centering
@@ -35,7 +35,7 @@ Na tabela~\ref{tab:erros_acertos_por_paciente}, a seguir, é possível ver que a
 \end{table}
 
 Aproximadamente, 98,46\% de todos os erros foram desse paciente. Conforme visto na 
-figura \ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
+Figura~\ref{fig:matriz_confusao_cnn_gru_pior_fold}, a maioria desses erros são de falsos positivos.
 Segundo as anotações do MIT-BIH, disponíveis em \cite{physionet_annotations}, o paciente 203 é considerado como muito difícil. As anotações ainda citam
 a presença de mudança de morfologia no complexo QRS e contrações ventriculares prematuras (PVC) de múltiplas formas.
 
@@ -48,7 +48,7 @@ se concentrar neste dois casos.
 
 \subsubsection{Comparação morfológica entre o paciente 203 e 119}
 
-Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz de confusão desse paciente.
+Na Figura~\ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz de confusão desse paciente.
 
 \begin{figure}[H]
   \centering
@@ -61,8 +61,7 @@ Na figura \ref{fig:matriz_confusao_paciente_mais_dificil}, é mostrada a matriz 
 Das 2.516 sequências normais, o modelo classificou 766 como arrítmicas e acertou 1.750 e das 472 sequências arrítmicas, o modelo acertou 
 436 e errou 6. Assim, ao todo, o modelo errou 35,31\% dos batimentos do paciente 209;
 
-Na figura
-\ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
+Na Figura~\ref{fig:erro_acert_neg_class_paciente_mais_dificil}, é ilustrado duas sequencias desse paciente, na primeira
 um falso positivo e na segunda um verdadeiro negativo.
 
 \begin{figure}[H]
@@ -80,7 +79,7 @@ O modelo tinha 97\% de confiança que o primeiro ECG era da classe positiva, log
 muita confiança. No segundo caso, o modelo tinha 12\% de confiança que a 
 sequência pertencia a classe positiva, ou seja, 88\% de chance de ser da classe negativa; um acerto com confiança.
 
-Na figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequência normal do paciente mais fácil;
+Na Figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequência normal do paciente mais fácil;
 
 \begin{figure}[H]
   \centering
@@ -93,9 +92,9 @@ Na figura~\ref{fig:acert_neg_class_paciente_mais_facil}, é ilustrada a sequênc
 É possível notar uma sequencia mais limpa e com o complexo QRS com morfologia usual. Note em torno da amostra
 2000 uma contração prematura ventricular.
 
-Na figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo errou e a segunda ele acertou:
+Na Figura \ref{fig:erro_acert_pos_class_paciente_mais_dificil} é ilustrado duas sequências arrítmicas do paciente 203, a primeiro o modelo errou e a segunda ele acertou:
 
-Em ambos os casos, é observável o ruído presenta na figura \ref{fig:erro_acert_neg_class_paciente_mais_dificil}. O 
+Em ambos os casos, é observável o ruído presenta na Figura~\ref{fig:erro_acert_neg_class_paciente_mais_dificil}. O 
 último batimento da sequência também apresenta uma morfologia diferente da usual.
 
 \begin{figure}[H]
@@ -113,7 +112,7 @@ apresentadas deste paciente, levando o modelo a confundi-la com uma sequência n
 Já no segundo caso, o modelo tinha 97\% de confiança que era um caso da classe positiva; sendo um 
 acerto com confiança. Nota-se a presença de arritmias ventriculares e um sinal com mais ruído.
 
-Na figura \ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
+Na Figura~\ref{fig:acert_posclass_paciente_mais_facil}, é ilustrada uma sequencia arrítmica do paciente 119.
 Observe no último batimento, uma arritmia ventricular.
 
 \begin{figure}[H]
@@ -126,14 +125,14 @@ Observe no último batimento, uma arritmia ventricular.
 
 \subsubsection{Comparação temporal entre o paciente 203 e 119}
 
-Na figura \ref{fig:poincarefp}, é ilustrado o gráfico de dispersão de um falso positivo do paciente 209.
+Na Figura~\ref{fig:poincarefp}, é ilustrado o gráfico de dispersão de um falso positivo do paciente 209.
 Note o último batimento da sequência (o 16º), em relação aos demais, ele ocorreu de forma mais prematura uma vez que se encontra na
 região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo
 entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com
 um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como
 discutido na seção \ref{sub_sec:padroes_arritmias_aami}, não existe um padrão universal de ECG normal.
 
-A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo paciente. O último batimento também ocorre de forma antecipada, porém sua posição mais próxima à linha de identidade indica que o intervalo com o sucessor é aproximadamente igual ao intervalo com o anterior.
+A Figura~\ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo paciente. O último batimento também ocorre de forma antecipada, porém sua posição mais próxima à linha de identidade indica que o intervalo com o sucessor é aproximadamente igual ao intervalo com o anterior.
 
 \begin{figure}[h!]
     \centering
@@ -178,9 +177,9 @@ A figura \ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
 \end{figure}
 \fi
 
-Já a figura \ref{fig:poincare_tn_MaisDificil} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+Já a Figura~\ref{fig:poincare_tn_MaisDificil} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
 
-Por fim, a figura \ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
+Por fim, a Figura~\ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
 
 \iffalse
 \begin{figure}[H]
@@ -224,7 +223,7 @@ Por fim, a figura \ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal d
     \label{fig:poincare_normal_maisdificil_maisfacil}
 \end{figure}
 
-Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na figura \ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 119.
+Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na Figura~\ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 119.
 
 \begin{figure}[h]
   \centering
