@@ -1,8 +1,10 @@
 \chapter{Metodologia}
 \label{ch:metodologia}
 
-A metodologia é esquematizada na figura \ref{fig:metodologia} que ilustra o fluxo de trabalho. Esse processo envolve a definição do problema,
-a escolha do banco, o pré-processamento, escolha das estratégias de validação, e aplicação do modelo, culminando na escolha do melhor modelo.
+A metodologia é esquematizada na Figura~\ref{fig:metodologia} que ilustra o fluxo de trabalho. Primeiro, ocorreu a definição e compreensão do problema:
+assuntos relacionados ao eletrocardiograma e ao coração. A escolha do banco envolveu selecionar um explorar um banco de dados de eletrocardiogramas 
+comumente utilizado. Pré-processamento, escolha do modelo, de estratégias de validação, aplicação e avaliação dos modelos já foram atividades 
+do universo de aprendizagem de máquina comumente adotadas eem metodologias da área.
 
 \begin{figure}[H]
   \centering
@@ -21,10 +23,16 @@ Nas seções subsequentes, detalha-se as decisões adotadas em cada etapa da met
 \section{O banco de dados}
 \label{sec:particionamento}
 
-Optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}. Segundo \citeonline{physionet_annotations}, o banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. 
+Dentre as opções de bancos de dados, optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}. 
+O MIT-BIH é um banco aberto e muito utilizado para a classificação de arritmias, sendo o primeiro banco 
+aberto de ECG da história; estando disponível desde da década de 80, permitindo a comparação com demais trabalhos \cite{moody2001}. Além 
+de ser recomendado pela AAMI.
+
+
+Segundo \citeonline{physionet_annotations}, o banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. 
 Os 23 primeiros registros, de 100 a 124, foram selecionados aleatoriamente a partir de um conjunto de 4000 gravações de 24 horas realizadas em pacientes ambulatoriais do Beth Israel Deaconess Medical Center. 
 Os 25 registros, 200 até 234, restantes foram escolhidos de modo a incluir arritmias raras e com formato complexo, mas clinicamente significativas.
-Cada uma das anotações foram feitas com por três cardiologistas independentes. Os sinais foram coletados com duas derivações; uma superior e outra inferior. A superior
+Cada uma das anotações foram feitas por três cardiologistas independentes. Os sinais foram coletados com duas derivações; uma superior e outra inferior. A superior
 é majoritariamente utilizando a derivação MLII (modified limb II) que é feita com o eletrodo no peito. 
 Em alguns casos, foi utilizado as derivações V1 (ou mais raramente, V2, V3 e V4); que também são obtidas com os eletrodos no peito.
 
@@ -50,14 +58,13 @@ Q, ?, / & Q (Desconhecida) \\
 \legend{Fonte: Adaptado de \citeonline{chazal2004}}
 \end{table}
 
-O objetivo foi a detecção de batimentos da classe V que compreende: contração prematura ventricular (ou PVC, classe V) e batimento ventricular de escape, classe E, \cite{physionet_annotations}.
-Conforme discutido na seção \ref{sub_sec:padroes_arritmias_aami}, apesar de ocorrerem em indivíduos saudáveis, esses tipos arrítmicos possuem relevância clínica pois estão associados a tipos mais graves.
+Essas anotações são anotações de batimento, isto é, elas são feitas em cada pico R no ECG. Além delas, existem as anotações de ritmo dentre 
+as quais, como o ritmo normal identificado por "(N",
+e a taquicardia ventricular; identificado por "(VFL". Dentro de um contexto rítmico, podem haver batimentos normais ou arrítmicos.
 
-Essas anotações são anotações de batimento, isto é, elas são feitas em cada pico R no ECG. Além delas, existem as anotações de ritmo dentre as quais, podemos destacar: o ritmo normal identificado por (N,
-e a taquicardia ventricular; identificado por (VFL. Dentro de um contexto rítmico, podem haver batimentos normais ou arrítmicos.
-
-Por exemplo, na figura \ref{fig:p100_ritmo_normal}, é mostrado o trecho de um ECG. Note a anotação de ritmo, (N, indicando que o mesmo 
-é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, uma arritmia supraventricular,
+Por exemplo, na Figura~\ref{fig:p100_ritmo_normal}, é mostrado o trecho de um ECG. Note a anotação de ritmo, "(N", indicando que o mesmo 
+é normal. Note, também, que dentro desse contexto rítmico, existem batimentos normais, sinalizados por um ponto em cada pico R, 
+uma arritmia supraventricular,
 mais precisamente, o batimento atrial prematuro, classe A.
 
 \begin{figure}[H]
@@ -68,7 +75,7 @@ mais precisamente, o batimento atrial prematuro, classe A.
   \legend{Fonte: Adaptado de PhysionNet}
 \end{figure}
 
-Na figura \ref{fig:p100_ritmo_normal_arrV} é mostrado um outro trecho do mesmo paciente, o ritmo também é normal
+Na Figura~\ref{fig:p100_ritmo_normal_arrV} é mostrado um outro trecho do mesmo paciente, o ritmo também é normal
 
 \begin{figure}[H]
   \centering
@@ -78,7 +85,7 @@ Na figura \ref{fig:p100_ritmo_normal_arrV} é mostrado um outro trecho do mesmo 
   \legend{Fonte: Adaptado de PhysionNet}
 \end{figure}
 
-Porém, nota-se um PVC, identificado pela anotação V. Na figura \ref{fig:p106_ritmo_normal_arrV}, um trecho do paciente 106 é mostrado.
+Porém, nota-se um PVC, identificado pela anotação V. Na Figura~\ref{fig:p106_ritmo_normal_arrV}, um trecho do paciente 106 é mostrado.
 o ECG é de outro paciente.
 
 \begin{figure}[H]
@@ -89,14 +96,11 @@ o ECG é de outro paciente.
   \legend{Fonte: Adaptado de PhysionNet}
 \end{figure}
 
-Aqui temos a ocorrência de uma taquicardia ventricular, identificado por (VT. Nela, ocorrem três PVCs em sequência. 
+Aqui ocorre uma taquicardia ventricular, identificado por "(VT". Nela, ocorrem três PVCs em sequência. 
 Note a diferença morfológica entre eles. Após esse evento, o ritmo é normal. Nesse segundo momento, ocorre um outro PVC.
 
-As classes de ritmo não foram utilizadas explicitamente, visto que o objetivo era classificar batimentos. Ou seja, há sequencias 
+As classes de ritmo não foram utilizadas explicitamente, visto que o objetivo era classificar batimentos. Ou seja, há sequências 
 com ritmo normal ou com taquicardia ventricular, mas o algoritmo não as classifica.
-
-O MIT-BIH é um banco aberto e muito utilizado para a classificação de arritmias, permitindo uma comparação com demais trabalhos.
-Além de ser recomendado pela AAMI.
 
 \section{Pré-processamento}
 \label{sec:pre_process}
@@ -175,7 +179,7 @@ por exemplo, isso poderia ser um vazamento, o que não é o caso deste projeto.
 \section{Arquiteturas}
 \label{sec:modelos}
 
-Após o pré-processamento e a definição das \textit{features}, é necessário escolher as arquiteturas de rede neural que serão avaliadas. 
+Após o pré-processamento e a definição das \textit{features}, foi necessário escolher as arquiteturas de rede neural que serão avaliadas. 
 Como discutido por \citeonline{geron2022hands}, a busca por hiperparâmetros ideais e por configurações de modelo costuma ser um processo 
 altamente experimental, podendo incluir técnicas automáticas — como \textit{ grid search} ou \textit{random search} —, mas que, 
 no contexto de redes neurais profundas, frequentemente se torna inviável devido ao custo computacional.
@@ -187,7 +191,7 @@ de modelar dependências temporais no sinal.
 
 Neste projeto, a arquitetura base foi mantida, mas além de receber o sinal do eletrocardiograma, o modelo recebeu também os intervalos RR.
 
-A Figura \ref{fig:gru_pura} apresenta um esquema da arquitetura utilizada.
+A Figura~\ref{fig:gru_pura} apresenta um esquema da arquitetura utilizada.
 
 \begin{figure}[H]
   \centering
@@ -235,19 +239,36 @@ As redes foram treinadas por até 50 épocas.
 
 Em seguida, é preciso escolher uma estratégia de avaliação. Conforme apresentado na seção \ref{sec:trabalhos_correlatos},
 existem duas estratégias principais: a interpaciente e a intra-paciente. Na primeira, o modelo é exposto a um cenário mais realista,
-ele precisa classificar ECG inéditos. O desafio reside justamente na variabilidade dos tipos arrítmicos. Assim, \citeonline{chazal2004}
-propôs dois conjuntos de dados para o MIT-BIH; o Ds1 que é formado por: 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230
+ele é treinado em um conjunto de pacientes e avaliado em outro. O desafio reside justamente na variabilidade dos tipos arrítmicos. 
+Assim, \citeonline{chazal2004}
+propôs dois conjuntos de dados para o MIT-BIH; o Ds1 que é formado pelos pacientes: 101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223 e 230
 e o Ds2, formado por: 100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233 e 234.
 
 Note que o conjunto Ds1 inclui 12 registros que são resultados da seleção aleatória e 10 dos registros com as morfologias complexas. Já no Ds2 possui 
 oito dessa primeira seleção e 14 da segunda; sendo mais desafiador e feito para testar a capacidade de generalização do modelo.
 
-Na tabela \ref{tab:particionamento}, é mostrado a distribuição das cinco classes nos dois conjuntos.
+Na Tabela~\ref{tab:particionamento}, é mostrado a distribuição das classes usadas pelos modelos; a arritmia ventricular e a normal.
 
 \begin{table}[htb]
 \centering
-\caption{Distribuição das classes nos conjuntos Ds1 e Ds2}
+\caption{Distribuição das classes (por batimento) nos conjuntos Ds1 e Ds2}
 \label{tab:particionamento}
+\begin{tabular}{|l|c|c|}
+\hline
+Conjunto & N & VEB \\ \hline
+DS1 & 45\,866 & 3\,788 \\ \hline
+DS2 & 44\,259 & 3\,221 \\ \hline
+Total & 90\,125 & 7\,009 \\ \hline
+\end{tabular}
+\legend{Fonte: o autor.}
+\end{table}
+
+
+\iffalse
+\begin{table}[htb]
+\centering
+\caption{Distribuição das classes nos conjuntos Ds1 e Ds2}
+\label{tab:particionamentoOld}
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
 Conjunto & N & SVEB & VEB & F & Q & Total \\ \hline
@@ -257,6 +278,7 @@ Total & 90 125 & 2 781 & 7 009 & 803 & 15 & 100 733 \\ \hline
 \end{tabular}
 \legend{Fonte: o autor.}
 \end{table}
+\fi
 
 Como pode ser observado, as classes são desbalanceadas dentro do mesmo conjunto, porém, balanceada entre eles.
 
@@ -264,7 +286,7 @@ A avaliação foi feita utilizando uma avaliação cruzada no conjunto Ds1 inici
 inter-paciente. Esta estratégia permite avaliar o modelo com ECGs de pacientes para o qual ele não foi treinado; sendo mais próximo de um contexto clínico 
 e expõe o modelo a mais variação. Além disso, conforme a AAMI, batimentos com marcapasso foram excluídos por serem não representativos.
 
-Na tabela \ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold}.
+Na Tabela~\ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold}.
 
 \begin{table}[htbp]
     \centering

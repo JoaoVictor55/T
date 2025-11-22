@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  22 NOV 2025 10:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  22 NOV 2025 12:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1466,94 +1466,94 @@ Overfull \hbox (50.7861pt too wide) in alignment at lines 52--76
 [33] [34]))) (./inputs/metdologia.tex [35] (./figuras/metodologia_diagrama.tex) [36
 
 ] [37]
-<figuras/ecg_physio_bank/p100_ritmo_normal.png, id=621, 1557.82pt x 435.6275pt>
+<figuras/ecg_physio_bank/p100_ritmo_normal.png, id=620, 1557.82pt x 435.6275pt>
 File: figuras/ecg_physio_bank/p100_ritmo_normal.png Graphic file (type png)
 <use figuras/ecg_physio_bank/p100_ritmo_normal.png>
-Package pdftex.def Info: figuras/ecg_physio_bank/p100_ritmo_normal.png  used on input line 66.
+Package pdftex.def Info: figuras/ecg_physio_bank/p100_ritmo_normal.png  used on input line 73.
 (pdftex.def)             Requested size: 452.9679pt x 126.66774pt.
-<figuras/ecg_physio_bank/p100_ritmo_normal_classV.png, id=623, 1556.81625pt x 399.4925pt>
+<figuras/ecg_physio_bank/p100_ritmo_normal_classV.png, id=622, 1556.81625pt x 399.4925pt>
 File: figuras/ecg_physio_bank/p100_ritmo_normal_classV.png Graphic file (type png)
 <use figuras/ecg_physio_bank/p100_ritmo_normal_classV.png>
-Package pdftex.def Info: figuras/ecg_physio_bank/p100_ritmo_normal_classV.png  used on input line 76.
+Package pdftex.def Info: figuras/ecg_physio_bank/p100_ritmo_normal_classV.png  used on input line 83.
 (pdftex.def)             Requested size: 452.9679pt x 116.23389pt.
-<figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png, id=625, 1569.865pt x 429.605pt>
+<figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png, id=624, 1569.865pt x 429.605pt>
 File: figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png Graphic file (type png)
 <use figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png>
-Package pdftex.def Info: figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png  used on input line 87.
+Package pdftex.def Info: figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png  used on input line 94.
 (pdftex.def)             Requested size: 452.9679pt x 123.95294pt.
  [38 <./figuras/ecg_physio_bank/p100_ritmo_normal.png> <./figuras/ecg_physio_bank/p100_ritmo_normal_classV.png>] [39 <./figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png>]
-<figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png, id=641, 417.7206pt x 312.2064pt>
+<figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png, id=640, 417.7206pt x 312.2064pt>
 File: figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png Graphic file (type png)
 <use figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png>
-Package pdftex.def Info: figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png  used on input line 136.
+Package pdftex.def Info: figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png  used on input line 140.
 (pdftex.def)             Requested size: 226.48395pt x 169.27495pt.
-<figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png, id=642, 409.7709pt x 312.2064pt>
+<figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png, id=641, 409.7709pt x 312.2064pt>
 File: figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png Graphic file (type png)
 <use figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png>
-Package pdftex.def Info: figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png  used on input line 142.
+Package pdftex.def Info: figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png  used on input line 146.
 (pdftex.def)             Requested size: 226.48395pt x 172.55725pt.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 150.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 154.
  [40 <./figuras/ecg_physio_bank/p101_batimentoSegmentadoVsOrignal.png> <./figuras/ecg_physio_bank/p101_segmentadovsAmostrado.png>] (./figuras/gru_pura.tex) [41] [42] (./figuras/cnn_gru.tex) [43] [44]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 274.
+(Font)              <10.95> on input line 296.
  [45] [46] [47]) (./inputs/resultados_e_discussoes.tex [48] [49
 
 ]
-<figuras/modelos_resultados/gru/gru_metricas_por_fold.png, id=734, 855.6768pt x 422.0568pt>
+<figuras/modelos_resultados/gru/gru_metricas_por_fold.png, id=732, 855.6768pt x 422.0568pt>
 File: figuras/modelos_resultados/gru/gru_metricas_por_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/gru_metricas_por_fold.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru/gru_metricas_por_fold.png  used on input line 89.
 (pdftex.def)             Requested size: 452.9679pt x 223.42499pt.
  [50]
-<figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png, id=740, 390.9807pt x 325.215pt>
+<figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png, id=738, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png  used on input line 109.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
  [51 <./figuras/modelos_resultados/gru/gru_metricas_por_fold.png>]
-<figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png, id=748, 390.9807pt x 325.215pt>
+<figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png, id=746, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png  used on input line 128.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
  [52 <./figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png> <./figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png>]
-<figuras/modelos_resultados/gru/ap_gru_pior_fold.png, id=758, 336.7782pt x 340.3917pt>
+<figuras/modelos_resultados/gru/ap_gru_pior_fold.png, id=756, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru/ap_gru_pior_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/ap_gru_pior_fold.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_pior_fold.png  used on input line 178.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
-<figuras/modelos_resultados/gru/ap_gru_melhor_fold.png, id=760, 336.7782pt x 340.3917pt>
+<figuras/modelos_resultados/gru/ap_gru_melhor_fold.png, id=758, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/ap_gru_melhor_fold.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png  used on input line 194.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
  [53 <./figuras/modelos_resultados/gru/ap_gru_pior_fold.png>] [54 <./figuras/modelos_resultados/gru/ap_gru_melhor_fold.png>]
-<figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png, id=775, 855.6768pt x 422.0568pt>
+<figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png, id=773, 855.6768pt x 422.0568pt>
 File: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png  used on input line 258.
 (pdftex.def)             Requested size: 452.9679pt x 223.42499pt.
  [55]
-<figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png, id=782, 390.9807pt x 325.215pt>
+<figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png, id=780, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png  used on input line 279.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
  [56 <./figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png>]
-<figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png, id=790, 390.9807pt x 325.215pt>
+<figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png, id=788, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png  used on input line 296.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
  [57 <./figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png>]
-<figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png, id=798, 336.7782pt x 340.3917pt>
+<figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png, id=796, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png  used on input line 310.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
  [58 <./figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png>]
-<figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png, id=805, 336.7782pt x 340.3917pt>
+<figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png, id=803, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png>
 Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png  used on input line 321.
@@ -1564,40 +1564,40 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <24.88> not available
  [62
 
 ]
-<figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png, id=833, 372.9132pt x 312.2064pt>
+<figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png, id=831, 372.9132pt x 312.2064pt>
 File: figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png Graphic file (type png)
 <use figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png>
 Package pdftex.def Info: figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png  used on input line 56.
 (pdftex.def)             Requested size: 317.07614pt x 265.46245pt.
-<figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png, id=835, 859.2903pt x 426.393pt>
+<figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png, id=833, 859.2903pt x 426.393pt>
 File: figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png>
 Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png  used on input line 71.
 (pdftex.def)             Requested size: 452.9679pt x 224.77054pt.
  [63 <./figuras/analise_erros/matriz_confusao_paciente_mais_dificil.png>]
-<figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png, id=842, 721.9773pt x 381.5856pt>
+<figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png, id=840, 721.9773pt x 381.5856pt>
 File: figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png>
 Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png  used on input line 88.
 (pdftex.def)             Requested size: 371.43698pt x 196.31207pt.
  [64 <./figuras/analise_erros/ecg_erro_acerto_neg_paciente_mais_dificil.png> <./figuras/analise_erros/ecg_sequencia_normal_neg_paciente_mais_facil.png>]
-<figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png, id=851, 859.2903pt x 426.393pt>
+<figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png, id=849, 859.2903pt x 426.393pt>
 File: figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png>
 Package pdftex.def Info: figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png  used on input line 104.
 (pdftex.def)             Requested size: 452.9679pt x 224.77054pt.
-<figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png, id=853, 721.9773pt x 379.4175pt>
+<figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png, id=851, 721.9773pt x 379.4175pt>
 File: figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png Graphic file (type png)
 <use figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png>
 Package pdftex.def Info: figuras/analise_erros/ecg_sequencia_normal_pos_paciente_mais_facil.png  used on input line 122.
 (pdftex.def)             Requested size: 371.43698pt x 195.19666pt.
  [65 <./figuras/analise_erros/ecg_erro_acerto_pos_paciente_mais_dificil.png>]
-<figuras/analise_erros/poincare_paciente_mais_dificil_fp.png, id=862, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_dificil_fp.png, id=860, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_fp.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_fp.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_fp.png  used on input line 144.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
-<figuras/analise_erros/poincare_paciente_mais_dificil_tp.png, id=863, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_dificil_tp.png, id=861, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_tp.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_tp.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tp.png  used on input line 153.
@@ -1606,12 +1606,12 @@ Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tp
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/analise_erros/poincare_paciente_mais_dificil_tn.png, id=866, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_dificil_tn.png, id=864, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_tn.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png  used on input line 209.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
-<figuras/analise_erros/poincare_paciente_mais_facil_neg.png, id=867, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_facil_neg.png, id=865, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_facil_neg.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_facil_neg.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.png  used on input line 218.
@@ -1619,7 +1619,7 @@ Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=869, 723.4227pt x 379.4175pt>
+<figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=867, 723.4227pt x 379.4175pt>
 File: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png Graphic file (type png)
 <use figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png>
 Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png  used on input line 232.
@@ -1662,18 +1662,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 45568 strings out of 474222
- 1003124 string characters out of 5748733
+ 45571 strings out of 474222
+ 1003172 string characters out of 5748733
  1958975 words of memory out of 5000000
- 66412 multiletter control sequences out of 15000+600000
+ 66415 multiletter control sequences out of 15000+600000
  720230 words of font info for 307 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1058b,2292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (76 pages, 4372031 bytes).
+Output written on main.pdf (76 pages, 4371995 bytes).
 PDF statistics:
- 1292 PDF objects out of 1440 (max. 8388607)
- 1078 compressed objects within 11 object streams
+ 1290 PDF objects out of 1440 (max. 8388607)
+ 1076 compressed objects within 11 object streams
  238 named destinations out of 1000 (max. 500000)
  90727 words of extra memory for PDF output out of 106986 (max. 10000000)
 

@@ -2,7 +2,7 @@
 \contentsline {table}{\numberline {1}{\ignorespaces Metodologias de Classificação de Batimentos Cardíacos: Modelos, Particionamento, Features, Segmentação e Limpeza}}{34}{table.2.1}%
 \contentsline {table}{\numberline {1}{\ignorespaces Metodologias de Classificação de Batimentos Cardíacos: Modelos, Particionamento, Features, Segmentação e Limpeza}}{35}{table.2.1}%
 \contentsline {table}{\numberline {2}{\ignorespaces Mapeamento das anotações originais do MIT-BIH para as classes AAMI.}}{37}{table.caption.18}%
-\contentsline {table}{\numberline {3}{\ignorespaces Distribuição das classes nos conjuntos Ds1 e Ds2}}{44}{table.caption.25}%
+\contentsline {table}{\numberline {3}{\ignorespaces Distribuição das classes (por batimento) nos conjuntos Ds1 e Ds2}}{44}{table.caption.25}%
 \contentsline {table}{\numberline {4}{\ignorespaces Distribuição dos IDs dos Pacientes por Fold para Conjuntos de Treinamento e Validação}}{45}{table.caption.26}%
 \contentsline {table}{\numberline {5}{\ignorespaces Exemplo de matriz de confusão binária}}{46}{table.caption.27}%
 \contentsline {table}{\numberline {6}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular na validação}}{49}{table.caption.30}%
