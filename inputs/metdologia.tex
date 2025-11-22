@@ -38,7 +38,7 @@ Em alguns casos, foi utilizado as derivações V1 (ou mais raramente, V2, V3 e V
 
 Neste trabalho, foi utilizado somente a derivação superior, pois permite uma melhor visão do complexo QRS \cite{physionet_annotations}.
 
-Na tabela \ref{tab:mapeamento_classes}, é detalhado o mapeamento entre as classes originais de batimentos para as cinco definidas pela AAMI.
+Na Tabela~\ref{tab:mapeamento_classes}, é detalhado o mapeamento entre as classes originais de batimentos para as cinco definidas pela AAMI.
 
 \begin{table}[H]
 \centering
@@ -220,7 +220,7 @@ Essa arquitetura representa uma versão simplificada do modelo proposto por \cit
   \legend{Fonte: Elaborado pelo autor.}
 \end{figure}
 
-Enquanto que a rede da figura \ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
+Enquanto que a rede da Figura~\ref{fig:gru_pura} recebeu o ECG concatenado com as \textit{features}, a rede híbrida as recebeu separadas, sendo conectadas após o processamento
 das CNNs já que o objetivo era que esta extraísse \textit{features} morfológicas.
 
 \subsection{Tamanho da sequência}
@@ -322,7 +322,7 @@ do modelo em termos de verdadeiros e falsos.
 
 \subsubsection{Matriz de Confusão e Métricas Derivadas}
 
-Na tabela \ref{tab:matriz_confusao} é ilustrada um exemplo de matriz de confusão para um classificador binário
+Na Tabela~\ref{tab:matriz_confusao} é ilustrada um exemplo de matriz de confusão para um classificador binário
 
 \begin{table}[H]
 \centering
@@ -451,7 +451,8 @@ Um modelo perfeito, terá um AUC de 1,0.
 \citeonline{mizilPredictingGoodProbs} apresentam uma definição visual de um modelo perfeitamente calibrado. 
 No eixo x do diagrama estão intervalos, ou \textit{bins}, de probabilidade e no eixo y, a média da probabilidade prevista 
 para um determinado intervalo. Agrupa-se as amostras em cada intervalo, de acordo com a probabilidade prevista e, então,
-a média dessa probabilidade e a frequência da classe positiva. Caso essas sejam iguais, então o modelo está perfeitamente calibrado.
+é calculado a média dessas probabilidades probabilidade e a frequência da classe positiva. Caso essas sejam iguais, então o modelo está 
+perfeitamente calibrado.
 
 Supondo que para um conjunto de pacientes, a média da probabilidade prevista é de 30\%. Se o modelo for perfeitamente
 calibrado, então a frequência da classe positiva neste conjunto será de 30\%.
