@@ -4,7 +4,7 @@
 A metodologia é esquematizada na Figura~\ref{fig:metodologia} que ilustra o fluxo de trabalho. Primeiro, ocorreu a definição e compreensão do problema:
 assuntos relacionados ao eletrocardiograma e ao coração. A escolha do banco envolveu selecionar um explorar um banco de dados de eletrocardiogramas 
 comumente utilizado. Pré-processamento, escolha do modelo, de estratégias de validação, aplicação e avaliação dos modelos já foram atividades 
-do universo de aprendizagem de máquina comumente adotadas eem metodologias da área.
+do universo de aprendizagem de máquina comumente adotadas em metodologias da área.
 
 \begin{figure}[H]
   \centering
@@ -316,14 +316,14 @@ Na Tabela~\ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold
 \label{sec:metricas}
 
 As métricas utilizadas para avaliar o desempenho dos modelos foram selecionadas em duas categorias: métricas de desempenho 
-(Sensibilidade, Precisão, Acurácia, \textit{F1-score}, AUC, AP), que quantificam os tipos de acertos e erros, e métricas de confiabilidade 
-(Curva de Calibração), que avaliam a coerência das probabilidades previstas. 
-Para iniciar, será apresentada a Matriz de Confusão, que serve como fundamento para as métricas de desempenho ao tipificar os acertos e erros 
+(sensibilidade, precisão, acurácia, \textit{F1-score}, AUC, AP), que quantificam os tipos de acertos e erros, e métricas de confiabilidade 
+(curva de calibração), que avaliam a coerência das probabilidades previstas. 
+Para iniciar, será apresentada a matriz de confusão, que serve como fundamento para as métricas de desempenho ao tipificar os acertos e erros 
 do modelo em termos de verdadeiros e falsos.
 
-\subsubsection{Matriz de Confusão e Métricas Derivadas}
+\subsubsection{Matriz de confusão e métricas derivadas}
 
-Na Tabela~\ref{tab:matriz_confusao} é ilustrada um exemplo de matriz de confusão para um classificador binário
+Na Tabela~\ref{tab:matriz_confusao} é ilustrada um exemplo de matriz de confusão para um classificador binário.
 
 \begin{table}[H]
 \centering
@@ -339,13 +339,13 @@ Negativa & FP & TN \\ \hline
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Em sentido anti-horário, a partir do canto superior esquerdo tem-se: 
+Cada quadrante da matriz representa um tipo de acerto ou erro, a saber:
 
 \begin{enumerate}
 \item {TP} (\textit{true positive} - verdadeiro positivo), quantos casos positivos foram corretamente classificados;
-\item {FN} (\textit{false negative} - falso negativo), quantos casos positivos foram incorretamente classificados;
-\item {FP} (\textit{false positive} - falso positivo), quantos casos negativos foram incorretamente classificados;
-\item {TN} (\textit{true negative} - verdadeiro negativo), quantos casos negativos foram incorretamente classificados.
+\item {FN} (\textit{false negative} - falso negativo), quantos casos negativos foram incorretamente classificados;
+\item {FP} (\textit{false positive} - falso positivo), quantos casos positivos foram incorretamente classificados;
+\item {TN} (\textit{true negative} - verdadeiro negativo), quantos casos negativos foram corretamente classificados.
 \end{enumerate}
 
 Com base nesses tipos, são definidas as seguintes métricas de desempenho
@@ -355,17 +355,17 @@ Com base nesses tipos, são definidas as seguintes métricas de desempenho
 \text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}
 \end{equation}
 
-\noindent\textbf{Sensibilidade (\textit{Recall}):} Representa a capacidade do modelo em identificar corretamente a classe positiva, sendo $\text{TPR}$ (Taxa de Verdadeiros Positivos) seu sinônimo.
+\noindent\textbf{Sensibilidade (\textit{recall}):} Representa a capacidade do modelo em identificar corretamente a classe positiva, sendo $\text{TPR}$ (Taxa de Verdadeiros Positivos) seu sinônimo.
 \begin{equation}
 \text{Sensibilidade} = \frac{TP}{TP + FN}
 \end{equation}
 
-\noindent\textbf{Precisão:} Indica a proporção de batimentos classificados como arrítmicos que realmente pertencem à classe positiva:
+\noindent\textbf{Precisão:} Indica a proporção de amostras classificadas como positivas que realmente pertencem à classe positiva:
 \begin{equation}
 \text{Precisão} = \frac{TP}{TP + FP}
 \end{equation}
 
-\noindent\textbf{\textit{F1-score}:} É a média harmônica entre Precisão e Sensibilidade, buscando um equilíbrio entre as duas:
+\noindent\textbf{\textit{F1-score}:} É a média harmônica entre precisão e sensibilidade, buscando um equilíbrio entre as duas:
 \begin{equation}
 \text{\textit{F1-score}} = \frac{2 \cdot \text{Precisão} \cdot \text{Sensibilidade}}{\text{Precisão} + \text{Sensibilidade}}
 \end{equation}
@@ -438,9 +438,9 @@ não existe. O modelo sempre acerta, não importa o \textit{recall}.
 A AUCPR (\textit{area under curve precision recall} - ára sob a curva
 precisão sensibilidade) é uma métrica que resume essas curvas. É possível comparar essa métrica com um \textit{baseline} que corresponde 
 a um modelo que simplesmente adivinha; um acerto aleatório ou \textit{random guess}. No caso da curva PR, tal modelo teria um AUCPR igual a 
-proporção da classe positiva.
+proporção da classe positiva. AUCPR é também chamada de AP (\textit{average precision} - precisão média).
 
-Uma alternativa a curva PR é a ROC (\textit{receive operator curve}) que exibe a sensibilidade em relação a taxa de falsos positivos. O seu 
+Uma alternativa a curva PR é a curva ROC (\textit{receiver operating characteristic curve}) que exibe a sensibilidade em relação a taxa de falsos positivos. O seu 
 comportamento é semelhante ao da curva PR, porém ela tende a ser otimista em conjunto de dados desbalanceados \cite{geron2022hands}.
 Assim, neste trabalho foi optado por usar apenas a curva PR, mas, será discutido a AUC (\textit{area under the curve}) dos modelos. Essa métrica 
 é equivalente a AUCPR, com a diferença que, para o \textit{baseline}, a AUC é sempre 0,5. Neste cenário, o \textit{recall} é igual à 
