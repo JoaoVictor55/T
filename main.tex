@@ -46,7 +46,7 @@
 
 \setlength{\tabcolsep}{4pt} % Reduz o espaço entre colunas
 
-\titulo{TCC}
+\titulo{Aplicação de redes neurais para detecção de arritimia ventricular}
 \autor{João Victor Sousa}
 \local{Ilhéus - Bahia}
 \data{2025}
@@ -55,19 +55,24 @@
   Universidade Estadual de Santa Cruz \par
   Curso de Graduação em Ciênca da Computação}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Trabalho apresentado ao Curso de Y da Universidade X como requisito parcial para obtenção do título de Bacharel.}
+\preambulo{Trabalho apresentado ao Curso de Ciência da Computação da Universidade Estadual de Santa Cruz como requisito parcial para obtenção do título de Bacharel.}
 
 %centraliza e deixa o título das seções abaixo maior
 \renewcommand{\contentsname}{\centering\textbf{\large SUMÁRIO}}
 \renewcommand{\listfigurename}{\centering\textbf{\large LISTA DE ILUSTRAÇÕES}}
 \renewcommand{\listtablename}{\centering\textbf{\large LISTA DE TABELAS}}
 \renewcommand{\resumoname}{\centering\textbf{\large RESUMO}}
+\renewcommand{\imprimircapa}{
+\include{includes/modelocapa}} %capa
+\renewcommand{\imprimirfolhaderosto}{
+\include{includes/folharosto}} %folha de rosto ué
 \begin{document}
 
 % Capa e folha de rosto
 \imprimircapa
-\imprimirfolhaderosto*
-
+\imprimirfolhaderosto
+\include{includes/folhaaprovacao}
+\include{includes/agradecimentos}
 % Resumo
 \include{includes/resumo}
 
