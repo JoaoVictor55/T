@@ -148,7 +148,7 @@ A cada conexão é atribuído um peso, que representa a força da relação entr
 
 A ativação de um neurônio é determinada por uma função de ativação não linear, essencial para permitir que a rede aprenda relações complexas entre as variáveis de entrada.
 Sem essa função, uma ANN de múltiplas camadas seria equivalente a uma simples regressão linear. Dentre os exemplos de função de ativação, é possível
-citar a sigmoide (ou logística), ReLU (\textit{REctified Linear Unit}) e a tahn, ilustradas Na Figura~\ref{fig:funcoes_ativacao_exemplo}.
+citar a sigmoide (ou logística), ReLU (\textit{REctified Linear Unit}) e a tahn, ilustradas na Figura~\ref{fig:funcoes_ativacao_exemplo}.
 
 \begin{figure}[H]
   \centering
@@ -164,8 +164,8 @@ ANNs aprendem através da minimização de uma função de custo. Uma função m
 é a \textit{binary cross-entropy} que penaliza quando a probabilidade prevista é distante da classe real. Já a função de ativação 
 na camada de saída é a sigmoide \cite{geron2022hands}.
 
-Para minimizar a função de custo, as redes neurais utilizam um algoritmo, ou variações, chamado de gradiente descendente.que ajusta 
-os parâmetros, os pesos e vieses, em pequenos passos. O quão grande é esse passo é determinado por um hiperparâmetro denominado taxa 
+Para minimizar a função de custo, as redes neurais utilizam um algoritmo, ou variações, chamado de gradiente descendente que ajusta 
+os parâmetros (os pesos e vieses) em pequenos passos. O quão grande é esse passo é determinado por um hiperparâmetro denominado taxa 
 de aprendizagem, \textit{learning-rate}. O cálculo da contribuição do erro pelos pesos e vieses é feito por um outro algoritmo, 
 denominado \textit{backpropagation}.
 
