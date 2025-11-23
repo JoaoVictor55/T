@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  23 NOV 2025 12:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  23 NOV 2025 13:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1612,12 +1612,12 @@ Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tp
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/analise_erros/poincare_paciente_mais_dificil_tn.png, id=851, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_dificil_tn.png, id=853, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_dificil_tn.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_dificil_tn.png  used on input line 208.
 (pdftex.def)             Requested size: 285.36658pt x 282.39674pt.
-<figuras/analise_erros/poincare_paciente_mais_facil_neg.png, id=852, 555.7563pt x 549.9747pt>
+<figuras/analise_erros/poincare_paciente_mais_facil_neg.png, id=854, 555.7563pt x 549.9747pt>
 File: figuras/analise_erros/poincare_paciente_mais_facil_neg.png Graphic file (type png)
 <use figuras/analise_erros/poincare_paciente_mais_facil_neg.png>
 Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.png  used on input line 217.
@@ -1625,7 +1625,7 @@ Package pdftex.def Info: figuras/analise_erros/poincare_paciente_mais_facil_neg.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=854, 723.4227pt x 379.4175pt>
+<figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png, id=856, 723.4227pt x 379.4175pt>
 File: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png Graphic file (type png)
 <use figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png>
 Package pdftex.def Info: figuras/analise_erros/curva_calibracao_pior_paciente_e_melhor_paciente.png  used on input line 231.
@@ -1668,18 +1668,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 45553 strings out of 474222
- 1002860 string characters out of 5748733
+ 45562 strings out of 474222
+ 1002980 string characters out of 5748733
  1956975 words of memory out of 5000000
- 66410 multiletter control sequences out of 15000+600000
- 720033 words of font info for 305 fonts, out of 8000000 for 9000
+ 66412 multiletter control sequences out of 15000+600000
+ 720611 words of font info for 309 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1058b,2292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (75 pages, 4360545 bytes).
+Output written on main.pdf (75 pages, 4361851 bytes).
 PDF statistics:
- 1276 PDF objects out of 1440 (max. 8388607)
- 1063 compressed objects within 11 object streams
+ 1281 PDF objects out of 1440 (max. 8388607)
+ 1066 compressed objects within 11 object streams
  229 named destinations out of 1000 (max. 500000)
- 90727 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 92775 words of extra memory for PDF output out of 106986 (max. 10000000)
 

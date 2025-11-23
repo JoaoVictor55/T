@@ -757,6 +757,7 @@ INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_fp.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_fp.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_fp.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_fp.png
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr10.tfm
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_tp.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_tp.png
 INPUT ./figuras/analise_erros/poincare_paciente_mais_dificil_tp.png
