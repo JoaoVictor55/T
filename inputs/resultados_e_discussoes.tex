@@ -347,13 +347,11 @@ tão bom quanto um modelo aleatório; o que o tornaria inútil.
 Entretanto, os APs dos modelos no pior caso evidenciou que eles superaram esse \textit{baseline}, indicando que foi aprendido padrões que lhes permitem classificar as arritmias, entretanto, esses padrões ainda não são 
 perfeitamente generalizáveis.
 
-Conforme apresentado, existe um desbalanceamento entre as classes. Uma forma de contornar esse problema é o uso de "pesos" na função de 
-custo para penalizar mais erros na classe minoritária. Seu uso no modelo GRU puro não surtiu o efeito desejado; o \textit{f1-score}
-médio, por exemplo, foi de 0,7750 com desvio padrão de 0,1552 contra 0,8060 e desvio padrão de 0,0760; é menor e mais instável.
-Uma hipótese está no seu mecanismo de funcionamento. 
-Quando se observa as precisão e \textit{recall} do modelo no treino; nota-se um alto desempenho, ou seja, o modelo "prestou" atenção na 
-classe minoritária. Assim, uma possível causa é, na verdade, a possível diferença morfológica entre as arritmias de diferentes pacientes.
-Neste sentido, o uso de pesos não ajudaria o modelo.
+Conforme apresentado, existe um desbalanceamento severo entre as classes. Uma técnica comum para mitigar isso é a aplicação de 'pesos' na função de custo, penalizando mais severamente os erros cometidos na classe minoritária. No entanto, sua aplicação no modelo GRU puro foi contraproducente: o \textit{f1-score} médio caiu para 0,7750 e o desvio padrão subiu para 0,1552, indicando maior instabilidade.
+
+A hipótese para esse comportamento reside na natureza do erro do modelo. A ponderação por pesos é ideal quando o modelo tende a ignorar a classe menor (viés). Contudo, ao observar o desempenho no treino, nota-se que a precisão e o recall já eram altíssimos. Ou seja, o modelo já estava 'prestando atenção' suficiente na classe minoritária; ele foi capaz de aprendê-la e até memorizá-la.
+
+Portanto, a queda de desempenho na validação não decorre de um viés a favor da classe majoritária, mas sim da baixa representatividade da classe positiva. Como havia poucos exemplos e poucas variações dessa arritmia, o modelo não conseguiu generalizar. Nesse cenário, aumentar os pesos apenas forçou o modelo a se ajustar excessivamente (\textit{overfit}) a esses poucos exemplos ruidosos, prejudicando ainda mais sua capacidade de classificar novos pacientes.
 
 Por fim, na tabela a seguir é resumido os resultados alcançados pelos modelos e os apresentados na seção \ref{sec:trabalhos_correlatos}.
 Devido as diferenças metodológicas, a comparação direta entre os resultados não é possível. Além do mais, devido ao sobreajuste 
