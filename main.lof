@@ -27,11 +27,11 @@
 \contentsline {figure}{\numberline {26}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu pior \textit {fold}}}{56}{figure.caption.41}%
 \contentsline {figure}{\numberline {27}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{57}{figure.caption.42}%
 \contentsline {figure}{\numberline {28}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{58}{figure.caption.43}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão do paciente 203}}{61}{figure.caption.45}%
-\contentsline {figure}{\numberline {30}{\ignorespaces ECG normal do paciente 203}}{62}{figure.caption.46}%
-\contentsline {figure}{\numberline {31}{\ignorespaces ECG normal do paciente 119.}}{62}{figure.caption.47}%
-\contentsline {figure}{\numberline {32}{\ignorespaces ECG arrítmico do paciente 203: acerto e erro}}{63}{figure.caption.48}%
-\contentsline {figure}{\numberline {33}{\ignorespaces ECG arrítmico do paciente 119.}}{64}{figure.caption.49}%
-\contentsline {figure}{\numberline {34}{\ignorespaces Scatter plot do paciente 203 de um falso positivo e um verdadeiro positivo.}}{65}{figure.caption.50}%
-\contentsline {figure}{\numberline {35}{\ignorespaces Scatter plot da sequência normal do paciente 203 e 119}}{66}{figure.caption.51}%
-\contentsline {figure}{\numberline {36}{\ignorespaces Curva de calibração para o paciente 203 e 119.}}{67}{figure.caption.52}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão do paciente 203}}{62}{figure.caption.45}%
+\contentsline {figure}{\numberline {30}{\ignorespaces ECG normal do paciente 203}}{63}{figure.caption.46}%
+\contentsline {figure}{\numberline {31}{\ignorespaces ECG normal do paciente 119.}}{63}{figure.caption.47}%
+\contentsline {figure}{\numberline {32}{\ignorespaces ECG arrítmico do paciente 203: acerto e erro}}{64}{figure.caption.48}%
+\contentsline {figure}{\numberline {33}{\ignorespaces ECG arrítmico do paciente 119.}}{65}{figure.caption.49}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Scatter plot do paciente 203 de um falso positivo e um verdadeiro positivo.}}{66}{figure.caption.50}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Scatter plot da sequência normal do paciente 203 e 119}}{67}{figure.caption.51}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Curva de calibração para o paciente 203 e 119.}}{68}{figure.caption.52}%

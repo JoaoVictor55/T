@@ -11,4 +11,5 @@
 \contentsline {table}{\numberline {8}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular na validação}}{53}{table.caption.37}%
 \contentsline {table}{\numberline {9}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular no treino}}{53}{table.caption.38}%
 \contentsline {table}{\numberline {10}{\ignorespaces Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{59}{table.4.10}%
-\contentsline {table}{\numberline {11}{\ignorespaces Total dos erros e acertos por paciente no \textit {fold} de validação}}{60}{table.caption.44}%
+\contentsline {table}{\numberline {10}{\ignorespaces Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{60}{table.4.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Total dos erros e acertos por paciente no \textit {fold} de validação}}{61}{table.caption.44}%

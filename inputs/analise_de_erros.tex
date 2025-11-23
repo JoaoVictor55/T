@@ -4,7 +4,7 @@
 Nesta seção, será apresentada uma breve análise de erros do modelo híbrido em seu pior \textit{fold}. 
 Conforme os critérios adotados, o eleito foi o terceiro.
 
-Como o recall foi superior à precisão, foi suposto que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
+Como o recall foi superior à precisão, a hipótese levantada foi que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
 Assim o objetivo dessa seção é fazer uma breve exploração desse \textit{fold} e verificar como os erros estão distribuídos em relação aos pacientes,
 e quais características os dados desses pacientes têm; como a morfologia do ECG e o intervalo RR.
 Por fim, será apresentado também a curva de calibração do modelo.
@@ -107,7 +107,7 @@ Em ambos os casos, é observável o ruído presenta na Figura~\ref{fig:erro_acer
 
 O modelo tinha 16\% de confiança que era um caso da classe positiva, logo, 84\% que era da classe negativa; um erro 
 confiante. É possível notar uma morfologia relativamente mais limpa e uniforme, principalmente quando comparada às demais sequências 
-apresentadas deste paciente, levando o modelo a confundi-la com uma sequência normal.
+apresentadas deste paciente, o que pode ter levado o modelo a confundi-la com uma sequência normal.
 
 Já no segundo caso, o modelo tinha 97\% de confiança que era um caso da classe positiva; sendo um 
 acerto com confiança. Nota-se a presença de arritmias ventriculares e um sinal com mais ruído.
@@ -126,7 +126,7 @@ Observe no último batimento, uma arritmia ventricular.
 \subsection{Comparação temporal entre o paciente 203 e 119}
 
 Na Figura~\ref{fig:poincarefp}, é ilustrado o gráfico de dispersão de um falso positivo do paciente 209.
-Note o último batimento da sequência (o 16º), em relação aos demais, ele ocorreu de forma mais prematura uma vez que se encontra na
+Note o último batimento da sequência (o 16º) ele ocorreu de forma mais prematura uma vez que se encontra na
 região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo
 entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com
 um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como
@@ -177,7 +177,7 @@ A Figura~\ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
 \end{figure}
 \fi
 
-Já a Figura~\ref{fig:poincare_tn_MaisDificil} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores. Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
+Já a Figura~\ref{fig:poincare_tn_MaisDificil} apresenta um verdadeiro negativo. Embora os pontos estejam igualmente dispersos, o último batimento aparece mais deslocado para o canto inferior direito quando comparado aos dois casos anteriores (ou seja, ocorreu mais tarde). Essa diferença pode ter contribuído para que o modelo confundisse o caso negativo anterior como um batimento prematuro, resultando em um falso positivo.
 
 Por fim, a Figura~\ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal do paciente 119. Diferentemente das anteriores, os batimentos formam agrupamentos mais concentrados, com o último batimento situado próximo ao centro e à linha de identidade.
 
@@ -236,7 +236,7 @@ Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva 
 A análise de calibração indica que o modelo está superconfiante em ambos os pacientes. Este cenário é caracterizado pelas curvas de calibração que se mantêm abaixo da diagonal principal.
 
 No caso do paciente 119, a falta de calibração é menos sevara, pois sua curva se aproxima mais da diagonal principal. Já para o paciente 203, a superconfiança é mais intensa, especialmente 
-em \textit{bins} abaixo de 80\%. Um exemplo é quando o modelo prevê que 90\% de um grupo será arrítmico, a realidade é que menos de 60\% deles o são.
+em \textit{bins} abaixo de 80\%. Por exemplo, para o paciente 203, quando a média da probabilidade prevista é de 90\%, a frequência real de casos positivos é menos que 60\%.
 
 Conforme discutido na seção \ref{sec:metricas}, a calibração não está diretamente relacionada ao desempenho, tanto que em ambos os pacientes, a rede foi superconfiante. Seria possível 
 que o modelo tivesse um desempenho baixo e fosse bem calibrado; neste cenário, o tomador de decisão poderia confiar que as probabilidades
