@@ -62,4 +62,4 @@
 \contentsline {section}{\numberline {6.1}Trabalhos futuros}{74}{section.6.1}%
 \contentsline {section}{REFERÊNCIAS}{75}{section.6.1}%
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{76}{section*.57}%
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{76}{section*.60}%

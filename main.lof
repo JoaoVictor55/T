@@ -1,37 +1,37 @@
 \babel@toc {brazil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Sistema de condução do coração}}{17}{figure.caption.11}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de ECG com sua morfologia destacada}}{18}{figure.caption.12}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de uma ANN \textit {feed-foward}}}{23}{figure.caption.13}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Funções de ativação Sigmoid, Tanh e ReLU}}{24}{figure.caption.14}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Exemplo de uma RNN}}{25}{figure.caption.15}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Esquema de uma célula LSTM}}{27}{figure.caption.16}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Esquema de uma célula GRU}}{28}{figure.caption.17}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Esquema de como uma CNN identificaria um tigre}}{29}{figure.caption.18}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura típica de uma CNN}}{30}{figure.caption.19}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Esquema da metodologia adotada.}}{37}{figure.caption.20}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com arritmia classe A}}{39}{figure.caption.22}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com arritmia classe V}}{39}{figure.caption.23}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Trecho ECG com ritmo normal do paciente 106 com arritmia classe V}}{40}{figure.caption.24}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Comparação entre o ECG original, segmentado e reamostrado}}{41}{figure.caption.25}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Arquitetura GRU pura.}}{43}{figure.caption.26}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Arquitetura híbrida CNN e GRU.}}{44}{figure.caption.27}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Curvas Precisão–Recall: Comparação entre Classificador Perfeito, Realista e Baseline.}}{48}{figure.caption.31}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Diagrama de calibração mostrando curvas de modelos perfeitamente calibrado, superconfiante e subconfiante.}}{49}{figure.caption.32}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Métricas do modelo GRU por \textit {fold}}}{53}{figure.caption.35}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Matriz de confusão do modelo GRU em seu melhor \textit {fold}}}{54}{figure.caption.36}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Matriz de confusão do modelo GRU em seu pior \textit {fold}}}{54}{figure.caption.37}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Curva precisão vs \textit {recall} do modelo GRU em seu pior \textit {fold}}}{55}{figure.caption.38}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Curva precisão vs \textit {recall} do modelo GRU em seu melhor \textit {fold}}}{56}{figure.caption.39}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Métricas do modelo híbrido CNN e GRU por \textit {fold}}}{58}{figure.caption.42}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{59}{figure.caption.43}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu pior \textit {fold}}}{60}{figure.caption.44}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{61}{figure.caption.45}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{62}{figure.caption.46}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão do paciente 203}}{66}{figure.caption.48}%
-\contentsline {figure}{\numberline {30}{\ignorespaces ECG normal do paciente 203}}{67}{figure.caption.49}%
-\contentsline {figure}{\numberline {31}{\ignorespaces ECG normal do paciente 119.}}{67}{figure.caption.50}%
-\contentsline {figure}{\numberline {32}{\ignorespaces ECG arrítmico do paciente 203: acerto e erro}}{68}{figure.caption.51}%
-\contentsline {figure}{\numberline {33}{\ignorespaces ECG arrítmico do paciente 119.}}{69}{figure.caption.52}%
-\contentsline {figure}{\numberline {34}{\ignorespaces Scatter plot do paciente 203 de um falso positivo e um verdadeiro positivo.}}{70}{figure.caption.53}%
-\contentsline {figure}{\numberline {35}{\ignorespaces Scatter plot da sequência normal do paciente 203 e 119}}{71}{figure.caption.54}%
-\contentsline {figure}{\numberline {36}{\ignorespaces Curva de calibração para o paciente 203 e 119.}}{72}{figure.caption.55}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Sistema de condução do coração}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de ECG com sua morfologia destacada}}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de uma ANN \textit {feed-foward}}}{23}{figure.caption.15}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Funções de ativação Sigmoid, Tanh e ReLU}}{24}{figure.caption.16}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Exemplo de uma RNN}}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Esquema de uma célula LSTM}}{27}{figure.caption.18}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Esquema de uma célula GRU}}{28}{figure.caption.19}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Esquema de como uma CNN identificaria um tigre}}{29}{figure.caption.20}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Arquitetura típica de uma CNN}}{30}{figure.caption.21}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Esquema da metodologia adotada.}}{37}{figure.caption.22}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com arritmia classe A}}{39}{figure.caption.24}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Trecho ECG com ritmo normal do paciente 100 com arritmia classe V}}{39}{figure.caption.25}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Trecho ECG com ritmo normal do paciente 106 com arritmia classe V}}{40}{figure.caption.26}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Comparação entre o ECG original, segmentado e reamostrado}}{41}{figure.caption.27}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Arquitetura GRU pura.}}{43}{figure.caption.28}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Arquitetura híbrida CNN e GRU.}}{44}{figure.caption.29}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Curvas Precisão–Recall: Comparação entre Classificador Perfeito, Realista e Baseline.}}{48}{figure.caption.33}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagrama de calibração mostrando curvas de modelos perfeitamente calibrado, superconfiante e subconfiante.}}{49}{figure.caption.34}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Métricas do modelo GRU por \textit {fold}}}{53}{figure.caption.37}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Matriz de confusão do modelo GRU em seu melhor \textit {fold}}}{54}{figure.caption.38}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Matriz de confusão do modelo GRU em seu pior \textit {fold}}}{54}{figure.caption.39}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Curva precisão vs \textit {recall} do modelo GRU em seu pior \textit {fold}}}{55}{figure.caption.40}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Curva precisão vs \textit {recall} do modelo GRU em seu melhor \textit {fold}}}{56}{figure.caption.41}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Métricas do modelo híbrido CNN e GRU por \textit {fold}}}{58}{figure.caption.44}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{59}{figure.caption.45}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Matriz de confusão modelo híbrido CNN e GRU em seu pior \textit {fold}}}{60}{figure.caption.46}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{61}{figure.caption.47}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Curva precisão vs \textit {recall} do modelo híbrido CNN e GRU em seu melhor \textit {fold}}}{62}{figure.caption.48}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Matriz de confusão do paciente 203}}{66}{figure.caption.50}%
+\contentsline {figure}{\numberline {30}{\ignorespaces ECG normal do paciente 203}}{67}{figure.caption.51}%
+\contentsline {figure}{\numberline {31}{\ignorespaces ECG normal do paciente 119.}}{67}{figure.caption.52}%
+\contentsline {figure}{\numberline {32}{\ignorespaces ECG arrítmico do paciente 203: acerto e erro}}{68}{figure.caption.53}%
+\contentsline {figure}{\numberline {33}{\ignorespaces ECG arrítmico do paciente 119.}}{69}{figure.caption.54}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Scatter plot do paciente 203 de um falso positivo e um verdadeiro positivo.}}{70}{figure.caption.55}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Scatter plot da sequência normal do paciente 203 e 119}}{71}{figure.caption.56}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Curva de calibração para o paciente 203 e 119.}}{72}{figure.caption.57}%
