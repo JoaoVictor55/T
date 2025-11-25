@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.3)  25 NOV 2025 10:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.3)  25 NOV 2025 10:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1687,7 +1687,7 @@ Cap\'{\i }tulo 4.
 <figuras/modelos_resultados/gru/gru_metricas_por_fold.png, id=760, 855.6768pt x 422.0568pt>
 File: figuras/modelos_resultados/gru/gru_metricas_por_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/gru_metricas_por_fold.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru/gru_metricas_por_fold.png  used on input line 88.
+Package pdftex.def Info: figuras/modelos_resultados/gru/gru_metricas_por_fold.png  used on input line 90.
 (pdftex.def)             Requested size: 452.9679pt x 223.42499pt.
 
 
@@ -1695,7 +1695,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru/gru_metricas_por_fold.pn
 <figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png, id=766, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png  used on input line 108.
+Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_melhor_fold_gru_alt.png  used on input line 110.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
 
 
@@ -1703,7 +1703,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_melhor_f
 <figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png, id=774, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png  used on input line 127.
+Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_pior_fold_gru_alt.png  used on input line 129.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
 
 
@@ -1711,12 +1711,12 @@ Package pdftex.def Info: figuras/modelos_resultados/gru/matriz_confusao_pior_fol
 <figuras/modelos_resultados/gru/ap_gru_pior_fold.png, id=784, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru/ap_gru_pior_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/ap_gru_pior_fold.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_pior_fold.png  used on input line 177.
+Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_pior_fold.png  used on input line 179.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
 <figuras/modelos_resultados/gru/ap_gru_melhor_fold.png, id=786, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru/ap_gru_melhor_fold.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png  used on input line 192.
+Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png  used on input line 194.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
 
 
@@ -1726,7 +1726,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru/ap_gru_melhor_fold.png  
 <figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png, id=801, 855.6768pt x 422.0568pt>
 File: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png  used on input line 256.
+Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por_fold.png  used on input line 258.
 (pdftex.def)             Requested size: 452.9679pt x 223.42499pt.
 
 
@@ -1734,7 +1734,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/gru_cnn_metricas_por
 <figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png, id=808, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png  used on input line 277.
+Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_melhor_fold_gru_cnn_1_alt.png  used on input line 279.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
 
 
@@ -1742,7 +1742,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_melh
 <figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png, id=816, 390.9807pt x 325.215pt>
 File: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png  used on input line 294.
+Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior_fold_gru_cnn_3_alt.png  used on input line 296.
 (pdftex.def)             Requested size: 271.7835pt x 226.0709pt.
 
 
@@ -1750,7 +1750,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/matriz_confusao_pior
 <figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png, id=824, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png  used on input line 308.
+Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold_3.png  used on input line 310.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
 
 
@@ -1758,7 +1758,7 @@ Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_pior_fold
 <figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png, id=831, 336.7782pt x 340.3917pt>
 File: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png Graphic file (type png)
 <use figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png>
-Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png  used on input line 319.
+Package pdftex.def Info: figuras/modelos_resultados/gru_cnn/ap_gru_cnn_melhor_fold_1.png  used on input line 321.
 (pdftex.def)             Requested size: 271.7835pt x 274.71852pt.
 
 
@@ -1911,7 +1911,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1074b,2292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss17.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso17.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/jvssilva/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (78 pages, 4582748 bytes).
+Output written on main.pdf (78 pages, 4582864 bytes).
 PDF statistics:
  1326 PDF objects out of 1440 (max. 8388607)
  241 named destinations out of 1000 (max. 500000)

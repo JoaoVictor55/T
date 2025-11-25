@@ -6,9 +6,11 @@ Em seguida, será feita uma comparação entre as médias na validação com as 
 Então, a partir das métricas individuais em cada \textit{fold}, será identificado o pior e o melhor caso de cada modelo utilizando como critério o \textit{f1-score}. 
 Apesar do recall ser mais importante, foi adotado o \textit{f1-score} como critério, pois o ajuste no \textit{trade-off} pode ser feito manualmente e a 
 critério de um tomador de decisão,
-usando a curva ROC ou \textit{precisão-recall}. Em caso de empate será usado o \textit{recall}. 
+usando a curva ROC ou \textit{precisão-recall}. Além disso, ao focar no
+\textit{recall}, o modelo poderia ter a sua precisão muito reduzida, diminuindo sua utilidade.
+Em caso de empate será usado o \textit{recall}. 
 
-Para estes casos, será analisada a matriz de confusão, onde poderá ser feito a análise dos tipos de erros e acertos e as curvas de \textit{precisão-recall}, 
+Para os piores casos, será analisada a matriz de confusão, onde poderá ser feito a análise dos tipos de erros e acertos e as curvas de \textit{precisão-recall}, 
 para averiguar o impacto da precisão e recall em diferentes \textit{folds} e como os modelos se comparam com o \textit{baseline}.
 
 Então, será eleito o melhor modelo considerando o maior \textit{f1-score} médio. Nesta etapa, é importante analisar também o desvio padrão; é desejável 
