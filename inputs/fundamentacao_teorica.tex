@@ -28,8 +28,8 @@ Posteriormente, a corrente percorre o feixe de His (4), que se divide e conduz o
 \section{O eletrocardiograma}
 \label{sec:ecg}
 
-O eletrocardiograma, ECG, é um exame não invasivo usado para medir a atividade elétrica do coração. Ele é feito a partir do contato de eletrodos, chamados de derivações ou \textit{leads}, sobre a pele.
-A quantidade de eletrodos varia, mas geralmente são 12 \cite{msd_ecg}.
+Segundo \cite{msd_ecg} o eletrocardiograma, ECG, é um exame não invasivo usado para medir a atividade elétrica do coração. Ele é feito a partir do contato de eletrodos, chamados de derivações ou \textit{leads}, sobre a pele.
+A quantidade de eletrodos varia, mas geralmente são 12.
 
 Ao registrar a magnitude e direção da corrente, as derivações geram uma onda que representa a atividade elétrica do coração. O passo a passo descrito em \ref{sec:funciionamento_coracao} é refletido em sua morfologia.
 
@@ -87,11 +87,11 @@ As arritmias ventriculares são classificadas conforme sua origem e manifestaç�
     \item \textbf{Fibrilação Ventricular (FV):} Em \citeonline{mitchell2024afib}, a fibrilação ventricular é caracterizada por batimentos rápidos e desordenados, resultantes de sinais elétricos caóticos nos ventrículos. Essa condição leva à perda de consciência em poucos segundos e à morte caso não haja intervenção imediata, configurando-se como um tipo de parada cardíaca. Entre suas causas estão afogamentos, choques elétricos e falha cardíaca.
 \end{itemize}
 
-Apesar de ocorrerem também em indivíduos saudáveis, as PVCs possuem significância clínica, pois podem estar associadas a outros tipos de arritmias ventriculares graves. É importante considerar o contexto do batimento: no caso da taquicardia ventricular, por exemplo, o diagnóstico é estabelecido a partir de uma sequência de PVCs que produz uma frequência cardíaca elevada ($>20$ bpm). Assim, o diagnóstico depende de uma combinação de características temporais e morfológicas, observando-se o contexto dos batimentos e, naturalmente, os sintomas clínicos.
+Conforme \citeonline{Sattar_Premature_2025} apesar de ocorrerem também em indivíduos saudáveis, as PVCs possuem significância clínica, pois podem estar associadas a condições mais graves. É importante considerar o contexto do batimento: no caso da taquicardia ventricular, por exemplo, o diagnóstico é estabelecido a partir de uma sequência de PVCs que produz uma frequência cardíaca. Assim, o diagnóstico depende de uma combinação de características temporais e morfológicas, observando-se o contexto dos batimentos e, naturalmente, os sintomas clínicos.
 
 \subsubsection{Arritmias Supraventriculares}
 
-As arritmias supraventriculares (S) se originam acima dos ventrículos, como nos átrios ou nos caminhos de condução \cite{texasheart_arrhythmias}. Geralmente, são consideradas mais benignas que as arritmias ventriculares podendo ocorrer, assim como os PVCs, em resposta ao consumo de cafeína, tabaco, álcool, tosse ou remédio para resfriado. Outras causas incluem problemas na tireoide. Elas podem causar palpitações, falta de ar ou aperto no peito.
+Segundo o \citeonline{texasheart_arrhythmias} as arritmias supraventriculares (S) se originam acima dos ventrículos, como nos átrios ou nos caminhos de condução. Geralmente, são consideradas mais benignas que as arritmias ventriculares e podem ocorrer, assim como os PVCs, em resposta ao consumo de cafeína, tabaco, álcool, tosse ou remédio para resfriado. Outras causas incluem problemas na tireoide. Elas podem causar palpitações, falta de ar ou aperto no peito.
 
 Dentre alguns exemplos de arritmia supraventricular, incluem:
 
@@ -117,7 +117,7 @@ Apesar dessa classificação, a detecção automática enfrenta desafios cruciai
 \end{itemize}
 
 Dadas a maior significância clínica e o potencial risco de morte súbita associado à progressão de arritmias ventriculares, o presente trabalho foca na classificação binária da arritmia ventricular (contração ventricular prematura e batimento ventricular de escape), em contraste com a classe de batimentos normais.
-Apesar de ocorrerem em indivíduos saudáveis, PVCs estão associados a tipos arrítmicos mais graves, como a taquicardia ventricular e fibrilação atrial, representando um risco maior a vida.
+Apesar de ocorrerem em indivíduos saudáveis, PVCs estão associados a tipos arrítmicos mais graves, como a taquicardia ventricular e fibrilação atrial, podendo representar um risco maior à vida.
 
 \section{Redes Neurais Artificiais}
 \label{sec:ann}
@@ -127,7 +127,7 @@ costuma ser gerado, ECGs são um bom material para a aplicação de algoritmos d
 na seguinte seção.
 
 Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) são modelos de inteligência artificial inspirado nos neurônios biológicos
-— células encontradas no cérebro de animais responsáveis pela função cognitiva —. Elas funcionam como pequenas unidades computacionais que 
+— células encontradas no cérebro de animais responsáveis pela função cognitiva. Elas funcionam como pequenas unidades computacionais que 
 conectam-se para executar funções complexas.
 
 \citeonline{james2023} descreve uma ANN como uma função que recebe um conjunto de \textit{p} preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
@@ -144,7 +144,7 @@ Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede
 Essa rede é composta por três camadas principais: a camada de entrada (\textit{Input layer}), a camada oculta (\textit{Hidden layer}) e a camada de saída (\textit{Output layer}).
 Cada neurônio na camada oculta é conectado a todos os neurônios da camada de entrada, assim como os neurônios da camada de saída são conectados aos da camada oculta.
 
-A cada conexão é atribuído um peso, que representa a força da relação entre os neurônios — em analogia à intensidade das sinapses no cérebro biológico. Além disso, cada neurônio possui um viés (\textit{bias}), que desloca o ponto de ativação.
+A cada conexão é atribuído um peso, que representa a força da relação entre os neurônios — em analogia à intensidade das sinapses no cérebro biológico \cite{geron2022hands}. Além disso, cada neurônio possui um viés (\textit{bias}), que desloca o ponto de ativação.
 
 A ativação de um neurônio é determinada por uma função de ativação não linear, essencial para permitir que a rede aprenda relações complexas entre as variáveis de entrada.
 Sem essa função, uma ANN de múltiplas camadas seria equivalente a uma simples regressão linear. Dentre os exemplos de função de ativação, é possível
@@ -358,7 +358,9 @@ De modo geral, uma CNN é composta por duas estruturas principais:
 as \textit{camadas convolucionais}, responsáveis por extrair características relevantes dos dados, 
 e as \textit{camadas de pooling}, que reduzem a dimensionalidade e mantêm apenas as informações mais significativas.
 
-Para compreender o funcionamento de uma convolução, considere a seguinte matriz, representando uma imagem:
+Para compreender o funcionamento de uma convolução, \citeonline{james2023} da o seguinte exemplo.
+
+Considere a seguinte matriz, representando uma imagem:
 
 \[
 \begin{bmatrix}

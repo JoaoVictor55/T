@@ -576,7 +576,6 @@ INPUT .\figuras\ecg_exemplo_coracao.png
 INPUT .\figuras\ecg_exemplo_coracao.png
 INPUT .\figuras\ecg_exemplo_coracao.png
 INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
-INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT .\figuras\ann_exemplos\ann_ff_exemplo.png
 INPUT .\figuras\ann_exemplos\ann_ff_exemplo.png
 INPUT .\figuras\ann_exemplos\ann_ff_exemplo.png
@@ -601,6 +600,7 @@ INPUT .\figuras\ann_exemplos\rnn_exemplo.png
 INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx12.tfm
 INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx8.tfm
 INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx6.tfm
+INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\jvssilva\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT .\figuras\ann_exemplos\lstm_celula.png
 INPUT .\figuras\ann_exemplos\lstm_celula.png
