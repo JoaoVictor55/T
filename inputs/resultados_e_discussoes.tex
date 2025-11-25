@@ -60,10 +60,10 @@ Acurácia & 0,9969 & 0,0024 \\
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Comparando os resultados do treino na Tabela~\ref{tab:resultado_cv_gru_cnn_treino} com os resultados da validação na Tabela~\ref{tab:resultado_cv_gru_cnn_validacao},
+Comparando os resultados do treino na Tabela~\ref{tab:resultado_cv_gru_treino} com os resultados da validação na Tabela~\ref{tab:resultado_cv_gru_validacao},
 observa-se um diferença substancial; evidenciando sobreajuste, isto é, o modelo apresentou uma baixa capacidade de generalização para pacientes não vistos.
 
-Esse fenômeno ocorre pois modelos com alta flexibilidade, como redes neurais, conseguem se ajustar intimamente com os dados de treino.
+Esse fenômeno ocorre pois modelos com alta flexibilidade, como redes neurais, conseguem se ajustar intimamente com os dados de treino \cite{james2023}.
 Caso eles não sejam representativos da população, tais modelos podem aprender ruído e particularidades dessa amostra ao invés de padrões generalizáveis.
 
 No contexto do MIT-BIH, o desbalanceamento das classes pode ter causado isso. Como há poucos exemplos da classe positiva, é fácil para o modelo memorizar
@@ -299,7 +299,7 @@ a quantidade de erros de falsos negativos, oito, foi menor que as de falsos posi
 Na Figura~\ref{fig:ap_cnn_gru_pior_fold} ilustra a curva PR do modelo híbrido em seu pior caso. Comparando com o pior caso 
 do modelo GRU, na Figura~\ref{fig:ap_gru_pior_fold}, o modelo híbrido mantém um \textit{recall} maior para os mesmos valores 
 de precisão. Em ambos os casos, a precisão quando o \textit{recall} é maior ou igual a um valor próximo a 100\%, porém no modelo puro, isso 
-ocorre bem antes. o AP também foi maior; cerca de 0,55 contra 0,49. No piro caso, o AUC do modelo híbrido foi de 0,95, contra 0,93 do 
+ocorre bem antes. o AP também foi maior; cerca de 0,55 contra 0,49. No pior caso, o AUC do modelo híbrido foi de 0,95, contra 0,93 do 
 modelo GRU puro.
 
 \begin{figure}[H]
@@ -334,7 +334,7 @@ no contexto da sequência.
 
 \section{Conclusão dos resultados}
 
-Nesta seção, foi apresentado os resultados obtidos pelos modelos GRU puro e híbrido. Ambos os modelos apresentaram um caso de \textit{overfit},
+Nesta seção, foram apresentados os resultados obtidos pelos modelos GRU puro e híbrido. Ambos os modelos apresentaram um caso de \textit{overfit},
 evidenciado pela grande diferença entre o desempenho no treino com o da validação. A partir das métricas individuais em cada \textit{fold},
 foi identificado o pior e melhor caso. Neste primeiro, ambos os modelos tiveram uma precisão bem menor que seu \textit{recall}, invertendo a 
 tendência apresentada nos outros \textit{folds}. O que pode ter sido devido a batimentos normais com características destoantes das aprendidas
@@ -353,10 +353,11 @@ A hipótese para esse comportamento reside na natureza do erro do modelo. A pond
 
 Portanto, a queda de desempenho na validação não decorre de um viés a favor da classe majoritária, mas sim da baixa representatividade da classe positiva. Como havia poucos exemplos e poucas variações dessa arritmia, o modelo não conseguiu generalizar. Nesse cenário, aumentar os pesos apenas forçou o modelo a se ajustar excessivamente (\textit{overfit}) a esses poucos exemplos ruidosos, prejudicando ainda mais sua capacidade de classificar novos pacientes.
 
-Por fim, na tabela a seguir é resumido os resultados alcançados pelos modelos e os apresentados na seção \ref{sec:trabalhos_correlatos}.
+Por fim, na tabela a seguir são resumidos os resultados alcançados pelos modelos e os apresentados na seção \ref{sec:trabalhos_correlatos}.
 Devido as diferenças metodológicas, a comparação direta entre os resultados não é possível. Além do mais, devido ao sobreajuste 
 observado em ambos os modelos, optou-se por não realizar o teste final no Ds2, pois este é um teste único feito quando 
-se tem um modelo com um desempenho satisfatório.
+se tem um modelo com um desempenho satisfatório. Relembrando que a divisão interpaciente é mais rigorosa que a intrapaciente e para este  
+trabalho, os resultados relatados são da validação cruzada no conjunto Ds1; que é uma estimativa otimista da generalização.
 
 \input{includes/revisao_literatura_tabela_resultados}
 

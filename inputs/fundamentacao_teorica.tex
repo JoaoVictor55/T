@@ -80,11 +80,11 @@ As arritmias ventriculares são classificadas conforme sua origem e manifestaç�
     
     \item \textbf{Contração Prematura Ventricular (PVC):} De acordo com \citeonline{Sattar_Premature_2025}, as PVCs são batimentos originários dos ventrículos que podem ocorrer mesmo em indivíduos saudáveis. Sua morfologia é variável, dependendo da origem do impulso, de doenças estruturais ou ainda de uso de medicamentos. Quando frequentes, podem causar fadiga e palpitações, evoluindo para disfunções ventriculares e, em alguns casos, representando a primeira manifestação de cardiopatias estruturais. \citeonline{msdmanuals_ventricular} cita ainda outras causas potenciais de PVCs, como doenças da artéria coronária (especialmente durante ou após infarto), dilatação ventricular decorrente de insuficiência cardíaca e alterações nas válvulas cardíacas.
     
-    \item \textbf{Taquicardia Ventricular (TV):} Em \citeonline{mitchell2024afib,mitchell2024vt}, TV é descrito como uma arritmia originada nos ventrículos, produzindo uma frequência cardíaca de até $120$ bpm. É formada por uma sequência de contrações ventriculares prematuras (PVCs). Quando persiste por mais de 30 segundos, recebe a denominação de taquicardia sustentada. Costuma ocorrer em indivíduos com alterações estruturais cardíacas, como infarto do miocárdio, falha cardíaca ou cardiomiopatia. Os sintomas incluem fraqueza, tontura e desconforto torácico. Caso persista por mais de 30 segundos, o tratamento é indicado mesmo na ausência de sintomas, uma vez que pode evoluir para fibrilação ventricular.
+    \item \textbf{Taquicardia Ventricular (TV):} Em \citeonline{mitchell2024vt}, TV é descrito como uma arritmia originada nos ventrículos, produzindo uma frequência cardíaca de até $120$ bpm. É formada por uma sequência de contrações ventriculares prematuras (PVCs). Quando persiste por mais de 30 segundos, recebe a denominação de taquicardia sustentada. Costuma ocorrer em indivíduos com alterações estruturais cardíacas, como infarto do miocárdio, falha cardíaca ou cardiomiopatia. Os sintomas incluem fraqueza, tontura e desconforto torácico. Caso persista por mais de 30 segundos, o tratamento é indicado mesmo na ausência de sintomas, uma vez que pode evoluir para fibrilação ventricular.
     
     \item \textbf{Flutter Ventricular:} Segundo o \citeonline{mesh_ventricular_flutter}, o \textit{flutter} ventricular é caracterizado por uma taquicardia extremamente rápida e instável hemodinamicamente ($150$ a $300$ bpm). É potencialmente fatal e, tipicamente, evolui para a fibrilação ventricular.
 
-    \item \textbf{Fibrilação Ventricular (FV):} É caracterizada por batimentos rápidos e desordenados, resultantes de sinais elétricos caóticos nos ventrículos. Essa condição leva à perda de consciência em poucos segundos e à morte caso não haja intervenção imediata, configurando-se como um tipo de parada cardíaca. Entre suas causas estão afogamentos, choques elétricos e falha cardíaca \citeonline{mitchell2024afib,mitchell2024vt}.
+    \item \textbf{Fibrilação Ventricular (FV):} Em \citeonline{mitchell2024afib}, a fibrilação ventricular é caracterizada por batimentos rápidos e desordenados, resultantes de sinais elétricos caóticos nos ventrículos. Essa condição leva à perda de consciência em poucos segundos e à morte caso não haja intervenção imediata, configurando-se como um tipo de parada cardíaca. Entre suas causas estão afogamentos, choques elétricos e falha cardíaca.
 \end{itemize}
 
 Apesar de ocorrerem também em indivíduos saudáveis, as PVCs possuem significância clínica, pois podem estar associadas a outros tipos de arritmias ventriculares graves. É importante considerar o contexto do batimento: no caso da taquicardia ventricular, por exemplo, o diagnóstico é estabelecido a partir de uma sequência de PVCs que produz uma frequência cardíaca elevada ($>20$ bpm). Assim, o diagnóstico depende de uma combinação de características temporais e morfológicas, observando-se o contexto dos batimentos e, naturalmente, os sintomas clínicos.
@@ -96,7 +96,7 @@ As arritmias supraventriculares (S) se originam acima dos ventrículos, como nos
 Dentre alguns exemplos de arritmia supraventricular, incluem:
 
 \begin{itemize}
-    \item \textbf{Contrações Supraventriculares Prematuras (CSPs):} Ocorrem quando o átrio se contrai de forma antecipada.
+    \item \textbf{Contrações Supraventriculares Prematuras (CSPs):} Ocorrem quando o átrio se contrai de forma antecipada \cite{texasheart_arrhythmias}.
   
     \item \textbf{Taquicardias Supraventriculares (TSV):} Segundo \citeonline{statpearls_svt}, TSVs são formadas por desordens rítmicas rápidas e caracterizadas por um complexo QRS mais estreito (menor que $120$ ms) e uma frequência cardíaca alta. Em adultos, essa frequência é superior a $100$ bpm, enquanto que em crianças, varia de $180$ a $220$ bpm. Os autores apontam como as TSV mais comuns a taquicardia atrioventricular nodal reentrante e a taquicardia atrioventricular recíproca.
     
@@ -130,7 +130,7 @@ Segundo \citeonline{geron2022hands}, as redes neurais artificiais (ANN) são mod
 — células encontradas no cérebro de animais responsáveis pela função cognitiva —. Elas funcionam como pequenas unidades computacionais que 
 conectam-se para executar funções complexas.
 
-\citeonline{james2023}, uma ANN pode ser vista como uma função que recebe um conjunto de \textit{p} preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
+\citeonline{james2023} descreve uma ANN como uma função que recebe um conjunto de \textit{p} preditores e, por meio de transformações não lineares, busca prever uma variável resposta Y.
 Na Figura \ref{fig:ann_ff_exemplo}, é ilustrada uma arquitetura simples de rede neural \textit{feedforward}.
 
 \begin{figure}[H]
@@ -160,19 +160,19 @@ citar a sigmoide (ou logística), ReLU (\textit{REctified Linear Unit}) e a tahn
 
 \subsection{Treinamento de redes neurais}
 
-ANNs aprendem através da minimização de uma função de custo. Uma função muito utilizada para problemas de classificação binária
+Segundo \citeonline{geron2022hands}, ANNs aprendem através da minimização de uma função de custo. Uma função muito utilizada para problemas de classificação binária
 é a \textit{binary cross-entropy} que penaliza quando a probabilidade prevista é distante da classe real. Já a função de ativação 
-na camada de saída é a sigmoide \cite{geron2022hands}.
+na camada de saída é a sigmoide.
 
 Para minimizar a função de custo, as redes neurais utilizam um algoritmo, ou variações, chamado de gradiente descendente que ajusta 
 os parâmetros (os pesos e vieses) em pequenos passos. O quão grande é esse passo é determinado por um hiperparâmetro denominado taxa 
 de aprendizagem, \textit{learning-rate}. O cálculo da contribuição do erro pelos pesos e vieses é feito por um outro algoritmo, 
 denominado \textit{backpropagation}.
 
-Entretanto, redes neurais, especialmente as profundas, podem ser afetas por dois problemas; o gradiente desvanecente (\textit{vanishing gradient})
+Conforme \citeonline{geron2022hands}, as redes neurais, especialmente as profundas, podem ser afetas por dois problemas; o gradiente desvanecente (\textit{vanishing gradient})
 e o gradiente instável (\textit{exploding gradient}), que afetam a capacidade de aprendizado da rede. No primeiro, 
 os gradientes ficam progressivamente menores, diminuindo a atualização dos pesos. Com o tempo, a rede para de aprender. Já no segundo,
-os gradientes ficam progressivamente maiores, podendo causar problemas como \textit{overflow} numérico.
+os gradientes ficam progressivamente maiores, podendo causar problemas de convergência.
 
 Com o tempo, variações de neurônios foram desenvolvidos, visando explorar determinadas propriedades dos dados. Na próxima seção, 
 será apresentado duas variações de neurônios artificiais; a recorrente e a convolucional. A primeira, foi pensada para problemas 
@@ -196,7 +196,7 @@ Segundo \citeonline{james2023}, as RNNs se destacam em tarefas que envolvem dado
     Aplicações incluem legendagem automática, tradução de fala e classificação de sons.
 \end{itemize}
 
-A entrada de uma RNN é uma sequência. 
+Segundo \citeonline{james2023}, a entrada de uma RNN é uma sequência. 
 Por exemplo, em uma tarefa de classificação de documentos, um texto pode ser representado como uma sequência 
 \( X = \{X_1, X_2, ..., X_L\} \) de \(L\) elementos, onde cada \(X_l\) representa uma palavra (ou vetor de características da palavra).  
 

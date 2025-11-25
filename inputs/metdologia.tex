@@ -8,7 +8,7 @@ do universo de aprendizagem de máquina comumente adotadas em metodologias da á
 
 \begin{figure}[H]
   \centering
-  \caption{Esquema a metodologia adotada.}
+  \caption{Esquema da metodologia adotada.}
   \input{figuras/metodologia_diagrama} % insere o tikzpicture puro
   \label{fig:metodologia}
   \legend{Fonte: Elaborado pelo autor.}
@@ -25,8 +25,8 @@ Nas seções subsequentes, detalha-se as decisões adotadas em cada etapa da met
 
 Dentre as opções de bancos de dados, optou-se pelo \textit{MIT-BIH Arrhythmia Database} \cite{mitbih2005}. 
 O MIT-BIH é um banco aberto e muito utilizado para a classificação de arritmias, sendo o primeiro banco 
-aberto de ECG da história; estando disponível desde da década de 80, permitindo a comparação com demais trabalhos \cite{moody2001}. Além 
-de ser recomendado pela AAMI.
+aberto de ECG da história; estando disponível desde da década de 80  \cite{moody2001}, permitindo a comparação com demais trabalhos. Além 
+de ser recomendado pela AAMI \cite{chazal2004,saadatnejad2020}.
 
 
 Segundo \citeonline{physionet_annotations}, o banco é composto por 58 registros de eletrocardiograma (ECG), cada um com 30 minutos de duração. 
@@ -80,18 +80,17 @@ Na Figura~\ref{fig:p100_ritmo_normal_arrV} é mostrado um outro trecho do mesmo 
 
 \begin{figure}[H]
   \centering
-  \caption{Trecho ECG com ritmo normal do paciente 100 com com arritmia classe V}
+  \caption{Trecho ECG com ritmo normal do paciente 100 com arritmia classe V}
   \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p100_ritmo_normal_classV.png}  % <-- CERTO
   \label{fig:p100_ritmo_normal_arrV}
   \legend{Fonte: Adaptado de PhysionNet}
 \end{figure}
 
 Porém, nota-se um PVC, identificado pela anotação V. Na Figura~\ref{fig:p106_ritmo_normal_arrV}, um trecho do paciente 106 é mostrado.
-o ECG é de outro paciente.
 
 \begin{figure}[H]
   \centering
-  \caption{Trecho ECG com ritmo normal do paciente 106 com com arritmia classe V}
+  \caption{Trecho ECG com ritmo normal do paciente 106 com arritmia classe V}
   \includegraphics[width=\linewidth]{figuras/ecg_physio_bank/p106_ritmo_normal_vt_classV.png}  % <-- CERTO
   \label{fig:p106_ritmo_normal_arrV}
   \legend{Fonte: Adaptado de PhysionNet}
@@ -167,11 +166,11 @@ ventriculares prematuros (PVCs), em que ocorre um encurtamento característico d
 Assim, para um batimento \textit{i}, seu intervalo RR é calculado da seguinte forma.
 
 \begin{equation}
-\text{pré RR intervalo} = R_{i-1} - R_{i}
+\text{pré RR intervalo} = |R_{i-1} - R_{i}|
 \end{equation}
 
 \begin{equation}
-\text{pós RR intervalo} = R_{i} - R_{i+1}
+\text{pós RR intervalo} = |R_{i} - R_{i+1}|
 \end{equation}
 
 Note que é necessário saber sobre o próximo batimento, isto é o futuro. Em um contexto de classificação em tempo real, 
@@ -285,7 +284,7 @@ Como pode ser observado, as classes são desbalanceadas dentro do mesmo conjunto
 
 A avaliação foi feita utilizando uma avaliação cruzada no conjunto Ds1 inicialmente com duas partições (dois \textit{folds}) e, posteriormente, com cinco partições (cinco \textit{folds}) nos modelos finais, utilizando o particionados
 inter-paciente. Esta estratégia permite avaliar o modelo com ECGs de pacientes para o qual ele não foi treinado; sendo mais próximo de um contexto clínico 
-e expõe o modelo a mais variação. Além disso, conforme a AAMI, batimentos com marcapasso foram excluídos por serem não representativos.
+e expõe o modelo a mais variação. Além disso, conforme a AAMI, batimentos com marcapasso foram excluídos por serem não representativos \cite{saadatnejad2020}.
 
 Na Tabela~\ref{tab:folds}, abaixo, é mostrado os pacientes em cada \textit{fold}.
 
@@ -339,7 +338,7 @@ Negativa & FP & TN \\ \hline
 \legend{Fonte: Elaborado pelo autor.}
 \end{table}
 
-Cada quadrante da matriz representa um tipo de acerto ou erro, a saber:
+Segundo \citeonline{Mueller2016}, cada quadrante da matriz representa um tipo de acerto ou erro, a saber:
 
 \begin{enumerate}
 \item {TP} (\textit{true positive} - verdadeiro positivo), quantos casos positivos foram corretamente classificados;
@@ -348,7 +347,7 @@ Cada quadrante da matriz representa um tipo de acerto ou erro, a saber:
 \item {TN} (\textit{true negative} - verdadeiro negativo), quantos casos negativos foram corretamente classificados.
 \end{enumerate}
 
-Com base nesses tipos, são definidas as seguintes métricas de desempenho
+E com base nesses tipos, são definidas as seguintes métricas de desempenho(\cite{Mueller2016}):
 
 \noindent\textbf{Acurácia:} Corresponde ao acerto global do modelo:
 \begin{equation}
@@ -376,9 +375,10 @@ Segundo \citeonline{geron2022hands}, a precisão e o \textit{recall} são um \te
 a tendência é que o modelo comete mais erros de falsos positivos, diminuindo a precisão. Da mesma forma, conforme aumenta-se a precisão, 
 o modelo tende a cometer mais erros de falsos negativos, diminuindo a sensibilidade.
 
+Em \citeonline{Mueller2016}, chama-se a atenção para qual tipo de erro é menos danoso, pois nenhum modelo é livre de erros.
 Em contextos médicos, prioriza-se o \textit{recall}, pois falsos negativos são mais prejudiciais que falsos positivos. 
-Abaixo, é ilustrada uma curva precisão-\textit{recall} que  mostra o desempenho do modelo em todos os limiares de decisão possíveis e o 
-efeito desse \textit{trade-off}:
+Segundo os autores, uma forma de visualizar esse \textit{trade-off} é pela curva precisão-\textit{recall}, ilustrada abaixo, que 
+mostra o desempenho do modelo em todos os limiares de decisão possíveis.
 
 \pgfplotsset{compat=1.18}
 
@@ -433,19 +433,19 @@ efeito desse \textit{trade-off}:
 
 A curva azul ilustra o \textit{trade-off} de um modelo fictício. Conforme sua sensibilidade aumenta, ele começa a cometer erros de 
 falso positivo, impactando negativamente a sua precisão. Na curva vermelha é ilustrada um modelo perfeito; nele esse \textit{trade-off}
-não existe. O modelo sempre acerta, não importa o \textit{recall}. 
+não existe, o modelo sempre acerta, não importa o \textit{recall} \cite{geron2022hands}.
 
-A AUCPR (\textit{area under curve precision recall} - ára sob a curva
-precisão sensibilidade) é uma métrica que resume essas curvas. É possível comparar essa métrica com um \textit{baseline} que corresponde 
+Em \citeonline{Mueller2016}, a AUCPR (\textit{area under curve precision recall} - ára sob a curva
+precisão sensibilidade) é  definida como uma métrica que resume essas curvas. É possível comparar essa métrica com um \textit{baseline} que corresponde 
 a um modelo que simplesmente adivinha; um acerto aleatório ou \textit{random guess}. No caso da curva PR, tal modelo teria um AUCPR igual a 
 proporção da classe positiva. AUCPR é também chamada de AP (\textit{average precision} - precisão média).
 
-Uma alternativa a curva PR é a curva ROC (\textit{receiver operating characteristic curve}) que exibe a sensibilidade em relação a taxa de falsos positivos. O seu 
-comportamento é semelhante ao da curva PR, porém ela tende a ser otimista em conjunto de dados desbalanceados \cite{geron2022hands}.
-Assim, neste trabalho foi optado por usar apenas a curva PR, mas, será discutido a AUC (\textit{area under the curve}) dos modelos. Essa métrica 
-é equivalente a AUCPR, com a diferença que, para o \textit{baseline}, a AUC é sempre 0,5. Neste cenário, o \textit{recall} é igual à 
+Uma alternativa, segundo \citeonline{geron2022hands}, a curva PR é a curva ROC (\textit{receiver operating characteristic curve}) que exibe a sensibilidade em relação a taxa de falsos positivos. O seu 
+comportamento é semelhante ao da curva PR, porém ela tende a ser otimista em conjunto de dados desbalanceados.
+Assim, neste trabalho foi optado por usar apenas a curva PR. Porém, será discutido a AUC (\textit{area under the curve}) dos modelos. Essa métrica 
+é equivalente a AUCPR, com a diferença que, para o \textit{baseline}, a AUC é sempre 0,5 \cite{Mueller2016}. Neste cenário, o \textit{recall} é igual à 
 taxa de falsos positivos; ou seja, ao achar 60\% das classes positivas, o modelo classifica 60\% das classes negativas como positivas, por exemplo.
-Um modelo perfeito, terá um AUC de 1,0.
+Um modelo perfeito, terá um AUC de 1,0 \cite{geron2022hands}.
 
 \subsubsection{Curva de calibração}
 

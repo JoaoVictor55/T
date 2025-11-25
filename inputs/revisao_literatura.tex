@@ -5,7 +5,7 @@ A aplicação de métodos para a detecção de arritmias não é uma ideia nova.
 havia estudos que buscavam desenvolver algoritmos para a análise de arritmias. \citeonline{SAFDAR2024107908}, aponta algumas técnicas
 clássicas utilizadas como \textit{Support Vector Machine (SVM)} , \textit{K-nearest neighbor (KNN)} e \textit{Random Forest}.
 
-Os autores mostram que nos últimos anos técnicas de \textit{deep learning}, redes neurais, vem ganhando tração. Muito por dispensar ou depender menos intensamente
+Os autores mostram que nos últimos anos técnicas de \textit{deep learning}, redes neurais, vem ganhando tração, principalmente por dispensar ou depender menos intensamente
 de \textit{features} manuais, podendo aprende-las automaticamente. Dentre as primeiras técnicas usadas está as redes \textit{feed-forward}, seguido pelas
 CNN e LSTM, além de abordagens híbridas.
 
@@ -48,7 +48,7 @@ A entrada do modelo consiste em batimentos individuais e em razões entre interv
 %intrapaciente
 Em \citeonline{kiranyaz2016real}, foi proposto um leve modelo de classificação de arritmias baseado em CNN (ver Seção~\ref{sec:fundamentos_cnn}). Os autores seguiram o particionamento intra-paciente com cinco minutos de treinamento específico — oriundo do conjunto ds2 — e treinamento global a partir de amostras aleatórias do conjunto ds1. Os dados de treino totais somam menos de 1\% dos batimentos totais. 
 
-A AAMI define que dados de pacientes específicos não podem ultrapassar cinco minutos; regra seguida pelos autores.
+Segundo os autores, a AAMI define que dados de pacientes específicos não podem ultrapassar cinco minutos.
 
 Não foi utilizado engenharia de features, empregando apenas o sinal crú em duas entradas: uma com o batimento segmentado e uma outra com três sequências de batimentos; para fornecer contexto temporal. Em ambos os casos os autores utilizaram 64 ou 128 amostras, sendo que no primeiro caso, a perda de desempenho foi insignificante. O modelo é formado por três camadas convolucionais modificadas, isto é, elas fazem tanto a convolução quanto o \textit{downsampling}, e duas camadas de perceptrons.
 

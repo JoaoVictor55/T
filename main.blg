@@ -20,9 +20,9 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
 Warning--entry type for "msdmanuals_ventricular" isn't style-file defined
---line 281 of file referencias.bib
+--line 290 of file referencias.bib
 Warning--entry type for "Mitchell_Arritmias_MSD" isn't style-file defined
---line 292 of file referencias.bib
+--line 301 of file referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -32,45 +32,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 32 entries,
+You've used 33 entries,
             6714 wiz_defined-function locations,
-            1413 strings with 17677 characters,
-and the built_in function-call counts, 53867 in all, are:
-= -- 6487
-> -- 983
+            1418 strings with 17821 characters,
+and the built_in function-call counts, 54675 in all, are:
+= -- 6553
+> -- 1015
 < -- 1477
-+ -- 1857
-- -- 297
-* -- 3336
-:= -- 6471
-add.period$ -- 141
-call.type$ -- 32
-change.case$ -- 346
-chr.to.int$ -- 59
-cite$ -- 31
-duplicate$ -- 5550
-empty$ -- 1946
-format.name$ -- 1415
-if$ -- 10699
++ -- 1869
+- -- 307
+* -- 3392
+:= -- 6579
+add.period$ -- 145
+call.type$ -- 33
+change.case$ -- 356
+chr.to.int$ -- 60
+cite$ -- 32
+duplicate$ -- 5592
+empty$ -- 2010
+format.name$ -- 1462
+if$ -- 10894
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 578
-newline$ -- 176
-num.names$ -- 155
-pop$ -- 807
+missing$ -- 598
+newline$ -- 181
+num.names$ -- 160
+pop$ -- 835
 preamble$ -- 1
-purify$ -- 128
+purify$ -- 132
 quote$ -- 0
-skip$ -- 5679
+skip$ -- 5720
 stack$ -- 1
-substring$ -- 2358
-swap$ -- 2071
+substring$ -- 2375
+swap$ -- 2089
 text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 3
 warning$ -- 0
-while$ -- 223
+while$ -- 229
 width$ -- 0
-write$ -- 515
+write$ -- 530
 (There were 2 warnings)

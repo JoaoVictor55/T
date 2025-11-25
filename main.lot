@@ -6,10 +6,9 @@
 \contentsline {table}{\numberline {3}{\ignorespaces Distribuição das classes (por batimento) nos conjuntos Ds1 e Ds2}}{45}{table.caption.28}%
 \contentsline {table}{\numberline {4}{\ignorespaces Distribuição dos IDs dos Pacientes por Fold para Conjuntos de Treinamento e Validação}}{46}{table.caption.29}%
 \contentsline {table}{\numberline {5}{\ignorespaces Exemplo de matriz de confusão binária}}{47}{table.caption.30}%
-\contentsline {table}{\numberline {6}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular na validação}}{50}{table.caption.33}%
-\contentsline {table}{\numberline {7}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular no treino}}{51}{table.caption.34}%
-\contentsline {table}{\numberline {8}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular na validação}}{56}{table.caption.40}%
-\contentsline {table}{\numberline {9}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular no treino}}{56}{table.caption.41}%
-\contentsline {table}{\numberline {10}{\ignorespaces Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{62}{table.4.10}%
-\contentsline {table}{\numberline {10}{\ignorespaces Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{63}{table.4.10}%
-\contentsline {table}{\numberline {11}{\ignorespaces Total dos erros e acertos por paciente no \textit {fold} de validação}}{64}{table.caption.47}%
+\contentsline {table}{\numberline {6}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular na validação}}{51}{table.caption.33}%
+\contentsline {table}{\numberline {7}{\ignorespaces Média das métricas do GRU para a classificação normal vs. ventricular no treino}}{52}{table.caption.34}%
+\contentsline {table}{\numberline {8}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular na validação}}{57}{table.caption.40}%
+\contentsline {table}{\numberline {9}{\ignorespaces Média das métricas do modelo híbrido CNN e GRU para a classificação normal vs. ventricular no treino}}{57}{table.caption.41}%
+\contentsline {table}{\numberline {10}{\ignorespaces Resumo dos desempenho dos modelos para a classificação de arritmia (ventricular)}}{64}{table.4.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Total dos erros e acertos por paciente no \textit {fold} de validação}}{65}{table.caption.47}%

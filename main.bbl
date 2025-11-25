@@ -98,6 +98,11 @@ Acesso em: 28 set. 2025.}
 \emph{ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, p. 1308--1312, 2018.
 Dispon{\'\i}vel em: \url{https://api.semanticscholar.org/CorpusID:56173441}.}
 
+\bibitem[Müller e Guido 2016]{Mueller2016}
+\abntrefinfo{Müller e Guido}{MüLLER; GUIDO}{2016}
+{MüLLER, A.~C.; GUIDO, S. \emph{Introduction to Machine Learning with Python: A Guide for Data Scientists}. Sebastopol, CA: O'Reilly Media, 2016.
+ISBN 9781449369880.}
+
 \bibitem[Narotamo et al. 2024]{narotamo2024}
 \abntrefinfo{Narotamo et al.}{NAROTAMO et al.}{2024}
 {NAROTAMO, H. et al. Deep learning for ecg classification: A comparative study of 1d and 2d representations and multimodal fusion approaches.

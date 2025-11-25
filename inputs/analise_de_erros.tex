@@ -7,7 +7,7 @@ Conforme os critérios adotados, o eleito foi o terceiro.
 Como o recall foi superior à precisão, a hipótese levantada foi que a causa esteja relacionada à presença de batimentos normais com características morfológicas atípicas, o que pode ter confundido os modelos.
 Assim o objetivo dessa seção é fazer uma breve exploração desse \textit{fold} e verificar como os erros estão distribuídos em relação aos pacientes,
 e quais características os dados desses pacientes têm; como a morfologia do ECG e o intervalo RR.
-Por fim, será apresentado também a curva de calibração do modelo.
+Por fim, será apresentada também a curva de calibração do modelo.
 
 Devido ao fato de redes neurais serem modelos caixa-preta, não é possível afirmar quais características contribuíram para 
 os erros, logo, a análise serve apenas para construir uma intuição inicial para os resultados achados.
@@ -44,7 +44,7 @@ Já no paciente 209, o modelo acertou a única classe positiva que existia. O ú
 era extremamente rara, mas em números absolutos, a maioria dos erros foram de falsos positivos.
 
 Como o paciente 203 dominou os erros neste \textit{fold} e para o paciente 119, não houve erros, na próxima seção, a análise 
-se concentrar neste dois casos.
+se concentrará neste dois casos.
 
 \subsection{Comparação morfológica entre o paciente 203 e 119}
 
@@ -128,7 +128,7 @@ Observe no último batimento, uma arritmia ventricular.
 Na Figura~\ref{fig:poincarefp}, é ilustrado o gráfico de dispersão de um falso positivo do paciente 209.
 Note o último batimento da sequência (o 16º) ele ocorreu de forma mais prematura uma vez que se encontra na
 região inferior esquerda do gráfico, em comparação a outros batimentos — como o quarto, o oitavo e o décimo. Além disso, o intervalo
-entre ele e seu sucessor é menor do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com
+entre ele e seu sucessor é maior do que o intervalo em relação ao batimento anterior, o que poderia sugerir um padrão compatível com
 um batimento ventricular prematuro (PVC). No entanto, essa interpretação dependeria da frequência cardíaca do paciente, e como
 discutido na seção \ref{sub_sec:padroes_arritmias_aami}, não existe um padrão universal de ECG normal.
 
@@ -141,7 +141,7 @@ A Figura~\ref{fig:poincaretp} mostra um caso de verdadeiro positivo do mesmo pac
     \begin{minipage}{0.9\textwidth}
         \centering
         \includegraphics[width=0.7\linewidth]{figuras/analise_erros/poincare_paciente_mais_dificil_fp.png}
-        \subcaption{Falso positivo do paciente 203. Note o batimetimento 16º mais prematuro.}
+        \subcaption{Falso positivo do paciente 203. Note o batimento 16º mais prematuro.}
         \label{fig:poincarefp}
     \end{minipage}
 
@@ -223,7 +223,7 @@ Por fim, a Figura~\ref{fig:poincare_tn_MaisFacil} mostra uma sequência normal d
     \label{fig:poincare_normal_maisdificil_maisfacil}
 \end{figure}
 
-Para visualizar o quão confiante o modelo foi em seus erros, foi feito a curva de calibração, na Figura~\ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 119.
+Para visualizar o quão confiante o modelo foi em seus erros, foi feita a curva de calibração, na Figura~\ref{fig:curva_calibracao_pior_paciente}, do modelo para o paciente 203 e o paciente 119.
 
 \begin{figure}[h]
   \centering
