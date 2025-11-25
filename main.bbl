@@ -27,6 +27,14 @@ Dispon{\'\i}vel em:
 \emph{IEEE Transactions on Biomedical Engineering}, v.~51, n.~7, p. 1196--1206,
   2004.}
 
+\bibitem[Goldberger et al. 2000]{Goldberger2000}
+\abntrefinfo{Goldberger et al.}{GOLDBERGER et al.}{2000}
+{GOLDBERGER, A.~L. et al. Physiobank, physiotoolkit, and physionet: Components
+  of a new research resource for complex physiologic signals.
+\emph{Circulation}, v.~101, n.~23, p. e215--e220, 2000.
+Dispon{\'\i}vel em:
+  \url{http://circ.ahajournals.org/content/101/23/e215.full}.}
+
 \bibitem[Géron 2022]{geron2022hands}
 \abntrefinfo{Géron}{GéRON}{2022}
 {GéRON, A. \emph{Hands-On Machine Learning with Scikit-Learn, Keras, and
