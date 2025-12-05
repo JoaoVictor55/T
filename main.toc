@@ -51,15 +51,14 @@
 \contentsline {section}{\numberline {4.2}Resultados do modelo híbrido GRU e CNN}{56}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Resultados no pior e melhor caso (Modelo Híbrido)}{58}{subsection.4.2.1}%
 \contentsline {section}{\numberline {4.3}Conclusão dos resultados}{62}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Análise de erros no pior \textit {fold}}{64}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Análise de erros do modelo híbrido CNN com GRU}{64}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Comparação morfológica entre o paciente 203 e 119}{65}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Comparação temporal entre o paciente 203 e 119}{69}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Conclusão da análise de erros}{72}{section.4.6}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Análise de erros no pior \textit {fold}}}{65}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Análise de erros do modelo híbrido CNN com GRU}{65}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Comparação morfológica entre o paciente 203 e 119}{66}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Comparação temporal entre o paciente 203 e 119}{69}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Conclusão da análise de erros}{72}{section.5.2}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusão}}{74}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Trabalhos futuros}{74}{section.6.1}%
-\contentsline {section}{REFERÊNCIAS}{75}{section.6.1}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Conclusão}}{74}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Trabalhos futuros}{74}{section.5.1}%
+\contentsline {section}{REFERÊNCIAS}{75}{section.5.1}%
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \contentsline {chapter}{\MakeTextUppercase []{Refer\^encias}}{76}{section*.57}%
