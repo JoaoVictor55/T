@@ -500,6 +500,11 @@ OUTPUT includes/folhaaprovacao.aux
 INPUT ./includes/folhaaprovacao.tex
 INPUT ./includes/folhaaprovacao.tex
 INPUT includes/folhaaprovacao.tex
+INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr12.tfm
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT ./includes/agradecimentos.tex
 INPUT ./includes/agradecimentos.tex
 OUTPUT includes/agradecimentos.aux
@@ -549,12 +554,7 @@ INPUT inputs/introducao.tex
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss17.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss12.tfm
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri10.tfm
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT ./inputs/fundamentacao_teorica.tex
 INPUT ./inputs/fundamentacao_teorica.tex
 INPUT ./inputs/fundamentacao_teorica.tex

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  5 DEC 2025 10:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.9.28)  5 DEC 2025 10:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1277,12 +1277,16 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ]
 \openout2 = `includes/folhaaprovacao.aux'.
 
- (./includes/folhaaprovacao.tex [3
+ (./includes/folhaaprovacao.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 33.
+ (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [3
 
 
 
 
-])
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}])
 \openout2 = `includes/agradecimentos.aux'.
 
  (./includes/agradecimentos.tex
@@ -1386,11 +1390,7 @@ LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <12> not available
 
 
 
-]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 36.
- (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [14{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]) (./inputs/fundamentacao_teorica.tex [15] [16]
+] [14]) (./inputs/fundamentacao_teorica.tex [15] [16]
 <figuras/coracao_sistema_eletrico.png, id=330, 1084.05pt x 1544.77126pt>
 File: figuras/coracao_sistema_eletrico.png Graphic file (type png)
 <use figuras/coracao_sistema_eletrico.png>
@@ -1707,15 +1707,15 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 45683 strings out of 474222
- 1006905 string characters out of 5748733
+ 45684 strings out of 474222
+ 1006923 string characters out of 5748733
  1956975 words of memory out of 5000000
- 66500 multiletter control sequences out of 15000+600000
+ 66501 multiletter control sequences out of 15000+600000
  717883 words of font info for 306 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,19n,131p,1159b,2292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbo10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (78 pages, 4427366 bytes).
+Output written on main.pdf (78 pages, 4427687 bytes).
 PDF statistics:
  1363 PDF objects out of 1440 (max. 8388607)
  1130 compressed objects within 12 object streams
